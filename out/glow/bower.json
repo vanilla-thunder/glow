@@ -1,0 +1,16 @@
+{
+  "name": "glow",
+  "version": "0.1.0",
+  "homepage": "https://github.com/vanilla-thunder/glow",
+  "private": true,
+  "dependencies": {
+    "bootstrap": "*",
+    "font-awesome": "*",
+    "bootstrap-validator": "*",
+    "lightgallery": "*",
+    "flexslider": "*",
+    "js-cookie": "*",
+    "jquery-unveil": "luis-almeida/unveil#master"
+  },
+  "ignoredDependencies": []
+}

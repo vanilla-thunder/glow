@@ -1,0 +1,22 @@
+{
+  "name": "glow",
+  "version": "0.1.0",
+  "description": "cleaned, updated and bugfixed flow theme for oxid eshop 4.9 / 4.10.",
+  "private": true,
+  "keywords": [],
+  "author": "Marat Bedoev",
+  "license": "GPL3",
+  "README": "README",
+  "scripts": {
+    "start": "node dev.js"
+  },
+  "dependencies": {
+    "less": "*",
+    "uglify-js": "*",
+    "node-watch": "*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vanilla-thunder/glow.git"
+  }
+}
