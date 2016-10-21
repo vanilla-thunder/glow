@@ -17,6 +17,7 @@ based on Flow Theme: https://github.com/OXID-eSales/flow_theme
     npm start
 
 ### Important changes
+* Logo path is now relative to ``out/pictures/wysiwygpro/``
 * background image path changed to ``out/pictures/wysiwygpro/``
 * minor layout changes
 * replaced old reused Azure JavaScripts with simple jQuery
@@ -24,7 +25,7 @@ based on Flow Theme: https://github.com/OXID-eSales/flow_theme
 
 
 ### Features
-* basic nodejs less compier included
+* nodejs less compier & js minifier included
 * using bower for 3rd party libraries
 
 ### Bugfixes

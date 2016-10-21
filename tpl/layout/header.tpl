@@ -3,7 +3,6 @@
 [{/if}]
 [{block name="header_main"}]
     [{assign var="blFullwidth" value=$oViewConf->getViewThemeParam('blFullwidthLayout')}]
-
     <header id="header">
 
         <div class="[{if $blFullwidth}]container[{else}]container-fluid[{/if}]">
@@ -17,7 +16,7 @@
                             [{assign var="sLogoWidth" value=$oViewConf->getViewThemeParam('sLogoWidth')}]
                             [{assign var="sLogoHeight" value=$oViewConf->getViewThemeParam('sLogoHeight')}]
                             <a href="[{$oViewConf->getHomeLink()}]" title="[{$oxcmp_shop->oxshops__oxtitleprefix->value}]">
-                                <img src="[{$oViewConf->getImageUrl($slogoImg)}]" alt="[{$oxcmp_shop->oxshops__oxtitleprefix->value}]" style="[{if $sLogoWidth}]width:auto;max-width:[{$sLogoWidth}]px;[{/if}][{if $sLogoHeight}]height:auto;max-height:[{$sLogoHeight}]px;[{/if}]">
+                                <img src="[{$oViewConf->getPictureDir()|cat:'wysiwigpro/'|cat:$slogoImg}]" alt="[{$oxcmp_shop->oxshops__oxtitleprefix->value}]" style="[{if $sLogoWidth}]width:auto;max-width:[{$sLogoWidth}]px;[{/if}][{if $sLogoHeight}]height:auto;max-height:[{$sLogoHeight}]px;[{/if}]">
                             </a>
                         [{/block}]
                     </div>
@@ -70,7 +69,6 @@
         [{/block}]
 
     </header>
-
 [{/block}]
 
 [{insert name="oxid_newbasketitem" tpl="widget/minibasket/newbasketitemmsg.tpl" type="message"}]

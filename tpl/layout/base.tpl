@@ -140,7 +140,7 @@
         [{/block}]
 
         [{block name="base_style"}]
-            [{oxstyle include="css/glow.min.css"}]
+            [{oxstyle include="css/styles.min.css"}]
         [{/block}]
 
         [{block name="base_fonts"}]
@@ -197,61 +197,60 @@
 
 <!DOCTYPE html>
 <html lang="[{$oView->getActiveLangAbbr()}]" [{if $oViewConf->getShowFbConnect()}]xmlns:fb="http://www.facebook.com/2008/fbml"[{/if}]>
-    <head>
-        [{foreach from=$oxidBlock_pageHead item="_block"}]
+<head>
+    [{foreach from=$oxidBlock_pageHead item="_block"}]
+        [{$_block}]
+    [{/foreach}]
+    [{oxstyle}]
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body class="cl-[{$oView->getClassName()}][{if $smarty.get.plain == '1'}] popup[{/if}][{if $blIsCheckout}] is-checkout[{/if}][{if $oxcmp_user && $oxcmp_user->oxuser__oxpassword->value}] is-logged-in[{/if}]"[{if $sStyle}] style="[{$sStyle}]"[{/if}]>
+
+<div class="[{if $blFullwidth}]fullwidth-container[{else}]container[{/if}]">
+    <div class="main-row">
+        [{foreach from=$oxidBlock_pageBody item="_block"}]
             [{$_block}]
         [{/foreach}]
-        [{oxstyle}]
+    </div>
+</div>
 
-        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-        <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-        <![endif]-->
-    </head>
-    <body class="cl-[{$oView->getClassName()}][{if $smarty.get.plain == '1'}] popup[{/if}][{if $blIsCheckout}] is-checkout[{/if}][{if $oxcmp_user && $oxcmp_user->oxuser__oxpassword->value}] is-logged-in[{/if}]"[{if $sStyle}] style="[{$sStyle}]"[{/if}]>
+[{foreach from=$oxidBlock_pagePopup item="_block"}]
+    [{$_block}]
+[{/foreach}]
 
-        <div class="[{if $blFullwidth}]fullwidth-container[{else}]container[{/if}]">
-            <div class="main-row">
-                [{foreach from=$oxidBlock_pageBody item="_block"}]
-                    [{$_block}]
-                [{/foreach}]
-            </div>
-        </div>
+[{block name="base_js"}]
+    [{include file="i18n/js_vars.tpl"}]
 
-        [{foreach from=$oxidBlock_pagePopup item="_block"}]
-            [{$_block}]
-        [{/foreach}]
+    [{oxscript include="libs/jquery/dist/jquery.min.js" priority=1}]
+    [{oxscript include="libs/js-cookie/src/js.cookie.js" priority=1}]
+    [{oxscript include="libs/bootstrap/dist/js/bootstrap.min.js" priority=2}]
+    [{oxscript include="libs/flexslider/jquery.flexslider.min.js" priority=2}]
+    [{oxscript include="libs/jquery-unveil/jquery.unveil.js" priority=2}]
+    [{oxscript include="libs/lightgallery/dist/js/lightgallery.min.js" priority=2}]
 
-        [{block name="base_js"}]
-            [{include file="i18n/js_vars.tpl"}]
+    [{oxscript include="js/glow.js" priority=10}]
+[{/block}]
 
-            [{oxscript include="libs/jquery/dist/jquery.min.js" priority=1}]
-            [{oxscript include="libs/js-cookie/src/js.cookie.js" priority=1}]
-            [{oxscript include="libs/bootstrap/dist/js/bootstrap.min.js" priority=2}]
-            [{oxscript include="libs/flexslider/jquery.flexslider.min.js" priority=2}]
-            [{oxscript include="libs/jquery-unveil/jquery.unveil.js" priority=2}]
-            [{oxscript include="libs/lightgallery/dist/js/lightgallery.min.js" priority=2}]
+[{if $oViewConf->isTplBlocksDebugMode()}]
+    [{oxscript include="js/widgets/oxblockdebug.min.js"}]
+    [{oxscript add="$( 'hr.debugBlocksStart' ).oxBlockDebug();"}]
+[{/if}]
 
-            [{* oxscript include="js/flow.js" priority=10 *}]
-            [{ oxscript include="js/glow.js" priority=10 }]
-        [{/block}]
+<!--[if gte IE 9]><style type="text/css">.gradient {filter:none;}</style><![endif]-->
+[{oxscript}]
 
-        [{if $oViewConf->isTplBlocksDebugMode()}]
-            [{oxscript include="js/widgets/oxblockdebug.min.js"}]
-            [{oxscript add="$( 'hr.debugBlocksStart' ).oxBlockDebug();"}]
-        [{/if}]
+[{if !$oView->isDemoShop()}]
+    [{oxid_include_dynamic file="widget/dynscript.tpl"}]
+[{/if}]
 
-        <!--[if gte IE 9]><style type="text/css">.gradient {filter:none;}</style><![endif]-->
-        [{oxscript}]
+[{foreach from=$oxidBlock_pageScript item="_block"}]
+    [{$_block}]
+[{/foreach}]
 
-        [{if !$oView->isDemoShop()}]
-            [{oxid_include_dynamic file="widget/dynscript.tpl"}]
-        [{/if}]
-
-        [{foreach from=$oxidBlock_pageScript item="_block"}]
-            [{$_block}]
-        [{/foreach}]
-
-    </body>
+</body>
 </html>

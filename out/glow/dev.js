@@ -5,16 +5,14 @@ var fs = require('fs'),
 //ProgressBar = require('progress'),
     watch = require('node-watch');
 
-
 // ********** Compiler config
-var $theme  = 'glow',
-    $vendor = path.join(__dirname, 'src/application/views/flow/build/less/'), // relative path to flow less files
+var flowless = '../../' + (__dirname.indexOf('application/views/glow/out/glow') > -1 ? '../' : 'application/views/' ) + 'flow/build/less/';
+    $vendor = path.join(__dirname, flowless), // relative path to flow less files
     $lesswatch  = path.join(__dirname, 'src/less/'), // watch this directory for file changes
-    $lesssource = path.join(__dirname, 'src/less/glow.less'), // less source file relative to this file
-    $lesstarget = path.join(__dirname, 'src/css/glow.min.css'), //  target file for compilation relative to this file
+    $lesssource = path.join(__dirname, 'src/less/styles.less'), // less source file relative to this file
+    $lesstarget = path.join(__dirname, 'src/css/styles.min.css'), //  target file for compilation relative to this file
     $lesssourcemap = true, // include source map or not? true / false
     $lessminify = false; // minify output? true / false
-
 // ********************************************************
 
 // ********** UglifyJS config
@@ -107,12 +105,14 @@ console.log(' |');
 console.log(' | type "l" or "less" to compile less files');
 console.log(' | type "m" or "minify" to toggle minifying css on and off ');
 console.log(' |');
+console.log(' |    flow less dir: ' + $vendor);
 console.log(' |   less directory: ' + path.relative(__dirname,$lesswatch) );
+console.log(' |');
+console.log(' |           source: ' + path.relative(__dirname,$lesssource));
+console.log(' |           output: ' + path.relative(__dirname,$lesstarget));
+console.log(' |');
 console.log(' |        sourcemap: ' + $lesssourcemap);
 console.log(' |           minify: ' + $lessminify);
-console.log(' |');
-console.log(' | source: ' + path.relative(__dirname,$lesssource));
-console.log(' | target: ' + path.relative(__dirname,$lesstarget));
 console.log(' |');
 console.log(' |_____________________________________________   UglifyJS');
 console.log(' |');

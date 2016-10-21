@@ -8,7 +8,6 @@
     [{/block}]
 
     [{assign var="blFullwidth" value=$oViewConf->getViewThemeParam('blFullwidthLayout')}]
-
     <div id="wrapper" [{if $sidebar}]class="sidebar[{$sidebar}]"[{/if}]>
 
         <div class="[{if $blFullwidth}]container[{else}]container-fluid[{/if}]">
@@ -16,11 +15,9 @@
             <div class="underdog">
 
                 <div class="row">
-
                     [{if $oView->getClassName()=='start' && $oView->getBanners()|@count > 0}]
                         [{include file="widget/promoslider.tpl"}]
                     [{/if}]
-
                 </div>
 
                 <div class="content-box">
@@ -72,11 +69,9 @@
         </div>
 
     </div>
-
     [{include file="layout/footer.tpl"}]
 
     [{include file="widget/facebook/init.tpl"}]
-
     <i class="fa fa-chevron-circle-up icon-4x" id="jumptotop"></i>
 [{/capture}]
 [{include file="layout/base.tpl"}]
