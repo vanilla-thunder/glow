@@ -2,7 +2,7 @@ $( function () {
 
     // allgemeines Zeug
     $( "img" ).unveil();
-    $( '.hasTooltip' ).tooltip();
+    $( '.hasTooltip' ).tooltip({container: 'body'});
     $( '.hasPopover' ).popover();
 
 
