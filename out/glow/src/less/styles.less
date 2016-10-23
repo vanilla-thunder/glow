@@ -3,20 +3,38 @@
 //@import "../libs/flexslider/flexslider";
 //@import "../libs/font-awesome/less/font-awesome";
 //@import "../libs/lightgallery/dist/css/lightgallery.min.css";
-
 // parent flow less
-@import "flow";
+@import "../libs/bootstrap/less/bootstrap";
+@import "../libs/font-awesome/less/font-awesome";
+// Theme related less files
+@import "theme";
+@import "responsive";
+@import "variables";
 
 // bootstrap changes
 @container-sm: 100%;
 @container-md: 100%;
 
-  // diverses zeug
+// diverses zeug
 @fa-font-path: "../../../flow/src/fonts";
 
 #mainnav {
   &.affix {
-    z-index:10;
-    top:0;left:0;right:0;
+    z-index: 10;
+    top: 0;
+    left: 0;
+    right: 0;
+  }
+}
+
+.priceinfo {
+  padding: 10px;
+  margin-bottom: 10px;
+  &.reduced {
+    border: 2px solid green;
+    .bg-success;
+    strong {
+      .text-danger
+    }
   }
 }

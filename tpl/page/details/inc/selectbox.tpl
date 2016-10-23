@@ -4,9 +4,9 @@
 [{if $oSelections}]
     <div class="form-group">
         [{if !$blHideLabel}]
-            <label class="col-sm-12 col-md-6 col-lg-3 control-label" for="disabledTextInput"><strong>[{$oSelectionList->getLabel()}][{oxmultilang ident="COLON"}]</strong></label>
+            <label class="col-xs-12 col-sm-3 col-md-6 col-lg-3 control-label"><strong>[{$oSelectionList->getLabel()}][{oxmultilang ident="COLON"}]</strong></label>
         [{/if}]
-        <div class="col-sm-12 col-md-6 col-lg-9">
+        <div class="col-xs-12 col-sm-9 col-md-6 col-lg-9">
             [{if $editable !== false}]
                 [{* <input type="hidden" name="[{$sFieldName|default:"varselid"}][[{$iKey}]]" class="activeselection" value="[{if $oActiveSelection}][{$oActiveSelection->getValue()}][{/if}]"> *}]
                 <select name="[{$sFieldName|default:"varselid"}][[{$iKey}]]" id="[{$sFieldName|default:"varselid"}]_[{$iKey}]" class="form-control variants">
