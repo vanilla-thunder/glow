@@ -1,0 +1,11 @@
+demo
+out/glow/node_modules
+out/glow/src/libs/*/docs
+out/glow/src/libs/*/external
+out/glow/src/libs/*/jquery/src
+out/glow/src/libs/*/scss
+out/glow/src/libs/*/sass
+out/glow/src/libs/*/Gemfile*
+out/glow/src/libs/*/Gruntfile*
+out/glow/src/libs/*/grunt
+out/glow/src/libs/*/nuget

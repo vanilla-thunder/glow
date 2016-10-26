@@ -7,7 +7,7 @@
     "bootstrap": "*",
     "font-awesome": "*",
     "bootstrap-validator": "*",
-    "lightgallery": "*",
+    "fancyBox": "*",
     "flexslider": "*",
     "js-cookie": "*",
     "jquery-unveil": "luis-almeida/unveil#master"
