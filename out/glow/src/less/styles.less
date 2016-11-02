@@ -1,23 +1,58 @@
 // Including 3rd party libs
 //@import "../libs/bootstrap/less/bootstrap";
-//@import "../libs/flexslider/flexslider";
+
 //@import "../libs/font-awesome/less/font-awesome";
 //@import "../libs/lightgallery/dist/css/lightgallery.min.css";
 // parent flow less
 @import "../libs/bootstrap/less/bootstrap";
+
 @import "../libs/font-awesome/less/font-awesome";
+@fa-font-path: "../../../flow/src/fonts";
+
+@import "../libs/fancyBox/source/jquery.fancybox.css";
+
+@import "../libs/flexslider/flexslider";
+@font-name: "FontAwesome";
+@font-path: @fa-font-path;
+//@font-file-name:                      "flexslider-icon";
+@flex-direction-nav-icon-prev:        @fa-var-angle-left;
+@flex-direction-nav-icon-next:        @fa-var-angle-right;
+@flex-pauseplay-icon-play:            @fa-var-play;
+@flex-pauseplay-icon-pause:           @fa-var-pause;
+
 // Theme related less files
 @import "theme";
 @import "responsive";
 @import "variables";
 
+//Brand colors to use across Flow
+// https://coolors.co/50514f-f25f5c-ffe066-247ba0-70c1b3
+@brand-primary:   #247BA0;
+@brand-secondary: #50514F;
+@brand-success:         #5cb85c;
+@brand-info:            #5bc0de;
+@brand-warning:         #FFE066;
+@brand-danger:          #F25F5C;
+
+@ox-container-base-background-color:    #FFF;
+@ox-container-header-background-color:  @ox-container-base-background-color;
+@ox-container-wrapper-background-color: @ox-container-base-background-color;
+@ox-footer-bg:                          @brand-secondary;
+@ox-footer-border:                      #E7E7E7;
+@ox-footer-color:                       #E7E7E7;
+#footer a { color: @ox-footer-color; }
+
 // bootstrap changes
 @container-sm: 100%;
 @container-md: 100%;
 
-// diverses zeug
-@fa-font-path: "../../../flow/src/fonts";
-
+// layout
+.header-row {
+  margin-left: floor( @grid-gutter-width / 2 ) * -1;
+  margin-right: floor( @grid-gutter-width / 2 ) * -1;
+  margin-bottom: floor( @grid-gutter-width / 2 );
+  box-shadow: @ox-boxed-container-shadow;
+}
 #mainnav {
   &.affix {
     z-index: 10;
@@ -26,7 +61,14 @@
     right: 0;
   }
 }
+// style adjustments
+.flexslider .flex-direction-nav .flex-prev,
+.flexslider .flex-direction-nav .flex-next {
+  opacity: 0.05;
+}
 
+
+// details page
 .priceinfo {
   padding: 10px;
   margin-bottom: 10px;

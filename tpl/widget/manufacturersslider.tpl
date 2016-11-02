@@ -1,6 +1,3 @@
-[{oxscript include="js/libs/jquery.flexslider.min.js" priority=2}]
-[{oxstyle include="css/libs/jquery.flexslider.min.css"}]
-
 <div class="row">
     <div id="manufacturerSlider" class="boxwrapper">
         <div class="page-header">

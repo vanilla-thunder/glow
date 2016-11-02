@@ -4,7 +4,7 @@ based on Flow Theme: https://github.com/OXID-eSales/flow_theme
 
 ## Work in Progress! to do:
 * testing replaced scripts
-* cleanup less and rework replaced/removed 3rd-party libraries
+* checkout + form validation
 
 ### Installation
     cd application/views/
@@ -19,10 +19,12 @@ based on Flow Theme: https://github.com/OXID-eSales/flow_theme
 ### Important changes
 * Logo path is now relative to ``out/pictures/wysiwygpro/``
 * background image path changed to ``out/pictures/wysiwygpro/``
-* minor layout changes
+* layout changes for product details
 * replaced old reused Azure JavaScripts with simple jQuery
-* removed jQuery-UI
-
+* removed jQuery-UI and some other libs (see list below)
+* tpl/widget/product/selectbox.tpl -> tpl/page/details/inc/selectbox.tpl  
+   **because selectbox.tpl is not a widget!**
+* selection dropdowns replaced with native select elements
 
 ### Features
 * nodejs less compier & js minifier included
@@ -35,11 +37,11 @@ based on Flow Theme: https://github.com/OXID-eSales/flow_theme
 * [6509 - articles with one or more pick lists are put into basket every time one chooses a setting](https://bugs.oxid-esales.com/view.php?id=6509)
 
 
-### Replaced discontinued 3rd-party Libraries:
-* jQuery-Bootstrap-Validation -> [Bootstrap Validator](http://1000hz.github.io/bootstrap-validator/)
-* Photoswipe -> [Lightgallery](http://sachinchoolur.github.io/lightGallery/)
-* jQuery-cookie -> [js-Cookie](https://github.com/js-cookie/js-cookie)
+### Removed / Replaced JS scritps and libraries:
+* jQuery-UI removed
+* Bootstrap-Select removed
+* jQuery-Bootstrap-Validation (discontinued) -> [Bootstrap Validator](http://1000hz.github.io/bootstrap-validator/)
+* Photoswipe (lack of features) -> [FancyBox](http://fancyapps.com/fancybox/)
+* jQuery-cookie (discontinued)-> [js-Cookie](https://github.com/js-cookie/js-cookie)
 
-### Removed 3rd-party Libraries:
-* jQuery-UI
-* Bootstrap-Select
+

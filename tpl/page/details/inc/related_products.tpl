@@ -1,0 +1,11 @@
+[{block name="details_relatedproducts_accessoires"}]
+   [{if $oView->getAccessoires()|count}]
+      [{include file="widget/product/list.tpl" type="mini" iProductsPerLine=1 listId="accessories" products=$oView->getAccessoires() head="ACCESSORIES"|oxmultilangassign subhead="WIDGET_PRODUCT_RELATED_PRODUCTS_ACCESSORIES_SUBHEADER"|oxmultilangassign}]
+   [{/if}]
+[{/block}]
+
+[{block name="details_relatedproducts_similarproducts"}]
+   [{if $oView->getSimilarProducts()|count}]
+      [{include file="widget/product/list.tpl" type="mini" iProductsPerLine=1 listId="similar"  products=$oView->getSimilarProducts() head="SIMILAR_PRODUCTS"|oxmultilangassign subhead="WIDGET_PRODUCT_RELATED_PRODUCTS_SIMILAR_SUBHEADER"|oxmultilangassign}]
+   [{/if}]
+[{/block}]

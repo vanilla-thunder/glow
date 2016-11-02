@@ -3,15 +3,13 @@
     [{assign var="currency" value=$oView->getActCurrency()}]
 
     [{if $oBanners|@count}]
-        [{oxscript include="js/libs/jquery.flexslider.min.js" priority=2}]
-        [{oxstyle include="css/libs/jquery.flexslider.min.css"}]
-
         <div id="promo-carousel" class="flexslider">
             <ul class="slides">
                 [{block name="dd_widget_promoslider_list"}]
                     [{foreach from=$oBanners key="iPicNr" item="oBanner" name="promoslider"}]
                         [{assign var="oArticle" value=$oBanner->getBannerArticle()}]
                         [{assign var="sBannerPictureUrl" value=$oBanner->getBannerPictureUrl()}]
+
                         [{if $sBannerPictureUrl}]
                             <li class="item">
                                 [{assign var="sBannerLink" value=$oBanner->getBannerLink()}]

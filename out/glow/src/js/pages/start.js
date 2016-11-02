@@ -1,4 +1,4 @@
-$( window ).on("load", function()
+$(function ()
 {
 
     var $window = $( this ),

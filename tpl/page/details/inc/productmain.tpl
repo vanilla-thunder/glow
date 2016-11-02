@@ -37,11 +37,12 @@
       <div class="col-xs-12 col-sm-5">
          [{block name="details_productmain_zoom"}]
             <div class="picture">
-               <a href="[{$oPictureProduct->getZoomPictureUrl(1)}]" id="zoom1" class="thumbnail">
+               <a href="[{$oPictureProduct->getZoomPictureUrl(1)}]" id="zoom1" class="thumbnail" rel="produktbilder">
                   <img src="[{$oView->getActPicture()}]" itemprop="image"
                        alt="[{$oPictureProduct->oxarticles__oxtitle->value|strip_tags}] [{$oPictureProduct->oxarticles__oxvarselect->value|strip_tags}]">
                </a>
             </div>
+            [{oxscript add='$(".thumbnail").fancybox();'}]
          [{/block}]
 
          [{block name="details_productmain_morepics"}]
@@ -164,35 +165,38 @@
                [{/if}]
             [{/block}]
 
-            [{assign var=tprice value=$oDetailsProduct->getTPrice()}]
-            [{assign var=price  value=$oDetailsProduct->getPrice()}]
+            <div class="row">
+               <div class="col-xs-12 col-md-6">
 
-            <div class="priceinfo [{if $tprice && $tprice->getBruttoPrice() > $price->getBruttoPrice()}]reduced[{/if}]">
-               [{block name="details_productmain_tprice"}]
-                  [{if $tprice && $tprice->getBruttoPrice() > $price->getBruttoPrice()}]
-                     <div class="tprice">
-                        <span class="h4">[{oxmultilang ident="REDUCED_FROM"}] [{$oDetailsProduct->getFTPrice()}] [{$currency->sign}]</span>
-                        <em>[{oxmultilang ident="OUR_REGULAR_PRICE"}]</em>
-                     </div>
-                  [{/if}]
-               [{/block}]
+                  [{assign var=tprice value=$oDetailsProduct->getTPrice()}]
+                  [{assign var=price  value=$oDetailsProduct->getPrice()}]
 
-               [{block name="details_productmain_price"}]
-                  [{block name="details_productmain_price_value"}]
-                     [{if $oDetailsProduct->getFPrice()}]
-                        [{assign var="sFrom" value=""}]
-                        [{assign var="fPrice" value=$oDetailsProduct->getFPrice()}]
-
-                        [{if $oDetailsProduct->isParentNotBuyable()}]
-                           [{assign var="fPrice" value=$oDetailsProduct->getFVarMinPrice()}]
-                           [{if $oDetailsProduct->isRangePrice()}]
-                              [{assign var="sFrom" value="PRICE_FROM"|oxmultilangassign}]
-                           [{/if}]
+                  <div class="priceinfo [{if $tprice && $tprice->getBruttoPrice() > $price->getBruttoPrice()}]reduced[{/if}] text-center">
+                     [{block name="details_productmain_tprice"}]
+                        [{if $tprice && $tprice->getBruttoPrice() > $price->getBruttoPrice()}]
+                           <div class="tprice">
+                              <span class="h4">[{oxmultilang ident="REDUCED_FROM"}] [{$oDetailsProduct->getFTPrice()}] [{$currency->sign}]</span>
+                              <em>[{oxmultilang ident="OUR_REGULAR_PRICE"}]</em>
+                           </div>
                         [{/if}]
-                        <strong class="h2">
-                           <span class="price-from">[{$sFrom}]</span>
-                           <span class="price">[{$fPrice}]</span>
-                           <span class="currency">[{$currency->sign}]</span>
+                     [{/block}]
+
+                     [{block name="details_productmain_price"}]
+                        [{block name="details_productmain_price_value"}]
+                           [{if $oDetailsProduct->getFPrice()}]
+                              [{assign var="sFrom" value=""}]
+                              [{assign var="fPrice" value=$oDetailsProduct->getFPrice()}]
+
+                              [{if $oDetailsProduct->isParentNotBuyable()}]
+                                 [{assign var="fPrice" value=$oDetailsProduct->getFVarMinPrice()}]
+                                 [{if $oDetailsProduct->isRangePrice()}]
+                                    [{assign var="sFrom" value="PRICE_FROM"|oxmultilangassign}]
+                                 [{/if}]
+                              [{/if}]
+                              <strong class="h2">
+                                 <span class="price-from">[{$sFrom}]</span>
+                                 <span class="price">[{$fPrice}]</span>
+                                 <span class="currency">[{$currency->sign}]</span>
                            <span class="price-markup">
                               <a href="#incVatInfo" class="hasTooltip" data-toggle="tooltip"
                                  title="[{if $oView->isVatIncluded()}][{oxmultilang ident="PLUS_SHIPPING"}][{else}][{oxmultilang ident="PLUS"}][{/if}] [{oxmultilang ident="PLUS_SHIPPING2"}]">*</a>
@@ -200,42 +204,44 @@
                            <span class="hidden">
                               <span itemprop="price">[{$fPrice}] [{$currency->sign}]</span>
                            </span>
-                        </strong>
-                     [{/if}]
+                              </strong>
+                           [{/if}]
 
-                     [{if $oDetailsProduct->loadAmountPriceInfo()}]
-                        [{include file="page/details/inc/priceinfo.tpl"}]
+                           [{if $oDetailsProduct->loadAmountPriceInfo()}]
+                              [{include file="page/details/inc/priceinfo.tpl"}]
+                           [{/if}]
+                        [{/block}]
+                     [{/block}]
+
+                     [{* price per unit *}]
+                     [{assign var="oUnitPrice" value=$oDetailsProduct->getUnitPrice()}]
+                     [{block name="details_productmain_priceperunit"}]
+                        [{if $oUnitPrice}]
+                           [{oxprice price=$oUnitPrice currency=$currency}]/[{$oDetailsProduct->getUnitName()}]
+                        [{/if}]
+                     [{/block}]
+
+                  </div>
+               </div>
+               <div class="col-xs-12 col-md-6">
+                  [{block name="details_productmain_tobasket"}]
+                     [{if !$oDetailsProduct->isNotBuyable()}]
+                        [{if $blCanBuy}]
+                           <div class="input-group input-group-lg">
+                              <input id="amountToBasket" title="[{oxmultilang ident='GENERAL_SUM'}]" type="number" name="am" value="1" autocomplete="off" class="form-control text-center large">
+                              <span class="input-group-btn">
+                                 <button id="toBasket" type="submit" [{if !$blCanBuy}]disabled="disabled"[{/if}] class="btn btn-primary">
+                                    <i class="fa fa-shopping-cart"></i> [{oxmultilang ident="TO_CART"}]
+                                 </button>
+                              </span>
+                           </div>
+                        [{else}]
+                           <div class="alert alert-warning text-center">[{oxmultilang ident="DETAILS_CHOOSEVARIANT"}]</div>
+                        [{/if}]
                      [{/if}]
                   [{/block}]
-               [{/block}]
-
-               [{* price per unit *}]
-               [{assign var="oUnitPrice" value=$oDetailsProduct->getUnitPrice()}]
-               [{block name="details_productmain_priceperunit"}]
-                  [{if $oUnitPrice}]
-                     [{oxprice price=$oUnitPrice currency=$currency}]/[{$oDetailsProduct->getUnitName()}]
-                  [{/if}]
-               [{/block}]
-
+               </div>
             </div>
-
-            [{block name="details_productmain_tobasket"}]
-               [{if !$oDetailsProduct->isNotBuyable()}]
-                  [{if $blCanBuy}]
-                     <div class="input-group input-group-lg">
-                        <input id="amountToBasket" title="[{oxmultilang ident='GENERAL_SUM'}]" type="number" name="am" value="1" autocomplete="off" class="form-control text-center large">
-                        <span class="input-group-btn">
-                           <button id="toBasket" type="submit" [{if !$blCanBuy}]disabled="disabled"[{/if}] class="btn btn-primary">
-                              <i class="fa fa-shopping-cart"></i> [{oxmultilang ident="TO_CART"}]
-                           </button>
-                        </span>
-                     </div>
-                  [{else}]
-                     <div class="alert alert-warning">[{oxmultilang ident="DETAILS_CHOOSEVARIANT"}]</div>
-                  [{/if}]
-               [{/if}]
-            [{/block}]
-
             [{if $blCanBuy}]
                [{block name="details_productmain_stockstatus"}]
                   [{if $oDetailsProduct->getStockStatus() == -1}]
@@ -243,10 +249,8 @@
                                 <i class="fa fa-circle text-danger"></i>
                         [{if $oDetailsProduct->oxarticles__oxnostocktext->value}]
                            <link itemprop="availability" href="http://schema.org/OutOfStock"/>
-
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            [{$oDetailsProduct->oxarticles__oxnostocktext->value}]
-                     [{elseif $oViewConf->getStockOffDefaultMessage()}]
-
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        [{$oDetailsProduct->oxarticles__oxnostocktext->value}]
+                        [{elseif $oViewConf->getStockOffDefaultMessage()}]
 
                            <link itemprop="availability" href="http://schema.org/OutOfStock"/>
                            [{oxmultilang ident="MESSAGE_NOT_ON_STOCK"}]

@@ -14,7 +14,8 @@ $(function () {
         }
 
         // submit variant selection
-        if ($select.parents('.js-fnSubmit').length > 0) {
+        if ($select.parents('#variants').length > 0)
+        {
             var data = {};
             $("form.js-oxWidgetReload").serializeArray().map(function (x) { data[x.name] = x.value; });
             $aVarSelections.serializeArray().map(function (x) { data[x.name] = x.value; });

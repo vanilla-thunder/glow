@@ -1,24 +1,10 @@
 [{capture append="oxidBlock_pageBody"}]
-    [{if $oView->showRDFa()}]
-        [{include file="rdfa/rdfa.tpl"}]
-    [{/if}]
-
-    [{block name="layout_header"}]
-        [{include file="layout/header.tpl"}]
-    [{/block}]
-
     [{assign var="blFullwidth" value=$oViewConf->getViewThemeParam('blFullwidthLayout')}]
     <div id="wrapper" [{if $sidebar}]class="sidebar[{$sidebar}]"[{/if}]>
 
         <div class="[{if $blFullwidth}]container[{else}]container-fluid[{/if}]">
 
             <div class="underdog">
-
-                <div class="row">
-                    [{if $oView->getClassName()=='start' && $oView->getBanners()|@count > 0}]
-                        [{include file="widget/promoslider.tpl"}]
-                    [{/if}]
-                </div>
 
                 <div class="content-box">
 

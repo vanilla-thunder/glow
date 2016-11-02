@@ -36,7 +36,7 @@
 
                                     <li class="[{if $homeSelected == 'false' && $ocat->expanded}]active[{/if}][{if $ocat->getSubCats()}] dropdown[{/if}]">
                                         <a href="[{$ocat->getLink()}]"[{if $ocat->getSubCats()}] class="dropdown-toggle" data-toggle="dropdown"[{/if}]>
-                                            [{$ocat->oxcategories__oxtitle->value}][{if $ocat->getSubCats()}]<i class="fa fa-angle-down"></i>[{/if}]
+                                            [{$ocat->oxcategories__oxtitle->value}][{if $ocat->getSubCats()}]&nbsp;<i class="fa fa-angle-down"></i>[{/if}]
                                         </a>
 
                                         [{if $ocat->getSubCats()}]
