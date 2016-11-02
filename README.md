@@ -1,8 +1,8 @@
 # Glow responsive Theme for OXID eShop
-
+**demo: [http://glow.mb-dev.de](http://glow.mb-dev.de)**
 based on Flow Theme: https://github.com/OXID-eSales/flow_theme
 
-## Work in Progress! to do:
+### Work in Progress! to do:
 * testing replaced scripts
 * checkout + form validation
 
@@ -22,7 +22,7 @@ based on Flow Theme: https://github.com/OXID-eSales/flow_theme
 * layout changes for product details
 * replaced old reused Azure JavaScripts with simple jQuery
 * removed jQuery-UI and some other libs (see list below)
-* tpl/widget/product/selectbox.tpl -> tpl/page/details/inc/selectbox.tpl  
+* tpl/widget/product/selectbox.tpl -> tpl/page/details/inc/selectbox.tpl
    **because selectbox.tpl is not a widget!**
 * selection dropdowns replaced with native select elements
 
