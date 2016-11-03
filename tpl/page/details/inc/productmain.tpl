@@ -32,14 +32,18 @@
 [{/if}]
 
 <div class="detailsInfo clear" itemscope itemtype="http://schema.org/Product">
+
+   [{block name="details_productmain_title"}]
+      <h1 itemprop="name" class="text-center">[{$oDetailsProduct->oxarticles__oxtitle->value}] [{$oDetailsProduct->oxarticles__oxvarselect->value}]</h1>
+   [{/block}]
+
    <div class="row">
       [{* article picture with zoom *}]
       <div class="col-xs-12 col-sm-5">
          [{block name="details_productmain_zoom"}]
             <div class="picture">
                <a href="[{$oPictureProduct->getZoomPictureUrl(1)}]" id="zoom1" class="thumbnail" rel="produktbilder">
-                  <img src="[{$oView->getActPicture()}]" itemprop="image"
-                       alt="[{$oPictureProduct->oxarticles__oxtitle->value|strip_tags}] [{$oPictureProduct->oxarticles__oxvarselect->value|strip_tags}]">
+                  <img src="[{$oView->getActPicture()}]" itemprop="image" alt="[{$oPictureProduct->oxarticles__oxtitle->value|strip_tags}] [{$oPictureProduct->oxarticles__oxvarselect->value|strip_tags}]">
                </a>
             </div>
             [{oxscript add='$(".thumbnail").fancybox();'}]
@@ -52,11 +56,6 @@
 
       [{* product info *}]
       <div class="col-xs-12 col-sm-7" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
-         [{block name="details_productmain_title"}]
-            <h1 itemprop="name">
-               [{$oDetailsProduct->oxarticles__oxtitle->value}] [{$oDetailsProduct->oxarticles__oxvarselect->value}]
-            </h1>
-         [{/block}]
 
          [{* article number *}]
          [{block name="details_productmain_artnumber"}]
@@ -74,11 +73,9 @@
 
          [{* short description *}]
          [{block name="details_productmain_shortdesc"}]
-            [{oxhasrights ident="SHOWSHORTDESCRIPTION"}]
             [{if $oDetailsProduct->oxarticles__oxshortdesc->rawValue}]
                <p class="shortdesc" id="productShortdesc" itemprop="description">[{$oDetailsProduct->oxarticles__oxshortdesc->rawValue}]</p>
             [{/if}]
-            [{/oxhasrights}]
          [{/block}]
 
          [{if $oDetailsProduct->oxarticles__oxweight->value}]
@@ -91,7 +88,6 @@
 
          <hr/>
 
-         [{oxhasrights ident="TOBASKET"}]
          <form class="js-oxProductForm form-horizontal" action="[{$oViewConf->getSelfActionLink()}]" method="post">
             <div class="hidden">
                [{$oViewConf->getHiddenSid()}]
@@ -105,10 +101,9 @@
                   <input type="hidden" name="fnc" value="tobasket">
                [{/if}]
             </div>
-            [{/oxhasrights}]
-
 
             [{assign var="blCanBuy" value=true}]
+
             [{* variants | md variants *}]
             [{block name="details_productmain_variantselections"}]
                [{if $aVariantSelections && $aVariantSelections.selections}]
@@ -171,7 +166,7 @@
                   [{assign var=tprice value=$oDetailsProduct->getTPrice()}]
                   [{assign var=price  value=$oDetailsProduct->getPrice()}]
 
-                  <div class="priceinfo [{if $tprice && $tprice->getBruttoPrice() > $price->getBruttoPrice()}]reduced[{/if}] text-center">
+                  <div class="priceinfo [{if $tprice && $tprice->getBruttoPrice() > $price->getBruttoPrice()}]reduced[{/if}] text-center" itemprop="priceSpecification" itemscope itemtype="http://schema.org/PriceSpecification">
                      [{block name="details_productmain_tprice"}]
                         [{if $tprice && $tprice->getBruttoPrice() > $price->getBruttoPrice()}]
                            <div class="tprice">
@@ -195,15 +190,11 @@
                               [{/if}]
                               <strong class="h2">
                                  <span class="price-from">[{$sFrom}]</span>
-                                 <span class="price">[{$fPrice}]</span>
-                                 <span class="currency">[{$currency->sign}]</span>
-                           <span class="price-markup">
-                              <a href="#incVatInfo" class="hasTooltip" data-toggle="tooltip"
-                                 title="[{if $oView->isVatIncluded()}][{oxmultilang ident="PLUS_SHIPPING"}][{else}][{oxmultilang ident="PLUS"}][{/if}] [{oxmultilang ident="PLUS_SHIPPING2"}]">*</a>
-                           </span>
-                           <span class="hidden">
-                              <span itemprop="price">[{$fPrice}] [{$currency->sign}]</span>
-                           </span>
+                                 <span class="price" itemprop="[{if $oDetailsProduct->isRangePrice()}]minPrice[{/if}] price" content="[{$fPrice|replace:',':'.'}]">[{$fPrice}]</span>
+                                 <span class="currency" itemprop="priceCurrency" content="[{$currency->name}]">[{$currency->sign}]</span>
+                                 <span class="price-markup">
+                                    <a href="#incVatInfo" class="hasTooltip" data-toggle="tooltip" title="[{if $oView->isVatIncluded()}][{oxmultilang ident="PLUS_SHIPPING"}][{else}][{oxmultilang ident="PLUS"}][{/if}] [{oxmultilang ident="PLUS_SHIPPING2"}]">*</a>
+                                 </span>
                               </strong>
                            [{/if}]
 
@@ -240,52 +231,53 @@
                         [{/if}]
                      [{/if}]
                   [{/block}]
+
+                  [{if $blCanBuy}]
+                     [{* product stock *}]
+                     [{block name="details_productmain_stockstatus"}]
+                        [{if $oDetailsProduct->getStockStatus() == -1}]
+                           <span class="stockFlag notOnStock">
+                                <i class="fa fa-circle text-danger"></i>
+                              <link itemprop="availability" href="http://schema.org/OutOfStock"/>
+                              [{if $oDetailsProduct->oxarticles__oxnostocktext->value}]
+                                 [{$oDetailsProduct->oxarticles__oxnostocktext->value}]
+                              [{elseif $oViewConf->getStockOffDefaultMessage()}]
+                                 [{oxmultilang ident="MESSAGE_NOT_ON_STOCK"}]
+                              [{/if}]
+                              [{if $oDetailsProduct->getDeliveryDate()}]
+                                 <link itemprop="availability" href="http://schema.org/PreOrder"/>
+                                 [{oxmultilang ident="AVAILABLE_ON"}] [{$oDetailsProduct->getDeliveryDate()}]
+                              [{/if}]
+                           </span>
+                        [{elseif $oDetailsProduct->getStockStatus() == 1}]
+                           <link itemprop="availability" href="http://schema.org/InStock"/>
+                           <span class="stockFlag lowStock">
+                              <i class="fa fa-circle text-warning"></i> [{oxmultilang ident="LOW_STOCK"}]
+                           </span>
+                        [{elseif $oDetailsProduct->getStockStatus() == 0}]
+                           <span class="stockFlag">
+                              <link itemprop="availability" href="http://schema.org/InStock"/>
+                              <i class="fa fa-circle text-success"></i>
+                              [{if $oDetailsProduct->oxarticles__oxstocktext->value}]
+                                 [{$oDetailsProduct->oxarticles__oxstocktext->value}]
+                              [{elseif $oViewConf->getStockOnDefaultMessage()}]
+                                 [{oxmultilang ident="READY_FOR_SHIPPING"}]
+                              [{/if}]
+                           </span>
+                        [{/if}]
+                     [{/block}]
+                  [{/if}]
+
+                  [{if $oDetailsProduct->isBuyable()}]
+                     [{block name="details_productmain_deliverytime"}]
+                        [{include file="page/details/inc/deliverytime.tpl"}]
+                     [{/block}]
+                  [{/if}]
+
                </div>
             </div>
-            [{if $blCanBuy}]
-               [{block name="details_productmain_stockstatus"}]
-                  [{if $oDetailsProduct->getStockStatus() == -1}]
-                     <span class="stockFlag notOnStock">
-                                <i class="fa fa-circle text-danger"></i>
-                        [{if $oDetailsProduct->oxarticles__oxnostocktext->value}]
-                           <link itemprop="availability" href="http://schema.org/OutOfStock"/>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        [{$oDetailsProduct->oxarticles__oxnostocktext->value}]
-                        [{elseif $oViewConf->getStockOffDefaultMessage()}]
 
-                           <link itemprop="availability" href="http://schema.org/OutOfStock"/>
-                           [{oxmultilang ident="MESSAGE_NOT_ON_STOCK"}]
-                        [{/if}]
-                        [{if $oDetailsProduct->getDeliveryDate()}]
-                           <link itemprop="availability" href="http://schema.org/PreOrder"/>
-                           [{oxmultilang ident="AVAILABLE_ON"}] [{$oDetailsProduct->getDeliveryDate()}]
-                        [{/if}]
-                  </span>
-                  [{elseif $oDetailsProduct->getStockStatus() == 1}]
-                     <link itemprop="availability" href="http://schema.org/InStock"/>
-                     <span class="stockFlag lowStock">
-                     <i class="fa fa-circle text-warning"></i> [{oxmultilang ident="LOW_STOCK"}]
-                  </span>
-                  [{elseif $oDetailsProduct->getStockStatus() == 0}]
-                     <span class="stockFlag">
-                     <link itemprop="availability" href="http://schema.org/InStock"/>
-                     <i class="fa fa-circle text-success"></i>
-                        [{if $oDetailsProduct->oxarticles__oxstocktext->value}]
-                           [{$oDetailsProduct->oxarticles__oxstocktext->value}]
-                        [{elseif $oViewConf->getStockOnDefaultMessage()}]
-                           [{oxmultilang ident="READY_FOR_SHIPPING"}]
-                        [{/if}]
-                  </span>
-                  [{/if}]
-               [{/block}]
-            [{/if}]
-
-            [{if $oDetailsProduct->isBuyable()}]
-               [{block name="details_productmain_deliverytime"}]
-                  <span class="">
-                     [{include file="page/details/inc/deliverytime.tpl"}]
-                  </span>
-               [{/block}]
-            [{/if}]
+         </form>
 
             <hr/>
             blCanBuy: [{$blCanBuy|var_dump}]<br/>
@@ -318,7 +310,7 @@
             [{/block}]
 
 
-         </form>
+
       </div>
    </div>
 </div>
