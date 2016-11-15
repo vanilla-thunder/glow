@@ -31,10 +31,10 @@
    </form>
 [{/if}]
 
-<div class="detailsInfo clear" itemscope itemtype="http://schema.org/Product">
+<div class="detailsInfo clear">
 
    [{block name="details_productmain_title"}]
-      <h1 itemprop="name" class="text-center">[{$oDetailsProduct->oxarticles__oxtitle->value}] [{$oDetailsProduct->oxarticles__oxvarselect->value}]</h1>
+      <h1 class="text-center">[{$oDetailsProduct->oxarticles__oxtitle->value}] [{$oDetailsProduct->oxarticles__oxvarselect->value}]</h1>
    [{/block}]
 
    <div class="row">
@@ -43,7 +43,7 @@
          [{block name="details_productmain_zoom"}]
             <div class="picture">
                <a href="[{$oPictureProduct->getZoomPictureUrl(1)}]" id="zoom1" class="thumbnail" rel="produktbilder">
-                  <img src="[{$oView->getActPicture()}]" itemprop="image" alt="[{$oPictureProduct->oxarticles__oxtitle->value|strip_tags}] [{$oPictureProduct->oxarticles__oxvarselect->value|strip_tags}]">
+                  <img src="[{$oView->getActPicture()}]" alt="[{$oPictureProduct->oxarticles__oxtitle->value|strip_tags}] [{$oPictureProduct->oxarticles__oxvarselect->value|strip_tags}]">
                </a>
             </div>
             [{oxscript add='$(".thumbnail").fancybox();'}]
@@ -55,11 +55,10 @@
       </div>
 
       [{* product info *}]
-      <div class="col-xs-12 col-sm-7" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
-
+      <div class="col-xs-12 col-sm-7">
          [{* article number *}]
          [{block name="details_productmain_artnumber"}]
-            <span class="small text-muted">[{oxmultilang ident="ARTNUM" suffix="COLON"}] [{$oDetailsProduct->oxarticles__oxartnum->value}]</span>
+            <span class="small text-muted">[{oxmultilang ident="ARTNUM" suffix="COLON"}] <span >[{$oDetailsProduct->oxarticles__oxartnum->value}]</span></span>
          [{/block}]
 
          [{* ratings *}]
@@ -74,7 +73,7 @@
          [{* short description *}]
          [{block name="details_productmain_shortdesc"}]
             [{if $oDetailsProduct->oxarticles__oxshortdesc->rawValue}]
-               <p class="shortdesc" id="productShortdesc" itemprop="description">[{$oDetailsProduct->oxarticles__oxshortdesc->rawValue}]</p>
+               <p class="shortdesc" id="productShortdesc" >[{$oDetailsProduct->oxarticles__oxshortdesc->rawValue}]</p>
             [{/if}]
          [{/block}]
 
@@ -161,12 +160,12 @@
             [{/block}]
 
             <div class="row">
-               <div class="col-xs-12 col-md-6">
+               <div class="col-xs-12 col-md-6"   >
 
                   [{assign var=tprice value=$oDetailsProduct->getTPrice()}]
                   [{assign var=price  value=$oDetailsProduct->getPrice()}]
 
-                  <div class="priceinfo [{if $tprice && $tprice->getBruttoPrice() > $price->getBruttoPrice()}]reduced[{/if}] text-center" itemprop="priceSpecification" itemscope itemtype="http://schema.org/PriceSpecification">
+                  <div class="priceinfo [{if $tprice && $tprice->getBruttoPrice() > $price->getBruttoPrice()}]reduced[{/if}] text-center">
                      [{block name="details_productmain_tprice"}]
                         [{if $tprice && $tprice->getBruttoPrice() > $price->getBruttoPrice()}]
                            <div class="tprice">
@@ -190,11 +189,9 @@
                               [{/if}]
                               <strong class="h2">
                                  <span class="price-from">[{$sFrom}]</span>
-                                 <span class="price" itemprop="[{if $oDetailsProduct->isRangePrice()}]minPrice[{/if}] price" content="[{$fPrice|replace:',':'.'}]">[{$fPrice}]</span>
-                                 <span class="currency" itemprop="priceCurrency" content="[{$currency->name}]">[{$currency->sign}]</span>
-                                 <span class="price-markup">
-                                    <a href="#incVatInfo" class="hasTooltip" data-toggle="tooltip" title="[{if $oView->isVatIncluded()}][{oxmultilang ident="PLUS_SHIPPING"}][{else}][{oxmultilang ident="PLUS"}][{/if}] [{oxmultilang ident="PLUS_SHIPPING2"}]">*</a>
-                                 </span>
+                                 <span class="price">[{$fPrice}]</span>
+                                 <span class="currency">[{$currency->sign}]</span>
+                                 <span class="price-markup">[{include file="page/details/inc/vatinfo.tpl"}]</span>
                               </strong>
                            [{/if}]
 
@@ -238,25 +235,21 @@
                         [{if $oDetailsProduct->getStockStatus() == -1}]
                            <span class="stockFlag notOnStock">
                                 <i class="fa fa-circle text-danger"></i>
-                              <link itemprop="availability" href="http://schema.org/OutOfStock"/>
                               [{if $oDetailsProduct->oxarticles__oxnostocktext->value}]
                                  [{$oDetailsProduct->oxarticles__oxnostocktext->value}]
                               [{elseif $oViewConf->getStockOffDefaultMessage()}]
                                  [{oxmultilang ident="MESSAGE_NOT_ON_STOCK"}]
                               [{/if}]
                               [{if $oDetailsProduct->getDeliveryDate()}]
-                                 <link itemprop="availability" href="http://schema.org/PreOrder"/>
                                  [{oxmultilang ident="AVAILABLE_ON"}] [{$oDetailsProduct->getDeliveryDate()}]
                               [{/if}]
                            </span>
                         [{elseif $oDetailsProduct->getStockStatus() == 1}]
-                           <link itemprop="availability" href="http://schema.org/InStock"/>
                            <span class="stockFlag lowStock">
                               <i class="fa fa-circle text-warning"></i> [{oxmultilang ident="LOW_STOCK"}]
                            </span>
                         [{elseif $oDetailsProduct->getStockStatus() == 0}]
                            <span class="stockFlag">
-                              <link itemprop="availability" href="http://schema.org/InStock"/>
                               <i class="fa fa-circle text-success"></i>
                               [{if $oDetailsProduct->oxarticles__oxstocktext->value}]
                                  [{$oDetailsProduct->oxarticles__oxstocktext->value}]

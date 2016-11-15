@@ -1,169 +1,93 @@
 [{block name="widget_product_listitem_infogrid"}]
-    [{assign var="product"         value=$oView->getProduct()}]
-    [{assign var="blDisableToCart" value=$oView->getDisableToCart()}]
-    [{assign var="iIndex"          value=$oView->getIndex()}]
-    [{assign var="showMainLink"    value=$oView->getShowMainL}]
+   [{assign var="product"         value=$oView->getProduct()}]
+   [{assign var="currency" value=$oView->getActCurrency()}]
+   [{assign var="iIndex"          value=$oView->getIndex()}]
+   [{assign var="showMainLink"    value=$oView->getShowMainL}]
+   [{if $showMainLink}]
+      [{assign var='_productLink' value=$product->getMainLink()}]
+   [{else}]
+      [{assign var='_productLink' value=$product->getLink()}]
+   [{/if}]
+   <div class="panel panel-default">
 
-    [{assign var="currency" value=$oView->getActCurrency()}]
-    [{if $showMainLink}]
-        [{assign var='_productLink' value=$product->getMainLink()}]
-    [{else}]
-        [{assign var='_productLink' value=$product->getLink()}]
-    [{/if}]
-    [{assign var="aVariantSelections" value=$product->getVariantSelections(null,null,1)}]
-    [{assign var="blShowToBasket" value=true}] [{* tobasket or more info ? *}]
-    [{if $blDisableToCart || $product->isNotBuyable() || ($aVariantSelections&&$aVariantSelections.selections) || $product->hasMdVariants() || ($oViewConf->showSelectListsInList() && $product->getSelections(1)) || $product->getVariants()}]
-        [{assign var="blShowToBasket" value=false}]
-    [{/if}]
 
-    <form name="tobasket[{$testid}]" [{if $blShowToBasket}]action="[{$oViewConf->getSelfActionLink()}]" method="post"[{else}]action="[{$_productLink}]" method="get"[{/if}]>
-        <div class="hidden">
-            [{$oViewConf->getNavFormParams()}]
-            [{$oViewConf->getHiddenSid()}]
-            <input type="hidden" name="pgNr" value="[{$oView->getActPage()}]">
-            [{if $recommid}]
-                <input type="hidden" name="recommid" value="[{$recommid}]">
-            [{/if}]
-            [{if $blShowToBasket}]
-                [{oxhasrights ident="TOBASKET"}]
-                    <input type="hidden" name="cl" value="[{$oViewConf->getTopActiveClassName()}]">
-                [{if $owishid}]
-                    <input type="hidden" name="owishid" value="[{$owishid}]">
-                [{/if}]
-                [{if $toBasketFunction}]
-                    <input type="hidden" name="fnc" value="[{$toBasketFunction}]">
-                [{else}]
-                    <input type="hidden" name="fnc" value="tobasket">
-                [{/if}]
-                    <input type="hidden" name="aid" value="[{$product->oxarticles__oxid->value}]">
-                [{if $altproduct}]
-                    <input type="hidden" name="anid" value="[{$altproduct}]">
-                [{else}]
-                    <input type="hidden" name="anid" value="[{$product->oxarticles__oxnid->value}]">
-                [{/if}]
-                    <input type="hidden" name="am" value="1">
-                [{/oxhasrights}]
-            [{else}]
-                <input type="hidden" name="cl" value="details">
-                <input type="hidden" name="anid" value="[{$product->oxarticles__oxnid->value}]">
-            [{/if}]
-        </div>
+   <div class="row panel-body" itemscope itemtype="http://schema.org/Product">
+      <div class="col-xs-12 col-md-5">
+         [{block name="widget_product_listitem_infogrid_gridpicture"}]
+            <a class="text-center" href="[{$_productLink}]" title="[{$product->oxarticles__oxtitle->value}] [{$product->oxarticles__oxvarselect->value}]">
+               <img src="[{$oViewConf->getImageUrl('spinner.gif')}]" data-src="[{$product->getThumbnailUrl()}]" alt="[{$product->oxarticles__oxtitle->value}] [{$product->oxarticles__oxvarselect->value}]">
+            </a>
+         [{/block}]
+      </div>
 
-        <div class="row">
-            <div class="col-xs-12 col-md-5">
-                [{block name="widget_product_listitem_infogrid_gridpicture"}]
-                    <div class="picture text-center">
-                        <a href="[{$_productLink}]" title="[{$product->oxarticles__oxtitle->value}] [{$product->oxarticles__oxvarselect->value}]">
-                            <img src="[{$oViewConf->getImageUrl('spinner.gif')}]" data-src="[{$product->getThumbnailUrl()}]" alt="[{$product->oxarticles__oxtitle->value}] [{$product->oxarticles__oxvarselect->value}]" class="img-responsive">
-                        </a>
-                    </div>
-                [{/block}]
+      <div class="col-xs-12 col-md-7">
+         [{block name="widget_product_listitem_infogrid_titlebox"}]
+            <div class="title h3">
+               <a id="[{$testid}]" href="[{$_productLink}]" title="[{$product->oxarticles__oxtitle->value}] [{$product->oxarticles__oxvarselect->value}]">
+                  <span itemprop="name">[{$product->oxarticles__oxtitle->value}] [{$product->oxarticles__oxvarselect->value}]</span>
+               </a>
             </div>
-            <div class="col-xs-12 col-md-7">
-                <div class="listDetails">
-                    [{block name="widget_product_listitem_infogrid_titlebox"}]
-                        <div class="title">
-                            <a id="[{$testid}]" href="[{$_productLink}]" class="title" title="[{$product->oxarticles__oxtitle->value}] [{$product->oxarticles__oxvarselect->value}]">
-                                <span>[{$product->oxarticles__oxtitle->value}] [{$product->oxarticles__oxvarselect->value}]</span>
-                            </a>
-                        </div>
-                    [{/block}]
+         [{/block}]
 
-                    [{block name="widget_product_listitem_infogrid_shortdesc"}]
-                        <div class="shortdesc">
-                            [{$product->oxarticles__oxshortdesc->rawValue}]
-                        </div>
-                    [{/block}]
+         [{block name="widget_product_listitem_infogrid_shortdesc"}]
+            <div class="shortdesc" itemprop="description">[{$product->oxarticles__oxshortdesc->rawValue}]</div>
+         [{/block}]
 
-                    [{block name="widget_product_listitem_infogrid_selections"}]
-                        [{if $aVariantSelections && $aVariantSelections.selections }]
-                            <div id="variantselector_[{$iIndex}]" class="selectorsBox js-fnSubmit clear">
-                                [{foreach from=$aVariantSelections.selections item=oSelectionList key=iKey}]
-                                    [{include file="widget/product/selectbox.tpl" oSelectionList=$oSelectionList sJsAction="js-fnSubmit" blHideLabel=true}]
-                                [{/foreach}]
-                            </div>
-                        [{elseif $oViewConf->showSelectListsInList()}]
-                            [{assign var="oSelections" value=$product->getSelections(1)}]
-                            [{if $oSelections}]
-                                <div id="selectlistsselector_[{$iIndex}]" class="selectorsBox js-fnSubmit clear">
-                                    [{foreach from=$oSelections item=oList name=selections}]
-                                        [{include file="widget/product/selectbox.tpl" oSelectionList=$oList sFieldName="sel" iKey=$smarty.foreach.selections.index blHideDefault=true sSelType="seldrop" sJsAction="js-fnSubmit" blHideLabel=true}]
-                                    [{/foreach}]
-                                </div>
-                            [{/if}]
+         <hr/><pre>
+            [{$product->getBasePrice()|var_dump}]
+         </pre><hr/>
+
+         [{assign var="price"      value=$product->getPrice()}]
+         [{assign var="tprice"     value=$product->getTPrice()}]
+         [{assign var="oUnitPrice" value=$product->getUnitPrice()}]
+
+         <div class="price" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+            <link itemprop="itemCondition" href="http://schema.org/NewCondition"/>
+
+            [{block name="widget_product_listitem_infogrid_price"}]
+               [{if $tprice && $tprice->getBruttoPrice() > $price->getBruttoPrice()}]
+                  <div class="tprice">
+                     <span class="h5">[{oxmultilang ident="REDUCED_FROM"}] [{$product->getFTPrice()}] [{$currency->sign}]</span>
+                     <em>[{oxmultilang ident="OUR_REGULAR_PRICE"}]</em>
+                  </div>
+               [{/if}]
+
+               [{block name="widget_product_listitem_infogrid_price_value"}]
+                  [{if $product->getFPrice()}]
+                     [{assign var="sFrom" value=""}]
+                     [{assign var="fPrice" value=$product->getFPrice()}]
+
+                     [{if $product->isParentNotBuyable()}]
+                        [{assign var="fPrice" value=$product->getFVarMinPrice()}]
+                        [{if $product->isRangePrice()}]
+                           [{assign var="sFrom" value="PRICE_FROM"|oxmultilangassign}]
                         [{/if}]
-                    [{/block}]
+                     [{/if}]
+                     <strong class="h2">
+                        <span class="price-from">[{$sFrom}]</span>
+                        <span class="price" itemprop="[{if $product->isRangePrice()}]minPrice[{/if}] price" content="[{$product->getBasePrice()}]">[{$fPrice}]</span>
+                        <span class="currency" itemprop="priceCurrency" content="[{$currency->name}]">[{$currency->sign}]</span>
+                        <span class="price-markup">[{include file="page/details/inc/vatinfo.tpl"}]</span>
+                     </strong>
+                  [{/if}]
+               [{/block}]
 
-                    <div class="price">
-                        <div class="content">
-                            [{block name="widget_product_listitem_infogrid_price"}]
-                                [{oxhasrights ident="SHOWARTICLEPRICE"}]
-                                    [{assign var="oUnitPrice" value=$product->getUnitPrice()}]
-                                    [{assign var="tprice"     value=$product->getTPrice()}]
-                                    [{assign var="price"      value=$product->getPrice()}]
+               [{if $oUnitPrice}]
+                  <span id="productPricePerUnit_[{$testid}]" class="pricePerUnit">
+                     [{$product->oxarticles__oxunitquantity->value}] [{$product->getUnitName()}] | [{oxprice price=$oUnitPrice currency=$currency}]/[{$product->getUnitName()}]
+                  </span>
+               [{elseif $product->oxarticles__oxweight->value }]
+                  <span id="productPricePerUnit_[{$testid}]" class="pricePerUnit">
+                     <span title="weight">[{oxmultilang ident="WEIGHT"}]</span>
+                     <span class="value">[{$product->oxarticles__oxweight->value}] [{oxmultilang ident="KG"}]</span>
+                  </span>
+               [{/if}]
+            [{/block}]
+         </div>
+         [{block name="widget_product_listitem_infogrid_tobasket"}]
 
-                                    [{if $tprice && $tprice->getBruttoPrice() > $price->getBruttoPrice()}]
-                                        <span class="oldPrice text-muted">
-                                            <del>[{$product->getFTPrice()}] [{$currency->sign}]</del> <small>[{oxmultilang ident="OUR_REGULAR_PRICE"}]</small><br/>
-                                        </span>
-                                    [{/if}]
-
-                                    [{block name="widget_product_listitem_infogrid_price_value"}]
-                                        [{if $product->getFPrice()}]
-                                            <span class="lead text-nowrap">
-                                            [{if $product->isRangePrice()}]
-                                                [{oxmultilang ident="PRICE_FROM"}]
-                                                [{if !$product->isParentNotBuyable()}]
-                                                    [{$product->getFMinPrice()}]
-                                                [{else}]
-                                                    [{$product->getFVarMinPrice()}]
-                                                [{/if}]
-                                            [{else}]
-                                                [{if !$product->isParentNotBuyable()}]
-                                                    [{$product->getFPrice()}]
-                                                [{else}]
-                                                    [{$product->getFVarMinPrice()}]
-                                                [{/if}]
-                                            [{/if}]
-                                            [{$currency->sign}]
-                                                <a href="#incVatInfo" class="hasTooltip" data-toggle="tooltip"
-                                                   title="[{if $oView->isVatIncluded()}][{oxmultilang ident="PLUS_SHIPPING"}][{else}][{oxmultilang ident="PLUS"}][{/if}]
-                                                   [{oxmultilang ident="PLUS_SHIPPING2"}]">*</a>
-                                        </span>
-                                        [{/if}]
-                                    [{/block}]
-                                    [{if $oUnitPrice}]
-                                        <span id="productPricePerUnit_[{$testid}]" class="pricePerUnit">
-                                            [{$product->oxarticles__oxunitquantity->value}] [{$product->getUnitName()}] | [{oxprice price=$oUnitPrice currency=$currency}]/[{$product->getUnitName()}]
-                                        </span>
-                                    [{elseif $product->oxarticles__oxweight->value }]
-                                        <span id="productPricePerUnit_[{$testid}]" class="pricePerUnit">
-                                            <span title="weight">[{oxmultilang ident="WEIGHT"}]</span>
-                                            <span class="value">[{$product->oxarticles__oxweight->value}] [{oxmultilang ident="KG"}]</span>
-                                        </span>
-                                    [{/if}]
-                                [{/oxhasrights}]
-                            [{/block}]
-                        </div>
-                    </div>
-                    [{block name="widget_product_listitem_infogrid_tobasket"}]
-                        <div class="actions">
-                            <div class="btn-group">
-                                [{if $blShowToBasket}]
-                                    [{oxhasrights ident="TOBASKET"}]
-                                        <button type="submit" class="btn btn-default hasTooltip" data-placement="bottom" title="[{oxmultilang ident="TO_CART"}]">
-                                            <i class="fa fa-cart-plus fa-lg"></i>
-                                        </button>
-                                    [{/oxhasrights}]
-                                    <a class="btn btn-primary" href="[{$_productLink}]" >[{oxmultilang ident="DETAILS"}]</a>
-                                [{else}]
-                                    <a class="btn btn-primary" href="[{$_productLink}]" >[{oxmultilang ident="DETAILS"}]</a>
-                                [{/if}]
-                            </div>
-                        </div>
-                    [{/block}]
-                </div>
-            </div>
-        </div>
-    </form>
+                     <a class="btn btn-primary btn-block" href="[{$_productLink}]">[{oxmultilang ident="DETAILS"}]</a>
+         [{/block}]
+      </div>
+   </div></div>
 [{/block}]

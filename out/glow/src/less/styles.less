@@ -6,21 +6,34 @@
 // parent flow less
 @import "../libs/bootstrap/less/bootstrap";
 
+@grid-gutter-width:       20px;
+@container-tablet:        100%;
+@container-desktop:       100%;
+@container-large-desktop: 90%;
+
+@media (min-width: @screen-lg-min) {
+  .container { max-width: 1300px; }
+}
+
 @import "../libs/font-awesome/less/font-awesome";
-@fa-font-path: "../../../flow/src/fonts";
+@fa-font-path: "../libs/font-awesome/fonts";
 
 @import "../libs/fancyBox/source/jquery.fancybox.css";
 
-@import "../libs/flexslider/flexslider";
+// flexslider
+@import "../libs/flexslider/css/variables.less";
+@import "../libs/flexslider/css/mixins.less";
+@import "../libs/flexslider/css/resets.less";
+@import "../libs/flexslider/css/base.less";
+@import "../libs/flexslider/css/theme.less";
+@import "../libs/flexslider/css/responsive.less";
 @font-name: "FontAwesome";
-@font-path: @fa-font-path;
-//@font-file-name:                      "flexslider-icon";
 @flex-direction-nav-icon-prev:        @fa-var-angle-left;
 @flex-direction-nav-icon-next:        @fa-var-angle-right;
 @flex-pauseplay-icon-play:            @fa-var-play;
 @flex-pauseplay-icon-pause:           @fa-var-pause;
 
-// Theme related less files
+// flow/glow Theme related less files
 @import "theme";
 @import "responsive";
 @import "variables";
@@ -29,10 +42,13 @@
 // https://coolors.co/50514f-f25f5c-ffe066-247ba0-70c1b3
 @brand-primary:   #247BA0;
 @brand-secondary: #50514F;
-@brand-success:         #5cb85c;
-@brand-info:            #5bc0de;
-@brand-warning:         #FFE066;
-@brand-danger:          #F25F5C;
+@brand-success:   #5cb85c;
+@brand-info:      #5bc0de;
+@brand-warning:   #FFE066;
+@brand-danger:    #F25F5C;
+
+@btn-warning-color: #000000;
+@btn-danger-color: #000000;
 
 @ox-container-base-background-color:    #FFF;
 @ox-container-header-background-color:  @ox-container-base-background-color;
@@ -42,23 +58,31 @@
 @ox-footer-color:                       #E7E7E7;
 #footer a { color: @ox-footer-color; }
 
-// bootstrap changes
-@container-sm: 100%;
-@container-md: 100%;
 
 // layout
 .header-row {
-  margin-left: floor( @grid-gutter-width / 2 ) * -1;
-  margin-right: floor( @grid-gutter-width / 2 ) * -1;
-  margin-bottom: floor( @grid-gutter-width / 2 );
+  margin-left: floor( @grid-gutter-width/2 ) * -1;
+  margin-right: floor( @grid-gutter-width/2 ) * -1;
+  margin-bottom: floor( @grid-gutter-width );
   box-shadow: @ox-boxed-container-shadow;
 }
+@media ( max-width: @screen-sm-max ) {
+  #header .header-box {
+    padding: 10px;
+  }
+}
+
 #mainnav {
   &.affix {
     z-index: 10;
     top: 0;
     left: 0;
     right: 0;
+  }
+}
+@media ( max-width: @screen-xs-max ) {
+  #header .header-box .menus-col .menu-dropdowns {
+    margin: 10px auto;
   }
 }
 // style adjustments
@@ -79,4 +103,43 @@
       .text-danger
     }
   }
+}
+
+// product lists
+#detailsRelated {
+  .page-header { margin:0;}
+  h2 { margin: 0;}
+}
+.miniView {
+  @media( max-width: @screen-xs-max ) {
+      .productBox { clear:left; }
+  }
+  hr { margin:10px 0;}
+  .panel-body {
+    padding:7px;
+    position: relative;
+  }
+  .media { margin-top:7px; }
+  .media-left {
+    padding-right: 7px;
+    img {max-width: 70px;}
+  }
+  .media-body { padding-bottom: 30px;}
+  .bottom { position:absolute; bottom: 5px; right: 5px; left: 80px; }
+}
+
+// checkout
+
+#shippingAddressForm {
+  div > label {
+    padding: 5px;
+    border-top: 1px solid #cfcfcf;
+  }
+  input[type="radio"] + div {
+    transition: 0.5s;
+    height:0;
+    opacity:0;
+    overflow: hidden;
+  }
+  input[type="radio"]:checked + div { height: auto; opacity:1; }
 }

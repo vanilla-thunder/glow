@@ -1,4 +1,8 @@
 [{capture append="oxidBlock_pageBody"}]
+    [{if $oView->showRDFa()}]
+        [{include file="rdfa/rdfa.tpl"}]
+    [{/if}]
+
     [{assign var="blFullwidth" value=$oViewConf->getViewThemeParam('blFullwidthLayout')}]
     <div id="wrapper" [{if $sidebar}]class="sidebar[{$sidebar}]"[{/if}]>
 

@@ -10,7 +10,8 @@
     "fancyBox": "*",
     "flexslider": "*",
     "js-cookie": "*",
-    "jquery-unveil": "luis-almeida/unveil#master"
+    "jquery-unveil": "luis-almeida/unveil#master",
+    "matchheight": "*"
   },
   "ignoredDependencies": []
 }

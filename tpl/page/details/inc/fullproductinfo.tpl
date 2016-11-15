@@ -4,7 +4,7 @@
 </div>
 <div id="detailsRelated">
    <div class="row">
-      <div class="col-xs-12 [{if $oView->getCrossSelling() || $oView->getSimilarProducts() || $oView->getCrossSelling() || $oView->getAccessoires()}]col-md-8 col-lg-9[{/if}]">
+      <div class="col-xs-12 [{if $oView->getAccessoires() || $oView->getCrossSelling()}]col-md-9[{/if}]">
          [{include file="page/details/inc/tabs.tpl"}]
 
          [{if $oView->isReviewActive()}]
