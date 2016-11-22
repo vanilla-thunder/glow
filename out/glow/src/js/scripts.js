@@ -11,14 +11,14 @@
 Flow = {};
 
 // Short-Handle for document.ready
-$( function ()
-    {
+$( function () {
+
+
         var $window = $( window ),
             $oBody = $( 'body' ),
             $oHeader = $( '#header' ),
             $oBasketList = $( '#basket_list' ),
             $oToTop = $( '#jumptotop' ),
-            $oRecommendations = $( '#econdaRecommendations' ),
             $oChangeEmail = $( 'input.oxValidate_enterPass' ),
             $oSearchInput = $( '#searchParam' ),
             iHeaderWrapperHeight = parseInt( $oHeader.height() ),
@@ -149,17 +149,6 @@ $( function ()
             }
         );
 
-
-        if ( $oRecommendations.length )
-        {
-            $.get( window.sBaseUrl + 'cl=tpl&tpl=ajax_econda_recommendations.tpl&actcl=' + sActCl + '', function ( oData, sStatus, oXhr )
-                {
-                    $oRecommendations.html( oData );
-                    $oRecommendations.find( 'img' ).unveil();
-                }
-            );
-        }
-
         /* *********************************
          * List filter
          * *********************************/
@@ -201,22 +190,6 @@ $( function ()
             );
         }
 
-        /* *********************************
-         * Variant selection in lists
-         * *********************************/
-        var $oSelectionLists = $( '.selectorsBox' );
-
-        if ( $oSelectionLists.length )
-        {
-            $oSelectionLists.find( '.dropdown-menu li' ).click( function ( e )
-                {
-                    e.preventDefault();
-                    var $this = $( this );
-                    $this.parent().prev().val( $this.children().first().data( 'selection-id' ) );
-                    $this.closest( 'form' ).submit();
-                }
-            );
-        }
 
 
         /* *********************************

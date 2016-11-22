@@ -33,10 +33,6 @@
             <div class="shortdesc" itemprop="description">[{$product->oxarticles__oxshortdesc->rawValue}]</div>
          [{/block}]
 
-         <hr/><pre>
-            [{$product->getBasePrice()|var_dump}]
-         </pre><hr/>
-
          [{assign var="price"      value=$product->getPrice()}]
          [{assign var="tprice"     value=$product->getTPrice()}]
          [{assign var="oUnitPrice" value=$product->getUnitPrice()}]

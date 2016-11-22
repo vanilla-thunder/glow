@@ -5,10 +5,8 @@
    [{assign var="blFullwidth" value=$oViewConf->getViewThemeParam('blFullwidthLayout')}]
    <header id="header">
 
-      <div class="[{if $blFullwidth}]container[{else}]container-fluid[{/if}]">
-
+      <div class="[{if $blFullwidth}]container[{else}]container-fluid[{/if}] hidden-xs">
          <div class="header-box">
-
             <div class="row">
                <div class="col-xs-5 col-sm-6 col-md-4 logo-col">
                   [{block name="layout_header_logo"}]
@@ -52,7 +50,7 @@
                               [{assign var="blAnon" value=1}]
                            [{/if}]
                            <div class="btn-group minibasket-menu">
-                              [{oxid_include_widget cl="oxwMiniBasket" nocookie=$blAnon force_sid=$force_sid}]
+                              [{ oxid_include_widget cl="oxwMiniBasket" nocookie=$blAnon force_sid=$force_sid }]
                            </div>
                         [{/block}]
                      </div>
@@ -63,14 +61,13 @@
                   [{* [{include file="widget/header/search.tpl"}] *}]
                </div>
             </div>
-
          </div>
       </div>
 
       [{block name="layout_header_bottom"}]
-         [{oxid_include_widget cl="oxwCategoryTree" cnid=$oView->getCategoryId() sWidgetType="header" _parent=$oView->getClassName() nocookie=1}]
+         [{* oxid_include_widget cl="oxwCategoryTree" cnid=$oView->getCategoryId() sWidgetType="header" _parent=$oView->getClassName() nocookie=1 *}]
+         [{include file="widget/header/categorylist.tpl"}]
       [{/block}]
-
    </header>
 [{/block}]
 

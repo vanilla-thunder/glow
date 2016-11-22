@@ -96,13 +96,7 @@
                      [{block name="checkout_basketcontents_basketitem_wrapping"}]
                         [{if $oView->isWrapping()}]
                            <div class="wrapping">
-                              [{if !$basketitem->getWrappingId()}]
-                                 [{if $editable}]
-                                    <a href="#" class="btn btn-default btn-sm btn-block" title="[{oxmultilang ident="ADD_WRAPPING"}]" data-toggle="modal" data-target="#giftoptions">[{oxmultilang ident="ADD_WRAPPING"}]</a>
-                                 [{else}]
-                                    <small>[{oxmultilang ident="WRAPPING"}]: [{oxmultilang ident="NONE"}]</small>
-                                 [{/if}]
-                              [{else}]
+                              [{if $basketitem->getWrappingId()}]
                                  [{assign var="oWrap" value=$basketitem->getWrapping()}]
                                  [{if $editable}]
                                     <small>[{oxmultilang ident="WRAPPING"}]:</small>
@@ -118,18 +112,26 @@
                   [{/block}]
                </div>
                <div class="clearfix visible-xs-block"></div>
-               [{* ppu + total price *}]
+               [{* ppu + total price + vat % *}]
                <div class="col-xs-7 col-sm-2 col-md-3 col-md-push-2">
                   [{block name="checkout_basketcontents_basketitem_unitprice"}]
                      [{if $basketitem->getFUnitPrice()}]
                         <div class="unitPrice text-right">
-                           [{oxmultilang ident="UNIT_PRICE" suffix="COLON"}] [{$basketitem->getFUnitPrice()}]&nbsp;[{$currency->sign}]&nbsp;[{include file="page/details/inc/vatinfo.tpl"}]
+                           <strong>[{oxmultilang ident="UNIT_PRICE" suffix="COLON"}]</strong> [{$basketitem->getFUnitPrice()}]&nbsp;[{$currency->sign}]
+                           [{include file="page/details/inc/vatinfo.tpl"}]
                         </div>
                      [{/if}]
                   [{/block}]
                   [{block name="checkout_basketcontents_basketitem_totalprice"}]
                      <div class="totalPrice text-right">
-                        <strong>[{oxmultilang ident="TOTAL" suffix="COLON"}] [{$basketitem->getFTotalPrice()}]&nbsp;[{$currency->sign}]&nbsp;[{include file="page/details/inc/vatinfo.tpl"}]</strong>
+                        <strong>[{oxmultilang ident="TOTAL" suffix="COLON"}]</strong> [{$basketitem->getFTotalPrice()}]&nbsp;[{$currency->sign}]
+                        [{include file="page/details/inc/vatinfo.tpl"}]
+                     </div>
+                  [{/block}]
+
+                  [{block name="checkout_basketcontents_basketitem_vat"}]
+                     <div class="vatPercent vatTotal small text-right">
+                        ( [{$basketitem->getVatPercent()}]% [{oxmultilang ident="VAT"}] )
                      </div>
                   [{/block}]
                </div>
@@ -166,6 +168,7 @@
                         [{/if}]
                      </div>
                   [{/block}]
+
                   [{block name="checkout_basketcontents_basketitem_removecheckbox"}]
                      [{if $editable}]
                         <input type="hidden" name="aproducts[[{$basketindex}]][remove]" id="aproducts_[{$basketindex}]_remove" value="0">
@@ -231,47 +234,57 @@
 
 </form>
 
-[{if $oViewConf->getShowVouchers() && $oViewConf->getActiveClassName() == 'basket'}]
-   [{block name="checkout_basket_vouchers"}]
-      <div id="basketVoucher" class="pull-left">
-         <form name="voucher" action="[{$oViewConf->getSelfActionLink()}]" method="post" class="js-oxValidate form-inline" role="form" novalidate="novalidate">
-            <div class="couponBox" id="coupon">
-               <div class="hidden">
-                  [{$oViewConf->getHiddenSid()}]
-                  <input type="hidden" name="cl" value="basket">
-                  <input type="hidden" name="fnc" value="addVoucher">
-                  <input type="hidden" name="CustomError" value="basket">
-               </div>
 
-               <div class="form-group">
-                  <label class="req sr-only" for="input_voucherNr">[{oxmultilang ident="ENTER_COUPON_NUMBER"}]</label>
-                  <div class="input-group">
-                     <input type="text" name="voucherNr" size="30" class="form-control js-oxValidate js-oxValidate_notEmpty" id="input_voucherNr" placeholder="[{oxmultilang ident="ENTER_COUPON_NUMBER"}]" required="required">
-                            <span class="input-group-btn">
-                                <button type="submit" class="btn btn-primary submitButton"><i class="fa fa-gift"></i> [{oxmultilang ident="REDEEM_COUPON"}]</button>
-                            </span>
-                  </div>
-                  <div class="help-block"></div>
-               </div>
-
-
-               [{foreach from=$Errors.basket item=oEr key=key}]
-                  [{if $oEr->getErrorClassType() == 'oxVoucherException'}]
-                     <div class="alert alert-danger">
-                        [{oxmultilang ident="COUPON_NOT_ACCEPTED" args=$oEr->getValue('voucherNr')}]
-                        <strong>[{oxmultilang ident="REASON" suffix="COLON"}]</strong>
-                        [{$oEr->getOxMessage()}]
+<div class="row">
+   <div class="col-sm-6">
+      <p>
+         <a href="#" class="btn btn-info btn-block" title="[{oxmultilang ident="ADD_WRAPPING"}]" data-toggle="modal" data-target="#giftoptions">
+            <i class="fa fa-gift fa-fw fa-lg"></i> [{oxmultilang ident="ADD_WRAPPING"}]
+         </a>
+      </p>
+      [{if $oViewConf->getShowVouchers() && $oViewConf->getActiveClassName() == 'basket'}]
+         [{block name="checkout_basket_vouchers"}]
+            <div id="basketVoucher">
+               <form name="voucher" action="[{$oViewConf->getSelfActionLink()}]" method="post" class="form-horizontal" role="form" novalidate="novalidate" autocomplete="off">
+                     <div class="hidden">
+                        [{$oViewConf->getHiddenSid()}]
+                        <input type="hidden" name="cl" value="basket">
+                        <input type="hidden" name="fnc" value="addVoucher">
+                        <input type="hidden" name="CustomError" value="basket">
                      </div>
-                  [{/if}]
-               [{/foreach}]
+                     <div class="form-group">
+
+                        <div class="col-xs-7">
+                           <label class="req sr-only" for="input_voucherNr">[{oxmultilang ident="ENTER_COUPON_NUMBER"}]</label>
+                           <input type="text" name="voucherNr" size="30" class="form-control js-oxValidate js-oxValidate_notEmpty" id="input_voucherNr" placeholder="[{oxmultilang ident="REDEEM_COUPON"}]" required="required">
+                        </div>
+                        <div class="col-xs-5">
+                           <button type="submit" class="btn btn-info btn-block"> [{oxmultilang ident="SUBMIT"}]</button>
+                        </div>
+
+                     </div>
+
+
+                     [{foreach from=$Errors.basket item=oEr key=key}]
+                        [{if $oEr->getErrorClassType() == 'oxVoucherException'}]
+                           <div class="alert alert-danger">
+                              [{oxmultilang ident="COUPON_NOT_ACCEPTED" args=$oEr->getValue('voucherNr')}]
+                              <strong>[{oxmultilang ident="REASON" suffix="COLON"}]</strong>
+                              [{$oEr->getOxMessage()}]
+                           </div>
+                        [{/if}]
+                     [{/foreach}]
+               </form>
             </div>
-         </form>
-      </div>
-   [{/block}]
-[{/if}]
+         [{/block}]
+      [{/if}]
+   </div>
+   <div class="col-sm-6">
+
+
 
 [{block name="checkout_basketcontents_summary"}]
-   <div id="basketSummary" class="pull-right summary[{if $oViewConf->getActiveClassName() == 'order'}] orderSummary[{/if}]">
+   <div id="" class="pull-right summary[{if $oViewConf->getActiveClassName() == 'order'}] orderSummary[{/if}]">
       [{*  basket summary  *}]
       <table class="table table-bordered table-striped">
          [{if !$oxcmp_basket->getDiscounts()}]
@@ -517,4 +530,6 @@
       </table>
    </div>
 [{/block}]
-<div class="clearfix"></div>
+
+   </div>
+</div>

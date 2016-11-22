@@ -1,6 +1,9 @@
 // Including 3rd party libs
 //@import "../libs/bootstrap/less/bootstrap";
 
+@import "../libs/font-awesome/less/font-awesome";
+@fa-font-path: "../libs/font-awesome/fonts";
+
 //@import "../libs/font-awesome/less/font-awesome";
 //@import "../libs/lightgallery/dist/css/lightgallery.min.css";
 // parent flow less
@@ -15,12 +18,8 @@
   .container { max-width: 1300px; }
 }
 
-@import "../libs/font-awesome/less/font-awesome";
-@fa-font-path: "../libs/font-awesome/fonts";
-
+@import "../libs/bootstrapvalidator/dist/css/bootstrapValidator.min.css";
 @import "../libs/fancyBox/source/jquery.fancybox.css";
-
-// flexslider
 @import "../libs/flexslider/css/variables.less";
 @import "../libs/flexslider/css/mixins.less";
 @import "../libs/flexslider/css/resets.less";
@@ -58,21 +57,30 @@
 @ox-footer-color:                       #E7E7E7;
 #footer a { color: @ox-footer-color; }
 
+@padding-base-horizontal:   10px;
 
 // layout
 .header-row {
+  .row;
   margin-left: floor( @grid-gutter-width/2 ) * -1;
   margin-right: floor( @grid-gutter-width/2 ) * -1;
   margin-bottom: floor( @grid-gutter-width );
   box-shadow: @ox-boxed-container-shadow;
+  > .flexslider { margin:0; }
 }
 @media ( max-width: @screen-sm-max ) {
   #header .header-box {
     padding: 10px;
   }
 }
-
-#mainnav {
+ // navigation & menus
+@navbar-default-color:             #000;
+@navbar-default-bg:                #FFF;
+@navbar-default-link-active-color: @navbar-default-color;
+@navbar-default-link-active-bg:    #E7E7E7;
+@navbar-default-link-hover-color:  @navbar-default-link-active-color;
+@navbar-default-link-hover-bg:     @navbar-default-link-active-bg;
+#mainmenu {
   &.affix {
     z-index: 10;
     top: 0;
@@ -128,18 +136,17 @@
   .bottom { position:absolute; bottom: 5px; right: 5px; left: 80px; }
 }
 
-// checkout
-
-#shippingAddressForm {
-  div > label {
-    padding: 5px;
-    border-top: 1px solid #cfcfcf;
-  }
-  input[type="radio"] + div {
-    transition: 0.5s;
-    height:0;
-    opacity:0;
-    overflow: hidden;
-  }
-  input[type="radio"]:checked + div { height: auto; opacity:1; }
+// forms
+label.required {
+  font-weight: bold;
+  &::after { content:'*'}
 }
+
+.btn-label {
+  .btn-default;
+  input.hidden:checked + & {
+    .btn-primary;
+  }
+}
+
+// checkout

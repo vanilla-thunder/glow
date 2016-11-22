@@ -63,10 +63,10 @@
                 [{include file="page/checkout/inc/basketcontents.tpl" editable=true }]
             </div>
 
-            [{block name="checkout_basket_next_step_bottom"}]
-                <div class="well well-sm cart-buttons">
-                    [{block name="checkout_basket_loworderprice_bottom"}][{/block}]
+            [{block name="checkout_basket_loworderprice_bottom"}][{/block}]
 
+            [{block name="checkout_basket_next_step_bottom"}]
+                <div class="cart-buttons">
                     [{if !$oView->isLowOrderPrice()}]
                         [{block name="basket_btn_next_bottom"}]
                             <form action="[{$oViewConf->getSslSelfLink()}]" method="post">
@@ -74,32 +74,15 @@
                                     [{$oViewConf->getHiddenSid()}]
                                     <input type="hidden" name="cl" value="user">
                                 </div>
-                                <button type="submit" class="btn btn-primary submitButton largeButton nextStep pull-right">
+                                <p>
+                                <button type="submit" class="btn btn-success btn-lg submitButton largeButton nextStep pull-right">
                                     [{oxmultilang ident="CONTINUE_TO_NEXT_STEP"}] <i class="fa fa-caret-right"></i>
                                 </button>
+                                <div class="clearfix"></div>
+                                </p>
                             </form>
                         [{/block}]
                     [{/if}]
-
-                    [{block name="checkout_basket_backtoshop_bottom"}]
-                        [{if $oView->showBackToShop()}]
-                            <form action="[{$oViewConf->getSslSelfLink()}]" method="post" class="pull-left">
-                                <div class="backtoshop">
-                                    [{$oViewConf->getHiddenSid()}]
-                                    <input type="hidden" name="cl" value="basket">
-                                    <input type="hidden" name="fnc" value="backtoshop">
-                                    <button type="submit" class="btn btn-default submitButton largeButton pull-left">
-                                        <i class="fa fa-caret-left"></i> [{oxmultilang ident="CONTINUE_SHOPPING"}]
-                                    </button>
-                                </div>
-                            </form>
-                        [{else}]
-                            <a href="[{$oViewConf->getHomeLink()}]" class="btn btn-default pull-left">
-                                <i class="fa fa-caret-left"></i> [{oxmultilang ident="CONTINUE_SHOPPING"}]
-                            </a>
-                        [{/if}]
-                    [{/block}]
-                    <div class="clearfix"></div>
                 </div>
             [{/block}]
         [{/if}]

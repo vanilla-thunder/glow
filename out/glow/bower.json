@@ -6,7 +6,7 @@
   "dependencies": {
     "bootstrap": "*",
     "font-awesome": "*",
-    "bootstrap-validator": "*",
+    "bootstrapvalidator": "nghuuphuoc/bootstrapvalidator#master",
     "fancyBox": "*",
     "flexslider": "*",
     "js-cookie": "*",
