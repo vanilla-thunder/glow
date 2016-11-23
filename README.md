@@ -8,7 +8,7 @@ based on Flow Theme: https://github.com/OXID-eSales/flow_theme
 
 ### Installation
     cd application/views/
-    git clone git@github.com:vanilla-thunder/glow.git
+    git clone https://github.com/vanilla-thunder/glow.git
     ln -s ../application/views/glow/out/glow ../../out/glow
 
 ### development
