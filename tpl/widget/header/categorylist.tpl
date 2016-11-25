@@ -26,11 +26,8 @@
 
 
                <ul class="nav navbar-nav navbar-right hidden-xs">
-                  <li>
-                     <a href="[{oxgetseourl ident=$oViewConf->getSelfLink()|cat:"cl=basket"}]" rel="nofollow">
-                        <i class="fa fa-shopping-cart fa-lg"></i>
-                        [{if $oxcmp_basket->getItemsCount() > 0}][{$oxcmp_basket->getItemsCount()}][{/if}]
-                     </a>
+                  <li class="minibasket-menu">
+                     [{ oxid_include_widget cl="oxwMiniBasket" nocookie=$blAnon force_sid=$force_sid }]
                   </li>
                </ul>
 

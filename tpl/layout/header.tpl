@@ -41,18 +41,6 @@
                            [{oxid_include_widget cl="oxwServiceMenu" _parent=$oView->getClassName() force_sid=$force_sid nocookie=$blAnon _navurlparams=$oViewConf->getNavUrlParams() anid=$oViewConf->getActArticleId()}]
                         [{/block}]
 
-                        [{block name="dd_layout_page_header_icon_menu_minibasket"}]
-                           [{* Minibasket Dropdown *}]
-                           [{if $oxcmp_basket->getProductsCount()}]
-                              [{assign var="blAnon" value=0}]
-                              [{assign var="force_sid" value=$oViewConf->getSessionId()}]
-                           [{else}]
-                              [{assign var="blAnon" value=1}]
-                           [{/if}]
-                           <div class="btn-group minibasket-menu">
-                              [{ oxid_include_widget cl="oxwMiniBasket" nocookie=$blAnon force_sid=$force_sid }]
-                           </div>
-                        [{/block}]
                      </div>
                   [{/block}]
                </div>

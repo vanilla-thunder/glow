@@ -1,9 +1,9 @@
-<button type="button" class="btn dropdown-toggle" data-toggle="dropdown" data-href="[{oxgetseourl ident=$oViewConf->getSelfLink()|cat:"cl=basket"}]">
+<a class="dropdown-toggle" data-toggle="dropdown" href="#" data-href="[{oxgetseourl ident=$oViewConf->getSelfLink()|cat:"cl=basket"}]">
    [{block name="dd_layout_page_header_icon_menu_minibasket_button"}]
-      <i class="fa fa-shopping-cart fa-2x" aria-hidden="true"></i>
+      <i class="fa fa-shopping-cart" aria-hidden="true"></i>
       [{if $oxcmp_basket->getItemsCount() > 0}][{ $oxcmp_basket->getItemsCount() }][{/if}]
    [{/block}]
-</button>
+</a>
 <ul class="dropdown-menu dropdown-menu-right pull-right" role="menu">
    [{block name="dd_layout_page_header_icon_menu_minibasket_list"}]
       <li>

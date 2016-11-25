@@ -1,6 +1,4 @@
 [{capture append="oxidBlock_content"}]
-    [{oxscript include="js/pages/checkout.min.js" priority=10}]
-
 
     [{* ordering steps *}]
     [{include file="page/checkout/inc/steps.tpl" active=2}]
