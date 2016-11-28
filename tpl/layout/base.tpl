@@ -209,6 +209,9 @@
 [{/if}]
 
 <div class="[{if $blFullwidth}]fullwidth-container[{else}]container[{/if}]">
+   [{if $oViewConf->getTopActionClassName() != 'clearcookies' && $oViewConf->getTopActionClassName() != 'mallstart'}]
+      [{oxid_include_widget cl="oxwCookieNote" _parent=$oView->getClassName() nocookie=1}]
+   [{/if}]
    <div class="header-row">
       [{block name="layout_header"}][{include file="layout/header.tpl"}][{/block}]
    </div>

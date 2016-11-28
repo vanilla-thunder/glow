@@ -154,6 +154,7 @@
                                                 [{$oCont->oxcontents__oxcontent->value}]
                                                 [{/oxifcontent}]
                                              </div>
+                                             <hr/>
                                           [{/block}]
 
                                           [{if !$oView->isLowOrderPrice()}]

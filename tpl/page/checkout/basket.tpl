@@ -81,7 +81,7 @@
                            <input type="hidden" name="cl" value="user">
                         </div>
                         <p>
-                           <button type="submit" class="btn btn-success btn-lg submitButton largeButton nextStep pull-right">
+                           <button type="submit" class="btn btn-success btn-lg  pull-right">
                               [{oxmultilang ident="CONTINUE_TO_NEXT_STEP"}] <i class="fa fa-caret-right"></i>
                            </button>
                         <div class="clearfix"></div>

@@ -229,8 +229,8 @@
                      [{/if}]
                   [{/block}]
 
+                  [{* product stock *}]
                   [{if $blCanBuy}]
-                     [{* product stock *}]
                      [{block name="details_productmain_stockstatus"}]
                         [{if $oDetailsProduct->getStockStatus() == -1}]
                            <span class="stockFlag notOnStock">
@@ -271,11 +271,11 @@
             </div>
 
          </form>
-
+<!--
             <hr/>
             blCanBuy: [{$blCanBuy|var_dump}]<br/>
             isBuyable: [{$oDetailsProduct->isBuyable()|var_dump}]
-            <hr/>
+            <hr/> -->
 
             [{block name="details_productmain_watchlist"}][{/block}]
 

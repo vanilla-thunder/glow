@@ -1,6 +1,3 @@
-[{if $oViewConf->getTopActionClassName() != 'clearcookies' && $oViewConf->getTopActionClassName() != 'mallstart'}]
-   [{oxid_include_widget cl="oxwCookieNote" _parent=$oView->getClassName() nocookie=1}]
-[{/if}]
 [{block name="header_main"}]
    [{assign var="blFullwidth" value=$oViewConf->getViewThemeParam('blFullwidthLayout')}]
    <header id="header">

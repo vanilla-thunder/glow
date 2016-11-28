@@ -95,14 +95,12 @@
                      [{* product wrapping *}]
                      [{block name="checkout_basketcontents_basketitem_wrapping"}]
                         [{if $oView->isWrapping()}]
-                           <div class="wrapping">
+                           <p class="wrapping">
                               [{if $basketitem->getWrappingId()}]
                                  [{assign var="oWrap" value=$basketitem->getWrapping()}]
-                                 [{if !$editable}]
-                                    <small>[{oxmultilang ident="WRAPPING"}]: [{$oWrap->oxwrapping__oxname->value}]</small>
-                                 [{/if}]
+                                 [{oxmultilang ident="WRAPPING"}]: [{$oWrap->oxwrapping__oxname->value}] [{* ( [{oxprice price=$oWrap->getPrice() currency=$currency }] ) *}]
                               [{/if}]
-                           </div>
+                           </p>
                         [{/if}]
                      [{/block}]
                   [{/block}]
@@ -154,11 +152,9 @@
                                  [{else}][{oxmultilang ident="PCS"}][{/if}]
                               </span>
                            </p>
-
                            <button class="btn btn-warning col-xs-6" type="submit" name="updateBtn" title="[{oxmultilang ident="UPDATE"}]">
                               <i class="fa fa-refresh fa-lg fa-fw"></i>[{* oxmultilang ident="UPDATE" *}]
                            </button>
-
                            [{block name="checkout_basketcontents_basketitem_removecheckbox"}]
                               <input type="hidden" name="aproducts[[{$basketindex}]][remove]" id="aproducts_[{$basketindex}]_remove" value="0">
                               <button class="btn btn-danger col-xs-6" type="submit" name="removeBtn" title="[{oxmultilang ident="REMOVE"}]"
@@ -169,7 +165,7 @@
 
                         [{/if}]
                      [{else}]
-                        [{$basketitem->getAmount()}]
+                        x [{$basketitem->getAmount()}]
                         [{if $basketitem->oxarticles__oxunitname->value}][{$basketitem->oxarticles__oxunitname->value}]
                         [{else}][{oxmultilang ident="PCS"}][{/if}]
                      [{/if}]
@@ -200,34 +196,6 @@
          [{*  basket items end  *}]
       [{/foreach}]
 
-      [{block name="checkout_basketcontents_giftwrapping"}]
-         [{if $oViewConf->getShowGiftWrapping()}]
-            [{assign var="oCard" value=$oxcmp_basket->getCard()}]
-            [{if $oCard}]
-               <tr>
-                  [{if $editable}]
-                     <td></td>
-                  [{/if}]
-                  <td id="orderCardTitle" colspan="3">[{oxmultilang ident="GREETING_CARD"}] "[{$oCard->oxwrapping__oxname->value}]"
-                     <br>
-                     <b>[{oxmultilang ident="YOUR_MESSAGE"}]</b>
-                     <br>
-                     <div id="orderCardText">[{$oxcmp_basket->getCardMessage()|nl2br}]</div>
-                  </td>
-                  <td id="orderCardPrice">[{$oCard->getFPrice()}]&nbsp;[{$currency->sign}]</td>
-                  <td>
-                     [{if $oxcmp_basket->isProportionalCalculationOn()}]
-                        [{oxmultilang ident="PROPORTIONALLY_CALCULATED"}]
-                     [{else}]
-                        [{if $oxcmp_basket->getGiftCardCostVat()}][{$oxcmp_basket->getGiftCardCostVatPercent()}]%[{/if}]
-                     [{/if}]
-                  </td>
-                  <td id="orderCardTotalPrice" align="right">[{$oCard->getFPrice()}]&nbsp;[{$currency->sign}]</td>
-               </tr>
-            [{/if}]
-         [{/if}]
-      [{/block}]
-
       [{block name="checkout_basketcontents_basketfunctions"}][{/block}]
    </div>
 
@@ -236,6 +204,33 @@
 
 <div class="row">
    <div class="col-sm-6">
+      [{block name="checkout_basketcontents_giftwrapping"}]
+         [{if $oViewConf->getShowGiftWrapping()}]
+            [{assign var="oCard" value=$oxcmp_basket->getCard()}]
+            [{if $oCard}]
+               <div class="media">
+                  [{if $oCard->oxwrapping__oxpic->value}]
+                     <div class="media-left">
+                        <img class="media-object img-thumbnail" src="[{$oCard->getPictureUrl()}]" alt="[{$oCard->oxwrapping__oxname->value}]">
+                     </div>
+                  [{/if}]
+                  <div class="media-body">
+                     <h4 class="media-heading">
+                        [{oxmultilang ident="GREETING_CARD"}] "<b>[{$oCard->oxwrapping__oxname->value}]</b>"
+                        [{*( [{oxprice price=$oCard->getPrice() currency=$currency}] )*}]
+                     </h4>
+                     [{oxmultilang ident="YOUR_MESSAGE"}]:
+                     <b>[{$oxcmp_basket->getCardMessage()|nl2br}]</b>
+                     <div>
+                        [{if $oxcmp_basket->isProportionalCalculationOn()}][{oxmultilang ident="PROPORTIONALLY_CALCULATED"}]
+                        [{elseif $oxcmp_basket->getGiftCardCostVat()}][{$oxcmp_basket->getGiftCardCostVatPercent()}]%[{/if}]
+                     </div>
+                  </div>
+               </div>
+            [{/if}]
+         [{/if}]
+      [{/block}]
+
       [{if $editable}]
          <p>
             <a href="#" class="btn btn-info btn-block" title="[{oxmultilang ident="ADD_WRAPPING"}]" data-toggle="modal" data-target="#giftoptions">
@@ -467,7 +462,6 @@
 
                [{block name="checkout_basketcontents_wrappingcosts"}]
                   [{if $oViewConf->getShowGiftWrapping() }]
-
                      [{assign var="wrappingCost" value=$oxcmp_basket->getWrappingCost()}]
                      [{if $wrappingCost && $wrappingCost->getPrice() > 0 }]
                         [{if $oViewConf->isFunctionalityEnabled('blShowVATForWrapping') }]
