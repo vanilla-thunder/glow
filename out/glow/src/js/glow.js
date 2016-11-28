@@ -1,5 +1,4 @@
-$(function ()
-{
+$(function () {
     var $b = $("body");
 
     // allgemeines Zeug
@@ -28,11 +27,13 @@ $(function ()
     // Schritt 1 ----------------------------------------------------------------- Schritt 1
     var submitTimeout;
     $b.on("change", "input[name^='aproducts'][id^='amount_']", function () {
-            if(typeof submitTimeout !== 'undefined') window.clearTimeout(submitTimeout);
-            submitTimeout = window.setTimeout(function(input){ input.blur(); }, 5000, $(this));
-        })
+        if (typeof submitTimeout !== 'undefined') window.clearTimeout(submitTimeout);
+        submitTimeout = window.setTimeout(function (input) {
+            input.blur();
+        }, 5000, $(this));
+    })
         .on("focusout", "input[name^='aproducts'][id^='amount_']", function () {
-            if($(this).val() != $(this).data("value")) $(this).parents("form").submit();
+            if ($(this).val() != $(this).data("value")) $(this).parents("form").submit();
         });
     // Schritt 2 ----------------------------------------------------------------- Schritt 2
     $b.on("change", "input[name='oxaddressid']", function () {
@@ -73,14 +74,13 @@ $(function ()
 
     $(".validate").bootstrapValidator({
         framework: 'bootstrap',
-        feedbackIcons: {
-            valid: 'fa fa-check',
-            invalid: 'fa fa-times',
-            validating: 'fa fa-spinner fa-pulse'
-        },
+        /* feedbackIcons: {
+         valid: 'fa fa-check',
+         invalid: 'fa fa-times',
+         validating: 'fa fa-spinner fa-pulse'
+         },*/
         fields: {
-
-            password: {
+            lgn_usr: {
                 validators: {
                     notEmpty: {
                         message: 'The password is required and can\'t be empty'
@@ -91,13 +91,24 @@ $(function ()
                     }
                 }
             },
-            confirmPassword: {
+            lgn_pwd: {
+                validators: {
+                    notEmpty: {
+                        message: 'The password is required and can\'t be empty'
+                    },
+                    identical: {
+                        field: 'confirmPassword',
+                        message: 'The password and its confirm are not the same'
+                    }
+                }
+            },
+            lgn_pwd2: {
                 validators: {
                     notEmpty: {
                         message: 'The confirm password is required and can\'t be empty'
                     },
                     identical: {
-                        field: 'password',
+                        field: 'lgn_pwd',
                         message: 'The password and its confirm are not the same'
                     }
                 }

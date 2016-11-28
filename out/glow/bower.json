@@ -9,7 +9,6 @@
     "bootstrapvalidator": "nghuuphuoc/bootstrapvalidator#master",
     "fancyBox": "*",
     "flexslider": "*",
-    "js-cookie": "*",
     "jquery-unveil": "luis-almeida/unveil#master",
     "matchheight": "*"
   },

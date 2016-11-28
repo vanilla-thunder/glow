@@ -232,35 +232,10 @@
                   [{* product stock *}]
                   [{if $blCanBuy}]
                      [{block name="details_productmain_stockstatus"}]
-                        [{if $oDetailsProduct->getStockStatus() == -1}]
-                           <span class="stockFlag notOnStock">
-                                <i class="fa fa-circle text-danger"></i>
-                              [{if $oDetailsProduct->oxarticles__oxnostocktext->value}]
-                                 [{$oDetailsProduct->oxarticles__oxnostocktext->value}]
-                              [{elseif $oViewConf->getStockOffDefaultMessage()}]
-                                 [{oxmultilang ident="MESSAGE_NOT_ON_STOCK"}]
-                              [{/if}]
-                              [{if $oDetailsProduct->getDeliveryDate()}]
-                                 [{oxmultilang ident="AVAILABLE_ON"}] [{$oDetailsProduct->getDeliveryDate()}]
-                              [{/if}]
-                           </span>
-                        [{elseif $oDetailsProduct->getStockStatus() == 1}]
-                           <span class="stockFlag lowStock">
-                              <i class="fa fa-circle text-warning"></i> [{oxmultilang ident="LOW_STOCK"}]
-                           </span>
-                        [{elseif $oDetailsProduct->getStockStatus() == 0}]
-                           <span class="stockFlag">
-                              <i class="fa fa-circle text-success"></i>
-                              [{if $oDetailsProduct->oxarticles__oxstocktext->value}]
-                                 [{$oDetailsProduct->oxarticles__oxstocktext->value}]
-                              [{elseif $oViewConf->getStockOnDefaultMessage()}]
-                                 [{oxmultilang ident="READY_FOR_SHIPPING"}]
-                              [{/if}]
-                           </span>
-                        [{/if}]
+                        [{include file="page/details/inc/stock.tpl"}]
                      [{/block}]
                   [{/if}]
-
+                  &nbsp;|&nbsp;
                   [{if $oDetailsProduct->isBuyable()}]
                      [{block name="details_productmain_deliverytime"}]
                         [{include file="page/details/inc/deliverytime.tpl"}]

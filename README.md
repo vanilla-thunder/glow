@@ -8,7 +8,7 @@ based on Flow Theme: https://github.com/OXID-eSales/flow_theme
 
 ### Installation
     cd application/views/
-    git clone https://github.com/vanilla-thunder/glow.git
+    git clone git@github.com:vanilla-thunder/glow.git
     ln -s ../application/views/glow/out/glow ../../out/glow
 
 ### development
@@ -16,10 +16,14 @@ based on Flow Theme: https://github.com/OXID-eSales/flow_theme
     npm install
     npm start
 
-### Important changes
+### Features and Important changes
+* simplified address forms
+* smaller header navigation on mobile devices
+* additional smaller listitem template for crossselling and accessories
 * Logo path is now relative to ``out/pictures/wysiwygpro/``
 * background image path changed to ``out/pictures/wysiwygpro/``
-* layout changes for product details
+* different layout for product details page
+* some layout changes in checkout 
 * replaced old reused Azure JavaScripts with simple jQuery
 * removed jQuery-UI and some other libs (see list below)
 * *tpl/widget/product/selectbox.tpl* moved to *tpl/page/details/inc/selectbox.tpl*  
@@ -40,8 +44,8 @@ based on Flow Theme: https://github.com/OXID-eSales/flow_theme
 ### Removed / Replaced JS scritps and libraries:
 * jQuery-UI removed
 * Bootstrap-Select removed
-* jQuery-Bootstrap-Validation (discontinued) -> [Bootstrap Validator](http://1000hz.github.io/bootstrap-validator/)
+* jquery cookie removed because smarty can do the job, too.
+* jQuery-Bootstrap-Validation (discontinued) -> [BootstrapValidator](https://github.com/nghuuphuoc/bootstrapvalidator/)
 * Photoswipe (lack of features) -> [FancyBox](http://fancyapps.com/fancybox/)
-* jQuery-cookie (discontinued)-> [js-Cookie](https://github.com/js-cookie/js-cookie)
 
 

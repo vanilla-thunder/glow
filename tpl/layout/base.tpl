@@ -235,7 +235,6 @@
    [{* include file="i18n/js_vars.tpl" *}]
 
    [{oxscript include="libs/jquery/dist/jquery.min.js" priority=1}]
-   [{oxscript include="libs/js-cookie/src/js.cookie.js" priority=1}]
    [{oxscript include="libs/bootstrap/dist/js/bootstrap.min.js" priority=1}]
    [{oxscript include="libs/bootstrapvalidator/dist/js/bootstrapValidator.min.js" priority=2 }]
    [{oxscript include="libs/bootstrapvalidator/dist/js/language/de_DE.js" priority=2 }]

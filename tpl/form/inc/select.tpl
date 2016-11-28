@@ -18,7 +18,7 @@
 
       [{if $options|@count < 4}]
          <div class="row">
-            [{foreach from=$options item="_option"}]
+            [{foreach from=$options item="_option" name="options"}]
 
                [{if $_option|is_a:'oxcountry'}]
                   [{assign var="_value" value=$_option->oxcountry__oxid->value}]
@@ -28,14 +28,14 @@
                   [{assign var="_label" value=$_option|oxmultilangassign}]
                [{/if}]
                <div class="radio col-xs-6">
-                  <input type="radio" name="[{$prefix}][[{$field}]]" id="[{$prefix}]_[{$field}]_[{$_value}]" class="hidden" [{if $_value == $_current}]checked[{/if}] value="[{$_value}]">
+                  <input type="radio" name="[{$prefix}][[{$field}]]" id="[{$prefix}]_[{$field}]_[{$_value}]" class="hidden" [{if $_value == $_current || $smarty.foreach.options.first }]checked[{/if}] value="[{$_value}]">
                   <label for="[{$prefix}]_[{$field}]_[{$_value}]" class="btn btn-label btn-block">[{$_label}]</label>
                </div>
             [{/foreach}]
          </div>
       [{else}]
          <select name="[{$name}]" [{if $class}]class="[{$class}]"[{/if}] [{if $id}]id="[{$id}]"[{/if}]>
-            <option value="MRS" [{if $value|lower  == "mrs" or $value2|lower == "mrs"}]SELECTED[{/if}]>[{oxmultilang ident="MRS"}]</option>
+            <option value="MRS" [{if $value|lower  == "mrs" or $value2|lower == "mrs"  || $smarty.foreach.options.first }]SELECTED[{/if}]>[{oxmultilang ident="MRS"}]</option>
             <option value="MR" [{if $value|lower  == "mr"  or $value2|lower == "mr"}]SELECTED[{/if}]>[{oxmultilang ident="MR" }]</option>
          </select>
       [{/if}]

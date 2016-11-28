@@ -57,13 +57,14 @@
 
 [{if $oViewConf->showBirthdayFields()}]
     <div class="form-group oxDate[{if $aErrors.oxuser__oxbirthdate}] text-danger[{/if}]">
-        <label class="control-label col-sm-3 col-md-4[{if $oView->isFieldRequired(oxuser__oxbirthdate)}] req[{/if}]">[{oxmultilang ident="BIRTHDATE"}]</label>
+        <label class="control-label col-sm-4 [{if $oView->isFieldRequired(oxuser__oxbirthdate)}]required[{/if}]">[{oxmultilang ident="BIRTHDATE"}]</label>
+
         <div class="clear display-xs-block"></div>
         <div class="col-xs-3 col-sm-2">
             <input id="oxDay" class="oxDay form-control" name="invadr[oxuser__oxbirthdate][day]" type="text" maxlength="2" value="[{if $iBirthdayDay > 0}][{$iBirthdayDay}][{/if}]" placeholder="[{oxmultilang ident="DAY"}]"[{if $oView->isFieldRequired(oxuser__oxbirthdate)}] required=""[{/if}]>
         </div>
-        <div class="col-xs-6 col-sm-4">
-            <select class="oxMonth form-control selectpicker" name="invadr[oxuser__oxbirthdate][month]"[{if $oView->isFieldRequired(oxuser__oxbirthdate)}] required=""[{/if}]>
+        <div class="col-xs-4 col-sm-3">
+            <select class="oxMonth form-control" name="invadr[oxuser__oxbirthdate][month]"[{if $oView->isFieldRequired(oxuser__oxbirthdate)}] required=""[{/if}]>
                 <option value="" label="[{oxmultilang ident="MONTH"}]">[{oxmultilang ident="MONTH"}]</option>
                 [{section name="month" start=1 loop=13}]
                     <option value="[{$smarty.section.month.index}]" label="[{$smarty.section.month.index}]" [{if $iBirthdayMonth == $smarty.section.month.index}] selected="selected" [{/if}]>
@@ -72,7 +73,7 @@
                 [{/section}]
             </select>
         </div>
-        <div class="col-xs-3 col-md-2">
+        <div class="col-xs-4 col-sm-3">
             <input id="oxYear" class="oxYear form-control" name="invadr[oxuser__oxbirthdate][year]" type="text" maxlength="4" value="[{if $iBirthdayYear}][{$iBirthdayYear}][{/if}]" placeholder="[{oxmultilang ident="YEAR"}]"[{if $oView->isFieldRequired(oxuser__oxbirthdate)}] required=""[{/if}]>
         </div>
         <div class="col-sm-offset-3 col-sm-9 col-xs-12">
@@ -81,12 +82,6 @@
         </div>
     </div>
 [{/if}]
-
-<div class="form-group">
-    <div class="col-xs-12 col-sm-offset-3 col-sm-9 col-md-offset-0 col-md-12">
-        <p class="alert alert-info text-center">[{oxmultilang ident="COMPLETE_MARKED_FIELDS"}]</p>
-    </div>
-</div>
 
 [{if !$noFormSubmit}]
     <div class="form-group">
