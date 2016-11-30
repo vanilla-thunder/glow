@@ -3,12 +3,11 @@
       [{include file="rdfa/rdfa.tpl"}]
    [{/if}]
 
-   [{assign var="sActiveClass" value=$oView->getClassName() }]
    [{assign var="blFullwidth" value=$oViewConf->getViewThemeParam('blFullwidthLayout')}]
+   [{assign var="sActiveClass" value=$oView->getClassName() }]
    [{assign var="aSidebarConfig" value=$oViewConf->getViewThemeParam('aSidebarConfig')}]
-   [{$sidebar|@var_dump}]
-   [{assign var="sidebar" value=$aSidebarConfig.$sActiveClass|default:false }]
-   [{$sidebar|@var_dump}]
+   [{if $aSidebarConfig}][{assign var="sidebar" value=$aSidebarConfig.$sActiveClass|default:$sidebar }][{/if}]
+
 
    <div id="wrapper" [{if $sidebar}]class="sidebar[{$sidebar}]"[{/if}]>
 
@@ -25,7 +24,7 @@
             [{$smarty.capture.loginErrors}]
 
             <div class="row">
-               [{if $sidebar && $sidebar != "Right"}]
+               [{if $sidebar && $sidebar|strtolower == "left"}]
                   <div class="col-xs-12 col-md-3 [{$oView->getClassName()}]">
                      <div id="sidebar">
                         [{include file="layout/sidebar.tpl"}]
@@ -47,7 +46,7 @@
 
                </div>
 
-               [{if $sidebar && $sidebar == "Right"}]
+               [{if $sidebar && $sidebar|strtolower == "right"}]
                   <div class="col-xs-12 col-md-3 [{$oView->getClassName()}]">
                      <div id="sidebar">
                         [{include file="layout/sidebar.tpl"}]
