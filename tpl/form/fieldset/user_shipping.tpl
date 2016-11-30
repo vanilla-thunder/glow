@@ -32,27 +32,27 @@
 [{assign var="aDeliveryAddress" value=$oView->getDeliveryAddress()}]
 
 <div id="shippingAddressForm" [{if $oAddress}]style="display:none;"[{/if}]>
-   [{include file="form/inc/input.tpl" label="COMPANY" field="oxaddress__oxcompany" type="text"}]
+   [{include file="form/inc/input.tpl" _label="COMPANY" _field="oxaddress__oxcompany" _type="text"}]
 
-   [{include file="form/inc/select.tpl" label="TITLE" field="oxaddress__oxsal" options="MRS|MR"}]
+   [{include file="form/inc/select.tpl" _label="TITLE" _field="oxaddress__oxsal" _options="MRS|MR"}]
 
-   [{include file="form/inc/input.tpl" label="FIRST_NAME" field="oxaddress__oxfname" type="text"}]
+   [{include file="form/inc/input.tpl" _label="FIRST_NAME" _field="oxaddress__oxfname" _type="text"}]
 
-   [{include file="form/inc/input.tpl" label="LAST_NAME" field="oxaddress__oxlname" type="text"}]
+   [{include file="form/inc/input.tpl" _label="LAST_NAME" _field="oxaddress__oxlname" _type="text"}]
 
-   [{include file="form/inc/inputgroup.tpl" label="STREET_AND_STREETNO" fields="oxaddress__oxstreet|oxaddress__oxstreetnr" xs="8|4" sm="5|3" type="text"}]
+   [{include file="form/inc/inputgroup.tpl" _label="STREET_AND_STREETNO" _fields="oxaddress__oxstreet|oxaddress__oxstreetnr" xs="8|4" sm="5|3" _type="text"}]
 
-   [{include file="form/inc/input.tpl" label="ADDITIONAL_INFO" field="oxaddress__oxaddinfo" type="text"}]
+   [{include file="form/inc/input.tpl" _label="ADDITIONAL_INFO" _field="oxaddress__oxaddinfo" _type="text"}]
 
-   [{include file="form/inc/inputgroup.tpl" label="POSTAL_CODE_AND_CITY" fields="oxaddress__oxzip|oxaddress__oxcity" xs="4|8" sm="3|5" type="text"}]
+   [{include file="form/inc/inputgroup.tpl" _label="POSTAL_CODE_AND_CITY" _fields="oxaddress__oxzip|oxaddress__oxcity" xs="4|8" sm="3|5" _type="text"}]
 
    [{block name="form_user_shipping_country"}]
-      [{include file="form/inc/select.tpl" label="COUNTRY" field="oxaddress__oxcountryid" options=$oViewConf->getCountryList() }]
+      [{include file="form/inc/select.tpl" _label="COUNTRY" _field="oxaddress__oxcountryid" _options=$oViewConf->getCountryList() }]
    [{/block}]
 
-   [{include file="form/inc/input.tpl" label="PHONE" field="oxaddress__oxfon" type="text"}]
+   [{include file="form/inc/input.tpl" _label="PHONE" _field="oxaddress__oxfon" _type="text"}]
 
-   [{include file="form/inc/input.tpl" label="FAX" field="oxaddress__oxfax" type="text"}]
+   [{include file="form/inc/input.tpl" _label="FAX" _field="oxaddress__oxfax" _type="text"}]
 </div>
 
 [{if !$noFormSubmit}]

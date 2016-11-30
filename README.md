@@ -10,13 +10,18 @@ based on Flow Theme: https://github.com/OXID-eSales/flow_theme
     cd application/views/
     git clone git@github.com:vanilla-thunder/glow.git
     ln -s ../application/views/glow/out/glow ../../out/glow
+### requirements
+* [vt-themesettings](https://github.com/vanilla-thunder/vt-themesettings) for handling child theme settings
 
 ### development
-    cd out/glow
-    npm install
-    npm start
-
+this code runs a nodejs app, that will compile styles.less and minify js files in src/js/
+```Shell
+cd out/glow
+npm install
+npm start
+```
 ### Features and Important changes
+* show/hide sidebar by changing theme settings
 * simplified address forms
 * smaller header navigation on mobile devices
 * additional smaller listitem template for crossselling and accessories

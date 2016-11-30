@@ -1,4 +1,4 @@
-[{if $oView->isFieldRequired($field)}][{assign var="_req" value="required"}][{/if}]
+[{if $oView->isFieldRequired($_field)}][{assign var="_req" value="required"}][{/if}]
 [{assign var="prefix" value=$prefix|default:'invadr'}]
 [{if $prefix == "invadr"}]
    [{assign var="adr" value=$invadr}]
@@ -8,28 +8,28 @@
    [{assign var="fallback" value=$oAddress}]
 [{/if}]
 
-[{if $options|is_string }][{assign var="options" value='|'|explode:$options}][{/if}]
-[{assign var="_current" value=$value|default:$adr.$field }]
-[{assign var="_current" value=$value|default:$fallback->$field->value }]
+[{if $_options|is_string }][{assign var="_options" value='|'|explode:$_options}][{/if}]
+[{assign var="_current" value=$value|default:$adr.$_field }]
+[{assign var="_current" value=$value|default:$fallback->$_field->value }]
 
-<div class="form-group [{if $aErrors.$field}]text-danger[{/if}]">
-   <label class="control-label col-sm-4 [{$_req}]">[{oxmultilang ident=$label}]</label>
+<div class="form-group [{if $aErrors.$_field}]text-danger[{/if}]">
+   <label class="control-label col-sm-4 [{$_req}]">[{oxmultilang ident=$_label}]</label>
    <div class="col-sm-8">
 
       [{if $options|@count < 4}]
          <div class="row">
-            [{foreach from=$options item="_option" name="options"}]
+            [{foreach from=$_options item="option" name="options"}]
 
-               [{if $_option|is_a:'oxcountry'}]
-                  [{assign var="_value" value=$_option->oxcountry__oxid->value}]
-                  [{assign var="_label" value=$_option->oxcountry__oxtitle->value}]
+               [{if $option|is_a:'oxcountry'}]
+                  [{assign var="_value" value=$option->oxcountry__oxid->value}]
+                  [{assign var="_label" value=$option->oxcountry__oxtitle->value}]
                [{else}]
-                  [{assign var="_value" value=$_option}]
-                  [{assign var="_label" value=$_option|oxmultilangassign}]
+                  [{assign var="_value" value=$option}]
+                  [{assign var="_label" value=$option|oxmultilangassign}]
                [{/if}]
                <div class="radio col-xs-6">
-                  <input type="radio" name="[{$prefix}][[{$field}]]" id="[{$prefix}]_[{$field}]_[{$_value}]" class="hidden" [{if $_value == $_current || $smarty.foreach.options.first }]checked[{/if}] value="[{$_value}]">
-                  <label for="[{$prefix}]_[{$field}]_[{$_value}]" class="btn btn-label btn-block">[{$_label}]</label>
+                  <input type="radio" name="[{$prefix}][[{$_field}]]" id="[{$prefix}]_[{$_field}]_[{$_value}]" class="hidden" [{if $_value == $_current || $smarty.foreach.options.first }]checked[{/if}] value="[{$_value}]">
+                  <label for="[{$prefix}]_[{$_field}]_[{$_value}]" class="btn btn-label btn-block">[{$_label}]</label>
                </div>
             [{/foreach}]
          </div>
@@ -40,7 +40,7 @@
          </select>
       [{/if}]
 
-      [{include file="message/inputvalidation.tpl" aErrors=$aErrors.$field}]
+      [{include file="message/inputvalidation.tpl" aErrors=$aErrors.$_field}]
       <div class="help-block"></div>
    </div>
 </div>

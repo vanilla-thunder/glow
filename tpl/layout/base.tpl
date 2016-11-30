@@ -112,28 +112,15 @@
          [{assign var="sFavicon64File"  value=$oViewConf->getViewThemeParam('sFavicon64File')}]
          [{assign var="sFavicon128File" value=$oViewConf->getViewThemeParam('sFavicon128File')}]
 
-         [{if $sFaviconFile}]
-            <link rel="shortcut icon" href="[{$oViewConf->getImageUrl("favicons/`$sFaviconFile`")}]?rand=1" type="image/x-icon"/>
-         [{/if}]
-         [{if $sFavicon16File}]
-            <link rel="icon" href="[{$oViewConf->getImageUrl("favicons/`$sFavicon16File`")}]" sizes="16x16"/>
-         [{/if}]
-         [{if $sFavicon32File}]
-            <link rel="icon" href="[{$oViewConf->getImageUrl("favicons/`$sFavicon32File`")}]" sizes="32x32"/>
-         [{/if}]
-         [{if $sFavicon48File}]
-            <link rel="icon" href="[{$oViewConf->getImageUrl("favicons/`$sFavicon48File`")}]" sizes="48x48"/>
-         [{/if}]
-         [{if $sFavicon64File}]
-            <link rel="icon" href="[{$oViewConf->getImageUrl("favicons/`$sFavicon64File`")}]" sizes="64x64"/>
-         [{/if}]
-         [{if $sFavicon128File}]
-            <link rel="icon" href="[{$oViewConf->getImageUrl("favicons/`$sFavicon128File`")}]" sizes="128x128"/>
-         [{/if}]
+         [{if $sFaviconFile}]<link rel="shortcut icon" href="[{$oViewConf->getImageUrl("favicons/`$sFaviconFile`")}]?rand=1" type="image/x-icon"/>[{/if}]
+         [{if $sFavicon16File}]<link rel="icon" href="[{$oViewConf->getImageUrl("favicons/`$sFavicon16File`")}]" sizes="16x16"/>[{/if}]
+         [{if $sFavicon32File}]<link rel="icon" href="[{$oViewConf->getImageUrl("favicons/`$sFavicon32File`")}]" sizes="32x32"/>[{/if}]
+         [{if $sFavicon48File}]<link rel="icon" href="[{$oViewConf->getImageUrl("favicons/`$sFavicon48File`")}]" sizes="48x48"/>[{/if}]
+         [{if $sFavicon64File}]<link rel="icon" href="[{$oViewConf->getImageUrl("favicons/`$sFavicon64File`")}]" sizes="64x64"/>[{/if}]
+         [{if $sFavicon128File}]<link rel="icon" href="[{$oViewConf->getImageUrl("favicons/`$sFavicon128File`")}]" sizes="128x128"/>[{/if}]
       [{/block}]
 
       [{block name="base_style"}]
-         [{oxstyle include="css/styles.min.css"}]
       [{/block}]
 
       [{block name="base_fonts"}]
@@ -194,8 +181,12 @@
    [{foreach from=$oxidBlock_pageHead item="_block"}]
       [{$_block}]
    [{/foreach}]
-   [{oxstyle}]
 
+   <link href="[{$oViewConf->getResourceUrl('css/styles.min.css')}]" rel="stylesheet" type="text/css">
+   [{* <link href="[{$oViewConf->getResourceUrl('css/async.min.css')}]" rel="stylesheet" type="text/css"> *}]
+   <!--[if IE]>
+   [{oxstyle}]
+   <![endif]-->
    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
    <!--[if lt IE 9]>
    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -252,6 +243,12 @@
    [{oxscript add="$( 'hr.debugBlocksStart' ).oxBlockDebug();"}]
 [{/if}]
 
+<!--[if !IE]><!-->
+[{block name="async_js"}]
+[{* <link href="[{$oViewConf->getResourceUrl('css/async.min.css')}]" rel="stylesheet" type="text/css"> *}]
+[{oxstyle}]
+[{/block}]
+<!--<![endif]-->
 <!--[if gte IE 9]><style type="text/css">.gradient { filter: none; }</style><![endif]-->
 
 [{oxscript}]

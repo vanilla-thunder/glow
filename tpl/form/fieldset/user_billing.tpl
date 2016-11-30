@@ -26,33 +26,33 @@
     [{assign var="iBirthdayYear" value=0}]
 [{/if}]
 
-[{include file="form/inc/input.tpl" label="COMPANY" field="oxuser__oxcompany" type="text"}]
+[{include file="form/inc/input.tpl" _label="COMPANY" _field="oxuser__oxcompany" _type="text"}]
 
-[{include file="form/inc/select.tpl" label="TITLE" field="oxuser__oxsal" options="MRS|MR"}]
+[{include file="form/inc/select.tpl" _label="TITLE" _field="oxuser__oxsal" _options="MRS|MR"}]
 
-[{include file="form/inc/input.tpl" label="FIRST_NAME" field="oxuser__oxfname" type="text"}]
+[{include file="form/inc/input.tpl" _label="FIRST_NAME" _field="oxuser__oxfname" _type="text"}]
 
-[{include file="form/inc/input.tpl" label="LAST_NAME" field="oxuser__oxlname" type="text"}]
+[{include file="form/inc/input.tpl" _label="LAST_NAME" _field="oxuser__oxlname" _type="text"}]
 
-[{include file="form/inc/inputgroup.tpl" label="STREET_AND_STREETNO" fields="oxuser__oxstreet|oxuser__oxstreetnr" xs="8|4" sm="5|3" type="text"}]
+[{include file="form/inc/inputgroup.tpl" _label="STREET_AND_STREETNO" _fields="oxuser__oxstreet|oxuser__oxstreetnr" xs="8|4" sm="5|3" _type="text"}]
 
-[{include file="form/inc/input.tpl" label="ADDITIONAL_INFO" field="oxuser__oxaddinfo" type="text"}]
+[{include file="form/inc/input.tpl" _label="ADDITIONAL_INFO" _field="oxuser__oxaddinfo" _type="text"}]
 
-[{include file="form/inc/inputgroup.tpl" label="POSTAL_CODE_AND_CITY" fields="oxuser__oxzip|oxuser__oxcity" xs="4|8" sm="3|5" type="text"}]
+[{include file="form/inc/inputgroup.tpl" _label="POSTAL_CODE_AND_CITY" _fields="oxuser__oxzip|oxuser__oxcity" xs="4|8" sm="3|5" _type="text"}]
 
 [{block name="form_user_billing_country"}]
-    [{include file="form/inc/select.tpl" label="COUNTRY" field="oxuser__oxcountryid" options=$oViewConf->getCountryList() }]
+    [{include file="form/inc/select.tpl" _label="COUNTRY" _field="oxuser__oxcountryid" _options=$oViewConf->getCountryList() }]
 [{/block}]
 
-[{include file="form/inc/input.tpl" label="VAT_ID_NUMBER" field="oxuser__oxustid" type="text"}]
+[{include file="form/inc/input.tpl" _label="VAT_ID_NUMBER" _field="oxuser__oxustid" _type="text"}]
 
-[{include file="form/inc/input.tpl" label="PHONE" field="oxuser__oxfon" type="text"}]
+[{include file="form/inc/input.tpl" _label="PHONE" _field="oxuser__oxfon" _type="text"}]
 
-[{include file="form/inc/input.tpl" label="FAX" field="oxuser__oxfax" type="text"}]
+[{include file="form/inc/input.tpl" _label="FAX" _field="oxuser__oxfax" _type="text"}]
 
-[{include file="form/inc/input.tpl" label="CELLUAR_PHONE" field="oxuser__oxmobfon" type="text"}]
+[{include file="form/inc/input.tpl" _label="CELLUAR_PHONE" _field="oxuser__oxmobfon" _type="text"}]
 
-[{include file="form/inc/input.tpl" label="PERSONAL_PHONE" field="oxuser__oxprivfon" type="text"}]
+[{include file="form/inc/input.tpl" _label="PERSONAL_PHONE" _field="oxuser__oxprivfon" _type="text"}]
 
 
 [{if $oViewConf->showBirthdayFields()}]

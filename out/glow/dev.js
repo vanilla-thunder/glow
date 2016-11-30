@@ -7,56 +7,66 @@ var fs = require('fs'),
 
 
 // ********** Compiler config
-var flowless = '../../' + (__dirname.indexOf('application/views/glow/out/glow') > -1 ? '../' : 'application/views/' ) + 'flow/build/less/';
+var flowless = '../../' + (__dirname.indexOf('application/views/glow/out/glow') > -1 ? '../' : 'application/views/' ) + 'flow/build/less/',
     $vendor = path.join(__dirname, flowless), // relative path to flow less files
-    $lesswatch  = path.join(__dirname, 'src/less/'), // watch this directory for file changes
-    $lesssource = path.join(__dirname, 'src/less/styles.less'), // less source file relative to this file
-    $lesstarget = path.join(__dirname, 'src/css/styles.min.css'), //  target file for compilation relative to this file
+    $lessdir = path.join(__dirname, 'src/less/'), // watch this directory for file changes
     $lesssourcemap = true, // include source map or not? true / false
-    $lessminify = false; // minify output? true / false
+    $lessminify = false, // minify output? true / false
+    $criticalsource = path.join(__dirname, 'src/less/styles.less'), // less source file relative to this file
+    $criticaltarget = path.join(__dirname, 'src/css/styles.min.css'), //  target file for compilation relative to this file
+    $asyncsource = path.join(__dirname, 'src/less/async.less'), // less source file relative to this file
+    $asynctarget = path.join(__dirname, 'src/css/async.min.css'); //  target file for compilation relative to this file
 // ********************************************************
 
 // ********** UglifyJS config
-var $jswatch  = path.join(__dirname, 'src/js/'), // watch this directory for file changes
+var $jsdir = path.join(__dirname, 'src/js/'), // watch this directory for file changes
     $jssourcemap = true, // include source map or not? true / false
     $jsmangle = true; // mangle function names? true / false
 
 // ********************************************************
 
 less.logger.addListener({
-    debug: function(msg) { console.log("  ### debug : " +msg); },
-    info: function(msg)  { console.log("  ### info : " +msg); },
-    warn: function(msg)  { console.log("  ### warning : " +msg); },
-    error: function(msg) { console.log("  ### error : " +msg); }
+    debug: function (msg) {
+        console.log("  ### debug : " + msg);
+    },
+    info: function (msg) {
+        console.log("  ### info : " + msg);
+    },
+    warn: function (msg) {
+        console.log("  ### warning : " + msg);
+    },
+    error: function (msg) {
+        console.log("  ### error : " + msg);
+    }
 });
 
-var compile = function () {
-    console.log('  > reading source files ... ');
-    fs.readFile($lesssource, function (err, data) {
+var compile = function ($source,$target) {
+    console.log('  > reading '+path.basename($source)+' ... ');
+    fs.readFile($source, function (err, data) {
         if (err) {
-            console.log('  > could not read '+$lesssource);
+            console.log('  > could not read ' + path.basename($source));
             return;
         }
-        console.log('  > compiling less ... ');
+        console.log('  > compiling '+path.basename($source)+' ... ');
         //console.log(data.toString());
         //bar.tick(2,{'token': "compiling less ..."});
         less.render(
             data.toString(),
             {
                 paths: [__dirname, $vendor],
-                filename: $lesssource,
+                filename: $source,
                 compress: $lessminify,
                 sourceMap: {sourceMapFileInline: $lesssourcemap}
             })
             .then(
-                function(output) {
+                function (output) {
                     //bar.tick(3,{'token': "writing css ..."});
-                    console.log('  > writing css ... ');
-                    fs.writeFileSync($lesstarget, output.css);
+                    console.log('  > writing '+path.basename($target)+' ... ');
+                    fs.writeFileSync($target, output.css);
                     //bar.tick(4,{'token': $target + ' updated'});
-                    console.log('  > ' + path.relative(__dirname,$lesstarget) + ' updated');
+                    console.log('  > ' + path.basename($target) + ' updated');
                 },
-                function(error) {
+                function (error) {
                     //bar.tick(7,{'token': "aborted"});
                     console.log(' ---------- ERROR # \n' + e + '\n ---------- ERROR #');
                 });
@@ -103,39 +113,44 @@ console.log(' | type "l" or "less" to compile less files');
 console.log(' | type "m" or "minify" to toggle minifying css on and off ');
 console.log(' |');
 console.log(' |    flow less dir: ' + $vendor);
-console.log(' |   less directory: ' + path.relative(__dirname,$lesswatch) );
+console.log(' |   less directory: ' + path.relative(__dirname, $lessdir));
 console.log(' |');
-console.log(' |           source: ' + path.relative(__dirname,$lesssource));
-console.log(' |           output: ' + path.relative(__dirname,$lesstarget));
+console.log(' |  critical source: ' + path.relative(__dirname, $criticalsource));
+console.log(' |  critical output: ' + path.relative(__dirname, $criticaltarget));
+console.log(' |');
+console.log(' |     async source: ' + path.relative(__dirname, $asyncsource));
+console.log(' |     async output: ' + path.relative(__dirname, $asynctarget));
 console.log(' |');
 console.log(' |        sourcemap: ' + $lesssourcemap);
 console.log(' |           minify: ' + $lessminify);
 console.log(' |');
 console.log(' |_____________________________________________   UglifyJS');
 console.log(' |');
-console.log(' |     js directory: ' + path.relative(__dirname,$jswatch) );
+console.log(' |     js directory: ' + path.relative(__dirname, $jsdir));
 console.log(' |        sourcemap: ' + $jssourcemap);
-console.log(' |           mangle: ' + $jsmangle );
+console.log(' |           mangle: ' + $jsmangle);
 console.log(' |________________________________________________________');
 console.log('');
 
 // file and directory watchers
-watch($lesswatch, function (filename) {
+watch($lessdir, function (filename) {
     if (path.extname(filename) == '.less') {
         fs.stat(filename, function (err, stat) {
             if (err !== null) return;
             console.log('');
-            console.log('  [ ' + new Date().toLocaleTimeString() + ' ] ' + path.relative(__dirname,filename) + ' changed');
-            compile();
+            console.log('  [ ' + new Date().toLocaleTimeString() + ' ] ' + path.basename(filename) + ' changed');
+
+            if(path.basename(filename) == path.basename($criticalsource) || path.basename(filename).indexOf('critical') !== -1) compile($criticalsource,$criticaltarget);
+            else if(path.basename(filename) == path.basename($asyncsource) || path.basename(filename).indexOf('async') !== -1) compile($asyncsource,$asynctarget);
         });
     }
 });
 
 // file and directory watchers
-watch($jswatch, function (filename) {
+watch($jsdir, function (filename) {
     if (path.basename(filename).indexOf('.min') == -1 && path.extname(filename) == '.js') {
-        var src = path.relative(__dirname,filename),
-            out = src.replace('.js','.min.js'),
+        var src = path.relative(__dirname, filename),
+            out = src.replace('.js', '.min.js'),
             js = '';
         //console.log('src: '+src);
         //console.log('out: '+out);
@@ -143,11 +158,11 @@ watch($jswatch, function (filename) {
         fs.stat(filename, function (err, stat) {
             if (err !== null) return;
             console.log('');
-            console.log('  [ ' + new Date().toLocaleTimeString() + ' ] ' + path.relative(__dirname,filename) + ' changed');
-            js = ujs.minify([ path.relative(__dirname,filename) ]);
+            console.log('  [ ' + new Date().toLocaleTimeString() + ' ] ' + path.relative(__dirname, filename) + ' changed');
+            js = ujs.minify([path.relative(__dirname, filename)]);
             fs.writeFileSync(out, js.code);
             //bar.tick(4,{'token': $target + ' updated'});
-            console.log('  > ' + path.relative(__dirname,out) + ' updated');
+            console.log('  > ' + path.relative(__dirname, out) + ' updated');
 
         });
     }

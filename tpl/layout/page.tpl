@@ -3,7 +3,13 @@
       [{include file="rdfa/rdfa.tpl"}]
    [{/if}]
 
+   [{assign var="sActiveClass" value=$oView->getClassName() }]
    [{assign var="blFullwidth" value=$oViewConf->getViewThemeParam('blFullwidthLayout')}]
+   [{assign var="aSidebarConfig" value=$oViewConf->getViewThemeParam('aSidebarConfig')}]
+   [{$sidebar|@var_dump}]
+   [{assign var="sidebar" value=$aSidebarConfig.$sActiveClass|default:false }]
+   [{$sidebar|@var_dump}]
+
    <div id="wrapper" [{if $sidebar}]class="sidebar[{$sidebar}]"[{/if}]>
 
       <div class="[{if $blFullwidth}]container[{else}]container-fluid[{/if}]">

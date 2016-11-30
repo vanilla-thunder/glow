@@ -1,0 +1,75 @@
+// Including 3rd party libs
+//@import "../libs/bootstrap/less/bootstrap";
+@import "bootstrap-critical";
+
+@grid-gutter-width:       20px;
+@container-tablet:        100%;
+@container-desktop:       100%;
+@container-large-desktop: 90%;
+
+@media (min-width: @screen-lg-min) {
+  .container { max-width: 1300px; }
+}
+
+// flow/glow Theme related less files
+@import "theme";
+@import "responsive";
+@import "variables";
+
+//Brand colors to use across Flow
+// https://coolors.co/50514f-f25f5c-ffe066-247ba0-70c1b3
+@brand-primary:   #247BA0;
+@brand-secondary: #50514F;
+@brand-success:   #5cb85c;
+@brand-info:      #5bc0de;
+@brand-warning:   #FFE066;
+@brand-danger:    #F25F5C;
+
+@btn-warning-color: #000000;
+@btn-danger-color: #000000;
+
+@ox-container-base-background-color:    #FFF;
+@ox-container-header-background-color:  @ox-container-base-background-color;
+@ox-container-wrapper-background-color: @ox-container-base-background-color;
+@ox-footer-bg:                          @brand-secondary;
+@ox-footer-border:                      #E7E7E7;
+@ox-footer-color:                       #E7E7E7;
+#footer a { color: @ox-footer-color; }
+
+@padding-base-horizontal:   10px;
+
+// layout
+.header-row {
+  .row;
+  margin-left: floor( @grid-gutter-width/2 ) * -1;
+  margin-right: floor( @grid-gutter-width/2 ) * -1;
+  margin-bottom: floor( @grid-gutter-width );
+  box-shadow: @ox-boxed-container-shadow;
+  > .flexslider { margin:0; }
+}
+@media ( max-width: @screen-sm-max ) {
+  #header .header-box {
+    padding: 10px;
+  }
+}
+// navigation & menus
+@navbar-default-color:             #000;
+@navbar-default-bg:                #FFF;
+@navbar-default-link-active-color: @navbar-default-color;
+@navbar-default-link-active-bg:    #E7E7E7;
+@navbar-default-link-hover-color:  @navbar-default-link-active-color;
+@navbar-default-link-hover-bg:     @navbar-default-link-active-bg;
+/*#mainmenu {
+  &.affix {
+    z-index: 10;
+    top: 0;
+    left: 0;
+    right: 0;
+  }
+}*/
+@media ( max-width: @screen-xs-max ) {
+  #header .header-box .menus-col .menu-dropdowns {
+    margin: 10px auto;
+  }
+}
+

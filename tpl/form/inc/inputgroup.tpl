@@ -7,7 +7,7 @@
    [{assign var="fallback" value=$oAddress}]
 [{/if}]
 
-[{assign var="fields" value='|'|explode:$fields}]
+[{assign var="fields" value='|'|explode:$_fields}]
 
 [{math equation="12/x" x=$fields|@count assign="defaultXS"}]
 [{math equation="8/x"  x=$fields|@count assign="defaultSM"}]
@@ -19,7 +19,7 @@
 [{if $oView->isFieldRequired($fields[0]) || $oView->isFieldRequired($fields[1]) }][{assign var="_req" value="required"}][{/if}]
 
 <div class="form-group [{if $aErrors.$field}]text-danger[{/if}]">
-   <label class="control-label col-sm-4 [{$_req}]">[{oxmultilang ident=$label}]</label>
+   <label class="control-label col-sm-4 [{$_req}]">[{oxmultilang ident=$_label}]</label>
    <div class="clear display-xs-block"></div>
    [{foreach from=$fields key="index" item="field" name="fields"}]
       [{* assign var="xs" value=$xs[1] *}]
