@@ -8,7 +8,14 @@ $aLang = array(
    'HELP_SHOP_THEME_sEmailLogo'      => 'Relativ zu dem Pfad <code>/out/pictures/wysiwigpro/</code>.',
    'HELP_SHOP_THEME_sBackgroundPath' => 'Relativ zu dem Pfad <code>/out/pictures/wysiwigpro/</code>.',
 
-   'SHOP_THEME_GROUP_glow_layout' => 'Layout, Sidebar, etc',
-   'SHOP_THEME_aSidebarConfig'    => '<b>Sidebar Konfiguration:</b><br/> view class => left / right'
+   'SHOP_THEME_GROUP_glow_layout'         => 'Layout, Sidebar, etc',
+   'SHOP_THEME_blKeepDefaultSidebar'      => '<b>ursprüngliche Sidebars behalten?</b>',
+   'HELP_SHOP_THEME_blKeepDefaultSidebar' => 'Ist diese Option aktiv, wird Sidebar an den selben Stellen wie in Flow angezeigt. Mit der Sidebar Knfiguration können die standard Werte für einzelne Shop-Seiten überschrieben werden und die Sidebar z.B. auf die andere Seite verschoben oder ganz ausgeblendet werden',
+   'SHOP_THEME_aSidebarConfig'            => '<b>Sidebar Konfiguration:</b><br/> view class => left / right',
+
+   'SHOP_THEME_GROUP_glow_recaptcha'         => 'reCAPTCHA',
+   'SHOP_THEME_sRecaptchaApiKey'      => 'reCaptcha API Key',
+   'HELP_SHOP_THEME_sRecaptchaApiKey' => 'Api Key und Secret bekommt man hier: <a href="https://www.google.com/recaptcha/admin#list" target="_blank">https://www.google.com/recaptcha/admin#list</a>',
+   'SHOP_THEME_sRecaptchaSecret'      => 'reCaptcha Secret',
 
 );

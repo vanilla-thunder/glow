@@ -7,7 +7,6 @@
    [{assign var="adr" value=$deladr}]
    [{assign var="fallback" value=$oAddress}]
 [{/if}]
-
 [{if $_options|is_string }][{assign var="_options" value='|'|explode:$_options}][{/if}]
 [{assign var="_current" value=$value|default:$adr.$_field }]
 [{assign var="_current" value=$value|default:$fallback->$_field->value }]

@@ -39,6 +39,14 @@
                                           [{$oShippingSet->oxdeliveryset__oxtitle->value}]
                                        </label>
                                     </div>
+                                    [{block name="checkout_shipset_longdesc"}]
+                                       <div>
+                                          [{oxifcontent ident="shipset_"|cat:$sPaymentID object="oCont"}]
+                                          [{$oCont->oxcontents__oxcontent->value}]
+                                          [{/oxifcontent}]
+                                       </div>
+                                       <hr/>
+                                    [{/block}]
                                  [{/foreach}]
 
                               </div>
@@ -159,7 +167,7 @@
 
                                           [{if !$oView->isLowOrderPrice()}]
                                              <button type="submit" name="paymentid" value="[{$sPaymentID}]" class="btn btn-success pull-right btn-lg">
-                                                [{oxmultilang ident="CONTINUE_TO_NEXT_STEP"}] <i class="fa fa-caret-right"></i>
+                                                [{oxmultilang ident="GLOW_PAY_WITH" args=$paymentmethod->oxpayments__oxdesc->value }] <i class="fa fa-caret-right"></i>
                                              </button>
                                           [{/if}]
                                        </form>

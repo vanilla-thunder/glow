@@ -4,15 +4,9 @@
    [{include file="page/checkout/inc/steps.tpl" active=2}]
 
    [{block name="checkout_user_main"}]
-      <hr/>
-      [{ $oView->getLoginOption() }]
-      <hr/>
       [{if !$oxcmp_user && !$oView->getLoginOption()}]
          [{include file="page/checkout/inc/options.tpl"}]
       [{ else }]
-
-
-
          [{assign var="aErrors" value=$oView->getFieldValidationErrors()}]
          <form class="form-horizontal validate" action="[{$oViewConf->getSslSelfLink()}]" name="order" method="post">
             [{block name="user_checkout_form"}]

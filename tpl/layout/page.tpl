@@ -6,10 +6,13 @@
    [{assign var="blFullwidth" value=$oViewConf->getViewThemeParam('blFullwidthLayout')}]
    [{assign var="sActiveClass" value=$oView->getClassName() }]
    [{assign var="aSidebarConfig" value=$oViewConf->getViewThemeParam('aSidebarConfig')}]
-   [{if $aSidebarConfig}][{assign var="sidebar" value=$aSidebarConfig.$sActiveClass|default:$sidebar }][{/if}]
+   [{if $oViewConf->getViewThemeParam('blKeepDefaultSidebar') }]
+      [{assign var="sidebar" value=$aSidebarConfig.$sActiveClass|default:$sidebar }]
+   [{else}]
+      [{assign var="sidebar" value=$aSidebarConfig.$sActiveClass }]
+   [{/if}]
 
-
-   <div id="wrapper" [{if $sidebar}]class="sidebar[{$sidebar}]"[{/if}]>
+   <div id="wrapper">
 
       <div class="[{if $blFullwidth}]container[{else}]container-fluid[{/if}]">
 
@@ -32,7 +35,7 @@
                   </div>
                [{/if}]
 
-               <div class="col-xs-12 [{if $sidebar}]col-md-9[{/if}]">
+               <div class="col-xs-12 [{if $sidebar|strtolower == "left" || $sidebar|strtolower == "right"}]col-md-9[{/if}]">
 
                   <div id="content">
                      [{block name="content_main"}]

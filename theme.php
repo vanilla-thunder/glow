@@ -12,9 +12,31 @@ $aTheme = [
     'settings' => [
        [
           'group' => 'glow_layout',
+          'name' => 'blKeepDefaultSidebar',
+          'type' => 'bool',
+          'value' => true,
+          'position' => 0
+       ],[
+          'group' => 'glow_layout',
           'name' => 'aSidebarConfig',
           'type' => 'aarr',
-          'value' => []
+          'value' => ['content' => 'left','register' => 'x'],
+          'position' => 1
+       ],[
+          'group' => 'glow_recaptcha',
+          'name' => 'sRecaptchaApiKey',
+          'type' => 'str',
+          'value' => '',
+          'position' => 0
+       ],[
+          'group' => 'glow_recaptcha',
+          'name' => 'sRecaptchaSecret',
+          'type' => 'str',
+          'value' => '',
+          'position' => 1
        ]
+
+
+
     ]
 ];

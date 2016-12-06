@@ -5,13 +5,13 @@ $(function () {
     $("img").unveil();
     $('.hasTooltip').tooltip({container: 'body'});
     $('.hasPopover').popover();
+    $('.ajax').fancybox({type: 'ajax'});
 
     // navs menüs etc
     $('[data-toggle="offcanvas"]').click(function () {
         $('.row-offcanvas').toggleClass('active');
     });
 
-    // Variantenauswahl
 
     //          _               _               _
     //      ___| |__   ___  ___| | _____  _   _| |_
@@ -83,36 +83,38 @@ $(function () {
             lgn_usr: {
                 validators: {
                     notEmpty: {
-                        message: 'The password is required and can\'t be empty'
+                        message: 'Bitte geben Sie Ihre E-Mail Adresse ein!'
                     },
-                    identical: {
-                        field: 'confirmPassword',
-                        message: 'The password and its confirm are not the same'
+                    regexp: {
+                        regexp: /^[]\d{5}$/, // TODO: PW Stärke validieren
+                        message: 'Das PAsswort muss mindestens einen Buchstaben enthalten'
                     }
                 }
             },
             lgn_pwd: {
                 validators: {
                     notEmpty: {
-                        message: 'The password is required and can\'t be empty'
-                    },
-                    identical: {
-                        field: 'confirmPassword',
-                        message: 'The password and its confirm are not the same'
+                        message: 'Bitte geben Sie ein Passwort ein!'
                     }
                 }
             },
             lgn_pwd2: {
                 validators: {
-                    notEmpty: {
-                        message: 'The confirm password is required and can\'t be empty'
-                    },
                     identical: {
                         field: 'lgn_pwd',
-                        message: 'The password and its confirm are not the same'
+                        message: 'Die Passwörter müssen übereinstimmen!'
+                    }
+                }
+            },
+            c_mac: {
+                validators: {
+                    identical: {
+                        field: 'c_text',
+                        message: 'Ihre Eingabe entspricht nicht dem Prüfcode'
                     }
                 }
             }
+
         }
     });
 });

@@ -84,9 +84,5 @@
 [{/if}]
 
 [{if !$noFormSubmit}]
-    <div class="form-group">
-        <div class="col-sm-offset-3 col-sm-9 col-xs-12">
-            <button id="accUserSaveTop" type="submit" name="save" class="btn btn-primary">[{oxmultilang ident="SAVE"}]</button>
-        </div>
-    </div>
+   [{include file="page/checkout/inc/cart-buttons.tpl" next="SAVE" }]
 [{/if}]

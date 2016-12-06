@@ -56,10 +56,5 @@
 </div>
 
 [{if !$noFormSubmit}]
-   <div class="form-group">
-      <div class="col-lg-offset-3 col-lg-9 col-xs-12">
-         <p class="alert alert-info">[{oxmultilang ident="COMPLETE_MARKED_FIELDS"}]</p>
-         <button id="accUserSaveBottom" type="submit" class="submitButton" name="save">[{oxmultilang ident="SAVE"}]</button>
-      </div>
-   </div>
+   [{include file="page/checkout/inc/cart-buttons.tpl" next="SAVE" }]
 [{/if}]
