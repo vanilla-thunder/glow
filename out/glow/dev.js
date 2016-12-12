@@ -25,6 +25,9 @@ var $jsdir = path.join(__dirname, 'src/js/'), // watch this directory for file c
 
 // ********************************************************
 
+var $views = path.join(__dirname, flowless,'../../../'),
+    $root = path.join($views,'../../');
+
 less.logger.addListener({
     debug: function (msg) {
         console.log("  ### debug : " + msg);
@@ -56,10 +59,18 @@ var compile = function ($source,$target) {
                 paths: [__dirname, $vendor],
                 filename: $source,
                 compress: $lessminify,
-                sourceMap: {sourceMapFileInline: $lesssourcemap}
+                sourceMap: {
+                    sourceMapFileInline: $lesssourcemap,
+                    sourceMapLessInline: $lesssourcemap,
+                    outputSourceFiles: true
+                    //sourceMapRootpath: '/',
+                    //sourceMapBasepath: 'application/views'
+                }
             })
             .then(
                 function (output) {
+                    //console.log(Object.getOwnPropertyNames(output).sort());
+                    //console.log(output);
                     //bar.tick(3,{'token': "writing css ..."});
                     console.log('  > writing '+path.basename($target)+' ... ');
                     fs.writeFileSync($target, output.css);
@@ -79,16 +90,16 @@ stdin.addListener("data", function (d) {
     // note:  d is an object, and when converted to a string it will end with a linefeed.
     // so we (rather crudely) account for that with toString() and then substring()
     var cmd = d.toString().trim();
-    if (cmd == "l" || cmd == "less") compile();
+    if (cmd == "l" || cmd == "less") compile($criticalsource,$criticaltarget);
     else if (cmd == "min") {
         $lessminify = !$lessminify;
         console.log('  > minify set to: ' + $lessminify);
-        compile();
+        compile($criticalsource,$criticaltarget);
     }
     else if (cmd == "map") {
         $lesssourcemap = !$lesssourcemap;
         console.log('  > sourcemap set to: ' + $lesssourcemap);
-        compile();
+        compile($criticalsource,$criticaltarget);
     }
     else {
         console.log('');
@@ -105,7 +116,6 @@ stdin.addListener("data", function (d) {
         //console.log('');
     }
 });
-
 console.log('');
 console.log('  _________________________________________________   LESS');
 console.log(' |');

@@ -63,7 +63,6 @@
       </div>
 
    </div>
-   [{include file="layout/footer.tpl"}]
 
    [{include file="widget/facebook/init.tpl"}]
    <i class="fa fa-chevron-circle-up icon-4x" id="jumptotop"></i>

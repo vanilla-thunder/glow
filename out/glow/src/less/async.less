@@ -1,6 +1,3 @@
-// mixins etc
-@import "bootstrap-async";
-
 @import "../libs/font-awesome/less/font-awesome";
 @fa-font-path: "../libs/font-awesome/fonts";
 
@@ -13,15 +10,44 @@
 @import "../libs/flexslider/css/theme.less";
 @import "../libs/flexslider/css/responsive.less";
 @font-name: "FontAwesome";
-@flex-direction-nav-icon-prev: @fa-var-angle-left;
-@flex-direction-nav-icon-next: @fa-var-angle-right;
-@flex-pauseplay-icon-play: @fa-var-play;
-@flex-pauseplay-icon-pause: @fa-var-pause;
+@flex-direction-nav-icon-prev:        @fa-var-angle-left;
+@flex-direction-nav-icon-next:        @fa-var-angle-right;
+@flex-pauseplay-icon-play:            @fa-var-play;
+@flex-pauseplay-icon-pause:           @fa-var-pause;
 
+@import "bootstrap-async";
+
+// flow/glow Theme related less files
+@import "theme";
+@import "responsive";
+@import "variables";
+
+.main-row > .flexslider { margin:0; }
 .flexslider .flex-direction-nav .flex-prev,
 .flexslider .flex-direction-nav .flex-next {
   opacity: 0.05;
 }
+
+
+//Brand colors to use across Flow
+// https://coolors.co/50514f-f25f5c-ffe066-247ba0-70c1b3
+@brand-primary:   #247BA0;
+@brand-secondary: #50514F;
+@brand-success:   #5cb85c;
+@brand-info:      #5bc0de;
+@brand-warning:   #FFE066;
+@brand-danger:    #F25F5C;
+
+@padding-base-horizontal:   10px;
+
+@ox-container-base-background-color:    #FFF;
+@ox-container-header-background-color:  @ox-container-base-background-color;
+@ox-container-wrapper-background-color: @ox-container-base-background-color;
+@ox-footer-bg:                          @brand-secondary;
+@ox-footer-border:                      #E7E7E7;
+@ox-footer-color:                       #E7E7E7;
+#footer a { color: @ox-footer-color; }
+
 
 // details page
 .priceinfo {
@@ -38,53 +64,29 @@
 
 // product lists
 #detailsRelated {
-  .page-header {
-    margin: 0;
-  }
-  h2 {
-    margin: 0;
-  }
+  .page-header { margin:0;}
+  h2 { margin: 0;}
 }
-
 .miniView {
-  @media ( max-width: @screen-xs-max ) {
-    .productBox {
-      clear: left;
-    }
-  }
-  hr {
-    margin: 10px 0;
-  }
+  @media( max-width: @screen-xs-max ) {  /*.productBox { clear:left; }*/ }
+  hr { margin:10px 0;}
   .panel-body {
-    padding: 7px;
+    padding:7px;
     position: relative;
   }
-  .media {
-    margin-top: 7px;
-  }
+  .media { margin-top:7px; }
   .media-left {
     padding-right: 7px;
-    img {
-      max-width: 70px;
-    }
+    img {max-width: 70px;}
   }
-  .media-body {
-    padding-bottom: 30px;
-  }
-  .bottom {
-    position: absolute;
-    bottom: 5px;
-    right: 5px;
-    left: 80px;
-  }
+  .media-body { padding-bottom: 30px;}
+  .bottom { position:absolute; bottom: 5px; right: 5px; left: 80px; }
 }
 
 // forms
 label.required {
   font-weight: bold;
-  &::after {
-    content: '*'
-  }
+  &::after { content:'*'}
 }
 
 .btn-label {
@@ -96,11 +98,8 @@ label.required {
 
 // checkout
 body.cl-thankyou ol.checkoutSteps li,
-body.is-checkout ol.checkoutSteps li {
-  width: 25%;
-}
+body.is-checkout ol.checkoutSteps li { width: 25%; }
+.cart-buttons { clear:both; margin: 10px; }
 
-.cart-buttons {
-  clear: both;
-  margin: 10px;
-}
+
+

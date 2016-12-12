@@ -23,6 +23,18 @@ $aTheme = [
           'value' => ['content' => 'left','register' => 'x'],
           'position' => 1
        ],[
+          'group' => 'glow_layout',
+          'name' => 'blFooterCattree',
+          'type' => 'bool',
+          'value' => false,
+          'position' => 2
+       ],[
+          'group' => 'glow_layout',
+          'name' => 'blFooterManufacturer',
+          'type' => 'bool',
+          'value' => false,
+          'position' => 3
+       ],[
           'group' => 'glow_recaptcha',
           'name' => 'sRecaptchaApiKey',
           'type' => 'str',

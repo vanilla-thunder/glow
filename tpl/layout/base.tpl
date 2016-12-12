@@ -112,19 +112,21 @@
          [{assign var="sFavicon64File"  value=$oViewConf->getViewThemeParam('sFavicon64File')}]
          [{assign var="sFavicon128File" value=$oViewConf->getViewThemeParam('sFavicon128File')}]
 
-         [{if $sFaviconFile}]<link rel="shortcut icon" href="[{$oViewConf->getImageUrl("favicons/`$sFaviconFile`")}]?rand=1" type="image/x-icon"/>[{/if}]
-         [{if $sFavicon16File}]<link rel="icon" href="[{$oViewConf->getImageUrl("favicons/`$sFavicon16File`")}]" sizes="16x16"/>[{/if}]
-         [{if $sFavicon32File}]<link rel="icon" href="[{$oViewConf->getImageUrl("favicons/`$sFavicon32File`")}]" sizes="32x32"/>[{/if}]
-         [{if $sFavicon48File}]<link rel="icon" href="[{$oViewConf->getImageUrl("favicons/`$sFavicon48File`")}]" sizes="48x48"/>[{/if}]
-         [{if $sFavicon64File}]<link rel="icon" href="[{$oViewConf->getImageUrl("favicons/`$sFavicon64File`")}]" sizes="64x64"/>[{/if}]
-         [{if $sFavicon128File}]<link rel="icon" href="[{$oViewConf->getImageUrl("favicons/`$sFavicon128File`")}]" sizes="128x128"/>[{/if}]
+         [{if $sFaviconFile}]
+            <link rel="shortcut icon" href="[{$oViewConf->getImageUrl("favicons/`$sFaviconFile`")}]?rand=1" type="image/x-icon"/>[{/if}]
+         [{if $sFavicon16File}]
+            <link rel="icon" href="[{$oViewConf->getImageUrl("favicons/`$sFavicon16File`")}]" sizes="16x16"/>[{/if}]
+         [{if $sFavicon32File}]
+            <link rel="icon" href="[{$oViewConf->getImageUrl("favicons/`$sFavicon32File`")}]" sizes="32x32"/>[{/if}]
+         [{if $sFavicon48File}]
+            <link rel="icon" href="[{$oViewConf->getImageUrl("favicons/`$sFavicon48File`")}]" sizes="48x48"/>[{/if}]
+         [{if $sFavicon64File}]
+            <link rel="icon" href="[{$oViewConf->getImageUrl("favicons/`$sFavicon64File`")}]" sizes="64x64"/>[{/if}]
+         [{if $sFavicon128File}]
+            <link rel="icon" href="[{$oViewConf->getImageUrl("favicons/`$sFavicon128File`")}]" sizes="128x128"/>[{/if}]
       [{/block}]
 
       [{block name="base_style"}]
-      [{/block}]
-
-      [{block name="base_fonts"}]
-         <link href='https://fonts.googleapis.com/css?family=Raleway:200,400,700,600' rel='stylesheet' type='text/css'>
       [{/block}]
 
       [{assign var='rsslinks' value=$oView->getRssLinks()}]
@@ -183,8 +185,10 @@
    [{/foreach}]
 
    <link href="[{$oViewConf->getResourceUrl('css/styles.min.css')}]" rel="stylesheet" type="text/css">
-   [{* <link href="[{$oViewConf->getResourceUrl('css/async.min.css')}]" rel="stylesheet" type="text/css"> *}]
    <!--[if IE]>
+   [{block name="base_fonts"}][{/block}]
+   <link href='https://fonts.googleapis.com/css?family=Raleway:200,400,700,600' rel='stylesheet' type='text/css'>
+   <!-- <link href="[{$oViewConf->getResourceUrl('css/async.min.css')}]" rel="stylesheet" type="text/css"> -->
    [{oxstyle}]
    <![endif]-->
    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -203,18 +207,26 @@
    [{if $oViewConf->getTopActionClassName() != 'clearcookies' && $oViewConf->getTopActionClassName() != 'mallstart'}]
       [{oxid_include_widget cl="oxwCookieNote" _parent=$oView->getClassName() nocookie=1}]
    [{/if}]
-   <div class="header-row">
+   <div class="main-row">
       [{block name="layout_header"}][{include file="layout/header.tpl"}][{/block}]
    </div>
 
+   <div class="spacer"></div>
+
    [{if $oView->getClassName()=='start' && $oView->getBanners()|@count > 0}]
-      <div class="header-row">
+      <div class="main-row">
          [{include file="widget/promoslider.tpl"}]
       </div>
    [{/if}]
 
+   <div class="spacer"></div>
+
    <div class="main-row">
       [{foreach from=$oxidBlock_pageBody item="_block"}][{$_block}][{/foreach}]
+   </div>
+
+   <div class="main-row">
+      [{include file="layout/footer.tpl"}]
    </div>
 </div>
 
@@ -244,9 +256,11 @@
 [{/if}]
 
 <!--[if !IE]><!-->
-[{block name="async_js"}]
-[{* <link href="[{$oViewConf->getResourceUrl('css/async.min.css')}]" rel="stylesheet" type="text/css"> *}]
-[{oxstyle}]
+[{block name="async_css"}]
+   [{block name="base_fonts"}][{/block}]
+   <link href='https://fonts.googleapis.com/css?family=Raleway:200,400,700,600' rel='stylesheet' type='text/css'>
+   <!-- <link href="[{$oViewConf->getResourceUrl('css/async.min.css')}]" rel="stylesheet" type="text/css"> -->
+   [{oxstyle}]
 [{/block}]
 <!--<![endif]-->
 <!--[if gte IE 9]><style type="text/css">.gradient { filter: none; }</style><![endif]-->
