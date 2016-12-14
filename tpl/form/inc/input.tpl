@@ -1,4 +1,4 @@
-[{if $oView->isFieldRequired($_field)}][{assign var="_req" value="required"}][{/if}]
+[{if $_req !== false && $oView->isFieldRequired($_field)}][{assign var="_req" value="required"}][{/if}]
 [{assign var="prefix" value=$prefix|default:'invadr'}]
 [{if $prefix == "invadr"}]
    [{assign var="inputname" value='invadr['|cat:$_field|cat:']'}]

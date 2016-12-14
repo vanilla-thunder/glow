@@ -140,7 +140,7 @@
 
       [{block name="head_css"}]
          [{foreach from=$oxidBlock_head item="_block"}]
-            [{$_block}]
+            [{$_block|strip}]
          [{/foreach}]
       [{/block}]
    [{/strip}]
@@ -176,19 +176,19 @@
 [{elseif $sBackgroundColor}]
    [{assign var="sStyle" value="background:`$sBackgroundColor`;"}]
 [{/if}]
-
+[{strip}]
 <!DOCTYPE html>
 <html lang="[{$oView->getActiveLangAbbr()}]" [{if $oViewConf->getShowFbConnect()}]xmlns:fb="http://www.facebook.com/2008/fbml" [{/if}]>
 <head>
    [{foreach from=$oxidBlock_pageHead item="_block"}]
-      [{$_block}]
+      [{$_block|strip}]
    [{/foreach}]
 
-   <link href="[{$oViewConf->getResourceUrl('css/styles.min.css')}]" rel="stylesheet" type="text/css">
+   <link href="[{$oViewConf->getResourceUrl('css/glow.min.css')}]" rel="stylesheet" type="text/css">
    <!--[if IE]>
    [{block name="base_fonts"}][{/block}]
    <link href='https://fonts.googleapis.com/css?family=Raleway:200,400,700,600' rel='stylesheet' type='text/css'>
-   <!-- <link href="[{$oViewConf->getResourceUrl('css/async.min.css')}]" rel="stylesheet" type="text/css"> -->
+   [{* <link href="[{$oViewConf->getResourceUrl('css/async.min.css')}]" rel="stylesheet" type="text/css"> *}]
    [{oxstyle}]
    <![endif]-->
    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -208,7 +208,7 @@
       [{oxid_include_widget cl="oxwCookieNote" _parent=$oView->getClassName() nocookie=1}]
    [{/if}]
    <div class="main-row">
-      [{block name="layout_header"}][{include file="layout/header.tpl"}][{/block}]
+      [{block name="layout_header"}][{strip}][{include file="layout/header.tpl"}][{/strip}][{/block}]
    </div>
 
    <div class="spacer"></div>
@@ -217,13 +217,15 @@
       <div class="main-row">
          [{include file="widget/promoslider.tpl"}]
       </div>
+      <div class="spacer"></div>
    [{/if}]
 
-   <div class="spacer"></div>
 
    <div class="main-row">
-      [{foreach from=$oxidBlock_pageBody item="_block"}][{$_block}][{/foreach}]
+      [{foreach from=$oxidBlock_pageBody item="_block"}][{$_block|strip}][{/foreach}]
    </div>
+
+   <div class="spacer"></div>
 
    <div class="main-row">
       [{include file="layout/footer.tpl"}]
@@ -231,23 +233,23 @@
 </div>
 
 [{foreach from=$oxidBlock_pagePopup item="_block"}]
-   [{$_block}]
+   [{$_block|strip}]
 [{/foreach}]
 
 [{block name="base_js"}]
    [{* include file="i18n/js_vars.tpl" *}]
-
-   [{oxscript include="libs/jquery/dist/jquery.min.js" priority=1}]
-   [{oxscript include="libs/bootstrap/dist/js/bootstrap.min.js" priority=1}]
-   [{oxscript include="libs/bootstrapvalidator/dist/js/bootstrapValidator.min.js" priority=2 }]
-   [{oxscript include="libs/bootstrapvalidator/dist/js/language/de_DE.js" priority=2 }]
-   [{oxscript include="libs/jquery-unveil/jquery.unveil.js" priority=2 }]
-   [{oxscript include="libs/matchheight/jquery.matchHeight-min.js" priority=2 }]
-   [{oxscript include="libs/flexslider/jquery.flexslider-min.js" priority=2 }]
-   [{oxscript include="libs/fancyBox/lib/jquery.mousewheel-3.0.6.pack.js" priority=2 }]
-   [{oxscript include="libs/fancyBox/source/jquery.fancybox.js" priority=2 }]
-
-   [{oxscript include="js/glow.js" priority=2 }]
+   [{*
+      [{oxscript include="libs/jquery/dist/jquery.min.js" priority=1}]
+      [{oxscript include="libs/jquery/dist/jquery.min.js" priority=1}]
+      [{oxscript include="libs/bootstrap/dist/js/bootstrap.min.js" priority=1}]
+      [{oxscript include="libs/bootstrapvalidator/dist/js/bootstrapValidator.min.js" priority=2 }]
+      [{oxscript include="libs/bootstrapvalidator/dist/js/language/de_DE.js" priority=2 }]
+      [{oxscript include="libs/jquery-unveil/jquery.unveil.js" priority=2 }]
+      [{oxscript include="libs/matchheight/jquery.matchHeight-min.js" priority=2 }]
+      [{oxscript include="libs/flexslider/jquery.flexslider-min.js" priority=2 }]
+      [{oxscript include="libs/fancyBox/lib/jquery.mousewheel-3.0.6.pack.js" priority=2 }]
+      [{oxscript include="libs/fancyBox/source/jquery.fancybox.js" priority=2 }]
+   *}]
 [{/block}]
 
 [{if $oViewConf->isTplBlocksDebugMode()}]
@@ -259,15 +261,16 @@
 [{block name="async_css"}]
    [{block name="base_fonts"}][{/block}]
    <link href='https://fonts.googleapis.com/css?family=Raleway:200,400,700,600' rel='stylesheet' type='text/css'>
-   <!-- <link href="[{$oViewConf->getResourceUrl('css/async.min.css')}]" rel="stylesheet" type="text/css"> -->
+   [{* <link href="[{$oViewConf->getResourceUrl('css/async.min.css')}]" rel="stylesheet" type="text/css"> *}]
    [{oxstyle}]
 [{/block}]
 <!--<![endif]-->
 <!--[if gte IE 9]><style type="text/css">.gradient { filter: none; }</style><![endif]-->
-
+<script type="text/javascript" [{* async *}] src="[{$oViewConf->getResourceUrl('js/glow.min.js')}]"></script>
 [{oxscript}]
 [{if !$oView->isDemoShop()}][{oxid_include_dynamic file="widget/dynscript.tpl"}][{/if}]
-[{foreach from=$oxidBlock_pageScript item="_block"}][{$_block}][{/foreach}]
+[{foreach from=$oxidBlock_pageScript item="_block"}][{$_block|strip}][{/foreach}]
 
 </body>
 </html>
+[{/strip}]

@@ -35,7 +35,6 @@
                <hr/>
                [{block name="widget_product_listitem_mini_price_value"}]
                   [{if $product->getFPrice()}]
-                     <div class="text-right">
                         <strong>
                            <a href="[{$_productLink}]" title="[{$product->oxarticles__oxtitle->value}] [{$product->oxarticles__oxvarselect->value}]">
                               [{if $product->isRangePrice()}]
@@ -49,7 +48,6 @@
                               [{$currency->sign}]
                            </a> [{include file="page/details/inc/vatinfo.tpl"}]
                         </strong>
-                     </div>
                   [{/if}]
                [{/block}]
                [{* zu wenig Platz...

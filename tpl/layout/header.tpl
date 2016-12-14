@@ -1,5 +1,6 @@
 [{block name="header_main"}]
    [{assign var="blFullwidth" value=$oViewConf->getViewThemeParam('blFullwidthLayout')}]
+   [{strip}]
    <header id="header">
 
       <div class="[{if $blFullwidth}]container[{else}]container-fluid[{/if}] hidden-xs">
@@ -54,6 +55,7 @@
          [{include file="widget/header/categorylist.tpl"}]
       [{/block}]
    </header>
+   [{/strip}]
 [{/block}]
 
 [{insert name="oxid_newbasketitem" tpl="widget/minibasket/newbasketitemmsg.tpl" type="message"}]

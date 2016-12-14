@@ -1,3 +1,4 @@
+[{strip}]
 [{block name="footer_main"}]
    [{assign var="blFullwidth" value=$oViewConf->getViewThemeParam('blFullwidthLayout')}]
    [{$oView->setShowNewsletter($oViewConf->getViewThemeParam('blFooterShowNewsletterForm'))}]
@@ -154,7 +155,6 @@
          </div>
       </div>
    </footer>
-   <div class="spacer"></div>
    <div class="legal">
       <div class="[{if $blFullwidth}]container[{else}]container-fluid[{/if}]">
          <div class="legal-box">
@@ -186,3 +186,4 @@
       [{include file="form/privatesales/basketexcl.tpl"}]
    </div>
 [{/if}]
+[{/strip}]

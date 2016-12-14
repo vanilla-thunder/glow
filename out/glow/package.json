@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "less": "*",
+    "less-plugin-clean-css": "*",
     "uglify-js": "*",
     "node-watch": "*"
   },

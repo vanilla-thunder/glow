@@ -1,6 +1,5 @@
 // Including 3rd party libs
 //@import "../libs/bootstrap/less/bootstrap";
-
 @import "../libs/font-awesome/less/font-awesome";
 @fa-font-path: "../libs/font-awesome/fonts";
 
@@ -16,8 +15,18 @@
   .container { max-width: 1300px; }
 }
 
-@import "../libs/bootstrapvalidator/dist/css/bootstrapValidator.min.css";
-@import "../libs/fancyBox/source/jquery.fancybox.css";
+@import (inline) "../libs/bootstrapvalidator/dist/css/bootstrapValidator.min.css";
+// fancybox
+@import (inline) "../libs/fancyBox/source/jquery.fancybox.css";
+#fancybox-loading, .fancybox-close, .fancybox-prev span, .fancybox-next span { background-image: url('../libs/fancyBox/source/fancybox_sprite.png'); }
+#fancybox-loading div { background: url('../libs/fancyBox/source/fancybox_loading.gif') center center no-repeat; }
+.fancybox-nav { background: transparent url('../libs/fancyBox/source/blank.gif'); }
+.fancybox-overlay { background: url('../libs/fancyBox/source/fancybox_overlay.png'); }
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min--moz-device-pixel-ratio: 1.5), only screen and (min-device-pixel-ratio: 1.5){
+  #fancybox-loading, .fancybox-close, .fancybox-prev span, .fancybox-next span { background-image: url('../libs/fancyBox/source/fancybox_sprite@2x.png'); }
+  #fancybox-loading div { background-image: url('../libs/fancyBox/source/fancybox_loading@2x.gif'); }
+}
+// flexslider
 @import "../libs/flexslider/css/variables.less";
 @import "../libs/flexslider/css/mixins.less";
 @import "../libs/flexslider/css/resets.less";
@@ -35,17 +44,17 @@
 @import "responsive";
 @import "variables";
 
-//Brand colors to use across Flow
-// https://coolors.co/50514f-f25f5c-ffe066-247ba0-70c1b3
-@brand-primary:   #247BA0;
-@brand-secondary: #50514F;
-@brand-success:   #5cb85c;
-@brand-info:      #5bc0de;
-@brand-warning:   #FFE066;
-@brand-danger:    #F25F5C;
+
+@brand-primary:   #0689d6;
+@brand-secondary: #585858;
+
+@brand-success:   #6a9a00;
+@brand-info:      #00A6ED;
+@brand-warning:   #FFB400;
+@brand-danger:    #F6511D;
 
 @btn-warning-color: #000000;
-@btn-danger-color: #000000;
+//@btn-danger-color: #000000;
 
 @ox-container-base-background-color:    #FFF;
 @ox-container-header-background-color:  @ox-container-base-background-color;
@@ -63,6 +72,7 @@
 }
 
 #footer {
+  border: none !important;
   a { color: @ox-footer-color; }
   .nav-pills a:hover { color: @brand-secondary; }
 }
@@ -72,7 +82,7 @@
     padding: 10px;
     margin-bottom: 10px;
     &.reduced {
-      border: 2px solid green;
+      border: 1px solid green;
       .bg-success;
       strong {
         .text-danger
