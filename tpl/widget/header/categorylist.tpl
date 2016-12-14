@@ -3,7 +3,6 @@
       <nav id="mainmenu" class="navbar navbar-default" role="navigation" [{* data-spy="affix" data-offset-top="147" data-offset-bottom="200" *}]>
 
          [{block name="dd_widget_header_categorylist_navbar_list"}]
-
             <div class="navbar-header">
                [{block name="header_categorylist_logo"}]
                   <a href="[{$oViewConf->getHomeLink()}]" title="[{$oxcmp_shop->oxshops__oxtitleprefix->value}]" class="pull-left visible-xs navbar-brand">
@@ -18,8 +17,8 @@
                [{/block}]
 
                <button type="button" class="navbar-toggle" data-toggle="dropdown" data-target=".minibasket-menu-box">
-                     <i class="fa fa-shopping-cart fa-fw" aria-hidden="true"></i>
-                     [{if $oxcmp_basket->getItemsCount() > 0}][{ $oxcmp_basket->getItemsCount() }][{/if}]
+                  <i class="fa fa-shopping-cart fa-fw" aria-hidden="true"></i>
+                  [{if $oxcmp_basket->getItemsCount() > 0}][{ $oxcmp_basket->getItemsCount() }][{/if}]
                </button>
             </div>
             <div class="collapse navbar-collapse" id="mainmenu-collapse">

@@ -2,11 +2,13 @@ $(function () {
     var $b = $("body");
 
     // allgemeines Zeug
-    window.setTimeout( function ()
+    /*window.setTimeout( function ()
     {
         $( "img" ).unveil();
-    }, 500 );
-    //$("img").unveil();
+    }, 500 );*/
+    $("img").unveil(50,function() {
+        $.fn.matchHeight._update();
+    });
     $('.hasTooltip').tooltip({container: 'body'});
     $('.hasPopover').popover();
     $('.ajax').fancybox({type: 'ajax'});

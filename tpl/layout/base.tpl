@@ -260,7 +260,7 @@
 <!--[if !IE]><!-->
 [{block name="async_css"}]
    [{block name="base_fonts"}][{/block}]
-   <link href='https://fonts.googleapis.com/css?family=Raleway:200,400,700,600' rel='stylesheet' type='text/css'>
+   [{* <link href='https://fonts.googleapis.com/css?family=Raleway:200,400,700,600' rel='stylesheet' type='text/css'> *}]
    [{* <link href="[{$oViewConf->getResourceUrl('css/async.min.css')}]" rel="stylesheet" type="text/css"> *}]
    [{oxstyle}]
 [{/block}]

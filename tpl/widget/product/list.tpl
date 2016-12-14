@@ -41,4 +41,5 @@
          </div>
       [{/foreach}]
    </div>
+   [{if $type !== "line"}][{oxscript add='$(".panel-body","#'|cat:$listId|cat:'").matchHeight();'}][{/if}]
 </div>
