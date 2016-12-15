@@ -16,6 +16,7 @@
    <footer id="footer">
       <div class="[{if $blFullwidth}]container[{else}]container-fluid[{/if}]">
          <div class="row">
+            [{* vat / delivery info *}]
             <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 pull-right">
                [{if $oView->isPriceCalculated()}]
 
@@ -32,8 +33,8 @@
                   [{/block}]
                [{/if}]
             </div>
+            [{* Social Links *}]
             <div class="col-xs-12 col-sm-6 col-md-8 col-lg-9">
-               [{* <<START>> Social Links *}]
                [{block name="dd_footer_social_links"}]
                   [{if $oViewConf->getViewThemeParam('sFacebookUrl') || $oViewConf->getViewThemeParam('sGooglePlusUrl') || $oViewConf->getViewThemeParam('sTwitterUrl') || $oViewConf->getViewThemeParam('sYouTubeUrl') || $oViewConf->getViewThemeParam('sBlogUrl')}]
                      <section class="text-left">
@@ -81,7 +82,6 @@
                      </section>
                   [{/if}]
                [{/block}]
-               [{* <<ENDE>> Social Links *}]
             </div>
             <div class="col-xs-12"><hr/></div>
             [{block name="dd_footer_servicelist"}]

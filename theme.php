@@ -35,6 +35,26 @@ $aTheme = [
           'value' => false,
           'position' => 3
        ],[
+          'group' => 'glow_functions',
+          'name' => 'blShowNoticelist',
+          'type' => 'bool',
+          'value' => false,
+          'position' => 0
+       ],[
+          'group' => 'glow_functions',
+          'name' => 'blShowReviews',
+          'type' => 'bool',
+          'value' => false,
+          'position' => 1
+       ],[
+          'group' => 'glow_account',
+          'name' => 'blShowOrderState',
+          'type' => 'bool',
+          'value' => false,
+          'position' => 0
+       ]
+
+       /*[
           'group' => 'glow_recaptcha',
           'name' => 'sRecaptchaApiKey',
           'type' => 'str',
@@ -46,7 +66,7 @@ $aTheme = [
           'type' => 'str',
           'value' => '',
           'position' => 1
-       ]
+       ]*/
 
 
 
