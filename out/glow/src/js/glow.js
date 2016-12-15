@@ -90,11 +90,11 @@ $(function () {
                 validators: {
                     notEmpty: {
                         message: 'Bitte geben Sie Ihre E-Mail Adresse ein!'
-                    },
+                    }/*,
                     regexp: {
                         regexp: /^[]\d{5}$/, // TODO: PW Stärke validieren
                         message: 'Das PAsswort muss mindestens einen Buchstaben enthalten'
-                    }
+                    }*/
                 }
             },
             lgn_pwd: {

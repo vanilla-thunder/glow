@@ -56,15 +56,17 @@
                            [{assign var="sFrom" value="PRICE_FROM"|oxmultilangassign}]
                         [{/if}]
                      [{/if}]
-                     <strong class="h2">
-                        <span class="price-from">[{$sFrom}]</span>
-                        <span class="price" itemprop="[{if $product->isRangePrice()}]minPrice[{/if}] price" content="[{$product->getBasePrice()}]">[{$fPrice}]</span>
-                        <span class="currency" itemprop="priceCurrency" content="[{$currency->name}]">[{$currency->sign}]</span>
-                        <span class="price-markup">[{include file="page/details/inc/vatinfo.tpl"}]</span>
-                     </strong>
+                     <a href="[{$_productLink}]" title="[{$product->oxarticles__oxtitle->value}] [{$product->oxarticles__oxvarselect->value}]">
+                        <strong class="h2">
+                           <span class="price-from">[{$sFrom}]</span>
+                           <span class="price" itemprop="[{if $product->isRangePrice()}]minPrice[{/if}] price" content="[{$product->getBasePrice()}]">[{$fPrice}]</span>
+                           <span class="currency" itemprop="priceCurrency" content="[{$currency->name}]">[{$currency->sign}]</span>
+                           <span class="price-markup">[{include file="page/details/inc/vatinfo.tpl"}]</span>
+                        </strong>
+                     </a>
                   [{/if}]
                [{/block}]
-
+ssssss
                [{if $oUnitPrice}]
                   <span id="productPricePerUnit_[{$testid}]" class="pricePerUnit">
                      [{$product->oxarticles__oxunitquantity->value}] [{$product->getUnitName()}] | [{oxprice price=$oUnitPrice currency=$currency}]/[{$product->getUnitName()}]

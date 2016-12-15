@@ -36,17 +36,19 @@
                <div class="shortdesc" itemprop="description">[{$product->oxarticles__oxshortdesc->rawValue}]</div>
             [{/block}]
 
+            <hr/>
+
             [{assign var="price"      value=$product->getPrice()}]
             [{assign var="tprice"     value=$product->getTPrice()}]
             [{assign var="oUnitPrice" value=$product->getUnitPrice()}]
 
-            <div class="price" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+            <div class="price text-center" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
                <link itemprop="itemCondition" href="http://schema.org/NewCondition"/>
 
                [{block name="widget_product_listitem_infogrid_price"}]
                   [{if $tprice && $tprice->getBruttoPrice() > $price->getBruttoPrice()}]
                      <div class="tprice">
-                        <span class="h5">[{oxmultilang ident="REDUCED_FROM"}] [{$product->getFTPrice()}] [{$currency->sign}]</span>
+                        <span class="h5">[{oxmultilang ident="REDUCED_FROM"}]&nbsp;[{$product->getFTPrice()}]&nbsp;[{$currency->sign}]</span>
                         <em>[{oxmultilang ident="OUR_REGULAR_PRICE"}]</em>
                      </div>
                   [{/if}]
@@ -63,9 +65,11 @@
                            [{/if}]
                         [{/if}]
                         <strong class="h2">
-                           <span class="price-from">[{$sFrom}]</span>
-                           <span class="price" itemprop="[{if $product->isRangePrice()}]minPrice[{/if}] price" content="[{$product->getBasePrice()}]">[{$fPrice}]</span>
-                           <span class="currency" itemprop="priceCurrency" content="[{$currency->name}]">[{$currency->sign}]</span>
+                           <a href="[{$_productLink}]" title="[{$product->oxarticles__oxtitle->value}] [{$product->oxarticles__oxvarselect->value}]">
+                              <span class="price-from">[{$sFrom}]</span>
+                              <span class="price" itemprop="[{if $product->isRangePrice()}]minPrice[{/if}] price" content="[{$product->getBasePrice()}]">[{$fPrice}]</span>
+                              <span class="currency" itemprop="priceCurrency" content="[{$currency->name}]">[{$currency->sign}]</span>
+                           </a>
                            <span class="price-markup">[{include file="page/details/inc/vatinfo.tpl"}]</span>
                         </strong>
                      [{/if}]
@@ -84,7 +88,7 @@
                [{/block}]
             </div>
             [{block name="widget_product_listitem_infogrid_tobasket"}]
-               <a class="btn btn-primary btn-block" href="[{$_productLink}]">[{oxmultilang ident="DETAILS"}]</a>
+               <a class="btn btn-default btn-block" href="[{$_productLink}]">[{oxmultilang ident="MORE_INFO"}]&nbsp;<i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
             [{/block}]
          </div>
       </div>

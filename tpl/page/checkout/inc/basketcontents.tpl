@@ -231,7 +231,7 @@
          [{/if}]
       [{/block}]
 
-      [{if $editable}]
+      [{if $editable && $oView->isWrapping()}]}]
          <p>
             <a href="#" class="btn btn-info btn-block" title="[{oxmultilang ident="ADD_WRAPPING"}]" data-toggle="modal" data-target="#giftoptions">
                <i class="fa fa-gift fa-fw fa-lg"></i> [{oxmultilang ident="ADD_WRAPPING"}]
