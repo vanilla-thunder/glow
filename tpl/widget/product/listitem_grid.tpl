@@ -66,7 +66,7 @@
                      </a>
                   [{/if}]
                [{/block}]
-ssssss
+
                [{if $oUnitPrice}]
                   <span id="productPricePerUnit_[{$testid}]" class="pricePerUnit">
                      [{$product->oxarticles__oxunitquantity->value}] [{$product->getUnitName()}] | [{oxprice price=$oUnitPrice currency=$currency}]/[{$product->getUnitName()}]

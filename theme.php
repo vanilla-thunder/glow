@@ -52,6 +52,12 @@ $aTheme = [
           'type' => 'bool',
           'value' => false,
           'position' => 0
+       ],[
+          'group' => 'glow_account',
+          'name' => 'blAllowEmailChange',
+          'type' => 'bool',
+          'value' => true,
+          'position' => 1
        ]
 
        /*[

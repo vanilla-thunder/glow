@@ -21,6 +21,7 @@ $aLang = [
 
 
    'SHOP_THEME_GROUP_glow_account' => 'Bereich: Kunden-Konto',
+   'SHOP_THEME_blAllowEmailChange' => 'Änderung der E-Mail Adresse im Kundenkonto erlauben',
    'SHOP_THEME_blShowOrderState'   => 'Status der Bestellung zeigen',
 
    'SHOP_THEME_GROUP_glow_recaptcha'  => 'reCAPTCHA',

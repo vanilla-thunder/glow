@@ -16,17 +16,18 @@
                   </button>
                [{/block}]
 
-               <button type="button" class="navbar-toggle" data-toggle="dropdown" data-target=".minibasket-menu-box">
+               <button type="button" class="navbar-toggle" data-toggle="modal" data-target="#basketModal">
                   <i class="fa fa-shopping-cart fa-fw" aria-hidden="true"></i>
                   [{if $oxcmp_basket->getItemsCount() > 0}][{ $oxcmp_basket->getItemsCount() }][{/if}]
                </button>
+               [{ oxid_include_dynamic file="widget/minibasket/minibasket.tpl" prefix="modal" }]
             </div>
             <div class="collapse navbar-collapse" id="mainmenu-collapse">
 
 
-               <ul class="nav navbar-nav navbar-right hidden-xs">
+               <ul class="nav navbar-nav navbar-right">
                   <li class="minibasket-menu">
-                     [{ oxid_include_widget cl="oxwMiniBasket" nocookie=$blAnon force_sid=$force_sid }]
+                     [{ oxid_include_widget cl="oxwMiniBasket" prefix="dropdown" nocookie=$blAnon force_sid=$force_sid }]
                   </li>
                </ul>
 
