@@ -12,7 +12,7 @@
 
    [{block name="checkout_payment_main"}]
       <div class="row">
-         <div class="col-sm-6">
+         <div class="col-md-6">
             [{block name="change_shipping"}]
                [{if $oView->getAllSets()}]
                   [{assign var="aErrors" value=$oView->getFieldValidationErrors()}]
@@ -77,7 +77,7 @@
                [{/if}]
             [{/block}]
          </div>
-         <div class="col-sm-6">
+         <div class="col-md-6">
 
             [{block name="checkout_payment_errors"}]
                [{assign var="iPayError" value=$oView->getPaymentError()}]

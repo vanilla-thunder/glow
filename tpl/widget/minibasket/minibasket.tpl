@@ -61,7 +61,7 @@
       [{/if}]
    [{/capture}]
 
-   [{if $_prefix == 'modal'}]
+   [{if $_prefix == 'modal' || $_prefix == 'popup'}]
       <div class="modal fade basketFlyout" id="basketModal" tabindex="-1" role="dialog" aria-labelledby="basketModalLabel">
          <div class="modal-dialog">
             <div class="modal-content">
@@ -89,7 +89,7 @@
             </div>
          </div>
       </div>
-      [{if $open}][{oxscript add="$('#basketModal').modal('show');"}][{/if}]
+      [{if $_prefix == 'modal'}][{oxscript add="$('#basketModal').modal('show');"}][{/if}]
    [{else}]
       [{block name="widget_minibasket_dropdown_title"}]
          <p class="title">

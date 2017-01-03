@@ -20,7 +20,7 @@
                   <i class="fa fa-shopping-cart fa-fw" aria-hidden="true"></i>
                   [{if $oxcmp_basket->getItemsCount() > 0}][{ $oxcmp_basket->getItemsCount() }][{/if}]
                </button>
-               [{ oxid_include_dynamic file="widget/minibasket/minibasket.tpl" prefix="modal" }]
+               [{ oxid_include_dynamic file="widget/minibasket/minibasket.tpl" prefix="popup" }]
             </div>
             <div class="collapse navbar-collapse" id="mainmenu-collapse">
 
