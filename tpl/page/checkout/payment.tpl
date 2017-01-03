@@ -15,6 +15,8 @@
          <div class="col-md-6">
             [{block name="change_shipping"}]
                [{if $oView->getAllSets()}]
+                   <!-- save shipsets count to cookie for final step [{'shipsetscount'|setcookie:$oView->getAllSetsCnt()}] -->
+
                   [{assign var="aErrors" value=$oView->getFieldValidationErrors()}]
                   <form action="[{$oViewConf->getSslSelfLink()}]" name="shipping" id="shipping" method="post">
                      <div class="hidden">
@@ -111,6 +113,9 @@
             [{block name="change_payment"}]
 
                [{if $oView->getPaymentList()}]
+
+                   <!-- save payment methods count to cookie for final step [{'paymentscount'|setcookie:$oView->getPaymentCnt()}] -->
+
                   <div class="panel panel-default">
                      <div class="panel-heading">
                         <h3 id="paymentHeader" class="panel-title">[{oxmultilang ident="PAYMENT_METHOD"}]</h3>
