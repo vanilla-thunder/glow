@@ -94,7 +94,9 @@
                                         [{/block}]
 
                                         [{block name="user_checkout_shipping_feedback"}]
-                                            [{include file="form/fieldset/order_remark.tpl" blOrderRemark=true}]
+                                            [{if $oViewConf->getViewThemeParam('blShowOrderRemark')}]
+                                                [{include file="form/fieldset/order_remark.tpl" blOrderRemark=true}]
+                                            [{/if}]
                                         [{/block}]
                                     </div>
                                 </div>

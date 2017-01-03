@@ -73,7 +73,7 @@
 
       [{if $oView->getAlsoBoughtTheseProducts()}]
          <hr/>
-         [{include file="widget/product/list.tpl" type="grid" head="WHO_BOUGHT_ALSO_BOUGHT"|oxmultilangassign listId="alsoBoughtThankyou" products=$oView->getAlsoBoughtTheseProducts() blDisableToCart=true}]
+         [{include file="widget/product/list.tpl" type="mini" head="WHO_BOUGHT_ALSO_BOUGHT"|oxmultilangassign listId="alsoBoughtThankyou" products=$oView->getAlsoBoughtTheseProducts() blDisableToCart=true}]
          [{oxscript add='$(".panel-body","#alsoBoughtThankyou").matchHeight();'}]
       [{/if}]
       </div>

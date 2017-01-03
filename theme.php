@@ -41,12 +41,18 @@ $aTheme = [
           'value' => false,
           'position' => 0
        ],[
-          'group' => 'glow_functions',
-          'name' => 'blShowReviews',
-          'type' => 'bool',
-          'value' => false,
-          'position' => 1
-       ],[
+            'group' => 'glow_functions',
+            'name' => 'blShowReviews',
+            'type' => 'bool',
+            'value' => false,
+            'position' => 1
+        ],[
+            'group' => 'glow_functions',
+            'name' => 'blShowOrderRemark',
+            'type' => 'bool',
+            'value' => true,
+            'position' => 2
+        ],[
           'group' => 'glow_account',
           'name' => 'blShowOrderState',
           'type' => 'bool',
