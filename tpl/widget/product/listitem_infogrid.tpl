@@ -76,9 +76,9 @@
                   [{/block}]
 
                   [{if $oUnitPrice}]
-                     <span id="productPricePerUnit_[{$testid}]" class="pricePerUnit">
-                     [{$product->oxarticles__oxunitquantity->value}] [{$product->getUnitName()}] | [{oxprice price=$oUnitPrice currency=$currency}]/[{$product->getUnitName()}]
-                  </span>
+                     <div id="productPricePerUnit_[{$testid}]" class="pricePerUnit">
+                        [{$product->oxarticles__oxunitquantity->value}] [{$product->getUnitName()}] | [{oxprice price=$oUnitPrice currency=$currency}]/[{$product->getUnitName()}]
+                     </div>
                   [{elseif $product->oxarticles__oxweight->value }]
                      <span id="productPricePerUnit_[{$testid}]" class="pricePerUnit">
                      <span title="weight">[{oxmultilang ident="WEIGHT"}]</span>
