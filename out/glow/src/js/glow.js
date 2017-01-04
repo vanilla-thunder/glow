@@ -18,6 +18,53 @@ $(function () {
         $('.row-offcanvas').toggleClass('active');
     });
 
+    // staffelpreise
+    if($b.hasClass("cl-details") && typeof staffelpreise != "undefined")
+    {
+        $b.on("change","#amountToBasket",function()
+        {
+            var amount = this.value;
+            var staffelpreis = staffelpreise.find(function(set) {
+                return set.from <= amount;
+            });
+            if(staffelpreis)
+            {
+                /*
+                console.log(staffelpreis);
+                console.log(typeof staffelpreis);
+                console.log(einzelpreis);
+                console.log(einzelpreis/100);
+                console.log(100-staffelpreis.perc);
+                */
+
+                var preis = (typeof staffelpreis.abs !== "undefined" ? staffelpreis.abs : einzelpreis/100*(100-staffelpreis.perc) ) ;
+                /*
+                console.log("amount: "+amount);
+                console.log("preis: "+preis.toFixed(2));
+                console.log("gesamt: "+ amount * preis.toFixed(2));
+                */
+                $("#detailsMain .price").text((amount * preis.toFixed(2)).toLocaleString());
+                $("#detailsMain .unitprice > span").text( preis.toFixed(2).toLocaleString() );
+                $("#detailsMain .unitprice").show();
+
+            }
+            else
+            {
+                /*
+                console.log("amount: "+amount);
+                console.log("einzelpreis: "+einzelpreis);
+                console.log("gesamt: "+ amount * einzelpreis);
+                */
+
+                $("#detailsMain .price").text((amount * einzelpreis).toLocaleString());
+                $("#detailsMain .unitprice > span").text( einzelpreis.toFixed(2).toLocaleString() );
+                $("#detailsMain .unitprice").show();
+            }
+
+
+        });
+    }
+
 
     //          _               _               _
     //      ___| |__   ___  ___| | _____  _   _| |_

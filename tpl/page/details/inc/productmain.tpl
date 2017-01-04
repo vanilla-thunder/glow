@@ -203,8 +203,47 @@
                                         </strong>
                                     [{/if}]
 
+                                    [{* amount prices *}]
                                     [{if $oDetailsProduct->loadAmountPriceInfo()}]
-                                        [{include file="page/details/inc/priceinfo.tpl"}]
+                                    <div class="unitprice" style="display: none;">[{oxmultilang ident="UNIT_PRICE" suffix="COLON"}] <span></span> [{$currency->sign}]*</div>
+                                    <script>
+                                        var einzelpreis = [{$fPrice|replace:',':'.'}];
+                                        var staffelpreise = [
+                                        [{foreach from=$oDetailsProduct->loadAmountPriceInfo() item=priceItem name=amountPrice}]
+                                        {
+                                            'from': [{$priceItem->oxprice2article__oxamount->value}],
+                                            [{if $priceItem->oxprice2article__oxaddperc->value}]
+                                                'perc':[{$priceItem->oxprice2article__oxaddperc->value}],
+                                            [{else}]
+                                                'abs':[{$priceItem->fbrutprice}] [{$currency->sign}]
+                                            [{/if}]
+                                        },
+                                        [{/foreach}]
+                                        ];
+                                        staffelpreise.reverse();
+                                    </script>
+                                        <hr/>
+                                        <table class="table table-striped">
+                                            <thead>
+                                            <tr>
+                                                <th colspan="2">[{oxmultilang ident="BLOCK_PRICE" suffix="COLON"}]</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            [{foreach from=$oDetailsProduct->loadAmountPriceInfo() item=priceItem name=amountPrice}]
+                                                <tr>
+                                                    <td>[{oxmultilang ident="FROM"}] [{$priceItem->oxprice2article__oxamount->value}] [{oxmultilang ident="PCS"}]</td>
+                                                    <td>
+                                                        [{if $priceItem->oxprice2article__oxaddperc->value}]
+                                                            [{$priceItem->oxprice2article__oxaddperc->value}]% [{oxmultilang ident="DISCOUNT"}]
+                                                        [{else}]
+                                                            [{$priceItem->fbrutprice}] [{$currency->sign}]
+                                                        [{/if}]
+                                                    </td>
+                                                </tr>
+                                            [{/foreach}]
+                                            </tbody>
+                                        </table>
                                     [{/if}]
                                 [{/block}]
                             [{/block}]
@@ -224,9 +263,7 @@
                             [{if !$oDetailsProduct->isNotBuyable()}]
                                 [{if $blCanBuy}]
                                     <div class="input-group input-group-lg">
-                                        <input id="amountToBasket" title="[{oxmultilang ident='GENERAL_SUM'}]"
-                                               type="number" name="am" value="1" autocomplete="off"
-                                               class="form-control text-center large">
+                                        <input id="amountToBasket" class="form-control text-center large" type="number" name="am" value="1" min="1" autocomplete="off" style="padding: 5px;">
                                         <span class="input-group-btn">
                                  <button id="toBasket" type="submit" [{if !$blCanBuy}]disabled="disabled"[{/if}]
                                          class="btn btn-primary">
