@@ -215,7 +215,7 @@
                                             [{if $priceItem->oxprice2article__oxaddperc->value}]
                                                 'perc':[{$priceItem->oxprice2article__oxaddperc->value}],
                                             [{else}]
-                                                'abs':[{$priceItem->fbrutprice}] [{$currency->sign}]
+                                                'abs':[{$priceItem->fbrutprice|replace:',':'.'}]
                                             [{/if}]
                                         },
                                         [{/foreach}]
