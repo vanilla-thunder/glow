@@ -14,10 +14,9 @@
       <div class="row panel-body" itemscope itemtype="http://schema.org/Product">
          <div class="col-xs-12 col-md-5">
             [{block name="widget_product_listitem_infogrid_gridpicture"}]
-               <a class="text-center btn-block" href="[{$_productLink}]"
-                  title="[{$product->oxarticles__oxtitle->value}] [{$product->oxarticles__oxvarselect->value}]">
-                  <img src="[{$oViewConf->getImageUrl('spinner.gif')}]"
-                       data-src="[{$product->getThumbnailUrl()}]" style="max-width: 100%; height: auto;"
+               <a class="text-center btn-block" href="[{$_productLink}]" title="[{$product->oxarticles__oxtitle->value}] [{$product->oxarticles__oxvarselect->value}]">
+                  <img [{* src="[{$oViewConf->getImageUrl('spinner.gif')}]" data- *}]
+                       src="[{$product->getThumbnailUrl()}]" style="max-width: 100%; height: auto;"
                        alt="[{$product->oxarticles__oxtitle->value}] [{$product->oxarticles__oxvarselect->value}]">
                </a>
             [{/block}]
