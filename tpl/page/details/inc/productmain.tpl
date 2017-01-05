@@ -1,5 +1,6 @@
 [{oxscript include="js/pages/details.min.js" priority=10}]
 
+[{assign var="oParentProduct" value=$oDetailsProduct->getParentArticle() }]
 [{assign var="oManufacturer" value=$oView->getManufacturer()}]
 [{assign var="aVariantSelections" value=$oView->getVariantSelections()}]
 
@@ -170,14 +171,18 @@
                 <div class="row">
                     <div class="col-xs-12 col-md-6">
 
-                        [{assign var=tprice value=$oDetailsProduct->getTPrice()}]
+
                         [{assign var=price  value=$oDetailsProduct->getPrice()}]
+                        [{assign var=tprice value=$oDetailsProduct->getTPrice()}]
+                        [{if !$tprice && $oParentProduct && $oParentProduct->getTPrice()}]
+                            [{assign var=tprice value=$oParentProduct->getTPrice()}]
+                        [{/if}]
 
                         <div class="priceinfo [{if $tprice && $tprice->getBruttoPrice() > $price->getBruttoPrice()}]reduced[{/if}] text-center">
                             [{block name="details_productmain_tprice"}]
                                 [{if $tprice && $tprice->getBruttoPrice() > $price->getBruttoPrice()}]
                                     <div class="tprice">
-                                        <span class="h4">[{oxmultilang ident="REDUCED_FROM"}] [{$oDetailsProduct->getFTPrice()}] [{$currency->sign}]</span>
+                                        <span class="h4">[{oxmultilang ident="REDUCED_FROM"}] [{oxprice price=$tprice currency=$currency}]</span>
                                         <em>[{oxmultilang ident="OUR_REGULAR_PRICE"}]</em>
                                     </div>
                                 [{/if}]

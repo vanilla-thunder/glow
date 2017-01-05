@@ -4,7 +4,8 @@ based on Flow Theme: https://github.com/OXID-eSales/flow_theme
 
 ### Work in Progress! to do:
 * testing replaced scripts
-* checkout + form validation
+* form validation
+* testing with paypal+
 
 ### Installation
     cd application/views/
@@ -20,11 +21,15 @@ cd out/glow
 npm install
 npm start
 ```
-### Features and Important changes
+### New Features 
+* live price update for amount prices
+* tprice will be inherited from parent article
 * show/hide sidebar by changing theme settings
-* simplified address forms
 * smaller header navigation on mobile devices
 * additional smaller listitem template for crossselling and accessories
+
+
+### Important changes
 * Logo path is now relative to ``out/pictures/wysiwygpro/``
 * background image path changed to ``out/pictures/wysiwygpro/``
 * different layout for product details page
