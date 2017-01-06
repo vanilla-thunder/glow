@@ -49,7 +49,7 @@
          [{block name="widget_product_listitem_line_attributes"}]
 
             [{assign var="oAttributes" value=$product->getAttributes()}]
-            [{if $oAttributes}]
+             [{if $oAttributes|@count}]
                <div class="attributes">
                   <div class="title h3">[{oxmultilang ident="SPECIFICATION" suffix="COLON"}]</div>
                   <ul class="list-unstyled attributes">
