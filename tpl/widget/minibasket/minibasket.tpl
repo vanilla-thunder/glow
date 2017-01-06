@@ -137,9 +137,6 @@
                </tr>
             </table>
             *}]
-            <div class="clearfix">
-               [{block name="widget_minibasket_total"}][{/block}]
-            </div>
          [{/block}]
       </div>
       [{include file="widget/minibasket/countdown.tpl"}]
