@@ -182,7 +182,7 @@
                             [{block name="details_productmain_tprice"}]
                                 [{if $tprice && $tprice->getBruttoPrice() > $price->getBruttoPrice()}]
                                     <div class="tprice">
-                                        <span class="h4">[{oxmultilang ident="REDUCED_FROM"}] [{oxprice price=$tprice currency=$currency}]</span>
+                                        <span class="h4">[{oxmultilang ident="REDUCED_FROM"}] [{oxprice price=$tprice currency=$currency}]</span><br/>
                                         <em>[{oxmultilang ident="OUR_REGULAR_PRICE"}]</em>
                                     </div>
                                 [{/if}]

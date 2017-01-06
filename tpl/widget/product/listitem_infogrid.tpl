@@ -45,10 +45,13 @@
                <link itemprop="itemCondition" href="http://schema.org/NewCondition"/>
 
                [{block name="widget_product_listitem_infogrid_price"}]
+
+                   [{assign var="sOnly" value=""}]
                   [{if $tprice && $tprice->getBruttoPrice() > $price->getBruttoPrice()}]
+                      [{assign var="sOnly" value="NOW_ONLY"|oxmultilangassign}]
                      <div class="tprice">
-                        <span class="h5">[{oxmultilang ident="REDUCED_FROM"}]&nbsp;[{$product->getFTPrice()}]&nbsp;[{$currency->sign}]</span>
-                        <em>[{oxmultilang ident="OUR_REGULAR_PRICE"}]</em>
+                            [{oxmultilang ident="REDUCED_FROM"}]&nbsp;[{$product->getFTPrice()}]&nbsp;[{$currency->sign}]<br/>
+                            <em>[{oxmultilang ident="OUR_REGULAR_PRICE"}]</em>
                      </div>
                   [{/if}]
 
@@ -63,6 +66,7 @@
                               [{assign var="sFrom" value="PRICE_FROM"|oxmultilangassign}]
                            [{/if}]
                         [{/if}]
+                         <!-- <span class="price-only">[{$sOnly}]</span><br/> -->
                         <strong class="h2">
                            <a href="[{$_productLink}]" title="[{$product->oxarticles__oxtitle->value}] [{$product->oxarticles__oxvarselect->value}]">
                               <span class="price-from">[{$sFrom}]</span>
