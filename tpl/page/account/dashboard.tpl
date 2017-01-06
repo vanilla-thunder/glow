@@ -29,6 +29,7 @@
             </div>
          </div>
 
+          [{if $oViewConf->getViewThemeParam('blShowNewsletter')}]
          <div class="col-xs-12 col-md-6">
             <div class="panel panel-default">
                <div class="panel-heading">
@@ -40,6 +41,7 @@
                <div class="panel-body">[{oxmultilang ident="NEWSLETTER_SUBSCRIBE_CANCEL"}]</div>
             </div>
          </div>
+          [{/if}]
 
 
          <div class="col-xs-12 col-md-6">

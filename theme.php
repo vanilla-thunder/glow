@@ -42,6 +42,12 @@ $aTheme = [
           'position' => 0
        ],[
             'group' => 'glow_functions',
+            'name' => 'blShowNewsletter',
+            'type' => 'bool',
+            'value' => false,
+            'position' => 1
+        ],[
+            'group' => 'glow_functions',
             'name' => 'blShowReviews',
             'type' => 'bool',
             'value' => false,

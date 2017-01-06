@@ -21,7 +21,10 @@
                         [{block name="user_checkout_billing_form"}]
                            <div id="billingAddressForm">[{include file="form/fieldset/user_billing.tpl" noFormSubmit=true}]</div>
                         [{/block}]
-                        [{include file="form/fieldset/order_newsletter.tpl" blSubscribeNews=true}]
+
+                        [{if $oViewConf->getViewThemeParam('blShowNewsletter')}]
+                           [{include file="form/fieldset/order_newsletter.tpl" blSubscribeNews=true}]
+                        [{/if}]
                         [{block name="user_checkout_billing_feedback"}][{/block}]
                      </div>
                   </div>
@@ -45,7 +48,7 @@
                                        [{oxmultilang ident="USE_BILLINGADDRESS_FOR_SHIPPINGADDRESS"}]
                                     </label>
                                  </div>
-                                 <span class="help-block">[{oxmultilang ident="MESSAGE_NEWSLETTER_SUBSCRIPTION"}]</span>
+                                 [{* <span class="help-block">[{oxmultilang ident="MESSAGE_NEWSLETTER_SUBSCRIPTION"}]</span> *}]
                               </div>
                            </div>
                         [{/block}]

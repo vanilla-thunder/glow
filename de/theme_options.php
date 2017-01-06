@@ -16,8 +16,10 @@ $aLang = [
    'SHOP_THEME_blFooterManufacturer'      => 'Hersteller im Footer anzeigen',
 
    'SHOP_THEME_GROUP_glow_functions' => 'Funktionen',
+   'SHOP_THEME_blShowNewsletter'     => 'Newsletter-Formulare zeigen',
    'SHOP_THEME_blShowNoticelist'     => 'Merkzettel zeigen',
    'SHOP_THEME_blShowReviews'        => 'Produkt-Bewertungen zeigen',
+   'SHOP_THEME_blShowOrderRemark'     => '"Ihre Nachricht an uns" bei der Bestellung zeigen',
 
 
    'SHOP_THEME_GROUP_glow_account' => 'Bereich: Kunden-Konto',
