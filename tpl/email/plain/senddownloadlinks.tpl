@@ -38,4 +38,3 @@
 [{ $oViewConf->getTsRatingUrl() }]
 [{/if}]
 [{/block}]
-[{include file="email/html/footer.tpl"}]

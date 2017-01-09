@@ -1,38 +1,26 @@
-# Glow responsive Theme für OXID eShop
+# Glow responsive Theme for OXID eShop
 **demo: [http://glow.mb-dev.de](http://glow.mb-dev.de)**  
-basierend auf Flow Theme: https://github.com/OXID-eSales/flow_theme
+based on Flow Theme: https://github.com/OXID-eSales/flow_theme
 
-### Aktuelle To-Do Liste
-* Formular Validierung für E-Mail Adressen, PLZ, etc
-* paypal+ testen
-
-### Voraussetzungen
-* [vt-themesettings](https://github.com/vanilla-thunder/vt-themesettings) für Theme Einstellungen
+### Work in Progress! to do:
+* testing replaced scripts
+* form validation
+* testing with paypal+
 
 ### Installation
     cd application/views/
     git clone git@github.com:vanilla-thunder/glow.git
     ln -s ../application/views/glow/out/glow ../../out/glow
-oder:
- 1. Archiv herunterladen
- 2. nach applucation/views/glow entpacken
- 3. applucation/views/glow/out/glow nach out/glow kopieren
+### requirements
+* [vt-themesettings](https://github.com/vanilla-thunder/vt-themesettings) for handling child theme settings
 
-
-### LESS + CSS + JS bearbeiten
-in out/glow liegt eine Nodejs App, die das Kompilieren von LESS und Zusammenfassen von JS Dateien übernimmt.
-Diese wird so gestartet (Nodejs erforderlich):
+### development
+this code runs a nodejs app, that will compile styles.less and minify js files in src/js/
 ```Shell
 cd out/glow
 npm install
 npm start
-``` 
-#### Less:
-Die Hauptdatei liegt unter: out/glow/src/less/glow.less
-Diese wird zu:  out/glow/src/css/glow.min.css
-
-#### JS
-
+```
 ### New Features 
 * live price update for amount prices
 * tprice will be inherited from parent article

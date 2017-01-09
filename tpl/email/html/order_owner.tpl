@@ -12,7 +12,7 @@
     <meta name="viewport" content="width=device-width"/>
     <title>[{oxmultilang ident="ORDER_NUMBER" }] [{ $order->oxorder__oxordernr->value }]</title>
     <style type="text/css">
-    [{include file="../../../../out/bestlife/src/css/bestlife-email.css"}]
+        [{include file="../../../../out/glow/src/css/email.css"}]
     </style>
     <!--[if mso 12]>
     <style type="text/css">

@@ -55,7 +55,7 @@
                     <tr>
                         <td align="right" style="font-size:16px;line-height:1.25;" >
                             <a href="[{$oViewConf->getBaseDir()}]">
-                                <img src="[{$oViewConf->getImageUrl('mail-logo.jpg', false)}]" width="290" alt="[{ $shop->oxshops__oxname->value }]" style="max-width:290px;">
+                                <img src="[{$oViewConf->getPictureDir()|cat:'wysiwigpro/mail_logo.jpg'}]" width="200" alt="[{ $shop->oxshops__oxname->value }]" style="max-width:250px;">
                             </a>
                         </td>
                     </tr>
@@ -69,7 +69,7 @@
             [{* container zweite Zeile *}]
             <div style="width: 600px;" class="">
                 <a href="[{$oViewConf->getBaseDir()}]">
-                    <img src="[{$oViewConf->getImageUrl('mail-subheader.jpg', false)}]" width="600" alt="[{ $shop->oxshops__oxname->value }]">
+                    <img src="[{$oViewConf->getPictureDir()|cat:'wysiwigpro/mail_subheader.jpg'}]" width="600" alt="[{ $shop->oxshops__oxname->value }]">
                 </a>
             </div>
             <!--[if (gte mso 9)|(IE)]></td></tr></table><![endif]-->
