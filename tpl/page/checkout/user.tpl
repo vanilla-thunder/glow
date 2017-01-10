@@ -14,12 +14,12 @@
                     [{$oViewConf->getNavFormParams()}]
                     <input type="hidden" name="cl" value="user">
                     <input type="hidden" name="option" value="[{$oView->getLoginOption()}]">
-                    [{if !$oxcmp_user->oxuser__oxpassword->value}]
+                    [{if !$oxcmp_user}]
                         <input type="hidden" name="fnc" value="createuser">
                     [{else}]
                         <input type="hidden" name="fnc" value="changeuser">
-                        <input type="hidden" name="lgn_cook" value="0">
                     [{/if}]
+                    <input type="hidden" name="lgn_cook" value="0">
                     <input type="hidden" name="blshowshipaddress" value="1">
                     [{block name="user_checkout_steps_top"}]
                         [{include file="page/checkout/inc/cart-buttons.tpl" prev=$oViewConf->getBasketLink() }]
