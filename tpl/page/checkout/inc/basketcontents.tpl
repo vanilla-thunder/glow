@@ -91,6 +91,9 @@
                               [{/if}]
                            [{/if}]
                         [{/if}]
+                        [{if $basketproduct->getStockStatus() == -1 && $basketproduct->getDeliveryDate()}]
+                           <div class="alert alert-danger text-center">[{oxmultilang ident="AVAILABLE_ON"}] [{$basketproduct->getDeliveryDate()}]</div>
+                        [{/if}]
                      </div>
                      [{* product wrapping *}]
                      [{block name="checkout_basketcontents_basketitem_wrapping"}]
