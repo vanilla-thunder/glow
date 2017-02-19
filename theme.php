@@ -7,7 +7,7 @@ $aTheme = [
     'thumbnail'    => 'theme.jpg',
     'version'      => '0.1.0',
     'parentTheme'  => 'flow',
-    'parentVersions'=> ['1.0.0','1.0.0-beta.3'],
+    'parentVersions'=> ['2.0.0','1.0.0','1.0.0-beta.3'],
     'author'       => 'Marat Bedoev',
     'settings' => [
        [
