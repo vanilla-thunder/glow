@@ -1,7 +1,6 @@
 [{strip}]
     [{block name="footer_main"}]
         [{assign var="blFullwidth" value=$oViewConf->getViewThemeParam('blFullwidthLayout')}]
-        [{$oView->setShowNewsletter($oViewConf->getViewThemeParam('blFooterShowNewsletterForm'))}]
 
         [{if $oxcmp_user}]
             [{assign var="force_sid" value=$oView->getSidForWidget()}]
@@ -133,15 +132,30 @@
                     <div class="col-xs-12 col-sm-[{$colSm}]">
 
                         [{block name="dd_footer_newsletter"}]
-                            [{if $oViewConf->getViewThemeParam('blShowNewsletter') &&  $oView->showNewsletter()}]
+
+                            [{$oView->setShowNewsletter($oViewConf->getViewThemeParam('blFooterShowNewsletterForm'))}]
+                            [{if $oView->showNewsletter()}]
                                 <section class="footer-box footer-box-newsletter">
                                     <div class="h4 footer-box-title">[{oxmultilang ident="NEWSLETTER"}]</div>
                                     <div class="footer-box-content">
                                         <p class="small">[{oxmultilang ident="FOOTER_NEWSLETTER_INFO"}]</p>
-                                        [{include file="widget/footer/newsletter.tpl"}]
+                                        <form class="" action="[{$oViewConf->getSslSelfLink()}]" method="post" role="form">
+                                            <div class="hidden">
+                                                [{$oViewConf->getHiddenSid()}]
+                                                <input type="hidden" name="fnc" value="send">
+                                                <input type="hidden" name="cl" value="newsletter">
+                                            </div>
+                                            [{include file="form/inc/select.tpl" prefix="editval" _placeholder="TITLE" _type="select" _field="oxuser__oxsal" _options="MRS|MR"}]
+                                            [{include file="form/inc/input.tpl" prefix="editval" _placeholder="FIRST_NAME" _field="oxuser__oxfname" _type="text" _req=false}]
+                                            [{include file="form/inc/input.tpl" prefix="editval" _placeholder="LAST_NAME" _field="oxuser__oxlname" _type="text" _req=false}]
+                                            [{include file="form/inc/input.tpl" prefix="editval" _placeholder="EMAIL_ADDRESS" _field="oxuser__oxusername" _type="email" _req="required"}]
+
+                                            <button name="subscribeStatus" value="1" class="btn btn-block btn-primary" type="submit">[{oxmultilang ident="SUBMIT"}]</button>
+                                        </form>
                                     </div>
                                 </section>
                             [{/if}]
+
                         [{/block}]
                         [{block name="footer_social"}][{/block}]
                     </div>
