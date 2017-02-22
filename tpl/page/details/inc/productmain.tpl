@@ -26,8 +26,7 @@
             <input type="hidden" name="listtype" value="[{$oView->getListType()}]">
             <input type="hidden" name="nocookie" value="1">
             <input type="hidden" name="cnid" value="[{$oView->getCategoryId()}]">
-            <input type="hidden" name="anid"
-                   value="[{if !$oDetailsProduct->oxarticles__oxparentid->value}][{$oDetailsProduct->oxarticles__oxid->value}][{else}][{$oDetailsProduct->oxarticles__oxparentid->value}][{/if}]">
+            <input type="hidden" name="anid" value="[{if !$oDetailsProduct->oxarticles__oxparentid->value}][{$oDetailsProduct->oxarticles__oxid->value}][{else}][{$oDetailsProduct->oxarticles__oxparentid->value}][{/if}]">
             <input type="hidden" name="actcontrol" value="[{$oViewConf->getTopActiveClassName()}]">
         </div>
     </form>
@@ -190,66 +189,66 @@
 
                             [{block name="details_productmain_price"}]
                                 [{block name="details_productmain_price_value"}]
-                                    [{if $oDetailsProduct->getFPrice()}]
-                                        [{assign var="sFrom" value=""}]
-                                        [{assign var="fPrice" value=$oDetailsProduct->getFPrice()}]
+                                [{if $oDetailsProduct->getFPrice()}]
+                                    [{assign var="sFrom" value=""}]
+                                    [{assign var="fPrice" value=$oDetailsProduct->getFPrice()}]
 
-                                        [{if $oDetailsProduct->isParentNotBuyable()}]
-                                            [{assign var="fPrice" value=$oDetailsProduct->getFVarMinPrice()}]
-                                            [{if $oDetailsProduct->isRangePrice()}]
-                                                [{assign var="sFrom" value="PRICE_FROM"|oxmultilangassign}]
-                                            [{/if}]
+                                    [{if $oDetailsProduct->isParentNotBuyable()}]
+                                        [{assign var="fPrice" value=$oDetailsProduct->getFVarMinPrice()}]
+                                        [{if $oDetailsProduct->isRangePrice()}]
+                                            [{assign var="sFrom" value="PRICE_FROM"|oxmultilangassign}]
                                         [{/if}]
-                                        <strong class="h2">
-                                            <span class="price-from">[{$sFrom}]</span>
-                                            <span class="price">[{$fPrice}]</span>
-                                            <span class="currency">[{$currency->sign}]</span>
-                                            <span class="price-markup">[{include file="page/details/inc/vatinfo.tpl"}]</span>
-                                        </strong>
                                     [{/if}]
+                                    <strong class="h2">
+                                        <span class="price-from">[{$sFrom}]</span>
+                                        <span class="price">[{$fPrice}]</span>
+                                        <span class="currency">[{$currency->sign}]</span>
+                                        <span class="price-markup">[{include file="page/details/inc/vatinfo.tpl"}]</span>
+                                    </strong>
+                                [{/if}]
 
                                     [{* amount prices *}]
-                                    [{if $oDetailsProduct->loadAmountPriceInfo()}]
+                                [{if $oDetailsProduct->loadAmountPriceInfo()}]
                                     <div class="unitprice" style="display: none;">[{oxmultilang ident="UNIT_PRICE" suffix="COLON"}] <span></span> [{$currency->sign}]*</div>
                                     <script>
                                         var einzelpreis = [{$fPrice|replace:',':'.'}];
                                         var staffelpreise = [
-                                        [{foreach from=$oDetailsProduct->loadAmountPriceInfo() item=priceItem name=amountPrice}]
-                                        {
-                                            'from': [{$priceItem->oxprice2article__oxamount->value}],
-                                            [{if $priceItem->oxprice2article__oxaddperc->value}]
+                                            [{foreach from=$oDetailsProduct->loadAmountPriceInfo() item=priceItem name=amountPrice}]
+                                            {
+                                                'from': [{$priceItem->oxprice2article__oxamount->value}],
+                                                [{if $priceItem->oxprice2article__oxaddperc->value}]
                                                 'perc':[{$priceItem->oxprice2article__oxaddperc->value}],
-                                            [{else}]
+                                                [{else}]
                                                 'abs':[{$priceItem->fbrutprice|replace:',':'.'}]
-                                            [{/if}]
-                                        },
-                                        [{/foreach}]
+                                                [{/if}]
+                                            },
+                                            [{/foreach}]
                                         ];
                                         staffelpreise.reverse();
                                     </script>
-                                        <hr/>
-                                        <table class="table table-striped">
-                                            <thead>
+                                <hr/>
+                                    <table class="table table-striped">
+                                        <thead>
+                                        <tr>
+                                            <th colspan="2">[{oxmultilang ident="BLOCK_PRICE" suffix="COLON"}]</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        [{foreach from=$oDetailsProduct->loadAmountPriceInfo() item=priceItem name=amountPrice}]
                                             <tr>
-                                                <th colspan="2">[{oxmultilang ident="BLOCK_PRICE" suffix="COLON"}]</th>
+                                                <td>[{oxmultilang ident="FROM"}] [{$priceItem->oxprice2article__oxamount->value}] [{oxmultilang ident="PCS"}]</td>
+                                                <td>
+                                                    [{if $priceItem->oxprice2article__oxaddperc->value}]
+                                                        [{$priceItem->oxprice2article__oxaddperc->value}]% [{oxmultilang ident="DISCOUNT"}]
+                                                    [{else}]
+                                                        [{$priceItem->fbrutprice}] [{$currency->sign}]
+                                                    [{/if}]
+                                                </td>
                                             </tr>
-                                            </thead>
-                                            <tbody>
-                                            [{foreach from=$oDetailsProduct->loadAmountPriceInfo() item=priceItem name=amountPrice}]
-                                                <tr>
-                                                    <td>[{oxmultilang ident="FROM"}] [{$priceItem->oxprice2article__oxamount->value}] [{oxmultilang ident="PCS"}]</td>
-                                                    <td>
-                                                        [{if $priceItem->oxprice2article__oxaddperc->value}]
-                                                            [{$priceItem->oxprice2article__oxaddperc->value}]% [{oxmultilang ident="DISCOUNT"}]
-                                                        [{else}]
-                                                            [{$priceItem->fbrutprice}] [{$currency->sign}]
-                                                        [{/if}]
-                                                    </td>
-                                                </tr>
-                                            [{/foreach}]
-                                            </tbody>
-                                        </table>
-                                    [{/if}]
+                                        [{/foreach}]
+                                        </tbody>
+                                    </table>
+                                [{/if}]
                                 [{/block}]
                             [{/block}]
 
@@ -310,28 +309,7 @@
 
             [{block name="details_productmain_watchlist"}][{/block}]
 
-            [{block name="details_productmain_social"}]
-                <div class="social">
-                    [{if ( $oView->isActive('FbShare') || $oView->isActive('FbLike') && $oViewConf->getFbAppId() )}]
-                        [{if $oView->isActive('FacebookConfirm') && !$oView->isFbWidgetVisible() }]
-                            <div class="socialButton" id="productFbShare">
-                                [{include file="widget/facebook/enable.tpl" source="widget/facebook/share.tpl" ident="#productFbShare"}]
-                                [{include file="widget/facebook/like.tpl" assign="fbfile"}]
-                                [{assign var='fbfile' value=$fbfile|strip|escape:'url'}]
-                                [{oxscript add="oxFacebook.buttons['#productFbLike']={html:'`$fbfile`',script:''};"}]
-                            </div>
-                            <div class="socialButton" id="productFbLike"></div>
-                        [{else}]
-                            <div class="socialButton" id="productFbShare">
-                                [{include file="widget/facebook/enable.tpl" source="widget/facebook/share.tpl" ident="#productFbShare"}]
-                            </div>
-                            <div class="socialButton" id="productFbLike">
-                                [{include file="widget/facebook/enable.tpl" source="widget/facebook/like.tpl" ident="#productFbLike"}]
-                            </div>
-                        [{/if}]
-                    [{/if}]
-                </div>
-            [{/block}]
+            [{block name="details_productmain_social"}][{/block}]
 
 
         </div>

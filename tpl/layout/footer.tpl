@@ -143,17 +143,7 @@
                                 </section>
                             [{/if}]
                         [{/block}]
-                        [{if ($oView->isActive('FbLike') && $oViewConf->getFbAppId())}]
-                            <section class="footer-box footer-box-facebook">
-                                [{block name="footer_fblike"}]
-                                    [{if $oView->isActive('FbLike') && $oViewConf->getFbAppId()}]
-                                        <div class="facebook pull-left" id="footerFbLike">
-                                            [{include file="widget/facebook/enable.tpl" source="widget/facebook/like.tpl" ident="#footerFbLike" parent="footer"}]
-                                        </div>
-                                    [{/if}]
-                                [{/block}]
-                            </section>
-                        [{/if}]
+                        [{block name="footer_social"}][{/block}]
                     </div>
                 </div>
             </div>
@@ -163,14 +153,6 @@
                 <div class="legal-box">
                     <div class="row">
                         <section class="col-sm-12">
-                            [{block name="sidebar_trustedshopsratings"}]
-                                [{block name="dd_footer_servicelist_trustedshopsratings"}]
-                                    [{if $oViewConf->showTs("WIDGET") }]
-                                        [{include file="widget/trustedshops/ratings.tpl" }]
-                                    [{/if}]
-                                [{/block}]
-                            [{/block}]
-
                             [{block name="dd_footer_copyright"}]
                                 [{oxifcontent ident="oxstdfooter" object="oCont"}]
                                 [{$oCont->oxcontents__oxcontent->value}]

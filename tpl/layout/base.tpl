@@ -30,11 +30,10 @@
          [{/if}]
       [{/block}]
 
-      [{block name="head_meta_open_graph"}]
-         [{if $oViewConf->getFbAppId()}]
+        [{block name="head_meta_open_graph"}]
             <meta property="og:site_name" content="[{$oViewConf->getBaseDir()}]">
-            <meta property="fb:app_id" content="[{$oViewConf->getFbAppId()}]">
             <meta property="og:title" content="[{$sPageTitle}]">
+            <meta property="og:description" content="[{$oView->getMetaDescription()}]">
             [{if $oViewConf->getActiveClassName() == 'details'}]
                <meta property="og:type" content="product">
                <meta property="og:image" content="[{$oView->getActPicture()}]">
@@ -177,12 +176,12 @@
    [{assign var="sStyle" value="background:`$sBackgroundColor`;"}]
 [{/if}]
 [{strip}]
-<!DOCTYPE html>
-<html lang="[{$oView->getActiveLangAbbr()}]" [{if $oViewConf->getShowFbConnect()}]xmlns:fb="http://www.facebook.com/2008/fbml" [{/if}]>
-<head>
-   [{foreach from=$oxidBlock_pageHead item="_block"}]
-      [{$_block|strip}]
-   [{/foreach}]
+    <!DOCTYPE html>
+    <html lang="[{$oView->getActiveLangAbbr()}]">
+    <head>
+        [{foreach from=$oxidBlock_pageHead item="_block"}]
+            [{$_block|strip}]
+        [{/foreach}]
 
    <link href="[{$oViewConf->getResourceUrl('css/glow.min.css')}]" rel="stylesheet" type="text/css">
    <!--[if IE]>
@@ -236,21 +235,7 @@
    [{$_block|strip}]
 [{/foreach}]
 
-[{block name="base_js"}]
-   [{* include file="i18n/js_vars.tpl" *}]
-   [{*
-      [{oxscript include="libs/jquery/dist/jquery.min.js" priority=1}]
-      [{oxscript include="libs/jquery/dist/jquery.min.js" priority=1}]
-      [{oxscript include="libs/bootstrap/dist/js/bootstrap.min.js" priority=1}]
-      [{oxscript include="libs/bootstrapvalidator/dist/js/bootstrapValidator.min.js" priority=2 }]
-      [{oxscript include="libs/bootstrapvalidator/dist/js/language/de_DE.js" priority=2 }]
-      [{oxscript include="libs/jquery-unveil/jquery.unveil.js" priority=2 }]
-      [{oxscript include="libs/matchheight/jquery.matchHeight-min.js" priority=2 }]
-      [{oxscript include="libs/flexslider/jquery.flexslider-min.js" priority=2 }]
-      [{oxscript include="libs/fancyBox/lib/jquery.mousewheel-3.0.6.pack.js" priority=2 }]
-      [{oxscript include="libs/fancyBox/source/jquery.fancybox.js" priority=2 }]
-   *}]
-[{/block}]
+    [{block name="base_js"}][{/block}]
 
 [{if $oViewConf->isTplBlocksDebugMode()}]
    [{oxscript include="js/widgets/oxblockdebug.min.js"}]

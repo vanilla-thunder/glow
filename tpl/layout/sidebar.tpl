@@ -52,22 +52,13 @@
         [{/if}]
     [{/block}]
 
-    [{block name="sidebar_facebookfacepile"}]
-          [{if $oView->isActive('FbFacepile') && $oView->isConnectedWithFb()}]
-            <div id="facebookFacepile" class="box well well-sm">
-                <section>
-                    <div class="page-header h3">[{oxmultilang ident="FACEBOOK_FACEPILE"}]</div>
-                    <div class="content" id="productFbFacePile">
-                        [{include file="widget/facebook/enable.tpl" source="widget/facebook/facepile.tpl" ident="#productFbFacePile"}]
-                    </div>
-                </section>
-            </div>
-        [{/if}]
+    [{block name="sidebar_social"}]
+
     [{/block}]
 
     [{block name="sidebar_shopluperatings"}]
         [{if $oView->getClassName() eq "start"}]
-           [{include file="widget/shoplupe/ratings.tpl"}]
+            [{include file="widget/shoplupe/ratings.tpl"}]
         [{/if}]
     [{/block}]
 [{/block}]
