@@ -53,13 +53,9 @@
     [{/block}]
 
     [{block name="sidebar_social"}]
-
     [{/block}]
 
     [{block name="sidebar_shopluperatings"}]
-        [{if $oView->getClassName() eq "start"}]
-            [{include file="widget/shoplupe/ratings.tpl"}]
-        [{/if}]
     [{/block}]
 [{/block}]
 
