@@ -101,24 +101,25 @@ var walkSync = function (dir, filelist) {
     });
 };
 var mergeJS = function () {
-        var libs = [
-                "src/libs/jquery/dist/jquery.min.js",
-                "src/libs/bootstrap/dist/js/bootstrap.min.js",
-                "src/libs/bootstrapvalidator/dist/js/bootstrapValidator.min.js",
-                "src/libs/bootstrapvalidator/dist/js/language/de_DE.js",
-                "src/libs/jquery-unveil/jquery.unveil.js",
-                "src/libs/matchheight/jquery.matchHeight-min.js",
-                "src/libs/flexslider/jquery.flexslider-min.js",
-                "src/libs/fancyBox/lib/jquery.mousewheel-3.0.6.pack.js",
-                "src/libs/fancyBox/source/jquery.fancybox.js"
-            ];
-        var files = walkSync(path.relative(__dirname, $jsdir), []);
-        //console.log(libs.concat(files));
-        js = ujs.minify(libs.concat(files));
-        fs.writeFileSync($jstarget, js.code);
-        //bar.tick(4,{'token': $target + ' updated'});
-        console.log('  > ' + path.relative(__dirname, $jstarget) + ' updated');
-    };
+    var libs = [
+        "src/libs/jquery/dist/jquery.min.js",
+        "src/libs/bootstrap/dist/js/bootstrap.min.js",
+        "src/libs/bootstrapvalidator/dist/js/bootstrapValidator.min.js",
+        "src/libs/bootstrapvalidator/dist/js/language/de_DE.js",
+        "src/libs/jquery-mousewheel/jquery.mousewheel.js",
+        "src/libs/jquery-unveil/jquery.unveil.js",
+        "src/libs/matchheight/jquery.matchHeight.js",
+        "src/libs/flexslider/jquery.flexslider-min.js",
+        "src/libs/fancyBox/source/jquery.fancybox.js",
+        "src/libs/outdated-browser/outdatedbrowser/outdatedbrowser.js"
+    ];
+    var files = walkSync(path.relative(__dirname, $jsdir), []);
+    //console.log(libs.concat(files));
+    js = ujs.minify(libs.concat(files));
+    fs.writeFileSync($jstarget, js.code);
+    //bar.tick(4,{'token': $target + ' updated'});
+    console.log('  > ' + path.relative(__dirname, $jstarget) + ' updated');
+};
 // Benutzereingaben abfertigen
 var stdin = process.openStdin();
 stdin.addListener("data", function (d) {

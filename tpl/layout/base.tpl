@@ -183,14 +183,12 @@
         [{/foreach}]
 
         <link href="[{$oViewConf->getResourceUrl('css/glow.min.css')}]" rel="stylesheet" type="text/css">
+        [{* sync css für IE *}]
         <!--[if IE]>
-        [{block name="base_fonts"}][{/block}]
-        <link href='https://fonts.googleapis.com/css?family=Raleway:200,400,700,600' rel='stylesheet' type='text/css'>
-        [{*
-        <link href="[{$oViewConf->getResourceUrl('css/async.min.css')}]" rel="stylesheet" type="text/css"> *}]
-        [{oxstyle}]
-        <![endif]-->
-        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+       <link href='https://fonts.googleapis.com/css?family=Raleway:200,400,700,600' rel='stylesheet' type='text/css'>
+       [{* <link href="[{$oViewConf->getResourceUrl('css/async.min.css')}]" rel="stylesheet" type="text/css"> *}]
+       [{oxstyle}]
+       <![endif]-->
         <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>

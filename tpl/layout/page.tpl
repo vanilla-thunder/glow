@@ -11,58 +11,63 @@
     [{else}]
         [{assign var="sidebar" value=$aSidebarConfig.$sActiveClass }]
     [{/if}]
-   <div id="wrapper">
+    <div id="wrapper">
 
-      <div class="[{if $blFullwidth}]container[{else}]container-fluid[{/if}]">
+        <div class="[{if $blFullwidth}]container[{else}]container-fluid[{/if}]">
 
-         <div class="content-box">
+            <div class="content-box">
 
-             [{if $oView->getClassName() != "start" && !$blHideBreadcrumb}]
-                 [{block name="layout_breadcrumb"}]
-                     [{include file="widget/breadcrumb.tpl"}]
-                 [{/block}]
-             [{/if}]
-
-             [{$smarty.capture.loginErrors}]
-
-            <div class="row">
-                [{if $sidebar && $sidebar|strtolower == "left"}]
-                   <div class="col-xs-12 col-md-3 [{$oView->getClassName()}]">
-                      <div id="sidebar">
-                          [{include file="layout/sidebar.tpl"}]
-                      </div>
-                   </div>
+                [{if $oView->getClassName() != "start" && !$blHideBreadcrumb}]
+                    [{block name="layout_breadcrumb"}]
+                        [{include file="widget/breadcrumb.tpl"}]
+                    [{/block}]
                 [{/if}]
 
-               <div class="col-xs-12 [{if $sidebar|strtolower == "left" || $sidebar|strtolower == "right"}]col-md-9[{/if}]">
+                [{$smarty.capture.loginErrors}]
 
-                  <div id="content">
-                      [{block name="content_main"}]
-                          [{include file="message/errors.tpl"}]
+                <div class="row">
+                    [{if $sidebar && $sidebar|strtolower == "left"}]
+                        <div class="col-xs-12 col-md-3 [{$oView->getClassName()}]">
+                            <div id="sidebar">
+                                [{include file="layout/sidebar.tpl"}]
+                            </div>
+                        </div>
+                    [{/if}]
 
-                          [{foreach from=$oxidBlock_content item="_block"}]
-                              [{$_block|strip}]
-                          [{/foreach}]
-                      [{/block}]
-                  </div>
+                    <div class="col-xs-12 [{if $sidebar|strtolower == "left" || $sidebar|strtolower == "right"}]col-md-9[{/if}]">
 
-               </div>
+                        <div id="content">
+                            [{block name="content_main"}]
+                                [{include file="message/errors.tpl"}]
 
-                [{if $sidebar && $sidebar|strtolower == "right"}]
-                   <div class="col-xs-12 col-md-3 [{$oView->getClassName()}]">
-                      <div id="sidebar">
-                          [{include file="layout/sidebar.tpl"}]
-                      </div>
-                   </div>
-                [{/if}]
+                                [{foreach from=$oxidBlock_content item="_block"}]
+                                    [{$_block|strip}]
+                                [{/foreach}]
+                            [{/block}]
+                        </div>
+
+                    </div>
+
+                    [{if $sidebar && $sidebar|strtolower == "right"}]
+                        <div class="col-xs-12 col-md-3 [{$oView->getClassName()}]">
+                            <div id="sidebar">
+                                [{include file="layout/sidebar.tpl"}]
+                            </div>
+                        </div>
+                    [{/if}]
+                </div>
+
             </div>
 
-         </div>
+        </div>
 
-      </div>
-
-   </div>
+    </div>
     [{block name="layout_init_social"}][{/block}]
-   <i class="fa fa-chevron-circle-up icon-4x" id="jumptotop"></i>
+    <i class="fa fa-chevron-circle-up icon-4x" id="jumptotop"></i>
+    <div id="outdated">
+        <h6>[{oxmultilang ident="OUTDATED_OLDBROWSER"}]</h6>
+        <p>[{oxmultilang ident="OUTDATED_UPDATENOW"}] <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/[{$oView->getActiveLangAbbr()}]">[{oxmultilang ident="OUTDATED_GETNEWBROWSER"}]</a></p>
+        <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+    </div>
 [{/capture}]
 [{include file="layout/base.tpl"}]
