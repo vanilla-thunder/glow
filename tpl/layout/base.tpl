@@ -185,10 +185,11 @@
         <link href="[{$oViewConf->getResourceUrl('css/glow.min.css')}]" rel="stylesheet" type="text/css">
         [{* sync css für IE *}]
         <!--[if IE]>
-       <link href='https://fonts.googleapis.com/css?family=Raleway:200,400,700,600' rel='stylesheet' type='text/css'>
-       [{* <link href="[{$oViewConf->getResourceUrl('css/async.min.css')}]" rel="stylesheet" type="text/css"> *}]
-       [{oxstyle}]
-       <![endif]-->
+        <link href='https://fonts.googleapis.com/css?family=Raleway:200,400,700,600' rel='stylesheet' type='text/css'>
+        [{*
+        <link href="[{$oViewConf->getResourceUrl('css/async.min.css')}]" rel="stylesheet" type="text/css"> *}]
+        [{oxstyle}]
+        <![endif]-->
         <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
@@ -204,18 +205,18 @@
         [{if $oViewConf->getTopActionClassName() != 'clearcookies' && $oViewConf->getTopActionClassName() != 'mallstart'}]
             [{oxid_include_widget cl="oxwCookieNote" _parent=$oView->getClassName() nocookie=1}]
         [{/if}]
-        <div class="main-row">
-            [{block name="layout_header"}][{strip}][{include file="layout/header.tpl"}][{/strip}][{/block}]
-        </div>
+
+        <header id="header" class="main-row">
+            [{block name="layout_header"}]
+                [{include file="layout/header.tpl"}]
+            [{/block}]
+            [{foreach from=$oxidBlock_pageHeader item="_block"}][{$_block|strip}][{/foreach}]
+        </header>
 
         <div class="spacer"></div>
 
-        [{if $oView->getClassName()=='start' && $oView->getBanners()|@count > 0}]
-            <div class="main-row">
-                [{include file="widget/promoslider.tpl"}]
-            </div>
-            <div class="spacer"></div>
-        [{/if}]
+        [{foreach from=$oxidBlock_pageSubheader item="_block"}][{$_block|strip}][{/foreach}]
+        [{if $oxidBlock_pageSubheader|@count > 0 }]<div class="spacer"></div>[{/if}]
 
 
         <div class="main-row">

@@ -18,6 +18,8 @@ oder:
  2. nach applucation/views/glow entpacken
  3. applucation/views/glow/out/glow nach out/glow kopieren
 
+### Theme Einstellungen
+- Größe des Kategoriebildes: 1300*400
 
 ### LESS + CSS + JS bearbeiten
 in out/glow liegt eine Nodejs App, die das Kompilieren von LESS und Zusammenfassen von JS Dateien übernimmt.

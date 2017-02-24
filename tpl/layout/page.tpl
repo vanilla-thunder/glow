@@ -1,8 +1,25 @@
-[{capture append="oxidBlock_pageBody"}]
-    [{if $oView->showRDFa()}]
-        [{include file="rdfa/rdfa.tpl"}]
+[{capture append="oxidBlock_pageHeader"}]
+    [{if $oView->getClassName() != "start" && !$blHideBreadcrumb}]
+        [{block name="layout_breadcrumb"}]
+            [{strip}]
+                <ol id="breadcrumb" class="breadcrumb">
+                    [{block name="dd_widget_breadcrumb_list"}]
+                        <li class="text-muted">[{oxmultilang ident="YOU_ARE_HERE"}]:</li>
+                        [{foreach from=$oView->getBreadCrumb() item="sCrum" name="breadcrumb"}]
+                            <li itemscope itemtype="http://data-vocabulary.org/Breadcrumb"[{if $smarty.foreach.breadcrumb.last}] class="active"[{/if}]>
+                                <a href="[{if $sCrum.link}][{$sCrum.link}][{else}]#[{/if}]" title="[{$sCrum.title|escape:'html'}]" itemprop="url">
+                                    <span itemprop="title">[{$sCrum.title}]</span>
+                                </a>
+                            </li>
+                        [{/foreach}]
+                    [{/block}]
+                </ol>
+            [{/strip}]
+        [{/block}]
     [{/if}]
+[{/capture}]
 
+[{capture append="oxidBlock_pageBody"}]
     [{assign var="blFullwidth" value=$oViewConf->getViewThemeParam('blFullwidthLayout')}]
     [{assign var="sActiveClass" value=$oView->getClassName() }]
     [{assign var="aSidebarConfig" value=$oViewConf->getViewThemeParam('aSidebarConfig')}]
@@ -16,15 +33,7 @@
         <div class="[{if $blFullwidth}]container[{else}]container-fluid[{/if}]">
 
             <div class="content-box">
-
-                [{if $oView->getClassName() != "start" && !$blHideBreadcrumb}]
-                    [{block name="layout_breadcrumb"}]
-                        [{include file="widget/breadcrumb.tpl"}]
-                    [{/block}]
-                [{/if}]
-
                 [{$smarty.capture.loginErrors}]
-
                 <div class="row">
                     [{if $sidebar && $sidebar|strtolower == "left"}]
                         <div class="col-xs-12 col-md-3 [{$oView->getClassName()}]">
