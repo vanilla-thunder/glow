@@ -12,7 +12,7 @@
 
     [{block name="checkout_payment_main"}]
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-4">
                 [{block name="change_shipping"}]
                     [{if $oView->getAllSets()}]
                         <!-- save shipsets count to cookie for final step [{'shipsetscount'|setcookie:$oView->getAllSetsCnt()}] -->
@@ -79,7 +79,7 @@
                     [{/if}]
                 [{/block}]
             </div>
-            <div class="col-md-6">
+            <div class="col-md-8">
 
                 [{block name="checkout_payment_errors"}]
                     [{assign var="iPayError" value=$oView->getPaymentError()}]
@@ -157,15 +157,6 @@
                                                             [{else}]
                                                                 [{include file="page/checkout/inc/payment_other.tpl"}]
                                                             [{/if}]
-                                                        [{/block}]
-
-                                                        [{block name="checkout_payment_longdesc"}]
-                                                            <div>
-                                                                [{oxifcontent ident="payment_"|cat:$sPaymentID object="oCont"}]
-                                                                [{$oCont->oxcontents__oxcontent->value}]
-                                                                [{/oxifcontent}]
-                                                            </div>
-                                                            <hr/>
                                                         [{/block}]
 
                                                         [{if !$oView->isLowOrderPrice()}]

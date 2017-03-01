@@ -6,3 +6,11 @@
       </div>
    </div>
 [{/foreach}]
+[{block name="checkout_payment_longdesc"}]
+  <div>
+    [{oxifcontent ident="payment_"|cat:$sPaymentID object="oCont"}]
+      [{$oCont->oxcontents__oxcontent->value}]
+    [{/oxifcontent}]
+  </div>
+  <hr/>
+[{/block}]

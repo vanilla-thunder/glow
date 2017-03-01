@@ -23,3 +23,12 @@
       <input type="text" class="form-control" size="20" maxlength="64" name="dynvalue[lsktoinhaber]" value="[{if $dynvalue.lsktoinhaber}][{$dynvalue.lsktoinhaber}][{else}][{$oxcmp_user->oxuser__oxfname->value}] [{$oxcmp_user->oxuser__oxlname->value}][{/if}]" required="required">
    </div>
 </div>
+
+[{block name="checkout_payment_longdesc"}]
+  <div>
+    [{oxifcontent ident="payment_"|cat:$sPaymentID object="oCont"}]
+      [{$oCont->oxcontents__oxcontent->value}]
+    [{/oxifcontent}]
+  </div>
+  <hr/>
+[{/block}]

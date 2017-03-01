@@ -70,3 +70,12 @@
       <span class="help-block">[{oxmultilang ident="CARD_SECURITY_CODE_DESCRIPTION"}]</span>
    </div>
 </div>
+
+[{block name="checkout_payment_longdesc"}]
+  <div>
+    [{oxifcontent ident="payment_"|cat:$sPaymentID object="oCont"}]
+      [{$oCont->oxcontents__oxcontent->value}]
+    [{/oxifcontent}]
+  </div>
+  <hr/>
+[{/block}]
