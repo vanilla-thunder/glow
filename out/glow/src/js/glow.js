@@ -68,7 +68,7 @@ $(function () {
                 console.log("preis: "+preis.toFixed(2));
                 console.log("gesamt: "+ amount * preis.toFixed(2));
                 */
-                $("#detailsMain .price").text((amount * preis.toFixed(2)).toLocaleString());
+                $("#detailsMain .price").text((amount * preis).toFixed(2).toLocaleString());
                 $("#detailsMain .unitprice > span").text( preis.toFixed(2).toLocaleString() );
                 $("#detailsMain .unitprice").show();
 
