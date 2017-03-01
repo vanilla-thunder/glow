@@ -15,8 +15,8 @@ basierend auf Flow Theme: https://github.com/OXID-eSales/flow_theme
     ln -s ../application/views/glow/out/glow ../../out/glow
 oder:
  1. Archiv herunterladen
- 2. nach applucation/views/glow entpacken
- 3. applucation/views/glow/out/glow nach out/glow kopieren
+ 2. nach application/views/glow entpacken
+ 3. application/views/glow/out/glow nach out/glow kopieren
 
 ### Theme Einstellungen
 - Größe des Kategoriebildes: 1300*400
