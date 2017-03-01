@@ -36,7 +36,7 @@ Diese wird zu:  out/glow/src/css/glow.min.css
 #### JS
 
 ### New Features 
-* live price update for amount prices
+* live price update for amount prices https://glow.mb-dev.de/Kiteboarding/Trapeze/Trapez-ION-MADTRIXX.html
 * tprice will be inherited from parent article
 * show/hide sidebar by changing theme settings
 * smaller header navigation on mobile devices
