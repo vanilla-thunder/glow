@@ -36,7 +36,7 @@
                 [{/foreach}]
             </div>
         [{else}] 
-            <select name="[{$name}]" class="form-control" id="[{$prefix}]_[{$_field}]">
+            <select name="[{$prefix}][[{$_field}]]" class="form-control" id="[{$prefix}]_[{$_field}]">
                 <option value="" disabled selected>[{oxmultilang ident=$_placeholder }]</option>
 
                 [{foreach from=$_options item="option" name="options"}]
