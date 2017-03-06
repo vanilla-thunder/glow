@@ -184,6 +184,48 @@ $(function () {
                     }
                 }
             },
+            password_old: {
+                validators: {
+                    required: {
+                        message: 'Bitte geben Sie Ihr altes Passwort ein!'
+                    },
+                    notEmpty: {
+                        message: 'Bitte geben Sie Ihr altes Passwort ein!'
+                    }
+                }
+            },
+            password_new: {
+                validators: {
+                    required: {
+                        message: 'Bitte geben Sie ein neues Passwort ein!'
+                    },
+                    notEmpty: {
+                        message: 'Bitte geben Sie ein neues Passwort ein!'
+                    },
+                    regexp: {
+                        regexp: /^(?=.*[a-zA-Z])(?=.*\d)$/i,
+                        message: 'Das neue Passwort muss zumindest aus Buchstaben und Ziffern bestehen!' 
+                    },
+                    stringLength: {
+                        min: 6,
+                        message: 'Das Passwort muss mindestens 6 Zeichen lang sein!'
+                    }
+                }
+            },
+            password_new_confirm: {
+                validators: {
+                    required: {
+                        message: 'Bitte geben Sie das neue Passwort nochmal ein!'
+                    },
+                    notEmpty: {
+                        message: 'Bitte geben Sie das neue Passwort nochmal ein!'
+                    },
+                    identical: {
+                        field: 'password_new',
+                        message: 'Die Passwörter müssen übereinstimmen!'
+                    }
+                }
+            },
             c_mac: {
                 validators: {
                     identical: {

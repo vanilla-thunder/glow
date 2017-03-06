@@ -19,64 +19,48 @@
     [{/if}]
 [{/capture}]
 
+
+[{assign var="sActiveClass" value=$oView->getClassName() }]
+[{assign var="aSidebarConfig" value=$oViewConf->getViewThemeParam('aSidebarConfig')}]
+[{if $oViewConf->getViewThemeParam('blKeepDefaultSidebar') }]
+    [{assign var="sidebar" value=$aSidebarConfig.$sActiveClass|default:$sidebar }]
+[{else}]
+    [{assign var="sidebar" value=$aSidebarConfig.$sActiveClass }]
+[{/if}]
+
 [{capture append="oxidBlock_pageBody"}]
-    [{assign var="blFullwidth" value=$oViewConf->getViewThemeParam('blFullwidthLayout')}]
-    [{assign var="sActiveClass" value=$oView->getClassName() }]
-    [{assign var="aSidebarConfig" value=$oViewConf->getViewThemeParam('aSidebarConfig')}]
-    [{if $oViewConf->getViewThemeParam('blKeepDefaultSidebar') }]
-        [{assign var="sidebar" value=$aSidebarConfig.$sActiveClass|default:$sidebar }]
-    [{else}]
-        [{assign var="sidebar" value=$aSidebarConfig.$sActiveClass }]
-    [{/if}]
-    <div id="wrapper">
+    <div class="container[{if $oViewConf->getViewThemeParam('blFullwidthLayout')}]-fluid[{/if}]">
+        <div class="row" id="pagecontent">
+            [{if $sidebar && $sidebar|strtolower == "left"}]
+                <div id="sidebar" class="col-xs-12 col-md-3">[{include file="layout/sidebar.tpl"}]</div>
+            [{/if}]
 
-        <div class="[{if $blFullwidth}]container[{else}]container-fluid[{/if}]">
-
-            <div class="content-box">
+            <div id="" class="col-xs-12 [{if $sidebar|strtolower == "left" || $sidebar|strtolower == "right"}]col-md-9[{/if}]">
+                <div id="content" class="shadow">
                 [{$smarty.capture.loginErrors}]
-                <div class="row">
-                    [{if $sidebar && $sidebar|strtolower == "left"}]
-                        <div class="col-xs-12 col-md-3 [{$oView->getClassName()}]">
-                            <div id="sidebar">
-                                [{include file="layout/sidebar.tpl"}]
-                            </div>
-                        </div>
-                    [{/if}]
 
-                    <div class="col-xs-12 [{if $sidebar|strtolower == "left" || $sidebar|strtolower == "right"}]col-md-9[{/if}]">
+                [{block name="content_main"}]
+                    [{include file="message/errors.tpl"}]
 
-                        <div id="content">
-                            [{block name="content_main"}]
-                                [{include file="message/errors.tpl"}]
-
-                                [{foreach from=$oxidBlock_content item="_block"}]
-                                    [{$_block|strip}]
-                                [{/foreach}]
-                            [{/block}]
-                        </div>
-
-                    </div>
-
-                    [{if $sidebar && $sidebar|strtolower == "right"}]
-                        <div class="col-xs-12 col-md-3 [{$oView->getClassName()}]">
-                            <div id="sidebar">
-                                [{include file="layout/sidebar.tpl"}]
-                            </div>
-                        </div>
-                    [{/if}]
+                    [{foreach from=$oxidBlock_content item="_block"}]
+                        [{$_block|strip}]
+                    [{/foreach}]
+                [{/block}]
                 </div>
-
             </div>
 
+            [{if $sidebar && $sidebar|strtolower == "right"}]
+                <div id="sidebar" class="col-xs-12 col-md-3">[{include file="layout/sidebar.tpl"}]</div>
+            [{/if}]
         </div>
-
-    </div>
-    [{block name="layout_init_social"}][{/block}]
-    <i class="fa fa-chevron-circle-up icon-4x" id="jumptotop"></i>
-    <div id="outdated">
-        <h6>[{oxmultilang ident="OUTDATED_OLDBROWSER"}]</h6>
-        <p>[{oxmultilang ident="OUTDATED_UPDATENOW"}] <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/[{$oView->getActiveLangAbbr()}]">[{oxmultilang ident="OUTDATED_GETNEWBROWSER"}]</a></p>
-        <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+        [{block name="layout_init_social"}][{/block}]
+        <i class="fa fa-chevron-circle-up icon-4x" id="jumptotop"></i>
+        <div id="outdated">
+            <h6>[{oxmultilang ident="OUTDATED_OLDBROWSER"}]</h6>
+            <p>[{oxmultilang ident="OUTDATED_UPDATENOW"}] <a id="btnUpdateBrowser" href="http://outdatedbrowser.com/[{$oView->getActiveLangAbbr()}]">[{oxmultilang ident="OUTDATED_GETNEWBROWSER"}]</a>
+            </p>
+            <p class="last"><a href="#" id="btnCloseUpdateBrowser" title="Close">&times;</a></p>
+        </div>
     </div>
 [{/capture}]
 [{include file="layout/base.tpl"}]

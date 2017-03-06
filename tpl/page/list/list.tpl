@@ -31,17 +31,15 @@
 [{capture append="oxidBlock_content"}]
 
     [{block name="page_list_listhead"}]
-        <div class="page-header">
+        <h1 class="page-header">
             [{assign var='rsslinks' value=$oView->getRssLinks()}]
-            <h1>
                 [{$oView->getTitle()}]
                 [{if $rsslinks.activeCategory}]
                     <a class="rss" id="rssActiveCategory" href="[{$rsslinks.activeCategory.link}]" title="[{$rsslinks.activeCategory.title}]" target="_blank">
                         <i class="fa fa-rss"></i>
                     </a>
                 [{/if}]
-            </h1>
-        </div>
+        </h1>
         [{assign var="oPageNavigation" value=$oView->getPageNavigation()}]
         [{if $actCategory && $actCategory->getShortDescription() && $oPageNavigation->actPage == 1}]
             <p id="catDescLocator" class="categoryDescription">

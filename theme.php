@@ -5,35 +5,47 @@ $aTheme = [
     'title'          => 'Glow',
     'description'    => 'cleaned, updated and bugfixed flow theme for oxid eshop 4.9 / 4.10',
     'thumbnail'      => 'theme.jpg',
-    'version'        => '0.1.0',
+    'version'        => '0.1.1',
     'parentTheme'    => 'flow',
     'parentVersions' => ['1.0.0', '1.0.0-beta.3'],
     'author'         => 'Marat Bedoev',
     'settings'       => [
         [
             'group'    => 'glow_layout',
+            'name'     => 'blFullWidthHeader',
+            'type'     => 'bool',
+            'value'    => false,
+            'position' => 0
+        ],[
+            'group'    => 'glow_layout',
+            'name'     => 'blFullWidthFooter',
+            'type'     => 'bool',
+            'value'    => false,
+            'position' => 1
+        ],[
+            'group'    => 'glow_layout',
             'name'     => 'blKeepDefaultSidebar',
             'type'     => 'bool',
             'value'    => true,
-            'position' => 0
+            'position' => 2
         ], [
             'group'    => 'glow_layout',
             'name'     => 'aSidebarConfig',
             'type'     => 'aarr',
             'value'    => ['content' => 'left', 'register' => 'x'],
-            'position' => 1
+            'position' => 3
         ], [
             'group'    => 'glow_layout',
             'name'     => 'blFooterCattree',
             'type'     => 'bool',
             'value'    => false,
-            'position' => 2
+            'position' => 4
         ], [
             'group'    => 'glow_layout',
             'name'     => 'blFooterManufacturer',
             'type'     => 'bool',
             'value'    => false,
-            'position' => 3
+            'position' => 5
         ], [
             'group'    => 'glow_functions',
             'name'     => 'blShowNoticelist',

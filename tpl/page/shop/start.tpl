@@ -1,6 +1,8 @@
-[{capture append="oxidBlock_pageSubheader"}]
-    <div class="main-row">[{include file="widget/promoslider.tpl"}]</div>
-[{/capture}]
+[{if $oView->getBanners()}]
+    [{capture append="oxidBlock_pageSubheader"}]
+        [{include file="widget/promoslider.tpl"}]
+    [{/capture}]
+[{/if}]
 
 [{capture append="oxidBlock_content"}]
     [{oxifcontent ident="oxstartwelcome" object="oCont"}]
@@ -26,7 +28,9 @@
     [{/if}]
 
     [{if $oNewestArticles && $oNewestArticles->count() && $oTopArticles && $oTopArticles->count()}]
-        <div class="row"><hr></div>
+        <div class="row">
+            <hr>
+        </div>
     [{/if}]
 
     [{if $oTopArticles && $oTopArticles->count()}]

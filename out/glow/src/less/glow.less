@@ -1,31 +1,52 @@
 // Including 3rd party libs
 //@import "../libs/bootstrap/less/bootstrap";
 @import "../libs/font-awesome/less/font-awesome";
+
 @fa-font-path: "../libs/font-awesome/fonts";
 
 // parent flow less
 @import "../libs/bootstrap/less/bootstrap";
 
-@grid-gutter-width:       20px;
-@container-tablet:        100%;
-@container-desktop:       100%;
+@grid-gutter-width: 20px;
+@container-tablet: 100%;
+@container-desktop: 100%;
 @container-large-desktop: 90%;
 
 @media (min-width: @screen-lg-min) {
-  .container { max-width: 1300px; }
+  .container {
+    max-width: 1300px;
+  }
 }
 
 @import (inline) "../libs/bootstrapvalidator/dist/css/bootstrapValidator.min.css";
 // fancybox
 @import (inline) "../libs/fancyBox/source/jquery.fancybox.css";
-#fancybox-loading, .fancybox-close, .fancybox-prev span, .fancybox-next span { background-image: url('../libs/fancyBox/source/fancybox_sprite.png'); }
-#fancybox-loading div { background: url('../libs/fancyBox/source/fancybox_loading.gif') center center no-repeat; }
-.fancybox-nav { background: transparent url('../libs/fancyBox/source/blank.gif'); }
-.fancybox-overlay { background: url('../libs/fancyBox/source/fancybox_overlay.png'); }
-@media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min--moz-device-pixel-ratio: 1.5), only screen and (min-device-pixel-ratio: 1.5){
-  #fancybox-loading, .fancybox-close, .fancybox-prev span, .fancybox-next span { background-image: url('../libs/fancyBox/source/fancybox_sprite@2x.png'); }
-  #fancybox-loading div { background-image: url('../libs/fancyBox/source/fancybox_loading@2x.gif'); }
+#fancybox-loading, .fancybox-close, .fancybox-prev span, .fancybox-next span {
+  background-image: url('../libs/fancyBox/source/fancybox_sprite.png');
 }
+
+#fancybox-loading div {
+  background: url('../libs/fancyBox/source/fancybox_loading.gif') center center no-repeat;
+}
+
+.fancybox-nav {
+  background: transparent url('../libs/fancyBox/source/blank.gif');
+}
+
+.fancybox-overlay {
+  background: url('../libs/fancyBox/source/fancybox_overlay.png');
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min--moz-device-pixel-ratio: 1.5), only screen and (min-device-pixel-ratio: 1.5) {
+  #fancybox-loading, .fancybox-close, .fancybox-prev span, .fancybox-next span {
+    background-image: url('../libs/fancyBox/source/fancybox_sprite@2x.png');
+  }
+
+  #fancybox-loading div {
+    background-image: url('../libs/fancyBox/source/fancybox_loading@2x.gif');
+  }
+}
+
 // flexslider
 @import "../libs/flexslider/css/variables.less";
 @import "../libs/flexslider/css/mixins.less";
@@ -34,10 +55,10 @@
 @import "../libs/flexslider/css/theme.less";
 @import "../libs/flexslider/css/responsive.less";
 @font-name: "FontAwesome";
-@flex-direction-nav-icon-prev:        @fa-var-angle-left;
-@flex-direction-nav-icon-next:        @fa-var-angle-right;
-@flex-pauseplay-icon-play:            @fa-var-play;
-@flex-pauseplay-icon-pause:           @fa-var-pause;
+@flex-direction-nav-icon-prev: @fa-var-angle-left;
+@flex-direction-nav-icon-next: @fa-var-angle-right;
+@flex-pauseplay-icon-play: @fa-var-play;
+@flex-pauseplay-icon-pause: @fa-var-pause;
 
 // outdated browser
 @import (inline) "../libs/outdated-browser/outdatedbrowser/outdatedbrowser.css";
@@ -50,92 +71,160 @@
 //@font-family-base: "monospace";
 @font-family-base: Raleway, "Helvetica Neue", Helvetica, Arial, sans-serif;
 
-@brand-primary:   #0689d6;
+@brand-primary: #0689d6;
 @brand-secondary: #585858;
 
-@brand-success:   #82b51e;
-@brand-info:      #00A6ED;
-@brand-warning:   #FFB400;
-@brand-danger:    #F6511D;
+@brand-success: #82b51e;
+@brand-info: #00A6ED;
+@brand-warning: #FFB400;
+@brand-danger: #F6511D;
 
 @btn-warning-color: #000000;
 //@btn-danger-color: #000000;
 
-@ox-container-base-background-color:    #FFF;
-@ox-container-header-background-color:  @ox-container-base-background-color;
+@ox-container-base-background-color: #FFF;
+@ox-container-header-background-color: @ox-container-base-background-color;
 @ox-container-wrapper-background-color: @ox-container-base-background-color;
-@ox-footer-bg:                          @brand-secondary;
-@ox-footer-border:                      #E7E7E7;
-@ox-footer-color:                       #E7E7E7;
+@ox-footer-bg: @brand-secondary;
+@ox-footer-border: #E7E7E7;
+@ox-footer-color: #E7E7E7;
 
-@padding-base-horizontal:   10px;
+@padding-base-horizontal: 10px;
 
-.main-row > .flexslider { margin:0; }
-.flexslider .flex-direction-nav .flex-prev,
-.flexslider .flex-direction-nav .flex-next {
-  opacity: 0.05;
+
+.shadow {
+  box-shadow: 0 5px 20px rgba(0, 0, 0, .3);
 }
+
 #breadcrumb {
   padding: 5px 15px;
 }
-#footer {
-  border: none !important;
-  a { color: @ox-footer-color; }
-  .nav-pills a:hover { color: @brand-secondary; }
+.banner {
+  .shadow;
+  padding: 0 !important;
+  position: relative;
+  img { .img-responsive; width: 100%;}
+  .banner-caption {
+    background: rgba(255, 255, 255, 0.8);
+    padding: 5px;
+    text-align: center;
+
+    @media ( min-width: @screen-sm-min ) {
+      position: absolute;
+      left: @padding-base-horizontal;
+      right: @padding-base-horizontal;
+      bottom: @padding-base-horizontal;
+    }
+  }
 }
 
-  // details page
-  .priceinfo {
-    padding: 10px;
-    margin-bottom: 10px;
-    &.reduced {
-      border: 1px solid green;
-      .bg-success;
-      strong {
-        .text-danger
-      }
-    }
+//header, footer { margin-left: -10px; margin-right: -10px; }
+.container, .container-fluid {
+  > nav,
+  > .flexslider {
+    margin: 0 -10px;
   }
+  .flexslider .flex-direction-nav .flex-prev,
+  .flexslider .flex-direction-nav .flex-next {
+    opacity: 0.2;
+  }
+}
+#pagecontent {
+  > div:first-child > div { margin-left: -10px; }
+  > div:last-child  > div { margin-right: -10px; }
+}
+#sidebar > .box { .shadow; }
+#content { background: #fff; padding: @padding-base-horizontal; }
 
-  // product lists
-  #detailsRelated {
-    .page-header { margin:0;}
-    h2 { margin: 0;}
+#footer {
+  padding: 10px;
+  border: none !important;
+  a {
+    color: @ox-footer-color;
   }
-  .miniView {
-    @media( max-width: @screen-xs-max ) {
-      .productBox { clear:left; }
-    }
-    hr { margin:10px 0;}
-    .panel-body {
-      padding:7px;
-      position: relative;
-    }
-    .media { margin-top:7px; }
-    .media-left {
-      padding-right: 7px;
-      img {max-width: 70px;}
-    }
-    .media-body { padding-bottom: 30px;}
-    .bottom { position:absolute; bottom: 5px; right: 5px; left: 80px; }
+  .nav-pills a:hover {
+    color: @brand-secondary;
   }
+}
 
-  // forms
-  label.required {
-    font-weight: bold;
-    &::after { content:'*'}
-  }
-
-  .btn-label {
-    .btn-default;
-    input.hidden:checked + & {
-      .btn-primary;
+// details page
+.priceinfo {
+  padding: 10px;
+  margin-bottom: 10px;
+  &.reduced {
+    border: 1px solid green;
+    .bg-success;
+    strong {
+      .text-danger
     }
   }
+}
 
-  // checkout
-  body.cl-thankyou ol.checkoutSteps li,
-  body.is-checkout ol.checkoutSteps li {
-    width: 25%;
+// product lists
+#detailsRelated {
+  .page-header {
+    margin: 0;
   }
-  .cart-buttons { clear:both; margin: 10px; }
+  h2 {
+    margin: 0;
+  }
+}
+
+.miniView {
+  @media ( max-width: @screen-xs-max ) {
+    .productBox {
+      clear: left;
+    }
+  }
+  hr {
+    margin: 10px 0;
+  }
+  .panel-body {
+    padding: 7px;
+    position: relative;
+  }
+  .media {
+    margin-top: 7px;
+  }
+  .media-left {
+    padding-right: 7px;
+    img {
+      max-width: 70px;
+    }
+  }
+  .media-body {
+    padding-bottom: 30px;
+  }
+  .bottom {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    left: 80px;
+  }
+}
+
+// forms
+label.required {
+  font-weight: bold;
+  &::after {
+    content: '*'
+  }
+}
+
+.btn-label {
+  .btn-default;
+  input.hidden:checked + & {
+    .btn-primary;
+  }
+}
+
+// checkout
+body.cl-thankyou ol.checkoutSteps li,
+body.is-checkout ol.checkoutSteps li {
+  width: 25%;
+}
+
+.cart-buttons {
+  clear: both;
+  margin: 10px;
+}

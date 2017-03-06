@@ -145,7 +145,6 @@
 [{/capture}]
 
 [{assign var="blIsCheckout"     value=$oView->getIsOrderStep()}]
-[{assign var="blFullwidth"      value=$oViewConf->getViewThemeParam('blFullwidthLayout')}]
 [{assign var="sBackgroundColor" value=$oViewConf->getViewThemeParam('sBackgroundColor')}]
 
 [{* Fullpage Background *}]
@@ -201,34 +200,28 @@
         [{include file="rdfa/rdfa.tpl"}]
     [{/if}]
 
-    <div class="[{if $blFullwidth}]fullwidth-container[{else}]container[{/if}]">
-        [{if $oViewConf->getTopActionClassName() != 'clearcookies' && $oViewConf->getTopActionClassName() != 'mallstart'}]
-            [{oxid_include_widget cl="oxwCookieNote" _parent=$oView->getClassName() nocookie=1}]
-        [{/if}]
-
-        <header id="header" class="main-row">
-            [{block name="layout_header"}]
-                [{include file="layout/header.tpl"}]
-            [{/block}]
-            [{foreach from=$oxidBlock_pageHeader item="_block"}][{$_block|strip}][{/foreach}]
-        </header>
-
+    <header>
+        [{block name="layout_header"}]
+            [{include file="layout/header.tpl"}]
+        [{/block}]
         <div class="spacer"></div>
+    </header>
 
-        [{foreach from=$oxidBlock_pageSubheader item="_block"}][{$_block|strip}][{/foreach}]
-        [{if $oxidBlock_pageSubheader|@count > 0 }]<div class="spacer"></div>[{/if}]
+    [{foreach from=$oxidBlock_pageSubheader item="_block"}][{$_block|strip}][{/foreach}]
+    [{* [{if $oxidBlock_pageSubheader|@count > 0 }]<div class="spacer"></div>[{/if}] *}]
 
+    [{foreach from=$oxidBlock_pageBody item="_block"}][{$_block|strip}][{/foreach}]
+    <div class="spacer"></div>
 
-        <div class="main-row">
-            [{foreach from=$oxidBlock_pageBody item="_block"}][{$_block|strip}][{/foreach}]
-        </div>
-
-        <div class="spacer"></div>
-
-        <div class="main-row">
+    <footer>
+        [{block name="layout_footer"}]
             [{include file="layout/footer.tpl"}]
-        </div>
-    </div>
+        [{/block}]
+
+            [{if $oViewConf->getTopActionClassName() != 'clearcookies' && $oViewConf->getTopActionClassName() != 'mallstart'}]
+                [{oxid_include_widget cl="oxwCookieNote" _parent=$oView->getClassName() nocookie=1}]
+            [{/if}]
+    </footer>
 
     [{foreach from=$oxidBlock_pagePopup item="_block"}]
         [{$_block|strip}]
