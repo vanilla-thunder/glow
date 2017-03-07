@@ -21,31 +21,31 @@
     [{/if}]
    <div class="row">
       <div class="col-xs-12 col-md-4 pull-right">
-         <div itemscope itemtype="http://schema.org/Organization">
+         <div>
             <address>
-               <strong itemprop="name">[{$oxcmp_shop->oxshops__oxcompany->value}]</strong><br>
-               <span itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
-                        <span itemprop="streetAddress">[{$oxcmp_shop->oxshops__oxstreet->value}]</span><br>
-                        <span itemprop="postalCode">[{$oxcmp_shop->oxshops__oxzip->value}]</span> [{$oxcmp_shop->oxshops__oxcity->value}]<br>
+               <strong>[{$oxcmp_shop->oxshops__oxcompany->value}]</strong><br>
+               <span>
+                      [{$oxcmp_shop->oxshops__oxstreet->value}]<br>
+                      [{$oxcmp_shop->oxshops__oxzip->value}] [{$oxcmp_shop->oxshops__oxcity->value}]<br>
                    [{$oxcmp_shop->oxshops__oxcountry->value}]<br>
-                        <span class="hidden" itemprop="addressLocality">[{$oxcmp_shop->oxshops__oxcity->value}], [{$oxcmp_shop->oxshops__oxcountry->value}]</span>
+                        <span class="hidden">[{$oxcmp_shop->oxshops__oxcity->value}], [{$oxcmp_shop->oxshops__oxcountry->value}]</span>
                     </span>
                 [{if $oxcmp_shop->oxshops__oxtelefon->value}]
                    <strong>[{oxmultilang ident="PHONE" suffix="COLON"}]</strong>
-                   <span itemprop="telephone">[{$oxcmp_shop->oxshops__oxtelefon->value}]</span>
+                 [{$oxcmp_shop->oxshops__oxtelefon->value}]
                    <br>
                 [{/if}]
                 [{if $oxcmp_shop->oxshops__oxtelefax->value}]
                    <strong>[{oxmultilang ident="FAX" suffix="COLON"}]</strong>
-                   <span itemprop="faxNumber">[{$oxcmp_shop->oxshops__oxtelefax->value}]</span>
+                 [{$oxcmp_shop->oxshops__oxtelefax->value}]
                    <br>
                 [{/if}]
                 [{if $oxcmp_shop->oxshops__oxinfoemail->value}]
                    <strong>[{oxmultilang ident="EMAIL" suffix="COLON"}]</strong>
-                   <span itemprop="email">[{oxmailto address=$oxcmp_shop->oxshops__oxinfoemail->value}]</span>
+                 [{oxmailto address=$oxcmp_shop->oxshops__oxinfoemail->value}]
                    <br>
                 [{/if}]
-               <span class="hidden" itemprop="url">[{$oViewConf->getHomeLink()}]</span>
+               <span class="hidden">[{$oViewConf->getHomeLink()}]</span>
             </address>
          </div>
       </div>

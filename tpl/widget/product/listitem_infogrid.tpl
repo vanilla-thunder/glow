@@ -11,7 +11,7 @@
     [{/if}]
     <div class="panel panel-default">
 
-        <div class="row panel-body" itemscope itemtype="http://schema.org/Product">
+        <div class="row panel-body">
             <div class="col-xs-12 col-md-5">
                 [{block name="widget_product_listitem_infogrid_gridpicture"}]
                     <a class="text-center btn-block" href="[{$_productLink}]" title="[{$product->oxarticles__oxtitle->value}] [{$product->oxarticles__oxvarselect->value}]">
@@ -26,13 +26,13 @@
                 [{block name="widget_product_listitem_infogrid_titlebox"}]
                     <div class="title h3">
                         <a id="[{$testid}]" href="[{$_productLink}]" title="[{$product->oxarticles__oxtitle->value}] [{$product->oxarticles__oxvarselect->value}]">
-                            <span itemprop="name">[{$product->oxarticles__oxtitle->value}] [{$product->oxarticles__oxvarselect->value}]</span>
+                          [{$product->oxarticles__oxtitle->value}] [{$product->oxarticles__oxvarselect->value}]
                         </a>
                     </div>
                 [{/block}]
 
                 [{block name="widget_product_listitem_infogrid_shortdesc"}]
-                    <div class="shortdesc" itemprop="description">[{$product->oxarticles__oxshortdesc->rawValue}]</div>
+                    <div class="shortdesc">[{$product->oxarticles__oxshortdesc->rawValue}]</div>
                 [{/block}]
 
                 <hr/>
@@ -41,8 +41,8 @@
                 [{assign var="tprice"     value=$product->getTPrice()}]
                 [{assign var="oUnitPrice" value=$product->getUnitPrice()}]
 
-                <div class="price text-center" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
-                    <link itemprop="itemCondition" href="http://schema.org/NewCondition"/>
+                <div class="price text-center">
+                    <link   href="http://schema.org/NewCondition"/>
                     [{block name="widget_product_listitem_infogrid_price"}]
                         [{assign var="sOnly" value=""}]
                         [{if $tprice && $tprice->getBruttoPrice() > $price->getBruttoPrice()}]
@@ -68,8 +68,8 @@
                                 <strong class="h2">
                                     <a href="[{$_productLink}]" title="[{$product->oxarticles__oxtitle->value}] [{$product->oxarticles__oxvarselect->value}]">
                                         <span class="price-from">[{$sFrom}]</span>
-                                        <span class="price" itemprop="[{if $product->isRangePrice()}]minPrice[{/if}] price" content="[{$product->getBasePrice()}]">[{$fPrice}]</span>
-                                        <span class="currency" itemprop="priceCurrency" content="[{$currency->name}]">[{$currency->sign}]</span>
+                                        <span class="price">[{$fPrice}]</span>
+                                        <span class="currency">[{$currency->sign}]</span>
                                     </a>
                                     <span class="price-markup">[{include file="page/details/inc/vatinfo.tpl"}]</span>
                                 </strong>

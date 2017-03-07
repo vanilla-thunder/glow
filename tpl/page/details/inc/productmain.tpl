@@ -62,7 +62,7 @@
             [{* article number *}]
             [{block name="details_productmain_artnumber"}]
                 <span class="small text-muted">[{oxmultilang ident="ARTNUM" suffix="COLON"}]
-                    <span>[{$oDetailsProduct->oxarticles__oxartnum->value}]</span></span>
+                  [{$oDetailsProduct->oxarticles__oxartnum->value}]</span>
             [{/block}]
 
             [{* ratings *}]

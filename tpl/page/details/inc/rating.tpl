@@ -1,15 +1,6 @@
 <div>
     [{assign var="iRatingValue" value=$oView->getRatingValue()}]
 
-    [{if $iRatingValue}][{strip}]
-    <div class="hidden" itemtype="http://schema.org/AggregateRating" itemscope="" itemprop="aggregateRating">
-        <span itemprop="worstRating">1</span>
-        <span itemprop="bestRating ">5</span>
-        <span itemprop="ratingValue">[{$iRatingValue}]</span>
-        <span itemprop="reviewCount">[{$oView->getRatingCount()}]</span>
-    </div>
-    [{/strip}][{/if}]
-
     [{if !$oxcmp_user}]
         [{assign var="_star_title" value="MESSAGE_LOGIN_TO_RATE"|oxmultilangassign}]
     [{elseif !$oView->canRate()}]

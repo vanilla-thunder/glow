@@ -579,7 +579,7 @@
                                    rel="nofollow">[{$oOrderFile->oxorderfiles__oxfilename->value}]</a>
                                 [{$oOrderFile->getFileSize()|oxfilesize}]
                             [{else}]
-                                <span>[{$oOrderFile->oxorderfiles__oxfilename->value}]</span>
+                              [{$oOrderFile->oxorderfiles__oxfilename->value}]
                                 <strong style="margin: 10px 0;">[{oxmultilang ident="DOWNLOADS_PAYMENT_PENDING" }]</strong>
                             [{/if}]
                         [{/foreach}]

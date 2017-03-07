@@ -9,7 +9,7 @@
    [{else}]
       [{assign var='_productLink' value=$product->getLink()}]
    [{/if}]
-   <div class="row" itemscope itemtype="http://schema.org/Product">
+   <div class="row">
       <div class="col-xs-12 col-sm-3">
          <div class="picture">
             [{block name="widget_product_listitem_line_picturebox"}]
@@ -24,13 +24,13 @@
          [{block name="widget_product_listitem_line_titlebox"}]
             <div class="title h2">
                <a href="[{$_productLink}]" title="[{$product->oxarticles__oxtitle->value}] [{$product->oxarticles__oxvarselect->value}]">
-                  <span itemprop="name">[{$product->oxarticles__oxtitle->value}] [{$product->oxarticles__oxvarselect->value}]</span>
+                [{$product->oxarticles__oxtitle->value}] [{$product->oxarticles__oxvarselect->value}]
                </a>
             </div>
          [{/block}]
 
          [{block name="widget_product_listitem_line_shortdesc"}]
-            <strong class="description" itemprop="description">
+            <strong class="description">
                <a href="[{$_productLink}]" title="[{$product->oxarticles__oxtitle->value}] [{$product->oxarticles__oxvarselect->value}]">
                   [{$product->oxarticles__oxshortdesc->rawValue}]
                </a>
@@ -56,7 +56,7 @@
                      [{foreach from=$oAttributes item="oAttr" name="attribute"}]
                         <li>
                            <strong>[{$oAttr->oxattribute__oxtitle->value}][{oxmultilang ident="COLON"}]</strong>
-                           <span>[{$oAttr->oxattribute__oxvalue->value}]</span>
+                         [{$oAttr->oxattribute__oxvalue->value}]
                         </li>
                      [{/foreach}]
                   </ul>
@@ -69,8 +69,8 @@
                [{assign var="price"      value=$product->getPrice()}]
                [{assign var="tprice"     value=$product->getTPrice()}]
                [{assign var="oUnitPrice" value=$product->getUnitPrice()}]
-               <div class="price" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
-                  <link itemprop="itemCondition" href="http://schema.org/NewCondition"/>
+               <div class="price">
+                  <link   href="http://schema.org/NewCondition"/>
 
                   [{block name="widget_product_listitem_line_price"}]
                      <a href="[{$_productLink}]" class="btn btn-default btn-block btn-lg">
@@ -93,8 +93,8 @@
                               [{/if}]
                               <div class="h3">
                               <span class="price-from">[{$sFrom}]</span>
-                              <span class="price" itemprop="[{if $product->isRangePrice()}]minPrice[{/if}] price" content="[{$product->getBasePrice()}]">[{$fPrice}]</span>
-                                 <span class="currency" itemprop="priceCurrency" content="[{$currency->name}]">[{$currency->sign}]</span><em>*</em>
+                              <span class="price">[{$fPrice}]</span>
+                                 <span class="currency">[{$currency->sign}]</span><em>*</em>
                               </div>
                            [{/if}]
                         [{/block}]

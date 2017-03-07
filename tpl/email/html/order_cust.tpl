@@ -11,10 +11,10 @@
 [{strip}]
    [{capture assign="title"}]
       [{oxmultilang ident="ORDER_NR" suffix="COLON"}]
-      <span itemprop="orderNumber"> [{$order->oxorder__oxordernr->value}]</span>
+     [{$order->oxorder__oxordernr->value}]
       <br/>
       [{oxmultilang ident="ORDER_FROM" suffix="COLON"}]
-      <span itemprop="orderDate" content="[{$order->oxorder__oxorderdate->value|date_format:'%Y-%m-%d'}]"> [{$order->oxorder__oxorderdate->value|date_format:"%d.%m.%Y"}]</span>
+     [{$order->oxorder__oxorderdate->value|date_format:"%d.%m.%Y"}]
    [{/capture}]
    [{assign var="microdataItemtype" value="http://schema.org/Order"}]
 
@@ -62,8 +62,8 @@
          <div class="block" style="width:400px;display:inline-block;vertical-align:top;">
             <table width="100%">
                <tr>
-                  <td class="padding" align="left" itemprop="acceptedOffer" itemscope itemtype="http://schema.org/Offer" style="padding-top:16px;padding-bottom:16px;padding-right:16px;padding-left:16px;font-size:16px;line-height:1.25;">
-                     <span itemprop="itemOffered" itemscope itemtype="http://schema.org/Product"><h3 itemprop="name">[{$basketitem->getTitle()}]</h3></span>
+                  <td class="padding" align="left"      style="padding-top:16px;padding-bottom:16px;padding-right:16px;padding-left:16px;font-size:16px;line-height:1.25;">
+                   <h3>[{$basketitem->getTitle()}]</h3>
 
                      [{if $basketitem->getPersParams() }]
                         [{foreach key=sVar from=$basketitem->getPersParams() item=aParam}]
@@ -94,9 +94,9 @@
                         [{/foreach}]
                      [{/if}]
 
-                     <b itemprop="priceSpecification" itemscope itemtype="http://schema.org/PriceSpecification">
+                     <b>
                         [{oxmultilang ident="TOTAL" suffix="COLON"}]
-                        <span itemprop="price">[{oxprice price=$basketitem->getPrice() currency=$currency}]</span></b><br>
+                      [{oxprice price=$basketitem->getPrice() currency=$currency}]</b><br>
                      <small>[{oxmultilang ident="VAT" suffix="COLON"}] [{$basketitem->getVatPercent() }]%</small>
                      <br>
 
@@ -514,7 +514,7 @@
             <a href="[{ oxgetseourl ident=$oViewConf->getSelfLink()|cat:"cl=download" params="sorderfileid="|cat:$oOrderFile->getId()}]" rel="nofollow">[{$oOrderFile->oxorderfiles__oxfilename->value}]</a>
             [{$oOrderFile->getFileSize()|oxfilesize}]
          [{else}]
-            <span>[{$oOrderFile->oxorderfiles__oxfilename->value}]</span>
+          [{$oOrderFile->oxorderfiles__oxfilename->value}]
             <strong>[{oxmultilang ident="DOWNLOADS_PAYMENT_PENDING" }]</strong>
          [{/if}]
       [{/foreach}]
@@ -594,16 +594,16 @@
 
                 [{* RECHUNGSADRESSE *}]
                 <span class="h4" style="color:#71A12A;margin-top:5px;margin-bottom:5px;margin-right:0;margin-left:0;font-weight:bold;font-size:18px;">[{oxmultilang ident="BILLING_ADDRESS" suffix="COLON" }]</span><br>
-               <span itemprop="customer" itemscope itemtype="http://schema.org/Person">
+               <span>
                [{ $order->oxorder__oxbillcompany->value }]<br>
-               [{ $order->oxorder__oxbillsal->value|oxmultilangsal}] <span itemprop="name">[{ $order->oxorder__oxbillfname->value }] [{ $order->oxorder__oxbilllname->value }]</span></span><br>
+               [{ $order->oxorder__oxbillsal->value|oxmultilangsal}] <span>[{ $order->oxorder__oxbillfname->value }] [{ $order->oxorder__oxbilllname->value }]</span></span><br>
                [{if $order->oxorder__oxbilladdinfo->value }][{ $order->oxorder__oxbilladdinfo->value }]<br>[{/if}]
-               <span itemprop="billingAddress" itemscope itemtype="http://schema.org/PostalAddress">
-                  <span itemprop="streetAddress">[{ $order->oxorder__oxbillstreet->value }] [{ $order->oxorder__oxbillstreetnr->value }]</span><br>
+               <span>
+                [{ $order->oxorder__oxbillstreet->value }] [{ $order->oxorder__oxbillstreetnr->value }]<br>
                   [{if $order->oxorder__oxbillstateid->value }][{ $order->oxorder__oxbillstateid->value }]<br/>[{/if}]
-                  <span itemprop="addressLocality">[{ $order->oxorder__oxbillzip->value }]</span>&nbsp;
-                  <span itemprop="addressLocality">[{ $order->oxorder__oxbillcity->value }]</span><br>
-                  <span itemprop="addressCountry" itemscope itemtype="http://schema.org/Country"><span itemprop="name">[{ $order->oxorder__oxbillcountry->value }]</span></span><br>
+                [{ $order->oxorder__oxbillzip->value }]&nbsp;
+                [{ $order->oxorder__oxbillcity->value }]<br>
+              [{ $order->oxorder__oxbillcountry->value }]<br>
                   [{if $order->oxorder__oxbillustid->value}][{oxmultilang ident="VAT_ID_NUMBER" suffix="COLON" }] [{ $order->oxorder__oxbillustid->value }]<br>[{/if}]
                </span>
                [{if $order->oxorder__oxbillfon->value }][{oxmultilang ident="PHONE" suffix="COLON" }] [{ $order->oxorder__oxbillfon->value }]<br>[{/if}]
