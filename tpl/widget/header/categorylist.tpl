@@ -78,6 +78,13 @@
                                                    <li [{if $osubsubcat->expanded}]class="active"[{/if}]>
                                                       <a [{if $osubsubcat->expanded}]class="current"[{/if}] href="[{$osubsubcat->getLink()}]"> - [{$osubsubcat->oxcategories__oxtitle->value}]</a>
                                                    </li>
+                                                   [{foreach from=$osubcat->getSubCats() item="osubsubcat" key="subcatkey"}]
+                                                      [{if $osubsubcat->getIsVisible()}]
+                                                         <li [{if $homeSelected == 'false' && $osubsubcat->expanded}]class="active"[{/if}]>
+                                                            <a [{if $homeSelected == 'false' && $osubsubcat->expanded}]class="current"[{/if}] href="[{$osubsubcat->getLink()}]"><i class="fa fa-angle-right fa-fw"></i> [{$osubsubcat->oxcategories__oxtitle->value}]</a>
+                                                         </li>
+                                                      [{/if}]
+                                                   [{/foreach}]
                                                 [{/if}]
                                              [{/foreach}]
                                           [{/if}]
