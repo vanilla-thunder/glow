@@ -21,10 +21,10 @@
 [{/capture}]
 [{if $actCategory->oxcategories__oxthumb->value && $actCategory->getThumbUrl()}]
     [{capture append="oxidBlock_pageSubheader"}]
-        <div class="main-row">
-            <img src="[{$oViewConf->getImageUrl('spinner.gif')}]" data-src="[{$actCategory->getThumbUrl()}]" alt="[{$actCategory->oxcategories__oxtitle->value}]"
-                 class="img-responsive">
+        <div class="container[{if $oViewConf->getViewThemeParam('blFullwidthLayout')}]-fluid[{/if}] shadow banner">
+            <img src="[{$oViewConf->getImageUrl('spinner.gif')}]" data-src="[{$actCategory->getThumbUrl()}]" alt="[{$actCategory->oxcategories__oxtitle->value}]" class="banner-img"/>
         </div>
+        <div class="spacer"></div>
     [{/capture}]
 [{/if}]
 
