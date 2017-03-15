@@ -1,0 +1,141 @@
+
+#oxPaymentMethodContainer {
+  margin: 24px 0px 24px 0px;
+  padding: 0;
+  font-family: Arial;
+  color: #3f3f3f;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
+  &.insideContinueButton {
+    margin-top: 24px;
+    margin-bottom: 24px
+  }
+  &.errorPage {
+    border-top-color: transparent;
+    .separator.row:first-of-type {
+      border-color: transparent
+    }
+  }
+
+  a {
+    font-weight: normal
+  }
+  .paymentMethodRow {
+    padding: 0px 8px 0px 8px;
+    overflow: hidden;
+    background-color: #fff;
+    @media (min-width: 400px) {
+      padding: 0px 16px 0px 16px
+    }
+    .right { float: right }
+    .clear { clear: both }
+    div.nameRow {
+      height: 64px;
+      display: table;
+      width: 100%;
+      .methodIcon { width: 125px; }
+      .methodName, .methodIcon {
+        display: table-cell;
+        vertical-align: middle;
+        label {
+          cursor: pointer;
+          cursor: hand;
+          display: block;
+        }
+      }
+    }
+    img.paymentMethodIcon {
+      max-width: 100px;
+      max-height: 30px
+    }
+    img.thirdPartyImage {
+      max-width: 100px;
+      max-height: 30px
+    }
+    div.paymentMethodDetails {
+      display: none;
+      font-style: normal
+    }
+  }
+
+  input[name='paymentid']:checked + .paymentMethodRow {
+    background: #f9f9f9;
+    div.nameRow { font-weight: bold }
+    div.checkMark {
+      background-image: url("https://www.paypalobjects.com/webstatic/ppplus/icons/checkmark.png");
+      background-repeat: no-repeat;
+      background-position: right;
+      height: 50px;
+      width: 25px
+    }
+    div.paymentMethodDetails {
+      display: block;
+      a {
+        font-weight: normal;
+        color: #0070ba
+      }
+      a:hover, a:focus, a:active {
+        text-decoration: underline;
+        color: #005ea6
+      }
+      button {
+        margin-bottom: 20px;
+        font-family: Arial;
+        font-weight: bold;
+        font-size: 12px;
+        width: 120px;
+        height: 36px;
+        @media (min-width: 400px) { margin-left: 125px }
+        @media (min-width: 699px) { margin-top: 16px }
+      }
+      @media (min-width: 699px) {
+        .btn-inline {
+          margin-top: 0;
+          line-height: 64px
+        }
+      }
+      .detailsText {
+        font-size: 11px;
+        color: #3f3f3f;
+        font-family: Arial;
+        margin-bottom: 12px;
+        padding-right: 8px;
+        @media (min-width: 400px) {
+          padding-left: 125px;
+          padding-right: 45px
+        }
+      }
+    }
+  }
+
+  .paymentMethodRow:hover {
+    background: #f9f9f9;
+    cursor: pointer;
+    cursor: hand
+  }
+
+  .separator {
+    border-bottom: 1px solid #dfdfdf
+  }
+
+  .messageBanner {
+    position: relative;
+    top: 24px;
+    padding-left: 9px;
+    padding-right: 9px
+  }
+
+  .surchargingBanner {
+    padding-bottom: 20px;
+    font-family: Arial;
+    font-size: 11px;
+    color: #596065;
+    line-height: 14px
+  }
+}
+#ppplus { margin-right: 1px; }

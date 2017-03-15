@@ -204,7 +204,7 @@ $(function () {
                     },
                     regexp: {
                         regexp: /^(?=.*[a-zA-Z])(?=.*\d)$/i,
-                        message: 'Das neue Passwort muss zumindest aus Buchstaben und Ziffern bestehen!' 
+                        message: 'Das neue Passwort muss zumindest aus Buchstaben und Ziffern bestehen!'
                     },
                     stringLength: {
                         min: 6,

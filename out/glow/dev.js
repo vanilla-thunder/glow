@@ -187,8 +187,9 @@ watch($lessdir, function (filename) {
             console.log('');
             console.log('  [ ' + new Date().toLocaleTimeString() + ' ] ' + path.basename(filename) + ' changed');
 
-            if (path.basename(filename) == path.basename($criticalsource) || path.basename(filename).indexOf('critical') !== -1) compile($criticalsource, $criticaltarget);
-            else if (path.basename(filename) == path.basename($asyncsource) || path.basename(filename).indexOf('async') !== -1) compile($asyncsource, $asynctarget);
+            //if (path.basename(filename) == path.basename($criticalsource) || path.basename(filename).indexOf('critical') !== -1) compile($criticalsource, $criticaltarget);
+            //else if (path.basename(filename) == path.basename($asyncsource) || path.basename(filename).indexOf('async') !== -1) compile($asyncsource, $asynctarget);
+            compile($criticalsource, $criticaltarget);
         });
     }
 });

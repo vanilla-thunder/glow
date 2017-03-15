@@ -110,29 +110,47 @@
 
                 [{block name="change_payment"}]
 
-                    [{if $oView->getPaymentList()}]
+                [{if $oView->getPaymentList()}]
 
-                        <!-- save payment methods count to cookie for final step [{'paymentscount'|setcookie:$oView->getPaymentCnt()}] -->
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h3 id="paymentHeader" class="panel-title">[{oxmultilang ident="PAYMENT_METHOD"}]</h3>
+                <!-- save payment methods count to cookie for final step [{'paymentscount'|setcookie:$oView->getPaymentCnt()}] -->
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 id="paymentHeader" class="panel-title">[{oxmultilang ident="PAYMENT_METHOD"}]</h3>
+                    </div>
+                    <div class="panel-body" id="oxPaymentMethodContainer">
+                        <form action="[{$oViewConf->getSslSelfLink()}]" class="form-horizontal validate payment" id="payment" name="order" method="post">
+                            <div class="hidden">
+                                [{$oViewConf->getHiddenSid()}]
+                                [{$oViewConf->getNavFormParams()}]
+                                <input type="hidden" name="cl" value="[{$oViewConf->getActiveClassName()}]">
+                                <input type="hidden" name="fnc" value="validatepayment">
                             </div>
-                            <div class="panel-body">
 
-                                <div class="panel-group" id="paymentaccordion" role="tablist" aria-multiselectable="true">
-                                    [{foreach key=sPaymentID from=$oView->getPaymentList() item=paymentmethod name=PaymentSelect}]
-                                        <div class="panel panel-default">
-                                            <div class="panel-heading" role="tab" id="heading_[{$sPaymentID}]" role="button" href="#payment_[{$sPaymentID}]"
-                                                 data-toggle="collapse" data-parent="#paymentaccordion" aria-expanded="true" aria-controls="payment_[{$sPaymentID}]">
-                                                <h4 class="panel-title">[{$paymentmethod->oxpayments__oxdesc->value}]
-                                                    [{if $paymentmethod->oxpayments__oxaddsum->value}]&nbsp;([{oxprice price=$paymentmethod->getPrice()  currency=$currency }])[{/if}]
-                                                </h4>
-                                                <small>[{$paymentmethod->oxpayments__oxlongdesc->value}]</small>
+                            [{foreach key=sPaymentID from=$oView->getPaymentList() item=paymentmethod name=PaymentSelect}]
+
+                                [{block name="select_payment"}]
+                                    <div class="container-fluid">
+                                        <input type="radio" name="paymentid" class="hide" id="payent_[{$sPaymentID}]" value="[{$sPaymentID}]" [{if $oView->getCheckedPaymentId() == $sPaymentID}]checked[{/if}]>
+                                        <div class="paymentMethodRow row">
+                                            <div class="nameRow">
+                                                <div class="methodIcon">
+                                                    <label for="payent_[{$sPaymentID}]">
+                                                        <img src="https://www.paypalobjects.com/webstatic/ppplus/images/bank-logo.png" alt="[{$paymentmethod->oxpayments__oxdesc->value}]"
+                                                             class="paymentMethodIcon">
+                                                    </label>
+                                                </div>
+                                                <div class="methodName">
+                                                    <label for="payent_[{$sPaymentID}]">
+                                                        [{$paymentmethod->oxpayments__oxdesc->value}]
+                                                        [{if $paymentmethod->oxpayments__oxaddsum->value}]&nbsp;([{oxprice price=$paymentmethod->getPrice()  currency=$currency }])[{/if}]
+                                                    </label>
+                                                </div>
+                                                <div class="paymentMethodDetails right">
+                                                    <div class="checkMark"></div>
+                                                </div>
                                             </div>
-                                            <div id="payment_[{$sPaymentID}]" class="panel-collapse collapse [{if $oView->getCheckedPaymentId() == $paymentmethod->oxpayments__oxid->value}]in[{/if}]"
-                                                 role="tabpanel" aria-labelledby="heading_[{$sPaymentID}]">
-                                                <div class="panel-body">
-
+                                            <div class="paymentMethodDetails">
+                                                <div class="detailsText">
                                                     [{if $paymentmethod->getPrice() && $oViewConf->isFunctionalityEnabled('blShowVATForPayCharge')}]
                                                         [{assign var="oPaymentPrice" value=$paymentmethod->getPrice()}]
                                                         [{oxprice price=$oPaymentPrice->getNettoPrice() currency=$currency}]
@@ -140,67 +158,59 @@
                                                             [{oxmultilang ident="PLUS_VAT"}] [{oxprice price=$oPaymentPrice->getVatValue() currency=$currency}]
                                                         [{/if}]
                                                     [{/if}]
-
-                                                    <form action="[{$oViewConf->getSslSelfLink()}]" class="form-horizontal validate payment" id="payment" name="order" method="post">
-                                                        <div class="hidden">
-                                                            [{$oViewConf->getHiddenSid()}]
-                                                            [{$oViewConf->getNavFormParams()}]
-                                                            <input type="hidden" name="cl" value="[{$oViewConf->getActiveClassName()}]">
-                                                            <input type="hidden" name="fnc" value="validatepayment">
-                                                        </div>
-
-                                                        [{block name="select_payment"}]
-                                                            [{if $sPaymentID == "oxidcreditcard"}]
-                                                                [{include file="page/checkout/inc/payment_oxidcreditcard.tpl"}]
-                                                            [{elseif $sPaymentID == "oxiddebitnote"}]
-                                                                [{include file="page/checkout/inc/payment_oxiddebitnote.tpl"}]
-                                                            [{else}]
-                                                                [{include file="page/checkout/inc/payment_other.tpl"}]
-                                                            [{/if}]
-                                                        [{/block}]
-
-                                                        [{if !$oView->isLowOrderPrice()}]
-                                                            <button type="submit" name="paymentid" value="[{$sPaymentID}]" class="btn btn-success pull-right btn-lg">
-                                                                [{oxmultilang ident="GLOW_PAY_WITH" args=$paymentmethod->oxpayments__oxdesc->value }] <i class="fa fa-caret-right"></i>
-                                                            </button>
-                                                        [{/if}]
-                                                    </form>
+                                                    [{$paymentmethod->oxpayments__oxlongdesc->value}]
+                                                    [{if $sPaymentID == "oxidcreditcard"}]
+                                                        [{include file="page/checkout/inc/payment_oxidcreditcard.tpl"}]
+                                                    [{elseif $sPaymentID == "oxiddebitnote"}]
+                                                        [{include file="page/checkout/inc/payment_oxiddebitnote.tpl"}]
+                                                    [{else}]
+                                                        [{include file="page/checkout/inc/payment_other.tpl"}]
+                                                    [{/if}]
                                                 </div>
                                             </div>
                                         </div>
-                                    [{/foreach}]
-                                </div>
-                            </div>
-                        </div>
-                        [{block name="checkout_payment_nextstep"}][{/block}]
-                    [{elseif $oView->getEmptyPayment()}]
-                        [{block name="checkout_payment_nopaymentsfound"}]
-                            <div class="lineBlock"></div>
-                            <h3 id="paymentHeader" class="blockHead">[{oxmultilang ident="PAYMENT_INFORMATION"}]</h3>
-                            [{oxifcontent ident="oxnopaymentmethod" object="oCont"}]
-                            [{$oCont->oxcontents__oxcontent->value}]
-                            [{/oxifcontent}]
-                            <form action="[{$oViewConf->getSslSelfLink()}]" class="form-horizontal validate payment" id="payment" name="order" method="post">
-                                <div class="hidden">
-                                    [{$oViewConf->getHiddenSid()}]
-                                    [{$oViewConf->getNavFormParams()}]
-                                    <input type="hidden" name="cl" value="[{$oViewConf->getActiveClassName()}]">
-                                    <input type="hidden" name="fnc" value="validatepayment">
-                                </div>
-                                <input type="hidden" name="paymentid" value="oxempty">
-                                <div class="lineBox clear">
-                                    <a href="[{oxgetseourl ident=$oViewConf->getSelfLink()|cat:"cl=user"}]" class="btn btn-default pull-left prevStep submitButton largeButton">
-                                        <i class="fa fa-caret-left"></i> [{oxmultilang ident="PREVIOUS_STEP"}]</a>
-                                    <button type="submit" name="userform" class="btn btn-primary pull-right submitButton nextStep largeButton"
-                                            id="paymentNextStepBottom">[{oxmultilang ident="CONTINUE_TO_NEXT_STEP"}]
-                                        <i class="fa fa-caret-right"></i></button>
-                                </div>
-                            </form>
-                        [{/block}]
-                    [{/if}]
-                [{/block}]
+                                    </div>
+                                [{/block}]
+                            [{/foreach}]
 
+                            [{if !$oView->isLowOrderPrice()}]
+                                <button type="submit" id="paymentNextStepBottom" class="btn btn-success pull-right btn-lg">
+                                    [{oxmultilang ident="CONTINUE_TO_NEXT_STEP" }] <i class="fa fa-caret-right"></i>
+                                </button>
+                            [{/if}]
+                        </form>
+                    </div>
+                </div>
             </div>
+            [{block name="checkout_payment_nextstep"}][{/block}]
+            [{elseif $oView->getEmptyPayment()}]
+            [{block name="checkout_payment_nopaymentsfound"}]
+                <div class="lineBlock"></div>
+                <h3 id="paymentHeader" class="blockHead">[{oxmultilang ident="PAYMENT_INFORMATION"}]</h3>
+                [{oxifcontent ident="oxnopaymentmethod" object="oCont"}]
+                [{$oCont->oxcontents__oxcontent->value}]
+                [{/oxifcontent}]
+                <form action="[{$oViewConf->getSslSelfLink()}]" class="form-horizontal validate payment" id="payment" name="order" method="post">
+                    <div class="hidden">
+                        [{$oViewConf->getHiddenSid()}]
+                        [{$oViewConf->getNavFormParams()}]
+                        <input type="hidden" name="cl" value="[{$oViewConf->getActiveClassName()}]">
+                        <input type="hidden" name="fnc" value="validatepayment">
+                    </div>
+                    <input type="hidden" name="paymentid" value="oxempty">
+                    <div class="lineBox clear">
+                        <a href="[{oxgetseourl ident=$oViewConf->getSelfLink()|cat:"cl=user"}]" class="btn btn-default pull-left prevStep submitButton largeButton">
+                            <i class="fa fa-caret-left"></i> [{oxmultilang ident="PREVIOUS_STEP"}]</a>
+                        <button type="submit" name="userform" class="btn btn-primary pull-right submitButton nextStep largeButton"
+                                id="paymentNextStepBottom">[{oxmultilang ident="CONTINUE_TO_NEXT_STEP"}]
+                            <i class="fa fa-caret-right"></i></button>
+                    </div>
+                </form>
+            [{/block}]
+            [{/if}]
+            [{/block}]
+
+        </div>
         </div>
     [{/block}]
     [{insert name="oxid_tracker" title=$template_title}]
