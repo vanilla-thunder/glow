@@ -30,6 +30,10 @@
             [{/if}]
         [{/block}]
 
+        [{if $oViewConf->getFbAppId()}]
+            <meta property="fb:app_id" content="[{$oViewConf->getFbAppId()}]">
+        [{/if}]
+
         [{block name="head_meta_open_graph"}]
             <meta property="og:site_name" content="[{$oViewConf->getBaseDir()}]">
             <meta property="og:title" content="[{$sPageTitle}]">

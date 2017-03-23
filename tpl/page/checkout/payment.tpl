@@ -42,12 +42,11 @@
                                                     </label>
                                                 </div>
                                                 [{block name="checkout_shipset_longdesc"}]
+                                                    [{oxifcontent ident="shipset_"|cat:$sPaymentID object="oCont"}]
                                                     <div>
-                                                        [{oxifcontent ident="shipset_"|cat:$sPaymentID object="oCont"}]
                                                         [{$oCont->oxcontents__oxcontent->value}]
-                                                        [{/oxifcontent}]
                                                     </div>
-                                                    <hr/>
+                                                    [{/oxifcontent}]
                                                 [{/block}]
                                             [{/foreach}]
 
@@ -133,18 +132,13 @@
                                         <input type="radio" name="paymentid" class="hide" id="payent_[{$sPaymentID}]" value="[{$sPaymentID}]" [{if $oView->getCheckedPaymentId() == $sPaymentID}]checked[{/if}]>
                                         <div class="paymentMethodRow row">
                                             <div class="nameRow">
-                                                <div class="methodIcon">
-                                                    <label for="payent_[{$sPaymentID}]">
-                                                        <img src="https://www.paypalobjects.com/webstatic/ppplus/images/bank-logo.png" alt="[{$paymentmethod->oxpayments__oxdesc->value}]"
-                                                             class="paymentMethodIcon">
-                                                    </label>
-                                                </div>
-                                                <div class="methodName">
-                                                    <label for="payent_[{$sPaymentID}]">
+                                                <label class="methodIcon" for="payent_[{$sPaymentID}]">
+                                                        <img src="[{$oViewConf->getPictureDir()|cat:'wysiwigpro/paymenticons/'|cat:$sPaymentID|cat:'.png'}]" alt="[{$paymentmethod->oxpayments__oxdesc->value}]" class="paymentMethodIcon">
+                                                </label>
+                                                <label class="methodName" for="payent_[{$sPaymentID}]">
                                                         [{$paymentmethod->oxpayments__oxdesc->value}]
                                                         [{if $paymentmethod->oxpayments__oxaddsum->value}]&nbsp;([{oxprice price=$paymentmethod->getPrice()  currency=$currency }])[{/if}]
-                                                    </label>
-                                                </div>
+                                                </label>
                                                 <div class="paymentMethodDetails right">
                                                     <div class="checkMark"></div>
                                                 </div>
