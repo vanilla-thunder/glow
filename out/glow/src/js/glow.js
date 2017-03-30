@@ -226,15 +226,25 @@ $(function () {
                     }
                 }
             },
-            c_mac: {
+            c_text: {
                 validators: {
                     identical: {
+                        field: 'c_mac',
+                        message: 'Ihre Eingabe entspricht nicht dem Prüfcode.'
+                    }
+                }
+            },
+            c_mac: {
+                validators: {
+                    notEmpty: {
+                        message: 'Bitte geben Sie den Prüfcode ein.'
+                    },
+                    identical: {
                         field: 'c_text',
-                        message: 'Ihre Eingabe entspricht nicht dem Prüfcode'
+                        message: 'Ihre Eingabe entspricht nicht dem Prüfcode.'
                     }
                 }
             }
-
         }
     });
 });

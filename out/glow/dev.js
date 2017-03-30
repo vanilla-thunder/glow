@@ -1,4 +1,5 @@
 var fs = require('fs'),
+    util = require('util'),
     less = require('less'),
     LessPluginCleanCSS = require('less-plugin-clean-css'),
     ujs = require("uglify-js"),
@@ -22,11 +23,26 @@ var flowless = '../../' + (__dirname.indexOf('application/views/glow/out/glow') 
 // ********** UglifyJS config
 var $jsdir = path.join(__dirname, 'src/js/'), // watch this directory for file changes
     $jstarget = path.join(__dirname, 'src/js/glow.min.js'), // target for compressed js ouput
-    $jssourcemap = true, // include source map or not? true / false
-    $jsmangle = true; // mangle function names? true / false
+    $jsbeautify = false, // js beautifier
+    $jsmangle = true, // mangle function names? true / false
+    $jssourcemap = false; // include source map or not? true / false
 
 // ********************************************************
 
+var dev = false;
+if(process.argv && process.argv[2] == '--dev')
+{
+    dev = true;
+    console.log('');
+    console.log('   >> starting with dev configuration');
+    // less
+    $lesssourcemap = true;
+    $lessminify = false;
+    // js
+    $jsbeautify = true;
+    $jsmangle = false;
+    $jssourcemap = true;
+}
 
 less.logger.addListener({
     debug: function (msg) {
@@ -103,8 +119,8 @@ var walkSync = function (dir, filelist) {
 var mergeJS = function () {
     var libs = [
         "src/libs/jquery/dist/jquery.min.js",
-        "src/libs/bootstrap/dist/js/bootstrap.min.js",
-        "src/libs/bootstrapvalidator/dist/js/bootstrapValidator.min.js",
+        (dev ? "src/libs/bootstrap/dist/js/bootstrap.js" : "src/libs/bootstrap/dist/js/bootstrap.min.js"),
+        (dev ? "src/libs/bootstrapvalidator/dist/js/bootstrapValidator.js" : "src/libs/bootstrapvalidator/dist/js/bootstrapValidator.min.js"),
         "src/libs/bootstrapvalidator/dist/js/language/de_DE.js",
         "src/libs/jquery-mousewheel/jquery.mousewheel.js",
         "src/libs/jquery-unveil/jquery.unveil.js",
@@ -115,8 +131,31 @@ var mergeJS = function () {
     ];
     var files = walkSync(path.relative(__dirname, $jsdir), []);
     //console.log(libs.concat(files));
-    js = ujs.minify(libs.concat(files));
-    fs.writeFileSync($jstarget, js.code);
+
+    js = ujs.minify(
+        libs.concat(files),
+        {
+            compress: false,
+            beautify: $jsbeautify,
+            mangle: $jsmangle,
+            sourceMapInline: $jssourcemap
+
+        });
+     fs.writeFileSync($jstarget, js.code);
+      /*
+    var AST = null;
+    files.forEach(function(file){
+        var code = fs.readFileSync(file, "utf8");
+        AST = ujs.parse(
+            code,
+            {
+                filename: file,
+                toplevel: AST
+            });
+    });
+    console.log(AST.print_to_string());
+    fs.writeFileSync($jstarget, util.format(AST) + '\n');
+    */
     //bar.tick(4,{'token': $target + ' updated'});
     console.log('  > ' + path.relative(__dirname, $jstarget) + ' updated');
 };
@@ -138,13 +177,32 @@ stdin.addListener("data", function (d) {
         console.log('  > sourcemap set to: ' + $lesssourcemap);
         compile($criticalsource, $criticaltarget);
     }
+    else if (cmd == "beautify" || cmd == "b") {
+        $jsbeautify = !$jsbeautify;
+        console.log('  > js beautifier set to: ' + $jsbeautify);
+        mergeJS();
+    }
+    else if (cmd == "mangle") {
+        $jsmangle = !$jsmangle;
+        console.log('  > js mangle set to: ' + $jsmangle);
+        mergeJS();
+    }
+    else if (cmd == "jsmap") {
+        $jssourcemap = !$jssourcemap;
+        console.log('  > js sourcemap set to: ' + $jssourcemap);
+        mergeJS();
+    }
+
+
     else {
         console.log('');
         console.log(' | type "l" or "less" to compile less files');
         console.log(' | type "map" to toggle less sorucemap on and off ');
         console.log(' | type "min" to toggle minifying css on and off ');
         console.log(' |');
+        console.log(' | type "beautify" to toggle js beautifier on and off');
         console.log(' | type "mangle" to toggle mangle js names on and off');
+        console.log(' | type "jsmap" to toggle js sourcemap on and off');
         //console.log('  less directory:   ' + $watch);
         //console.log('');
         //console.log('  source: ' + $source);
@@ -160,22 +218,25 @@ console.log(' | type "l" or "less" to compile less files');
 console.log(' | type "m" or "minify" to toggle minifying css on and off ');
 console.log(' |');
 console.log(' |    flow less dir: ' + $vendor);
-console.log(' |   less directory: ' + path.relative(__dirname, $lessdir));
+console.log(' |   less directory: ' + path.relative(path.join(__dirname, '../../'), $lessdir));
 console.log(' |');
-console.log(' |  critical source: ' + path.relative(__dirname, $criticalsource));
-console.log(' |  critical output: ' + path.relative(__dirname, $criticaltarget));
+console.log(' |  critical source: ' + path.relative(path.join(__dirname, '../../'), $criticalsource));
+console.log(' |  critical output: ' + path.relative(path.join(__dirname, '../../'), $criticaltarget));
 console.log(' |');
-console.log(' |     async source: ' + path.relative(__dirname, $asyncsource));
-console.log(' |     async output: ' + path.relative(__dirname, $asynctarget));
+console.log(' |     async source: ' + path.relative(path.join(__dirname, '../../'), $asyncsource));
+console.log(' |     async output: ' + path.relative(path.join(__dirname, '../../'), $asynctarget));
 console.log(' |');
-console.log(' |        sourcemap: ' + $lesssourcemap);
 console.log(' |           minify: ' + $lessminify);
+console.log(' |        sourcemap: ' + $lesssourcemap);
 console.log(' |');
 console.log(' |_____________________________________________   UglifyJS');
 console.log(' |');
-console.log(' |     js directory: ' + path.relative(__dirname, $jsdir));
-console.log(' |        sourcemap: ' + $jssourcemap);
+console.log(' |        js target: ' + path.relative(path.join(__dirname, '../../'), $jstarget));
+console.log(' |     js directory: ' + path.relative(path.join(__dirname, '../../'), $jsdir));
+console.log(' |');
+console.log(' |         beautify: ' + $jsbeautify);
 console.log(' |           mangle: ' + $jsmangle);
+console.log(' |        sourcemap: ' + $jssourcemap);
 console.log(' |________________________________________________________');
 console.log('');
 
