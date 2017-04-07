@@ -19,15 +19,15 @@
 <div style="width: 300px;" class="block"><table width="100%"><tr><td class="padding" align="left">
     
     [{block name="email_html_ordershipped_oxordernr"}]
-        <h4>[{ oxmultilang ident="ORDER_NUMBER" suffix="COLON" }] <span>[{ $order->oxorder__oxordernr->value }]</span></h4>
+        <h4>[{ oxmultilang ident="ORDER_NUMBER" suffix="COLON" }] [{ $order->oxorder__oxordernr->value }]</h4>
     [{/block}]
     
     [{* delivery set || shipping carrier *}]
     <h4>
-        [{oxmultilang ident="SHIPPING_CARRIER" suffix="COLON"}] <span>[{$del->oxdeliveryset__oxtitle->value}]</span>
+        [{oxmultilang ident="SHIPPING_CARRIER" suffix="COLON"}] [{$del->oxdeliveryset__oxtitle->value}]
     </h4>
     
-    [{if $order->getTrackCode()}]<h4>Tracking Code:</h4><span>[{$order->getTrackCode()}]</span>[{/if}]
+    [{if $order->getTrackCode()}]<h4>Tracking Code:</h4> [{$order->getTrackCode()}][{/if}]
     
 </tr></table></div>
 
