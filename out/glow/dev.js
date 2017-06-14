@@ -241,7 +241,7 @@ console.log(' |________________________________________________________');
 console.log('');
 
 // file and directory watchers
-watch($lessdir, function (filename) {
+watch($lessdir, { recursive: true }, function (evt,filename) {
     if (path.extname(filename) == '.less') {
         fs.stat(filename, function (err, stat) {
             if (err !== null) return;
@@ -256,7 +256,7 @@ watch($lessdir, function (filename) {
 });
 
 // js watchers
-watch($jsdir, function (filename) {
+watch($jsdir, { recursive: true }, function (evt,filename) {
     if (path.basename(filename).indexOf('.min') !== -1 || path.extname(filename) !== '.js') return;
     fs.stat(filename, function (err, stat) {
         if (err !== null) return;
