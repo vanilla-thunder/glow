@@ -39,14 +39,14 @@
     [{/block}]
 
     <div class="row">
+        [{assign var="sProductPageLayout" value=$oViewConf->getViewThemeParam('sProductPageLayout')}]
+
         [{* article picture with zoom *}]
-        <div class="col-xs-12 col-sm-5">
+        <div class="col-xs-12 col-sm-[{if $sProductPageLayout == '33+66' }]4[{elseif $sProductPageLayout == '50+50' }]6[{else}]8[{/if}]">
             [{block name="details_productmain_zoom"}]
                 <div class="picture">
-                    <a href="[{$oPictureProduct->getZoomPictureUrl(1)}]" id="zoom1" class="thumbnail"
-                       rel="produktbilder">
-                        <img src="[{$oView->getActPicture()}]"
-                             alt="[{$oPictureProduct->oxarticles__oxtitle->value|strip_tags}] [{$oPictureProduct->oxarticles__oxvarselect->value|strip_tags}]">
+                    <a href="[{$oPictureProduct->getZoomPictureUrl(1)}]" id="zoom1" class="thumbnail" rel="produktbilder">
+                        <img src="[{$oView->getActPicture()}]" alt="[{$oPictureProduct->oxarticles__oxtitle->value|strip_tags}] [{$oPictureProduct->oxarticles__oxvarselect->value|strip_tags}]">
                     </a>
                 </div>
                 [{oxscript add='$(".thumbnail").fancybox();'}]
@@ -58,11 +58,10 @@
         </div>
 
         [{* product info *}]
-        <div class="col-xs-12 col-sm-7">
+        <div class="col-xs-12 col-sm-[{if $sProductPageLayout == '33+66' }]8[{elseif $sProductPageLayout == '50+50' }]6[{else}]4[{/if}]">
             [{* article number *}]
             [{block name="details_productmain_artnumber"}]
-                <span class="small text-muted">[{oxmultilang ident="ARTNUM" suffix="COLON"}]
-                  [{$oDetailsProduct->oxarticles__oxartnum->value}]</span>
+                <span class="small text-muted">[{oxmultilang ident="ARTNUM" suffix="COLON"}] [{$oDetailsProduct->oxarticles__oxartnum->value}]</span>
             [{/block}]
 
             [{* ratings *}]
@@ -77,8 +76,7 @@
             [{* short description *}]
             [{block name="details_productmain_shortdesc"}]
                 [{if $oDetailsProduct->oxarticles__oxshortdesc->rawValue}]
-                    <p class="shortdesc"
-                       id="productShortdesc">[{$oDetailsProduct->oxarticles__oxshortdesc->rawValue}]</p>
+                    <p class="shortdesc">[{$oDetailsProduct->oxarticles__oxshortdesc->rawValue}]</p>
                 [{/if}]
             [{/block}]
 
@@ -150,11 +148,9 @@
                 [{block name="details_productmain_persparams"}]
                     [{if $oView->isPersParam()}]
                         <div id="persparam" class="form-group">
-                            <label for="persistentParam"
-                                   class="col-xs-12 col-sm-3 control-label"><strong>[{oxmultilang ident="YOUR_MESSAGE" suffix="COLON"}]</strong></label>
+                            <label for="persistentParam" class="col-xs-12 col-sm-3 control-label"><strong>[{oxmultilang ident="YOUR_MESSAGE" suffix="COLON"}]</strong></label>
                             <div class="col-xs-12 col-sm-9">
-                                <input id="persistentParam" class="form-control" type="text" name="persparam[details]"
-                                       value="[{$oDetailsProduct->aPersistParam.text}]" size="35">
+                                <input id="persistentParam" class="form-control" type="text" name="persparam[details]" value="[{$oDetailsProduct->aPersistParam.text}]" size="35">
                             </div>
                         </div>
                     [{/if}]
@@ -168,7 +164,7 @@
                 [{/block}]
 
                 <div class="row">
-                    <div class="col-xs-12 col-md-6">
+                    <div class="col-xs-12 [{if $sProductPageLayout !== '66+33' }]col-md-6[{/if}]">
 
 
                         [{assign var=price  value=$oDetailsProduct->getPrice()}]
@@ -262,19 +258,25 @@
 
                         </div>
                     </div>
-                    <div class="col-xs-12 col-md-6">
+                    <div class="col-xs-12 [{if $sProductPageLayout !== '66+33' }]col-md-6[{/if}]">
                         [{block name="details_productmain_tobasket"}]
                             [{if !$oDetailsProduct->isNotBuyable()}]
                                 [{if $blCanBuy}]
-                                    <div class="input-group input-group-lg">
-                                        <input id="amountToBasket" class="form-control text-center large" type="number" name="am" value="1" min="1" autocomplete="off" style="padding: 5px;">
-                                        <span class="input-group-btn">
-                                 <button id="toBasket" type="submit" [{if !$blCanBuy}]disabled="disabled"[{/if}]
-                                         class="btn btn-primary">
-                                    <i class="fa fa-shopping-cart"></i> [{oxmultilang ident="TO_CART"}]
-                                 </button>
-                              </span>
-                                    </div>
+                                    [{if $oViewConf->getViewThemeParam('blProductPageShow2BasketAmount')}]
+                                        <div class="input-group input-group-lg">
+                                            <input id="amountToBasket" class="form-control text-center large" type="number" name="am" value="1" min="1" autocomplete="off" style="padding: 5px;">
+                                            <span class="input-group-btn">
+                                                <button id="toBasket" type="submit" [{if !$blCanBuy}]disabled="disabled"[{/if}] class="btn btn-primary">
+                                                    <i class="fa fa-shopping-cart"></i> [{oxmultilang ident="TO_CART"}]
+                                                </button>
+                                            </span>
+                                        </div>
+                                    [{else}]
+                                        <button id="toBasket" type="submit" [{if !$blCanBuy}]disabled="disabled"[{/if}] class="btn btn-primary btn-block btn-lg">
+                                            <i class="fa fa-shopping-cart"></i> [{oxmultilang ident="TO_CART"}]
+                                        </button>
+                                    [{/if}]
+
                                 [{else}]
                                     <div class="alert alert-warning text-center">[{oxmultilang ident="DETAILS_CHOOSEVARIANT"}]</div>
                                 [{/if}]

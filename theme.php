@@ -82,7 +82,29 @@ $aTheme = [
             'type'     => 'bool',
             'value'    => true,
             'position' => 1
+        ], [
+            'group'    => 'glow_start',
+            'name'     => 'sStartPageLayout',
+            'type'     => 'select',
+            'value'    => '3+3',
+            'constraints' => '3+3|2+1|1+2',
+            'position' => 1
+        ], [
+            'group'    => 'glow_product',
+            'name'     => 'sProductPageLayout',
+            'type'     => 'select',
+            'value'    => '50+50',
+            'constraints' => '33+66|50+50|66+33',
+            'position' => 1
+        ], [
+            'group'    => 'glow_product',
+            'name'     => 'blProductPageShow2BasketAmount',
+            'type'     => 'bool',
+            'value'    => false,
+            'position' => 2
         ]
+
+
 
         /*[
            'group' => 'glow_recaptcha',
