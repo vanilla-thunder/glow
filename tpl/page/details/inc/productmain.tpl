@@ -106,6 +106,7 @@
                 </div>
 
                 [{assign var="blCanBuy" value=true}]
+                [{assign var="aRadioVariatns" value=$oViewConf->getViewThemeParam('aProductPageRadioVarselect') }]
 
                 [{* variants | md variants *}]
                 [{block name="details_productmain_variantselections"}]
@@ -122,7 +123,11 @@
                                 [{if $oList->getActiveSelection()}]
                                     [{assign var="blHasActiveSelections" value=true}]
                                 [{/if}]
-                                [{include file="page/details/inc/selectbox.tpl" oSelectionList=$oList iKey=$iKey blInDetails=true}]
+                                [{if $oList->getLabel()|in_array:$aRadioVariatns }]
+                                    [{include file="page/details/inc/varselect_radio.tpl" oSelectionList=$oList iKey=$iKey blInDetails=true}]
+                                [{else}]
+                                    [{include file="page/details/inc/varselect_dropdown.tpl" oSelectionList=$oList iKey=$iKey blInDetails=true}]
+                                [{/if}]
                             [{/foreach}]
                         </div>
                     [{/if}]
@@ -136,7 +141,11 @@
                             [{if $oSelections}]
                                 <div>
                                     [{foreach from=$oSelections item=oList name=selections}]
-                                        [{include file="page/details/inc/selectbox.tpl" oSelectionList=$oList sFieldName="sel" iKey=$smarty.foreach.selections.index blHideDefault=true sSelType="seldrop"}]
+                                        [{if $oList->oxselectlist__oxtitle->rawValue|in_array:$aRadioVariatns }]
+                                            [{include file="page/details/inc/varselect_radio.tpl" oSelectionList=$oList sFieldName="sel" iKey=$smarty.foreach.selections.index blHideDefault=true sSelType="seldrop"}]
+                                        [{else}]
+                                            [{include file="page/details/inc/varselect_dropdown.tpl" oSelectionList=$oList sFieldName="sel" iKey=$smarty.foreach.selections.index blHideDefault=true sSelType="seldrop"}]
+                                        [{/if}]
                                     [{/foreach}]
                                 </div>
                             [{/if}]
@@ -272,6 +281,7 @@
                                             </span>
                                         </div>
                                     [{else}]
+                                        <input id="amountToBasket" type="hidden" name="am" value="1" min="1" autocomplete="off">
                                         <button id="toBasket" type="submit" [{if !$blCanBuy}]disabled="disabled"[{/if}] class="btn btn-primary btn-block btn-lg">
                                             <i class="fa fa-shopping-cart"></i> [{oxmultilang ident="TO_CART"}]
                                         </button>

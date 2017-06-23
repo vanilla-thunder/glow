@@ -1,4 +1,6 @@
 <?php
+$aDetailImageSizes = [];
+for($x = 0; $x < 12; $x++) { $aDetailImageSizes['oxpic'.$x+1] = '800*800'; }
 
 $aTheme = [
     'id'             => 'glow',
@@ -102,7 +104,20 @@ $aTheme = [
             'type'     => 'bool',
             'value'    => false,
             'position' => 2
-        ]
+        ], [
+            'group'    => 'glow_product',
+            'name'     => 'aProductPageRadioVarselect',
+            'type'     => 'arr',
+            'value'    => [],
+            'position' => 3
+        ],
+
+
+
+
+
+
+
 
 
 

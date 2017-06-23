@@ -33,18 +33,18 @@ $aLang = [
     'HELP_SHOP_THEME_sRecaptchaApiKey' => 'Api Key und Secret bekommt man hier: <a href="https://www.google.com/recaptcha/admin#list" target="_blank">https://www.google.com/recaptcha/admin#list</a>',
     'SHOP_THEME_sRecaptchaSecret'      => 'reCaptcha Secret',
 
-    'SHOP_THEME_GROUP_glow_start' => 'Startseite',
-    'SHOP_THEME_sStartPageLayout'      => 'Layout der Angebote',
-    'SHOP_THEME_sStartPageLayout_3+3'      => '3 Frisch eingetroffen + 3 Angebote der Woche',
-    'SHOP_THEME_sStartPageLayout_2+1'      => '2 Frisch eingetroffen + 1 Angebot der Woche in einer Zeile',
-    'SHOP_THEME_sStartPageLayout_1+2'      => '1 Frisch eingetroffen + 2 Angebote der Woche in einer Zeile',
+    'SHOP_THEME_GROUP_glow_start'     => 'Startseite',
+    'SHOP_THEME_sStartPageLayout'     => 'Layout der Angebote',
+    'SHOP_THEME_sStartPageLayout_3+3' => '3 Frisch eingetroffen + 3 Angebote der Woche',
+    'SHOP_THEME_sStartPageLayout_2+1' => '2 Frisch eingetroffen + 1 Angebot der Woche in einer Zeile',
+    'SHOP_THEME_sStartPageLayout_1+2' => '1 Frisch eingetroffen + 2 Angebote der Woche in einer Zeile',
 
-    'SHOP_THEME_GROUP_glow_product' => 'Produktseite',
-    'SHOP_THEME_sProductPageLayout'      => 'Aufteilung der Breite für Produktbild und Infos',
-    'SHOP_THEME_sProductPageLayout_33+66'      => '1/3 Bild + 2/3 Text',
-    'SHOP_THEME_sProductPageLayout_50+50'      => 'Hälfte / Hälfte',
-    'SHOP_THEME_sProductPageLayout_66+33'      => '2/3 Bild + 1/3 Text',
+    'SHOP_THEME_GROUP_glow_product'       => 'Produktseite',
+    'SHOP_THEME_sProductPageLayout'       => 'Aufteilung der Breite für Produktbild und Infos',
+    'SHOP_THEME_sProductPageLayout_33+66' => '1/3 Bild + 2/3 Text',
+    'SHOP_THEME_sProductPageLayout_50+50' => 'Hälfte / Hälfte',
+    'SHOP_THEME_sProductPageLayout_66+33' => '2/3 Bild + 1/3 Text',
 
-    'SHOP_THEME_blProductPageShow2BasketAmount'      => 'Feld für Menge beim "in den Warenkorb" Button anzeigen',
-
+    'SHOP_THEME_blProductPageShow2BasketAmount' => 'Feld für Menge beim "in den Warenkorb" Button anzeigen',
+    'SHOP_THEME_aProductPageRadioVarselect'     => 'Namen der Auswahlfelder, die als Radio-Buttons angezeigt werden sollen.<br/>(1 pro Zeile, z.B Farbe)'
 ];
