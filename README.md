@@ -19,7 +19,11 @@ oder:
  3. application/views/glow/out/glow nach out/glow kopieren
 
 ### Theme Einstellungen
+- Größe des Icons: 100*100
+- Größe des Thumbnails: 500*500
 - Größe des Kategoriebildes: 1300*400
+- Größe der Zoom-Bilder: 400*400
+- Größe des Kategoriebildes einer Unterkategorie: 400*100
 
 ### LESS + CSS + JS bearbeiten
 in out/glow liegt eine Nodejs App, die das Kompilieren von LESS und Zusammenfassen von JS Dateien übernimmt.
