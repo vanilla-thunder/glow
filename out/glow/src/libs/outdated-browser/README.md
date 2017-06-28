@@ -5,7 +5,7 @@
 So, you're tired of people visiting your modern website with an outdated browser and not doing anything about it.
 Maybe they aren't "power" users, maybe it's your auntie running a last century browser trying to see awesome CSS3 animations and transforms. Let the user know that’s an outdated browser, and advise them on a better one.
 
-With this solution you can check if the user’s browser can handle your website. If not, it will show a cool [looking notice](http://buro.pt/Wis6) advising the user to update the browser. It’ll be up to the user to upgrade or not. Don't force the user!
+With this solution you can check if the user’s browser can handle your website. If not, it will show a cool [looking notice](http://d.pr/i/Xhf) advising the user to update the browser. It’ll be up to the user to upgrade or not. Don't force the user!
 
 That's it! As simple as it can get.
 
@@ -144,14 +144,15 @@ Fork the project.
 **TRANSLATIONS** <br>
 Rename with a proper language abbreviation using the IETF language tags: two-letter language (ISO 639-1)  — two-letter country code (ISO 3166-1). For simplicity we are using all **lower case** and **country code can be omitted if** there is no regional variation. Links with language-country codes: [ISO Language Code Table](http://www.lingoes.net/en/translator/langcode.htm), [Windows Locale Codes](http://www.science.co.il/Language/Locale-codes.asp).
 
-Current available languages: cs, da, de, el, en, es, es-pe, et, fa, fi, fr, hu, id, it, ko, lt,nb,nl, pl, pt, pt-br, ro, ru, sl, sv, tr, uk, zh-cn, zh-tw
+Current available languages: ar, cs, da, de, el, en, es, es-pe, et, fa, fi, fr, hr, hu, id, it, ja, ko, lt, nb, nl, pl, pt, pt-br, ro, ru, sk, sl, sv, tr, uk, zh-cn, zh-tw
 
 ## CMS, Frameworks, etc
 — [Wordpress Plugin](https://github.com/deblynprado/wp-outdated-browser) by Deblyn Prado<br>
 — [Ruby Gem](https://github.com/luisalima/outdatedbrowser_rails) by Luisa Lima <br>
 — [Yii2 widget](http://www.yiiframework.com/extension/yii2-outdated-browser) <br>
 — [Drupal Plugin](https://www.drupal.org/sandbox/agoradesign/2369737) by Mag. Andreas Mayr <br>
-— [Magento Extension](https://github.com/gaugeinteractive/magento-outdated-browser) by Joey Hoer
+— [Magento Extension](https://github.com/gaugeinteractive/magento-outdated-browser) by Joey Hoer <br>
+— [Contao Open Source CMS Module](https://github.com/lucasgehin/contao-outdatedbrowser) by Lucas Gehin
 
 ## Team
 

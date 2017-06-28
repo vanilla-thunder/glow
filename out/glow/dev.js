@@ -88,20 +88,19 @@ var compile = function ($source, $target) {
                     //sourceMapRootpath: '/',
                     //sourceMapBasepath: 'application/views'
                 }
-            })
-            .then(
-                function (output) {
-                    //console.log(Object.getOwnPropertyNames(output).sort());
-                    //console.log(output);
-                    //bar.tick(3,{'token': "writing css ..."});
-                    console.log('  > writing ' + path.basename($target) + ' ... ');
-                    fs.writeFileSync($target, output.css);
-                    //bar.tick(4,{'token': $target + ' updated'});
-                    console.log('  > ' + path.basename($target) + ' updated');
-                },
-                function (error) {
-                    //bar.tick(7,{'token': "aborted"});
-                    console.log(' ---------- ERROR # \n' + e + '\n ---------- ERROR #');
+            },
+            function (e,output) {
+                    if(e) console.log(' ---------- ERROR # \n' + e + '\n ---------- ERROR #');
+                    else
+                    {
+                        //console.log(Object.getOwnPropertyNames(output).sort());
+                        //console.log(output);
+                        //bar.tick(3,{'token': "writing css ..."});
+                        console.log('  > writing ' + path.basename($target) + ' ... ');
+                        fs.writeFileSync($target, output.css);
+                        //bar.tick(4,{'token': $target + ' updated'});
+                        console.log('  > ' + path.basename($target) + ' updated');
+                    }
                 });
     });
 };
@@ -126,33 +125,31 @@ var mergeJS = function () {
         "src/libs/jquery-unveil/jquery.unveil.js",
         "src/libs/matchheight/jquery.matchHeight.js",
         "src/libs/flexslider/jquery.flexslider-min.js",
-        "src/libs/fancyBox/source/jquery.fancybox.js",
+        "src/libs/fancyBox/dist/jquery.fancybox.js",
         "src/libs/outdated-browser/outdatedbrowser/outdatedbrowser.js"
     ];
     var files = walkSync(path.relative(__dirname, $jsdir), []);
-    //console.log(libs.concat(files));
+
+    var source = '';
+    libs.concat(files).forEach(function(file){
+        source += fs.readFileSync(file, "utf8");
+    });
 
     js = ujs.minify(
-        libs.concat(files),
+        source,
         {
+            parse:{},
             compress: false,
-            beautify: $jsbeautify,
             mangle: $jsmangle,
-            sourceMapInline: $jssourcemap
-
+            output:{
+                beautify: $jsbeautify
+            },
+            sourceMap: ( $jssourcemap ) ? { url: "inline" } : false
         });
      fs.writeFileSync($jstarget, js.code);
       /*
     var AST = null;
-    files.forEach(function(file){
-        var code = fs.readFileSync(file, "utf8");
-        AST = ujs.parse(
-            code,
-            {
-                filename: file,
-                toplevel: AST
-            });
-    });
+    files;
     console.log(AST.print_to_string());
     fs.writeFileSync($jstarget, util.format(AST) + '\n');
     */

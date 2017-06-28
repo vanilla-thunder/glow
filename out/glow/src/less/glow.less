@@ -20,7 +20,8 @@
 
 @import (inline) "../libs/bootstrapvalidator/dist/css/bootstrapValidator.min.css";
 // fancybox
-@import (inline) "../libs/fancyBox/source/jquery.fancybox.css";
+@import (inline) "../libs/fancyBox/dist/jquery.fancybox.css";
+/*
 #fancybox-loading, .fancybox-close, .fancybox-prev span, .fancybox-next span {
   background-image: url('../libs/fancyBox/source/fancybox_sprite.png');
 }
@@ -46,6 +47,7 @@
     background-image: url('../libs/fancyBox/source/fancybox_loading@2x.gif');
   }
 }
+*/
 
 // flexslider
 @import "../libs/flexslider/css/variables.less";
@@ -121,6 +123,7 @@
 //header, footer { margin-left: -10px; margin-right: -10px; }
 .container, .container-fluid {
   > nav,
+  > .banner,
   > .flexslider {
     margin: 0 -10px;
   }
@@ -134,7 +137,7 @@
   > div:last-child  > div { margin-right: -10px; }
 }
 #sidebar > .box { .shadow; }
-#content { background: #fff; padding: @padding-base-horizontal; }
+#content, .content { background: #fff; padding: @padding-base-horizontal; }
 
 #footer {
   padding: 10px;
@@ -168,6 +171,10 @@
   h2 {
     margin: 0;
   }
+}
+
+.listitem-grid {
+  .productpic { height: 300px; }
 }
 
 .miniView {
