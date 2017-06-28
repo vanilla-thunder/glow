@@ -45,11 +45,10 @@
         <div class="col-xs-12 col-sm-[{if $sProductPageLayout == '33+66' }]4[{elseif $sProductPageLayout == '50+50' }]6[{else}]8[{/if}]">
             [{block name="details_productmain_zoom"}]
                 <div class="picture">
-                    <a href="[{$oPictureProduct->getZoomPictureUrl(1)}]" id="zoom1" class="thumbnail" rel="produktbilder">
+                    <a href="[{$oPictureProduct->getZoomPictureUrl(1)}]" data-fancybox="produktbilder" id="zoom1" class="text-center">
                         <img src="[{$oView->getActPicture()}]" alt="[{$oPictureProduct->oxarticles__oxtitle->value|strip_tags}] [{$oPictureProduct->oxarticles__oxvarselect->value|strip_tags}]">
                     </a>
                 </div>
-                [{oxscript add='$(".thumbnail").fancybox();'}]
             [{/block}]
 
             [{block name="details_productmain_morepics"}]

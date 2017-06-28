@@ -35,9 +35,10 @@ $aLang = [
 
     'SHOP_THEME_GROUP_glow_start'     => 'Startseite',
     'SHOP_THEME_sStartPageLayout'     => 'Layout der Angebote',
-    'SHOP_THEME_sStartPageLayout_3+3' => '3 Frisch eingetroffen + 3 Angebote der Woche',
-    'SHOP_THEME_sStartPageLayout_2+1' => '2 Frisch eingetroffen + 1 Angebot der Woche in einer Zeile',
-    'SHOP_THEME_sStartPageLayout_1+2' => '1 Frisch eingetroffen + 2 Angebote der Woche in einer Zeile',
+    'SHOP_THEME_sStartPageLayout_4+4' => '4 Frisch eingetroffen + 4 Angebote der Woche',
+    'SHOP_THEME_sStartPageLayout_3+1' => '3 Frisch eingetroffen + 1 Angebot der Woche in einer Zeile',
+    'SHOP_THEME_sStartPageLayout_2+2' => '2 Frisch eingetroffen + 2 Angebot der Woche in einer Zeile',
+    'SHOP_THEME_sStartPageLayout_1+3' => '1 Frisch eingetroffen + 3 Angebote der Woche in einer Zeile',
 
     'SHOP_THEME_GROUP_glow_product'       => 'Produktseite',
     'SHOP_THEME_sProductPageLayout'       => 'Aufteilung der Breite für Produktbild und Infos',

@@ -11,12 +11,12 @@
     [{/if}]
     <div class="panel panel-default">
 
-        <div class="panel-body">
+        <div class="panel-body listitem_grid">
 
             [{block name="widget_product_listitem_grid_gridpicture"}]
-                <a class="btn-block text-center" href="[{$_productLink}]" title="[{$product->oxarticles__oxtitle->value}] [{$product->oxarticles__oxvarselect->value}]">
+                <a class="btn-block text-center productpic" href="[{$_productLink}]" title="[{$product->oxarticles__oxtitle->value}] [{$product->oxarticles__oxvarselect->value}]">
                     <img [{* src="[{$oViewConf->getImageUrl('spinner.gif')}]" data- *}]
-                            src="[{$product->getThumbnailUrl()}]" style="max-width: 100%; height: auto;"
+                            src="[{$product->getThumbnailUrl()}]" style="max-width: 100%; height: auto; max-height:300px;"
                             alt="[{$product->oxarticles__oxtitle->value}] [{$product->oxarticles__oxvarselect->value}]">
                 </a>
             [{/block}]
