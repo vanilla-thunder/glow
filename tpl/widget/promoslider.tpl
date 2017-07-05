@@ -3,43 +3,52 @@
     [{assign var="currency" value=$oView->getActCurrency()}]
 
     [{if $oBanners|@count > 2}]
-        <div class="container[{if $oViewConf->getViewThemeParam('blFullwidthLayout')}]-fluid[{/if}] shadow">
-            <div id="promo-carousel" class="flexslider ">
-                <ul class="slides">
+        <script>
+            [{capture name="promosliderJS"}]
+            $('#bannerSlider').slick({
+                autoplay: [{if $oViewConf->getViewThemeParam('blStartPageSliderAutoplay')}]true[{else}]false[{/if}],
+                autoplaySpeed: [{$oViewConf->getViewThemeParam('sStartPageSliderAutoplaySpeed')|default:'5000'}],
+                [{if $oViewConf->getViewThemeParam('sStartPageSliderAnimation') == 'fade'}]fade: true,[{/if}]
+                speed: [{$oViewConf->getViewThemeParam('sStartPageSliderAnimationSpeed')|default:'2000'}],
+                arrows: [{if $oViewConf->getViewThemeParam('blStartPageSliderArrows')}]true[{else}]false[{/if}],
+                dots:[{if $oViewConf->getViewThemeParam('blStartPageSliderDots')}]true[{else}]false[{/if}],
+                [{* cssEase: "[{ $oViewConf->getViewThemeParam('sStartPageSliderEasing')|default:'ease'}]", *}]
+                easing:"[{ $oViewConf->getViewThemeParam('sStartPageSliderEasing')|default:'ease'}]",
+                infinite: true,
+                [{if $oViewConf->getViewThemeParam('sStartPageSliderDirection') == 'vertical'}]vertical:true[{/if}]
+            });
+            [{/capture}]
+        </script>
+        [{ oxscript add=$smarty.capture.promosliderJS }]
+        <div class="container[{if $oViewConf->getViewThemeParam('blFullwidthLayout')}]-fluid[{/if}]">
+            <div id="bannerSlider" class="banner">
                     [{block name="dd_widget_promoslider_list"}]
                         [{foreach from=$oBanners key="iPicNr" item="oBanner" name="promoslider"}]
                             [{assign var="oArticle" value=$oBanner->getBannerArticle()}]
                             [{assign var="sBannerPictureUrl" value=$oBanner->getBannerPictureUrl()}]
+                            [{if $oBanner->getBannerLink()}]
+                                [{assign var="sBannerLinkStart" value='<a href="'|cat:$oBanner->getBannerLink()|cat:'">' }]
+                                [{assign var="sBannerLinkStop" value='</a>' }]
+                            [{/if}]
 
                             [{if $sBannerPictureUrl}]
-                                <li class="item">
+                                <div>
                                     [{assign var="sBannerLink" value=$oBanner->getBannerLink()}]
-                                    [{if $sBannerLink}]
-                                    <a href="[{$sBannerLink}]" title="[{$oBanner->oxactions__oxtitle->value}]">
-                                        [{/if}]
-
-                                        <img src="[{$sBannerPictureUrl}]" alt="[{$oBanner->oxactions__oxtitle->value}]" title="[{$oBanner->oxactions__oxtitle->value}]">
-
-                                        [{if $sBannerLink}]
-                                    </a>
-                                    [{/if}]
+                                    [{$sBannerLinkStart}]
+                                    <img src="[{$sBannerPictureUrl}]" alt="[{$oBanner->oxactions__oxtitle->value}]" class="img-responsive">
+                                    [{$sBannerLinkStop}]
                                     [{if $oViewConf->getViewThemeParam('blSliderShowImageCaption') && $oArticle}]
-                                        <p class="flex-caption">
-                                            [{if $sBannerLink}]
-                                            <a href="[{$sBannerLink}]" title="[{$oBanner->oxactions__oxtitle->value}]">
-                                                [{/if}]
-                                                <span class="title">[{$oArticle->oxarticles__oxtitle->value}]</span>[{if $oArticle->oxarticles__oxshortdesc->value|trim}]<br/><span
-                                                        class="shortdesc">[{$oArticle->oxarticles__oxshortdesc->value|trim}]</span>[{/if}]
-                                                [{if $sBannerLink}]
-                                            </a>
-                                            [{/if}]
+                                        <p class="banner-caption">
+                                            [{$sBannerLinkStart}]
+                                            <span class="title">[{$oArticle->oxarticles__oxtitle->value}]</span>[{if $oArticle->oxarticles__oxshortdesc->value|trim}]<br/>
+                                            <span class="shortdesc">[{$oArticle->oxarticles__oxshortdesc->value|trim}]</span>[{/if}]
+                                            [{$sBannerLinkStop}]
                                         </p>
                                     [{/if}]
-                                </li>
+                                </div>
                             [{/if}]
                         [{/foreach}]
                     [{/block}]
-                </ul>
             </div>
         </div>
         <div class="spacer"></div>
@@ -47,24 +56,24 @@
         [{foreach from=$oBanners key="iPicNr" item="oBanner" name="promoslider"}]
             [{assign var="oArticle" value=$oBanner->getBannerArticle()}]
             [{assign var="sBannerPictureUrl" value=$oBanner->getBannerPictureUrl()}]
+            [{if $oBanner->getBannerLink()}]
+                [{assign var="sBannerLinkStart" value='<a href="'|cat:$oBanner->getBannerLink()|cat:'">' }]
+                [{assign var="sBannerLinkStop" value='</a>' }]
+            [{/if}]
 
             [{if $sBannerPictureUrl}]
                 <div class="container[{if $oViewConf->getViewThemeParam('blFullwidthLayout')}]-fluid[{/if}] banner">
-                    [{assign var="sBannerLink" value=$oBanner->getBannerLink()}]
-                    [{if $sBannerLink}]
-                    <a href="[{$sBannerLink}]" title="[{$oBanner->oxactions__oxtitle->value}]">[{/if}]
-                        <img src="[{$sBannerPictureUrl}]" alt="[{$oBanner->oxactions__oxtitle->value}]" class="banner-img" title="[{$oBanner->oxactions__oxtitle->value}]">
-                        [{if $sBannerLink}]</a>[{/if}]
+                    [{$sBannerLinkStart}]
+                    <img src="[{$sBannerPictureUrl}]" alt="[{$oBanner->oxactions__oxtitle->value}]" class="banner-img" title="[{$oBanner->oxactions__oxtitle->value}]">
+                    [{$sBannerLinkStop}]
                     [{if $oArticle}]
                         <div class="banner-caption">
-                            [{if $sBannerLink}]
-                            <a href="[{$sBannerLink}]" title="[{$oBanner->oxactions__oxtitle->value}]">
-                                [{/if}]
-                                <span class="title">[{$oArticle->oxarticles__oxtitle->value}]</span>[{if $oArticle->oxarticles__oxshortdesc->value|trim}]<br/><span
-                                        class="shortdesc">[{$oArticle->oxarticles__oxshortdesc->value|trim}]</span>[{/if}]
-                                [{if $sBannerLink}]
-                            </a>
-                            [{/if}]
+                            [{$sBannerLinkStart}]
+                            <span class="title">[{$oArticle->oxarticles__oxtitle->value}]</span>[{if $oArticle->oxarticles__oxshortdesc->value|trim}]
+                        <br/>
+                            <span class="shortdesc">[{$oArticle->oxarticles__oxshortdesc->value|trim}]</span>[{/if}]
+
+                            [{$sBannerLinkStop}]
                         </div>
                     [{/if}]
                 </div>

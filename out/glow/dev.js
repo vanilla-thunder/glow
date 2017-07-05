@@ -77,7 +77,7 @@ var compile = function ($source, $target) {
         less.render(
             data.toString(),
             {
-                plugins: [cleanCSSPlugin],
+                plugins: ( $lessminify ? [cleanCSSPlugin] : [] ),
                 paths: [__dirname, $vendor],
                 filename: $source,
                 //compress: $lessminify,
@@ -124,7 +124,7 @@ var mergeJS = function () {
         "src/libs/jquery-mousewheel/jquery.mousewheel.js",
         "src/libs/jquery-unveil/jquery.unveil.js",
         "src/libs/matchheight/jquery.matchHeight.js",
-        "src/libs/flexslider/jquery.flexslider-min.js",
+        "src/libs/slick-carousel/slick/slick.min.js",
         "src/libs/fancyBox/dist/jquery.fancybox.js",
         "src/libs/outdated-browser/outdatedbrowser/outdatedbrowser.js"
     ];

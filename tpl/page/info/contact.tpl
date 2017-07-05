@@ -42,7 +42,7 @@
                     [{/if}]
                     [{if $oxcmp_shop->oxshops__oxinfoemail->value}]
                         <strong>[{oxmultilang ident="EMAIL" suffix="COLON"}]</strong>
-                        [{oxmailto address=$oxcmp_shop->oxshops__oxinfoemail->value}]
+                        [{oxmailto address=$oxcmp_shop->oxshops__oxinfoemail->value encode="javascript"}]
                         <br>
                     [{/if}]
                     <span class="hidden">[{$oViewConf->getHomeLink()}]</span>

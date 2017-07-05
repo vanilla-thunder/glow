@@ -1,7 +1,6 @@
 // Including 3rd party libs
 //@import "../libs/bootstrap/less/bootstrap";
 @import "../libs/font-awesome/less/font-awesome";
-
 @fa-font-path: "../libs/font-awesome/fonts";
 
 // parent flow less
@@ -19,49 +18,29 @@
 }
 
 @import (inline) "../libs/bootstrapvalidator/dist/css/bootstrapValidator.min.css";
+
 // fancybox
 @import (inline) "../libs/fancyBox/dist/jquery.fancybox.css";
-/*
-#fancybox-loading, .fancybox-close, .fancybox-prev span, .fancybox-next span {
-  background-image: url('../libs/fancyBox/source/fancybox_sprite.png');
-}
 
-#fancybox-loading div {
-  background: url('../libs/fancyBox/source/fancybox_loading.gif') center center no-repeat;
-}
 
-.fancybox-nav {
-  background: transparent url('../libs/fancyBox/source/blank.gif');
-}
+// slick slider
+@import "../libs/slick-carousel/slick/slick.less";
+@import "../libs/slick-carousel/slick/slick-theme.less";
+@slick-font-family:  'FontAwesome';
+@slick-font-path: "../libs/slick-carousel/slick/fonts/";
+@slick-loader-path: "../libs/slick-carousel/slick/";
+@slick-arrow-color: #585858;
+@slick-prev-character: @fa-var-angle-left;
+@slick-next-character: @fa-var-angle-right;
+@slick-dot-character: @fa-var-circle-o;
+@slick-dot-size: 10px;
 
-.fancybox-overlay {
-  background: url('../libs/fancyBox/source/fancybox_overlay.png');
-}
-
-@media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min--moz-device-pixel-ratio: 1.5), only screen and (min-device-pixel-ratio: 1.5) {
-  #fancybox-loading, .fancybox-close, .fancybox-prev span, .fancybox-next span {
-    background-image: url('../libs/fancyBox/source/fancybox_sprite@2x.png');
-  }
-
-  #fancybox-loading div {
-    background-image: url('../libs/fancyBox/source/fancybox_loading@2x.gif');
-  }
-}
-*/
-
-// flexslider
-@import "../libs/flexslider/css/variables.less";
-@import "../libs/flexslider/css/mixins.less";
-@import "../libs/flexslider/css/resets.less";
-@import "../libs/flexslider/css/base.less";
-@import "../libs/flexslider/css/theme.less";
-@import "../libs/flexslider/css/responsive.less";
-@font-name: "FontAwesome";
-@flex-direction-nav-icon-prev: @fa-var-angle-left;
-@flex-direction-nav-icon-next: @fa-var-angle-right;
 @flex-pauseplay-icon-play: @fa-var-play;
 @flex-pauseplay-icon-pause: @fa-var-pause;
-
+.flexslider .flex-control-nav.flex-control-paging {
+  bottom:5px;
+  display:block;
+}
 // outdated browser
 @import (inline) "../libs/outdated-browser/outdatedbrowser/outdatedbrowser.css";
 
@@ -98,6 +77,93 @@
   box-shadow: 0 5px 20px rgba(0, 0, 0, .3);
 }
 
+#promo-carousel > .slides { .shadow }
+
+#bannerSlider {
+  .slick-slide { position: relative; }
+  .promo-caption {
+    position: absolute;
+    bottom: 5px; left: 5px; right: 5px;
+    .text-center;
+    > span { background: }
+  }
+}
+
+
+.promotion {
+  > .well {
+    position:relative;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height:300px;
+    font-size: 1.3em;
+    .promo-title {
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      right: 0px;
+      .text-center;
+      .h3;
+      font-weight: bold;
+      margin-top: 0;
+      a {
+        font-size: inherit;
+        line-height: inherit;
+        font-weight: inherit;
+      }
+    }
+    .promo-caption {
+      position: absolute;
+      left: 0px;
+      right:0px;
+      bottom: 0px;
+      font-weight: bold;
+      padding: 5px;
+      background: rgba(255,255,255,0.7);
+    }
+  }
+}
+
+#topProductsSlider {
+  margin-left: 25px;
+  margin-right: 25px;
+  .slick-slide {
+    padding: 25px;
+    .thumbnail {
+      height:200px;
+      margin:50px 0;
+      position: relative;
+      background-repeat:no-repeat;
+      background-position: center;
+      background-size: contain;
+      background-color: transparent;
+      -webkit-transition: width 0.5s, height 0.5s, -webkit-transform 0.5s;
+      transition: width 0.5s, height 0.5s, transform 0.5s;
+    }
+    .slider-caption {
+      display:none;
+      .text-center;
+      background: rgba(255, 255, 255, 0.8);
+      padding: 5px;
+      position: absolute;
+      bottom: 0px;
+      left: 0px;
+      right: 0px;
+    }
+  }
+  .slick-center {
+    .thumbnail {
+      //width: 125%;
+      //height: 300px;
+      //margin: 0;
+      transform: scale(1.4);
+      //background-size: cover;
+    }
+    .slider-caption { display: block; }
+  }
+}
+
 #breadcrumb {
   padding: 5px 15px;
 }
@@ -123,13 +189,8 @@
 //header, footer { margin-left: -10px; margin-right: -10px; }
 .container, .container-fluid {
   > nav,
-  > .banner,
-  > .flexslider {
+  > .banner {
     margin: 0 -10px;
-  }
-  .flexslider .flex-direction-nav .flex-prev,
-  .flexslider .flex-direction-nav .flex-next {
-    opacity: 0.2;
   }
 }
 #pagecontent {

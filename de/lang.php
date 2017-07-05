@@ -20,5 +20,14 @@ $aLang = [
     // outdated browser
     'OUTDATED_OLDBROWSER'                => 'Ihr Browser ist leider veraltet!',
     'OUTDATED_UPDATENOW'                 => 'Bitte aktualisieren Sie Ihren Browser, um diese Webseite korrekt darzustellen.',
-    'OUTDATED_GETNEWBROWSER'             => 'JETZT AKTUALISIEREN'
+    'OUTDATED_GETNEWBROWSER'             => 'JETZT AKTUALISIEREN',
+
+    // slider
+    'SHOP_THEME_sStartPageSliderNav_0' => 'false',
+    'SHOP_THEME_sStartPageSliderNav_1' => 'true',
+    'SHOP_THEME_sStartPageSliderNav_2' => '"thumbnails"',
+
+    // promotions
+    'GLOW_CURRENT_PROMOTIONS' => 'Aktuelle Verkaufsaktionen',
+
 ];

@@ -5,13 +5,13 @@
   "private": true,
   "dependencies": {
     "bootstrap": "*",
-    "font-awesome": "*",
     "bootstrapvalidator": "nghuuphuoc/bootstrapvalidator#master",
     "fancyBox": "*",
-    "flexslider": "*",
+    "font-awesome": "*",
     "jquery-unveil": "luis-almeida/unveil#master",
     "matchheight": "*",
-    "outdated-browser": "*"
+    "outdated-browser": "*",
+    "slick-carousel": "*"
   },
   "ignoredDependencies": []
 }

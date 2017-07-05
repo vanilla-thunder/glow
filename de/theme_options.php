@@ -33,14 +33,46 @@ $aLang = [
     'HELP_SHOP_THEME_sRecaptchaApiKey' => 'Api Key und Secret bekommt man hier: <a href="https://www.google.com/recaptcha/admin#list" target="_blank">https://www.google.com/recaptcha/admin#list</a>',
     'SHOP_THEME_sRecaptchaSecret'      => 'reCaptcha Secret',
 
-    'SHOP_THEME_GROUP_glow_start'     => 'Startseite',
-    'SHOP_THEME_sStartPageLayout'     => 'Layout der Angebote',
-    'SHOP_THEME_sStartPageLayout_4+4' => '4 Frisch eingetroffen + 4 Angebote der Woche',
-    'SHOP_THEME_sStartPageLayout_3+1' => '3 Frisch eingetroffen + 1 Angebot der Woche in einer Zeile',
-    'SHOP_THEME_sStartPageLayout_2+2' => '2 Frisch eingetroffen + 2 Angebot der Woche in einer Zeile',
-    'SHOP_THEME_sStartPageLayout_1+3' => '1 Frisch eingetroffen + 3 Angebote der Woche in einer Zeile',
+    'SHOP_THEME_GROUP_glow_start'            => 'Startseite',
+    'SHOP_THEME_blStartPageSliderAutoplay' => 'Autoamtische Slideshow',
+    'SHOP_THEME_sStartPageSliderAutoplaySpeed' => 'Slideshow-Timer im Milisekunden (1000 = 1 Sekunde)',
+    'SHOP_THEME_sStartPageSliderAnimationSpeed' => 'Übergangs-Geschwindigkeit',
 
-    'SHOP_THEME_GROUP_glow_product'       => 'Produktseite',
+
+    'SHOP_THEME_blStartPageSliderArrows'   => 'Navigations-Pfeile zeigen',
+    'SHOP_THEME_blStartPageSliderDots'   => 'Navigations-Punkte zeigen',
+
+
+    'SHOP_THEME_sStartPageSliderAnimation' => 'Slider Animation:',
+    'SHOP_THEME_sStartPageSliderAnimation_slide' => 'slide',
+    'SHOP_THEME_sStartPageSliderAnimation_fade' => 'fade',
+    'SHOP_THEME_sStartPageSliderDirection' => 'Slide-Richtung',
+    'SHOP_THEME_sStartPageSliderDirection_horizontal' => 'horizontal',
+    'SHOP_THEME_sStartPageSliderDirection_vertical' => 'vertikal',
+    'SHOP_THEME_sStartPageSliderEasing' => 'Animationsverlauf',
+    'SHOP_THEME_sStartPageSliderEasing_swing' => 'Schwung',
+    'SHOP_THEME_sStartPageSliderEasing_linear' => 'linear',
+
+
+    'SHOP_THEME_sStartPageSliderNav' => 'Slider Navigation',
+    'SHOP_THEME_sStartPageSliderNav_0' => 'aus',
+    'SHOP_THEME_sStartPageSliderNav_1' => 'Punkte',
+    'SHOP_THEME_sStartPageSliderNav_2' => 'Thumbnails',
+
+    'SHOP_THEME_sStartPageActionsLayout'     => 'Darstellung der Angebote',
+    'SHOP_THEME_sStartPageActionsLayout_4+4' => '4 Frisch eingetroffen + 4 Angebote der Woche',
+    'SHOP_THEME_sStartPageActionsLayout_3+1' => '3 Frisch eingetroffen + 1 Angebot der Woche in einer Zeile',
+    'SHOP_THEME_sStartPageActionsLayout_2+2' => '2 Frisch eingetroffen + 2 Angebot der Woche in einer Zeile',
+    'SHOP_THEME_sStartPageActionsLayout_1+3' => '1 Frisch eingetroffen + 3 Angebote der Woche in einer Zeile',
+
+    'SHOP_THEME_sStartPagePromotionsLayout' => 'Darstellung der Promotions',
+    'SHOP_THEME_sStartPagePromotionsLayout_0' => 'aus',
+    'SHOP_THEME_sStartPagePromotionsLayout_1' => 'aktuelle Promotions unter dem Banner-Slider',
+    'SHOP_THEME_sStartPagePromotionsLayout_2' => 'aktuelle und zukünftige Promotions unter dem Banner-Slider',
+    'SHOP_THEME_sStartPagePromotionsLayout_3' => 'aktuelle Promotions über dem Marken-Slider',
+    'SHOP_THEME_sStartPagePromotionsLayout_4' => 'aktuelle und zukünftige Promotions über dem Marken-Slider',
+
+    'SHOP_THEME_GROUP_glow_product'       => 'Produktseite', // ----------------------------------------------------------------------------------------------------- PRODUKTSEITE
     'SHOP_THEME_sProductPageLayout'       => 'Aufteilung der Breite für Produktbild und Infos',
     'SHOP_THEME_sProductPageLayout_33+66' => '1/3 Bild + 2/3 Text',
     'SHOP_THEME_sProductPageLayout_50+50' => 'Hälfte / Hälfte',
