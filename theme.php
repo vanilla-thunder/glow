@@ -1,6 +1,8 @@
 <?php
 $aDetailImageSizes = [];
-for($x = 0; $x < 12; $x++) { $aDetailImageSizes['oxpic'.$x+1] = '800*800'; }
+for ($x = 0; $x < 12; $x++) {
+    $aDetailImageSizes['oxpic' . $x + 1] = '800*800';
+}
 
 $aTheme = [
     'id'             => 'glow',
@@ -18,13 +20,13 @@ $aTheme = [
             'type'     => 'bool',
             'value'    => false,
             'position' => 0
-        ],[
+        ], [
             'group'    => 'glow_layout',
             'name'     => 'blFullWidthFooter',
             'type'     => 'bool',
             'value'    => false,
             'position' => 1
-        ],[
+        ], [
             'group'    => 'glow_layout',
             'name'     => 'blKeepDefaultSidebar',
             'type'     => 'bool',
@@ -86,18 +88,83 @@ $aTheme = [
             'position' => 1
         ], [
             'group'    => 'glow_start',
-            'name'     => 'sStartPageLayout',
-            'type'     => 'select',
-            'value'    => '2+2',
-            'constraints' => '4+4|3+1|2+2|1+3',
+            'name'     => 'blStartPageSliderAutoplay',
+            'type'     => 'bool',
+            'value'    => true,
+            'position' => 0
+        ], [
+            'group'    => 'glow_start',
+            'name'     => 'sStartPageSliderAutoplaySpeed',
+            'type'     => 'str',
+            'value'    => '5000',
             'position' => 1
         ], [
-            'group'    => 'glow_product',
-            'name'     => 'sProductPageLayout',
-            'type'     => 'select',
-            'value'    => '50+50',
+            'group'    => 'glow_start',
+            'name'     => 'sStartPageSliderAnimationSpeed',
+            'type'     => 'str',
+            'value'    => '2000',
+            'position' => 2
+        ], [
+            'group'       => 'glow_start',
+            'name'        => 'sStartPageSliderAnimation',
+            'type'        => 'select',
+            'value'       => 'slide',
+            'constraints' => 'slide|fade',
+            'position'    => 3
+        ], [
+            'group'       => 'glow_start',
+            'name'        => 'sStartPageSliderDirection',
+            'type'        => 'select',
+            'value'       => 'horizontal',
+            'constraints' => 'horizontal|vertical',
+            'position'    => 4
+        ], [
+            'group'    => 'glow_start',
+            'name'     => 'blStartPageSliderArrows',
+            'type'     => 'bool',
+            'value'    => true,
+            'position' => 7
+        ], [
+            'group'       => 'glow_start',
+            'name'        => 'blStartPageSliderDots',
+            'type'        => 'bool',
+            'value'       => true,
+            'position'    => 8
+        ], [
+            'group'       => 'glow_start',
+            'name'        => 'sStartPageSliderEasing',
+            'type'        => 'select',
+            'value'       => 'swing',
+            'constraints' => 'swing|linear',
+            'position'    => 4
+        ], [
+            'group'       => 'glow_start',
+            'name'        => 'sStartPageSliderNav',
+            'type'        => 'select',
+            'value'       => '0',
+            'constraints' => '0|1|2',
+            'position'    => 7
+        ], [
+            'group'       => 'glow_start',
+            'name'        => 'sStartPageActionsLayout',
+            'type'        => 'select',
+            'value'       => '2+2',
+            'constraints' => '4+4|3+1|2+2|1+3',
+            'position'    => 10
+        ], [
+            'group'       => 'glow_start',
+            'name'        => 'sStartPagePromotionsLayout',
+            'type'        => 'select',
+            'value'       => '1',
+            'constraints' => '0|1|2|3|4',
+            'position'    => 11
+        ], [
+            'group'       => 'glow_product',
+            'name'        => 'sProductPageLayout',
+            'type'        => 'select',
+            'value'       => '50+50',
             'constraints' => '33+66|50+50|66+33',
-            'position' => 1
+            'position'    => 1
         ], [
             'group'    => 'glow_product',
             'name'     => 'blProductPageShow2BasketAmount',
@@ -111,14 +178,6 @@ $aTheme = [
             'value'    => [],
             'position' => 3
         ],
-
-
-
-
-
-
-
-
 
 
         /*[
