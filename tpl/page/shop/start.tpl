@@ -95,23 +95,24 @@
         [{capture assign="htmlCurrentPromotions"}]
             [{foreach from=$oView->getPromoCurrentList() item="_promo"}]
                 [{assign var="sPromoPicture" value=$_promo->getBannerPictureUrl() }]
-                [{assign var="sPromoLink" value=$_promo->getBannerLink() }]
+                [{assign var="oPromoArticle" value=$_promo->getBannerArticle()}]
                 [{if $_promo->getBannerLink()}]
                     [{assign var="sPromoLinkStart" value='<a href="'|cat:$_promo->getBannerLink()|cat:'">' }]
                     [{assign var="sPromoLinkStop" value='</a>' }]
                 [{/if}]
                 <div class="col-xs-6 col-sm-4 promotion">
+                    [{$sPromoLinkStart}]
                     <div class="well shadow" [{if $sPromoPicture }]style="background-image: url('[{$sPromoPicture}]');"[{/if}]>
-                        <!-- [{ $_promo|@var_dump }] -->
-
-                        <div class="promo-title">
-                            <a href="[{$sPromoLink|default:'#'}]" class="btn btn-block">[{$_promo->oxactions__oxtitle->value}]</a>
-                        </div>
+                        [{if $oPromoArticle}]
+                            <div class="promo-title">
+                                [{$oPromoArticle->oxarticles__oxtitle->value}]
+                            </div>
+                        [{/if}]
+                        [{if $_promo->getLongDesc() || $oPromoArticle }]
                         <div class="promo-caption">
                             <div>
-                                [{$sPromoLinkStart}]
                                 [{$_promo->getLongDesc()}]
-                                [{$sPromoLinkStop}]
+                                [{if $oPromoArticle}] &ndash; [{oxprice price=$oPromoArticle->getPrice()}][{/if}]
                             </div>
                             [{if $_promo->oxactions__oxactiveto->value > 0}]
                                 <div class="label label-warning">
@@ -119,7 +120,9 @@
                                 </div>
                             [{/if}]
                         </div>
+                        [{/if}]
                     </div>
+                    [{$sPromoLinkStop}]
                 </div>
             [{/foreach}]
         [{/capture}]

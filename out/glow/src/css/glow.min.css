@@ -11432,7 +11432,7 @@ fieldset[disabled] .btn-primary.active {
   right: 5px;
   text-align: center;
 }
-.promotion > .well {
+.promotion .well {
   position: relative;
   background-size: cover;
   background-position: center;
@@ -11440,11 +11440,12 @@ fieldset[disabled] .btn-primary.active {
   min-height: 300px;
   font-size: 1.3em;
 }
-.promotion > .well .promo-title {
+.promotion .well .promo-title {
+  background: rgba(255, 255, 255, 0.7);
   position: absolute;
-  top: 0px;
-  left: 0px;
-  right: 0px;
+  left: 0;
+  right: 0;
+  top: 0;
   text-align: center;
   font-family: inherit;
   font-weight: 500;
@@ -11456,29 +11457,29 @@ fieldset[disabled] .btn-primary.active {
   font-weight: bold;
   margin-top: 0;
 }
-.promotion > .well .promo-title small,
-.promotion > .well .promo-title .small {
+.promotion .well .promo-title small,
+.promotion .well .promo-title .small {
   font-weight: normal;
   line-height: 1;
   color: #777777;
 }
-.promotion > .well .promo-title small,
-.promotion > .well .promo-title .small {
+.promotion .well .promo-title small,
+.promotion .well .promo-title .small {
   font-size: 65%;
 }
-.promotion > .well .promo-title a {
+.promotion .well .promo-title a {
   font-size: inherit;
   line-height: inherit;
   font-weight: inherit;
 }
-.promotion > .well .promo-caption {
+.promotion .well .promo-caption {
+  background: rgba(255, 255, 255, 0.7);
   position: absolute;
-  left: 0px;
-  right: 0px;
-  bottom: 0px;
+  left: 0;
+  right: 0;
+  bottom: 0;
   font-weight: bold;
   padding: 5px;
-  background: rgba(255, 255, 255, 0.7);
 }
 #topProductsSlider {
   margin-left: 25px;

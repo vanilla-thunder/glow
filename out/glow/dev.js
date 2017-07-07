@@ -12,8 +12,8 @@ var fs = require('fs'),
 var flowless = '../../' + (__dirname.indexOf('application/views/glow/out/glow') > -1 ? '../' : 'application/views/' ) + 'flow/build/less/',
     $vendor = path.join(__dirname, flowless), // relative path to flow less files
     $lessdir = path.join(__dirname, 'src/less/'), // watch this directory for file changes
-    $lesssourcemap = true, // include source map or not? true / false
-    $lessminify = false, // minify output? true / false
+    $lesssourcemap = false, // include source map or not? true / false
+    $lessminify = true, // minify output? true / false
     $criticalsource = path.join(__dirname, 'src/less/glow.less'), // less source file relative to this file
     $criticaltarget = path.join(__dirname, 'src/css/glow.min.css'), //  target file for compilation relative to this file
     $asyncsource = path.join(__dirname, 'src/less/async.less'), // less source file relative to this file
@@ -36,8 +36,8 @@ if(process.argv && process.argv[2] == '--dev')
     console.log('');
     console.log('   >> starting with dev configuration');
     // less
-    $lesssourcemap = false;
-    $lessminify = true;
+    $lesssourcemap = true;
+    $lessminify = false;
     // js
     $jsbeautify = true;
     $jsmangle = false;

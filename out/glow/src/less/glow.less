@@ -83,7 +83,7 @@
 
 
 .promotion {
-  > .well {
+  .well {
     position:relative;
     background-size: cover;
     background-position: center;
@@ -91,10 +91,8 @@
     min-height:300px;
     font-size: 1.3em;
     .promo-title {
-      position: absolute;
-      top: 0px;
-      left: 0px;
-      right: 0px;
+      background: rgba(255,255,255,0.7);
+      position: absolute; left: 0; right:0; top: 0;
       .text-center;
       .h3;
       font-weight: bold;
@@ -106,13 +104,10 @@
       }
     }
     .promo-caption {
-      position: absolute;
-      left: 0px;
-      right:0px;
-      bottom: 0px;
+      background: rgba(255,255,255,0.7);
+      position: absolute; left: 0; right:0; bottom: 0;
       font-weight: bold;
       padding: 5px;
-      background: rgba(255,255,255,0.7);
     }
   }
 }
