@@ -36,8 +36,8 @@ if(process.argv && process.argv[2] == '--dev')
     console.log('');
     console.log('   >> starting with dev configuration');
     // less
-    $lesssourcemap = true;
-    $lessminify = false;
+    $lesssourcemap = false;
+    $lessminify = true;
     // js
     $jsbeautify = true;
     $jsmangle = false;
