@@ -22,7 +22,6 @@
 }
 
 /* Arrows */
-
 .slick-prev,
 .slick-next {
     position: absolute;
@@ -62,8 +61,9 @@
     opacity: @slick-opacity-default;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-
+    
     & when ( @slick-font-family = 'slick' ) {
+        /* Icons */
         @font-face {
             font-family: 'slick';
             font-weight: normal;
@@ -76,13 +76,13 @@
 
 .slick-prev {
     left: -25px;
-    &[dir="rtl"] {
+    [dir="rtl"] & {
         left: auto;
         right: -25px;
     }
     &:before {
         content: @slick-prev-character;
-        &[dir="rtl"] {
+        [dir="rtl"] & {
             content: @slick-next-character;
         }
     }
@@ -90,13 +90,13 @@
 
 .slick-next {
     right: -25px;
-    &[dir="rtl"] {
+    [dir="rtl"] & {
         left: -25px;
         right: auto;
     }
     &:before {
         content: @slick-next-character;
-        &[dir="rtl"] {
+        [dir="rtl"] & {
             content: @slick-prev-character;
         }
     }

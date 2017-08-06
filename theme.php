@@ -152,6 +152,7 @@ $aTheme = [
             'constraints' => '4+4|3+1|2+2|1+3',
             'position'    => 10
         ], [
+            /*
             'group'       => 'glow_start',
             'name'        => 'sStartPagePromotionsLayout',
             'type'        => 'select',
@@ -159,6 +160,7 @@ $aTheme = [
             'constraints' => '0|1|2|3|4',
             'position'    => 11
         ], [
+            */
             'group'       => 'glow_product',
             'name'        => 'sProductPageLayout',
             'type'        => 'select',

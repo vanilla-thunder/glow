@@ -28,8 +28,8 @@
                 </article>
                 [{oxifcontent ident="oxsecurityinfo" object="oCont"}]
                     <p class="alert alert-info">
-                        [{oxmultilang ident="GLOW_CONTACT_SECURITY"}] <a data-fancybox-href="[{$oCont->getLink()}]?plain=1" href="[{$oCont->getLink()}]" class="ajax" target="_blank"
-                                                                         rel="nofollow">[{$oCont->oxcontents__oxtitle->value}]</a>
+                        [{oxmultilang ident="GLOW_CONTACT_SECURITY"}]
+                        <a data-fancybox data-type="ajax" data-src="[{$oCont->getLink()|oxaddparams:'plain=1'}]" href="[{$oCont->getLink()}]" target="_blank" rel="nofollow">[{$oCont->oxcontents__oxtitle->value}]</a>
                     </p>
                 [{/oxifcontent}]
             [{/block}]

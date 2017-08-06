@@ -1,6 +1,7 @@
 [{capture append="oxidBlock_content"}]
     [{assign var="order" value=$oView->getOrder()}]
     [{assign var="basket" value=$oView->getBasket()}]
+
     <div class="page-header"><h1>[{oxmultilang ident="THANK_YOU"}]</h1></div>
     [{block name="checkout_thankyou_main"}]
 
@@ -22,20 +23,21 @@
 
         [{block name="checkout_thankyou_proceed"}]
             [{if $oxcmp_user->oxuser__oxpassword->value}]
-                <a rel="nofollow" class="btn btn-link" href="[{oxgetseourl ident=$oViewConf->getSelfLink()|cat:"cl=account_order"}]">
-                    [{oxmultilang ident="YOU_CAN_GO"}] [{oxmultilang ident="CHECK_YOUR_ORDER_HISTORY"}]
+                [{oxmultilang ident="YOU_CAN_GO"}]
+                <a rel="nofollow" class="" href="[{oxgetseourl ident=$oViewConf->getSelfLink()|cat:"cl=account_order"}]">
+                    [{oxmultilang ident="CHECK_YOUR_ORDER_HISTORY"}]
                 </a>
             [{/if}]
         [{/block}]
 
         [{block name="checkout_thankyou_partners"}][{/block}]
 
-        [{if $oView->getAlsoBoughtTheseProducts()}]
-            <hr/>
-            [{include file="widget/product/list.tpl" type="mini" head="WHO_BOUGHT_ALSO_BOUGHT"|oxmultilangassign listId="alsoBoughtThankyou" products=$oView->getAlsoBoughtTheseProducts() blDisableToCart=true}]
-            [{oxscript add='$(".panel-body","#alsoBoughtThankyou").matchHeight();'}]
-        [{/if}]
     [{/block}]
     [{insert name="oxid_tracker" title=$template_title}]
 [{/capture}]
-[{include file="layout/page.tpl" sidebar="left"}]
+[{if $oView->getAlsoBoughtTheseProducts()}]
+    [{capture append="oxidBlock_sidebar"}]
+        [{include file="widget/product/list.tpl" type="mini" head="WHO_BOUGHT_ALSO_BOUGHT"|oxmultilangassign listId="alsoBoughtThankyou" products=$oView->getAlsoBoughtTheseProducts() blDisableToCart=true}]
+    [{/capture}]
+[{/if}]
+[{include file="layout/page.tpl" sidebar="Right"}]

@@ -22,6 +22,9 @@ addLoadEvent(function(){
     })
 });
 
+function fadeOut($el) { $el.animate({ opacity: "0.5" });}
+function fadeIn($el) { $el.animate({ opacity: "1" });}
+
 $(function () {
 
     var $b = $("body");
@@ -36,7 +39,6 @@ $(function () {
     });
     $('.hasTooltip').tooltip({container: 'body'});
     $('.hasPopover').popover();
-    $('.ajax').fancybox({type: 'ajax'});
 
     // navs menüs etc
     $('[data-toggle="offcanvas"]').click(function () {
@@ -147,7 +149,34 @@ $(function () {
 
     // Schritt 3 ----------------------------------------------------------------- Schritt 3
     $b.on("change", "input[name='sShipSet']", function () {
-        $(this).parent("form").submit();
+        var $form = $("#shipping");
+        fadeOut($("#content"));
+
+        $.ajax({
+            url: $form.attr('action')+'&ajax=1',
+            type: 'POST',
+            data: $form.serialize(),
+            success: function(result) {
+                $("#content").html(result);
+                fadeIn($("#content"));
+            }
+        });
+        //$(this).parent("form").submit();
+    });
+
+    // payment method selection
+    $b.on("change", "input[name='paymentid']", function () {
+        var $form = $("#payment"),
+            paymentid = $("input[name='paymentid']:checked").val();
+
+        $("div[id^='payment_details_']",$form).hide('fast');
+        $("input,select").attr("disabled",false);
+
+        $("#payment_details_"+paymentid,$form).show('fast');
+        $("input,select").attr("disabled",false);
+        //$(this).parent("form").submit();
+
+        $("#paymentNextStepBottom").attr("disabled",false);
     });
 
     $(".validate").bootstrapValidator({

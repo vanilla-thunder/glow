@@ -46,7 +46,7 @@
                                  [{else}][{$product->getFVarMinPrice()}][{/if}]
                               [{/if}]
                               [{$currency->sign}]
-                           </a> [{include file="page/details/inc/vatinfo.tpl"}]
+                           </a> <a href="#footer">*</a>
                         </strong>
                   [{/if}]
                [{/block}]

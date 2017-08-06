@@ -1,0 +1,85 @@
+.slick-slider *:focus { outline: none; }
+.slick-dotted { margin-bottom: 10px !important; }
+
+/* banner slider auf der Startseite */
+  //.slick-slide { position: relative; }
+  .banner-caption {
+    background: rgba(255, 255, 255, 0.8);
+    position: absolute;
+    left: @padding-base-horizontal;
+    right: @padding-base-horizontal;
+    bottom: @padding-base-horizontal;
+    .text-center;
+    //> span { background: }
+  }
+  .banner {
+    padding: 0 !important;
+    position: relative;
+    img { .img-responsive; width: 100%; }
+  }
+
+/* promotions unter dem Banner */
+#promotions {
+  .slick-list { padding: 10px 0 15px 0; }
+  .slick-dots { bottom: -15px; }
+  .promotion > .well {
+    padding: 0;
+    margin:0 0 10px 0;
+    border: 0;
+    position: relative;
+    //font-size: 1.3em;
+    .promo-title {
+      background: rgba(255, 255, 255, 0.7);
+      position: absolute; left: 0; right: 0; top: 0;
+      .text-center;
+      font-weight: bold;
+      margin-top: 0;
+      a {
+        font-size: inherit;
+        line-height: inherit;
+        font-weight: inherit;
+      }
+    }
+    .promo-caption {
+      background: rgba(255, 255, 255, 0.7);
+      position: absolute; left: 0; right: 0; bottom: 0;
+      font-weight: bold;
+      padding: 5px;
+    }
+  }
+}
+
+#brands {
+  border-top: 2px solid @ox-start-manufacturerslider-border;
+  border-bottom: 2px solid @ox-start-manufacturerslider-border;
+  background-color: @ox-start-manufacturerslider-bg;
+}
+
+#topseller,
+#xselling {
+  margin-left: 25px;
+  margin-right: 25px;
+  .slick-slide {
+    padding: 10px;
+    .thumbnail {
+      height:200px;
+      position: relative;
+      background-repeat:no-repeat;
+      background-position: center;
+      background-size: contain;
+      background-color: transparent;
+      -webkit-transition: width 0.5s, height 0.5s, -webkit-transform 0.5s;
+      transition: width 0.5s, height 0.5s, transform 0.5s;
+    }
+    .slider-caption {
+      .text-center;
+      background: rgba(255, 255, 255, 0.8);
+      padding: 5px;
+      position: absolute;
+      bottom: 0px;
+      left: 0px;
+      right: 0px;
+    }
+    .panel { margin: 0;}
+  }
+}

@@ -181,7 +181,7 @@
                             [{assign var=tprice value=$oParentProduct->getTPrice()}]
                         [{/if}]
 
-                        <div class="priceinfo [{if $tprice && $tprice->getBruttoPrice() > $price->getBruttoPrice()}]reduced[{/if}] text-center">
+                        <div class="text-center">
                             [{block name="details_productmain_tprice"}]
                                 [{if $tprice && $tprice->getBruttoPrice() > $price->getBruttoPrice()}]
                                     <div class="tprice">
@@ -203,12 +203,12 @@
                                             [{assign var="sFrom" value="PRICE_FROM"|oxmultilangassign}]
                                         [{/if}]
                                     [{/if}]
-                                    <strong class="h2">
+                                    <strong class="h1">
                                         <span class="price-from">[{$sFrom}]</span>
                                         <span class="price">[{$fPrice}]</span>
                                         <span class="currency">[{$currency->sign}]</span>
-                                        <span class="price-markup">[{include file="page/details/inc/vatinfo.tpl"}]</span>
                                     </strong>
+                                    <div class="price-markup">[{include file="page/details/inc/vatinfo.tpl"}]</div>
                                 [{/if}]
 
                                     [{* amount prices *}]

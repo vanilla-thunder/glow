@@ -1,6 +1,5 @@
 [{block name="widget_product_listitem_grid"}]
     [{assign var="product"         value=$oView->getProduct()}]
-    [{assign var="currency"        value=$oView->getActCurrency()}]
     [{assign var="iIndex"          value=$oView->getIndex()}]
     [{assign var="blDisableToCart" value=$oView->getDisableToCart()}]
     [{assign var="showMainLink"    value=$oView->getShowMainLink()}]
@@ -9,7 +8,13 @@
     [{else}]
         [{assign var='_productLink' value=$product->getLink()}]
     [{/if}]
-    <div class="panel panel-default">
+
+    [{assign var="currency"   value=$oView->getActCurrency()}]
+    [{assign var="price"      value=$product->getPrice()}]
+    [{assign var="tprice"     value=$product->getTPrice()}]
+    [{assign var="oUnitPrice" value=$product->getUnitPrice()}]
+
+    <div class="panel panel-[{if $tprice && $tprice->getBruttoPrice() > $price->getBruttoPrice()}]success[{else}]default[{/if}]">
 
         <div class="panel-body listitem-grid">
 
@@ -30,19 +35,14 @@
                 </div>
             [{/block}]
 
-            [{assign var="price"      value=$product->getPrice()}]
-            [{assign var="tprice"     value=$product->getTPrice()}]
-            [{assign var="oUnitPrice" value=$product->getUnitPrice()}]
-
             <div class="price text-center">
-                <link   href="http://schema.org/NewCondition"/>
+                <link href="http://schema.org/NewCondition"/>
 
                 [{block name="widget_product_listitem_grid_price"}]
                     [{if $tprice && $tprice->getBruttoPrice() > $price->getBruttoPrice()}]
-                        <div class="tprice">
-                            <span class="h5">[{oxmultilang ident="REDUCED_FROM"}] [{$product->getFTPrice()}] [{$currency->sign}]</span>
-                            <em>[{oxmultilang ident="OUR_REGULAR_PRICE"}]</em>
-                        </div>
+                        <p class="tprice">
+                            [{oxmultilang ident="REDUCED_FROM"}] [{$product->getFTPrice()}] [{$currency->sign}] [{oxmultilang ident="OUR_REGULAR_PRICE"}]
+                        </p>
                     [{/if}]
 
                     [{block name="widget_product_listitem_grid_price_value"}]
@@ -61,9 +61,9 @@
                                     <span class="price-from">[{$sFrom}]</span>
                                     <span class="price">[{$fPrice}]</span>
                                     <span class="currency">[{$currency->sign}]</span>
-                                    <span class="price-markup">[{include file="page/details/inc/vatinfo.tpl"}]</span>
                                 </strong>
                             </a>
+                            <div class="price-markup h6">[{include file="page/details/inc/vatinfo.tpl"}]</div>
                         [{/if}]
                     [{/block}]
 

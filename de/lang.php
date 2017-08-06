@@ -30,4 +30,6 @@ $aLang = [
     // promotions
     'GLOW_CURRENT_PROMOTIONS' => 'Aktuelle Verkaufsaktionen',
 
+    'WHO_BOUGHT_ALSO_BOUGHT' => 'Kunden kaufen auch'
+
 ];

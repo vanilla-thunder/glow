@@ -7,7 +7,13 @@
 
 [{if $oView->getBanners()}]
     [{capture append="oxidBlock_pageSubheader"}]
-        [{include file="widget/promoslider.tpl"}]
+        [{include file="page/shop/inc/banners.tpl"}]
+    [{/capture}]
+[{/if}]
+
+[{if $oView->getPromoCurrentList()}]
+    [{capture append="oxidBlock_pageSubheader"}]
+        [{include file="page/shop/inc/promotions.tpl"}]
     [{/capture}]
 [{/if}]
 
@@ -31,7 +37,6 @@
             [{/foreach}]
         [{/capture}]
     [{/if}]
-
     [{if $oBargainArticles && $oBargainArticles->count() }]
         [{capture assign="htmlBargainArticles"}]
             [{foreach from=$oBargainArticles item="_product" name="bargainarticles"}]
@@ -43,8 +48,6 @@
             [{/foreach}]
         [{/capture}]
     [{/if}]
-
-
     [{if $sStartPageActionsLayout == '4+4' }]
         [{if $oNewestArticles && $oNewestArticles->count() }]
             <div class="row boxwrapper">
@@ -90,98 +93,16 @@
         </div>
     [{/if}]
 
-    [{assign var="oCurrentPromotions" value=$oView->getPromoCurrentList()}]
-    [{if $oCurrentPromotions && $oCurrentPromotions->count() }]
-        [{capture assign="htmlCurrentPromotions"}]
-            [{foreach from=$oView->getPromoCurrentList() item="_promo"}]
-                [{assign var="sPromoPicture" value=$_promo->getBannerPictureUrl() }]
-                [{assign var="oPromoArticle" value=$_promo->getBannerArticle()}]
-                [{if $_promo->getBannerLink()}]
-                    [{assign var="sPromoLinkStart" value='<a href="'|cat:$_promo->getBannerLink()|cat:'">' }]
-                    [{assign var="sPromoLinkStop" value='</a>' }]
-                [{/if}]
-                <div class="col-xs-6 col-sm-4 promotion">
-                    [{$sPromoLinkStart}]
-                    <div class="well shadow" [{if $sPromoPicture }]style="background-image: url('[{$sPromoPicture}]');"[{/if}]>
-                        [{if $oPromoArticle}]
-                            <div class="promo-title">
-                                [{$oPromoArticle->oxarticles__oxtitle->value}]
-                            </div>
-                        [{/if}]
-                        [{if $_promo->getLongDesc() || $oPromoArticle }]
-                        <div class="promo-caption">
-                            <div>
-                                [{$_promo->getLongDesc()}]
-                                [{if $oPromoArticle}] &ndash; [{oxprice price=$oPromoArticle->getPrice()}][{/if}]
-                            </div>
-                            [{if $_promo->oxactions__oxactiveto->value > 0}]
-                                <div class="label label-warning">
-                                    [{oxmultilang ident="VALID_UNTIL" suffix="COLON"}] [{ $_promo->oxactions__oxactiveto->value|date_format:"%d-%m-%Y" }]
-                                </div>
-                            [{/if}]
-                        </div>
-                        [{/if}]
-                    </div>
-                    [{$sPromoLinkStop}]
-                </div>
-            [{/foreach}]
-        [{/capture}]
-        [{if $oViewConf->getViewThemeParam('sStartPagePromotionsLayout') == 1}]
-            [{capture append="oxidBlock_pageSubheader"}]
-                <div class="container[{if $oViewConf->getViewThemeParam('blFullwidthLayout')}]-fluid[{/if}]">
-                    <div class="row">[{$htmlCurrentPromotions}]</div>
-                </div>
-            [{/capture}]
-        [{else}]
-            <div class="row boxwrapper">
-                <div class="col-xs-12 page-header">
-                    <h3>[{oxmultilang ident="GLOW_CURRENT_PROMOTIONS" suffix="COLON"}]</h3>
-                    [{* <small class="subhead">[{oxmultilang ident="START_TOP_PRODUCTS_SUBHEADER" args=$oTopArticles->count() }]</small> *}]
-                </div>
-                [{$htmlCurrentPromotions}]
-            </div>
-        [{/if}]
-    [{/if}]
+
 
 
     [{if $oViewConf->getViewThemeParam('bl_showManufacturerSlider')}]
-        [{include file="widget/manufacturersslider.tpl"}]
+        [{include file="page/shop/inc/brands.tpl"}]
     [{/if}]
 
     [{if $oTopArticles && $oTopArticles->count()}]
-        <script>
-            [{capture name="topArticlesSlickJS"}]
-            $('#topProductsSlider > .slider').slick({
-                centerMode: true,
-                centerPadding: '0px',
-                dots:true,
-                slidesToShow: 5,
-                responsive: [
-                    {
-                        breakpoint: 768,
-                        settings: {
-                            arrows: false,
-                            centerMode: true,
-                            centerPadding: '40px',
-                            slidesToShow: 5
-                        }
-                    },
-                    {
-                        breakpoint: 480,
-                        settings: {
-                            arrows: false,
-                            centerMode: true,
-                            centerPadding: '40px',
-                            slidesToShow: 3
-                        }
-                    }
-                ]
-            });
-            [{/capture}]
-        </script>
-        [{oxscript add=$smarty.capture.topArticlesSlickJS }]
-        <div class="row">
-            <div id="topProductsSlider" class="boxwrapper">
+        <div id="topseller" class="row">
+            <div class="boxwrapper">
                 <div class="page-header">
                     <h3>[{oxmultilang ident="START_TOP_PRODUCTS_HEADER"}]</h3>
                     <span class="subhead">[{oxmultilang ident="START_TOP_PRODUCTS_SUBHEADER"}]</span>
@@ -190,7 +111,7 @@
                 <div class="slider">
                     [{foreach from=$oTopArticles item="_product"}]
                         <div>
-                            <a href="[{$_product->getMainLink()}]" class="thumbnail" style="background-image: url('[{$_product->getThumbnailUrl()}]');">
+                            <a href="[{$_product->getMainLink()}]" class="thumbnail shadow" style="background-image: url('[{$_product->getThumbnailUrl()}]');">
                                 <img src="[{$_product->getThumbnailUrl()}]" class="img-responsive hidden"/>
                                 <div class="slider-caption">[{$_product->oxarticles__oxtitle->value}]<br/></div>
                             </a>
@@ -199,8 +120,29 @@
                 </div>
             </div>
         </div>
-        <hr/>
-        <hr/>
+        [{* <script> *}]
+            [{capture name="topsellerJS"}]
+            $('#topseller .slider').slick({
+                arrows: true,
+                dots:true,
+                slidesToShow: 5,
+                infinite: true,
+                responsive: [
+                    {
+                        breakpoint: 1200,
+                        settings: { slidesToShow: 4 }
+                    },{
+                        breakpoint: 800,
+                        settings: { slidesToShow: 3 }
+                    },{
+                        breakpoint: 560,
+                        settings: { slidesToShow: 2 }
+                    }
+                ]
+            });
+            [{/capture}]
+        [{* </script> *}]
+        [{oxscript add=$smarty.capture.topsellerJS }]
         [{*
             <div class="row boxwrapper">
                 <div class="col-xs-12 page-header">
