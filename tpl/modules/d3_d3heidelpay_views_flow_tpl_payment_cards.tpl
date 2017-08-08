@@ -20,11 +20,11 @@
         </label>
 
         <div class="paymentdescription">
+            <div id="payment_details_[{$sPaymentID}]" [{if $oView->getCheckedPaymentId() !== $sPaymentID}]class="collapse"[{/if}]>
             [{block name="checkout_payment_longdesc"}]
                 <p>[{$paymentmethod->oxpayments__oxlongdesc->value}]</p>
             [{/block}]
 
-            <div id="payment_details_[{$sPaymentID}]" [{if $oView->getCheckedPaymentId() !== $sPaymentID}]class="collapse"[{/if}]>
                 [{if $paymentmethod->getPrice() && $oViewConf->isFunctionalityEnabled('blShowVATForPayCharge')}]
                     [{assign var="oPaymentPrice" value=$paymentmethod->getPrice()}]
                     [{oxprice price=$oPaymentPrice->getNettoPrice() currency=$currency}]

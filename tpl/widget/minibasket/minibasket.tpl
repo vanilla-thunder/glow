@@ -34,8 +34,8 @@
                   [{/foreach}]
                   </tbody>
                   <tfoot>
-                  <tr>
                      [{block name="widget_minibasket_total"}]
+                  <tr>
                         <td><strong>[{oxmultilang ident="TOTAL" suffix="COLON"}]</strong></td>
                         <td class="text-right">
                            <strong class="price">
@@ -47,8 +47,8 @@
                               [{$currency->sign}]<em>*</em>
                            </strong>
                         </td>
-                     [{/block}]
                   </tr>
+                     [{/block}]
                   </tfoot>
                </table>
             </div>

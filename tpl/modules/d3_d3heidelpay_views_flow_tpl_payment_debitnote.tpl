@@ -23,15 +23,15 @@
             [{if $paymentmethod->oxpayments__oxaddsum->value}]&nbsp;(+[{oxprice price=$paymentmethod->getPrice()  currency=$currency }])[{/if}]
         </label>
         <div class="paymentdescription">
-            [{block name="checkout_payment_longdesc"}]
-                <p>[{$paymentmethod->oxpayments__oxlongdesc->value}]</p>
-            [{/block}]
-
             [{if false == $blShowPaymentMethod}]
                 <sup class="alert alert-danger">[{oxmultilang ident="D3HEIDELPAY_PAYMENT_NOTSAMEADDRESS_NOTICE"}]</sup>
             [{/if}]
 
             <div id="payment_details_[{$sPaymentID}]" [{if $oView->getCheckedPaymentId() !== $sPaymentID}]class="collapse"[{/if}]>
+            [{block name="checkout_payment_longdesc"}]
+                <p>[{$paymentmethod->oxpayments__oxlongdesc->value}]</p>
+            [{/block}]
+
                 <div class="form-group">
                     <label class="req control-label col-sm-3" for="sCountrySelected_[{$sPaymentID}]">[{oxmultilang ident="D3HEIDELPAY_CC_INPUT_COUNTRY"}]</label>
                     <div class="col-sm-8">

@@ -24,15 +24,15 @@
         </label>
 
         <div class="paymentdescription">
-            [{block name="checkout_payment_longdesc"}]
-                <p>[{$paymentmethod->oxpayments__oxlongdesc->value}]</p>
-            [{/block}]
-
             [{if false == $blShowPaymentMethod}]
                 <sup class="alert alert-danger">[{oxmultilang ident="D3HEIDELPAY_PAYMENT_NOTSAMEADDRESS_NOTICE"}]</sup>
             [{/if}]
 
             <div id="payment_details_[{$sPaymentID}]" [{if $oView->getCheckedPaymentId() !== $sPaymentID}]class="collapse"[{/if}]>
+            [{block name="checkout_payment_longdesc"}]
+                <p>[{$paymentmethod->oxpayments__oxlongdesc->value}]</p>
+            [{/block}]
+
                 <div class="form-group oxDate">
                     <label class="req control-label col-sm-3">
                         [{oxmultilang ident="BIRTHDATE"}]
