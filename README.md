@@ -2,6 +2,11 @@
 **demo: [http://glow.mb-dev.de](http://glow.mb-dev.de)**  
 basierend auf Flow Theme: https://github.com/OXID-eSales/flow_theme
 
+### Getestete / kompatible Zahlungsmodule:
+- D³ Heidelpay Integrator: Kreditkarte, Lastschrift, Paypal, SOfortüberweisung, Rechnung
+- oePaypal
+- 
+
 ### Aktuelle To-Do Liste
 * Formular Validierung für E-Mail Adressen, PLZ, etc
 * paypal+ testen

@@ -53,8 +53,8 @@
             <div class="row boxwrapper">
                 <div class="col-xs-12">
                     <div class="page-header">
-                        <h3>[{oxmultilang ident="START_NEWEST_HEADER"}]</h3>
-                        <small class="subhead">[{oxmultilang ident="START_NEWEST_SUBHEADER"}]</small>
+                        <h3>[{oxmultilang ident=$oViewConf->getViewThemeParam('sStartNewestArticlesHeader')|default:"START_NEWEST_HEADER"}]</h3>
+                        [{if $oViewConf->getViewThemeParam('sStartNewestArticlesSubheader')}]<small class="subhead">[{oxmultilang ident=$oViewConf->getViewThemeParam('sStartNewestArticlesSubheader')}]</small>[{/if}]
                     </div>
                 </div>
                 [{$htmlNewestArticles}]
@@ -64,8 +64,8 @@
         [{if $oBargainArticles && $oBargainArticles->count() }]
             <div class="row boxwrapper">
                 <div class="col-xs-12">
-                    <h3>[{oxmultilang ident="START_BARGAIN_HEADER"}]</h3>
-                    <small class="subhead">[{oxmultilang ident="START_BARGAIN_SUBHEADER"}]</small>
+                        <h3>[{oxmultilang ident=$oViewConf->getViewThemeParam('sStartBargainArticlesHeader')|default:"START_BARGAIN_HEADER"}]</h3>
+                        [{if $oViewConf->getViewThemeParam('sStartBargainArticlesSubheader')}]<small class="subhead">[{oxmultilang ident=$oViewConf->getViewThemeParam('sStartBargainArticlesSubheader')}]</small>[{/if}]
                 </div>
                 [{$htmlBargainArticles}]
             </div>
@@ -75,8 +75,8 @@
             <div class="col-xs-12 col-sm-[{if $sStartPageActionsLayout == '3+1' }]9[{elseif $sStartPageActionsLayout == '1+3' }]3[{else}]6[{/if}]">
                 <div class="row boxwrapper">
                     <div class="col-xs-12 page-header">
-                        <h3>[{oxmultilang ident="START_NEWEST_HEADER"}]</h3>
-                        <small class="subhead">[{oxmultilang ident="START_NEWEST_SUBHEADER"}]</small>
+                        <h3>[{oxmultilang ident=$oViewConf->getViewThemeParam('sStartNewestArticlesHeader')|default:"START_NEWEST_HEADER"}]</h3>
+                        [{if $oViewConf->getViewThemeParam('sStartNewestArticlesSubheader')}]<small class="subhead">[{oxmultilang ident=$oViewConf->getViewThemeParam('sStartNewestArticlesSubheader')}]</small>[{/if}]
                     </div>
                     [{$htmlNewestArticles}]
                 </div>
@@ -84,8 +84,8 @@
             <div class="col-xs-12 col-sm-[{if $sStartPageActionsLayout == '3+1' }]3[{elseif $sStartPageActionsLayout == '1+3' }]9[{else}]6[{/if}]">
                 <div class="row boxwrapper">
                     <div class="col-xs-12 page-header">
-                        <h3>[{oxmultilang ident="START_BARGAIN_HEADER"}]</h3>
-                        <small class="subhead">[{oxmultilang ident="START_BARGAIN_SUBHEADER"}]</small>
+                        <h3>[{oxmultilang ident=$oViewConf->getViewThemeParam('sStartBargainArticlesHeader')|default:"START_BARGAIN_HEADER"}]</h3>
+                        [{if $oViewConf->getViewThemeParam('sStartBargainArticlesSubheader')}]<small class="subhead">[{oxmultilang ident=$oViewConf->getViewThemeParam('sStartBargainArticlesSubheader')}]</small>[{/if}]
                     </div>
                     [{$htmlBargainArticles}]
                 </div>

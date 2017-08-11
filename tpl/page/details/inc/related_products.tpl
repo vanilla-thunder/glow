@@ -1,29 +1,22 @@
-[{block name="details_relatedproducts_accessoires"}]
+[{* rechte Spalte neben Produktinfos *}]
+<div class="col-xs-12 col-md-3">
     [{if $oView->getAccessoires()|count}]
-        <div class="col-xs-12 col-md-3">
-            [{math equation="12/x" x=$oView->getAccessoires()|count assign="sm" format="%d"}]
-            [{include file="widget/product/list.tpl" type="mini" size="col-xs-12 col-sm-`$sm` col-md-12" listId="accessories" products=$oView->getAccessoires() head="ACCESSORIES"|oxmultilangassign subhead="WIDGET_PRODUCT_RELATED_PRODUCTS_ACCESSORIES_SUBHEADER"|oxmultilangassign}]
-            [{oxscript add='$(".panel-body","#accessories").matchHeight();'}]
-        </div>
+        [{math equation="12/x" x=$oView->getAccessoires()|count assign="sm" format="%d"}]
+        [{include file="widget/product/list.tpl" type="mini" size="col-xs-12 col-sm-`$sm` col-md-12" listId="accessories" products=$oView->getAccessoires() head="ACCESSORIES"|oxmultilangassign subhead="WIDGET_PRODUCT_RELATED_PRODUCTS_ACCESSORIES_SUBHEADER"|oxmultilangassign}]
+    [{elseif $oView->getCrossSelling()|count}]
+        [{math equation="12/x" x=$oView->getCrossSelling()|count assign="sm" format="%d"}]
+        [{include file="widget/product/list.tpl" type="mini" size="col-xs-12 col-sm-`$sm` col-md-12" listId="cross" products=$oView->getCrossSelling() head="HAVE_YOU_SEEN"|oxmultilangassign subhead="WIDGET_PRODUCT_RELATED_PRODUCTS_CROSSSELING_SUBHEADER"|oxmultilangassign}]
     [{/if}]
-[{/block}]
+</div>
 
+[{block name="details_relatedproducts_accessoires"}][{/block}]
 
 [{block name="details_relatedproducts_crossselling"}]
-    [{if $oView->getCrossSelling()|count}]
-        [{if $oView->getAccessoires()}]
-            [{* es gibt schon Zubehör, also wird das hier in voller Breite unter der Beschreobung angehängt *}]
-            <div class="col-xs-12">
-                [{include file="widget/product/slider.tpl" type="mini" listId="xselling" products=$oView->getCrossSelling() head="HAVE_YOU_SEEN"|oxmultilangassign subhead="WIDGET_PRODUCT_RELATED_PRODUCTS_CROSSSELING_SUBHEADER"|oxmultilangassign}]
-            </div>
-        [{else}]
-            [{* es gibt kein Zubehör, also wird das rechts neben der Beschreibung reingequetscht *}]
-            [{math equation="12/x" x=$oView->getCrossSelling()|count assign="sm" format="%d"}]
-            <div class="col-xs-12 col-md-3">
-                [{include file="widget/product/list.tpl" type="mini" size="col-xs-12 col-sm-`$sm` col-md-12" listId="cross" products=$oView->getCrossSelling() head="HAVE_YOU_SEEN"|oxmultilangassign subhead="WIDGET_PRODUCT_RELATED_PRODUCTS_CROSSSELING_SUBHEADER"|oxmultilangassign}]
-            </div>
-        [{/if}]
-        [{oxscript add='$(".panel-body","#xselling").matchHeight();'}]
+    [{* es gibt schon Zubehör, also wird das hier in voller Breite unter der Beschreobung angehängt *}]
+    [{if $oView->getAccessoires()|count && $oView->getCrossSelling()|count}]
+        <div class="col-xs-12">
+            [{include file="widget/product/list.tpl" type="mini" listId="xselling" products=$oView->getCrossSelling() head="HAVE_YOU_SEEN"|oxmultilangassign subhead="WIDGET_PRODUCT_RELATED_PRODUCTS_CROSSSELING_SUBHEADER"|oxmultilangassign}]
+        </div>
     [{/if}]
 [{/block}]
 
@@ -45,5 +38,3 @@
         [{oxscript add='$(".panel-body","#similar").matchHeight();'}]
     [{/if}]
 [{/block}]
-
-

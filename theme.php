@@ -152,6 +152,30 @@ $aTheme = [
             'constraints' => '4+4|3+1|2+2|1+3',
             'position'    => 10
         ], [
+            'group'       => 'glow_start',
+            'name'        => 'sStartNewestArticlesHeader',
+            'type'        => 'str',
+            'value'       => 'START_NEWEST_HEADER',
+            'position'    => 11
+        ], [
+            'group'       => 'glow_start',
+            'name'        => 'sStartNewestArticlesSubheader',
+            'type'        => 'str',
+            'value'       => 'START_NEWEST_SUBHEADER',
+            'position'    => 12
+        ], [
+            'group'       => 'glow_start',
+            'name'        => 'sStartBargainArticlesHeader',
+            'type'        => 'str',
+            'value'       => 'START_BARGAIN_HEADER',
+            'position'    => 13
+        ], [
+            'group'       => 'glow_start',
+            'name'        => 'sStartBargainArticlesSubheader',
+            'type'        => 'str',
+            'value'       => 'START_BARGAIN_SUBHEADER',
+            'position'    => 14
+        ], [
             /*
             'group'       => 'glow_start',
             'name'        => 'sStartPagePromotionsLayout',
