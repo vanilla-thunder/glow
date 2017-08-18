@@ -1,9 +1,4 @@
 <?php
-$aDetailImageSizes = [];
-for ($x = 0; $x < 12; $x++) {
-    $aDetailImageSizes['oxpic' . $x + 1] = '800*800';
-}
-
 $aTheme = [
     'id'             => 'glow',
     'title'          => 'Glow',
@@ -11,7 +6,7 @@ $aTheme = [
     'thumbnail'      => 'theme.jpg',
     'version'        => '0.1.1',
     'parentTheme'    => 'flow',
-    'parentVersions' => ['1.0.0', '1.0.0-beta.3'],
+    'parentVersions' => ['1.0.1','1.0.0', '1.0.0-beta.3'],
     'author'         => 'Marat Bedoev',
     'settings'       => [
         [
@@ -185,6 +180,12 @@ $aTheme = [
             'position'    => 11
         ], [
             */
+            'group'       => 'glow_product',
+            'name'        => 'blProductShowVarselect',
+            'type'        => 'bool',
+            'value'       => true,
+            'position'    => 0
+        ], [
             'group'       => 'glow_product',
             'name'        => 'sProductPageLayout',
             'type'        => 'select',

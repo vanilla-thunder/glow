@@ -35,7 +35,10 @@
 <div class="detailsInfo clear">
 
     [{block name="details_productmain_title"}]
-        <h1 class="text-center">[{$oDetailsProduct->oxarticles__oxtitle->value}] [{$oDetailsProduct->oxarticles__oxvarselect->value}]</h1>
+        <h1 class="text-center">
+            [{$oDetailsProduct->oxarticles__oxtitle->value}]
+            [{if $oViewConf->getViewThemeParam('blProductShowVarselect')}][{$oDetailsProduct->oxarticles__oxvarselect->value}][{/if}]
+        </h1>
     [{/block}]
 
     <div class="row">
