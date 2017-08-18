@@ -3,8 +3,8 @@
         <img src="[{$oViewConf->getPictureDir()|cat:'wysiwigpro/paymenticons/'|cat:$sPaymentID|cat:'.png'}]" alt="[{$paymentmethod->oxpayments__oxdesc->value}]">
     </div> -->
 
-    <label for="payent_[{$sPaymentID}]">
-        <input type="radio" name="paymentid" id="payent_[{$sPaymentID}]" value="[{$sPaymentID}]" [{if $oView->getCheckedPaymentId() == $sPaymentID}]checked[{/if}]>
+    <label for="payment_[{$sPaymentID}]">
+        <input type="radio" name="paymentid" id="payment_[{$sPaymentID}]" value="[{$sPaymentID}]" [{if $oView->getCheckedPaymentId() == $sPaymentID}]checked[{/if}]>
         <b class="h3">[{$paymentmethod->oxpayments__oxdesc->value}]</b>
         [{if $paymentmethod->oxpayments__oxaddsum->value}]&nbsp;(+[{oxprice price=$paymentmethod->getPrice() currency=$currency }])[{/if}]
     </label>
