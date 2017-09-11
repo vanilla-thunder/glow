@@ -151,7 +151,8 @@ $(function () {
     $b.on("change", "input[name='sShipSet']", function () {
         var $form = $("#shipping");
         fadeOut($("#content"));
-
+        
+        /*
         $.ajax({
             url: $form.attr('action')+'&ajax=1',
             type: 'POST',
@@ -161,7 +162,8 @@ $(function () {
                 fadeIn($("#content"));
             }
         });
-        //$(this).parent("form").submit();
+        */
+        $(this).parent("form").submit();
     });
 
     // payment method selection
