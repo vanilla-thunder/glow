@@ -9,10 +9,12 @@ basierend auf Flow Theme: https://github.com/OXID-eSales/flow_theme
 
 ### Aktuelle To-Do Liste
 * Formular Validierung für E-Mail Adressen, PLZ, etc
-* paypal+ testen
+* Aggrosoft Paypal und OXID Paypal+ testen
 
-### Voraussetzungen
-* [vt-themesettings](https://github.com/vanilla-thunder/vt-themesettings) für Theme Einstellungen
+### benötigte Module
+* [vt-themesettings](https://github.com/vanilla-thunder/themesettings) für Theme Einstellungen. pflicht!
+* [vt-childtplmod](https://github.com/vanilla-thunder/childtplmod) Das Theme enthält bereits angepasste Templates für einige Module.  
+Damit diese geladen werden, wird dieses Modul benötigt.
 
 ### Installation
     cd application/views/
