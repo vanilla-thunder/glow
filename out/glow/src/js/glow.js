@@ -150,20 +150,23 @@ $(function () {
     // Schritt 3 ----------------------------------------------------------------- Schritt 3
     $b.on("change", "input[name='sShipSet']", function () {
         var $form = $("#shipping");
-        fadeOut($("#content"));
-        
-        /*
+
+        $("#loading").collapse('show');
+        $("#content").collapse('hide');
+        //fadeOut($("#content"));
+
         $.ajax({
             url: $form.attr('action')+'&ajax=1',
             type: 'POST',
             data: $form.serialize(),
             success: function(result) {
                 $("#content").html(result);
-                fadeIn($("#content"));
+                $("#loading").collapse('hide');
+                $("#content").collapse('show');
+                //fadeIn($("#content"));
+
             }
         });
-        */
-        $(this).parent("form").submit();
     });
 
     // payment method selection
