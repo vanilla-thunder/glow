@@ -7,24 +7,26 @@
 [{assign var="sFullImageUrl" value=$sImageUrl|cat:'logo_'|cat:$sFullImageUrl|cat:'.jpg'}]
 
 [{block name="heidelpay_sofortueberweisung"}]
-    <div class="radio">
-        <div class="pull-right">
-          [{include file="d3_d3heidelpay_views_tpl_payment_img.tpl" sImageUrl=$sFullImageUrl sBrandIdent=$sBrandIdent}]
-        </div>
-        <label for="payment_[{$sPaymentID}]">
-            <input type="radio" name="paymentid" id="payment_[{$sPaymentID}]" value="[{$sPaymentID}]" [{if $oView->getCheckedPaymentId() == $sPaymentID}]checked[{/if}]>
-            <b class="h3">[{$paymentmethod->oxpayments__oxdesc->value}]</b>
-            [{if $paymentmethod->oxpayments__oxaddsum->value}]&nbsp;(+[{oxprice price=$paymentmethod->getPrice() currency=$currency }])[{/if}]
-        </label>
+   <div class="radio">
+      <div class="pull-right">
+         [{include file="d3_d3heidelpay_views_tpl_payment_img.tpl" sImageUrl=$sFullImageUrl sBrandIdent=$sBrandIdent}]
+      </div>
+      <label for="payment_[{$sPaymentID}]">
+         <input type="radio" name="paymentid" id="payment_[{$sPaymentID}]" value="[{$sPaymentID}]" [{if $oView->getCheckedPaymentId() == $sPaymentID}]checked[{/if}]>
+         <b class="h3">[{$paymentmethod->oxpayments__oxdesc->value}]</b>
+         [{if $paymentmethod->oxpayments__oxaddsum->value}]&nbsp;(+[{oxprice price=$paymentmethod->getPrice() currency=$currency }])[{/if}]
+      </label>
 
-        <div class="paymentdescription">
-            <div id="payment_details_[{$sPaymentID}]" [{if $oView->getCheckedPaymentId() !== $sPaymentID}]class="collapse"[{/if}]>
-            
+      <div class="paymentdescription">
+         <div id="payment_details_[{$sPaymentID}]" [{if $oView->getCheckedPaymentId() !== $sPaymentID}]class="collapse"[{/if}]>
+
             [{block name="checkout_payment_longdesc"}]
-                <p>[{$paymentmethod->oxpayments__oxlongdesc->value}]</p>
+               [{if $paymentmethod->oxpayments__oxlongdesc->value}]
+                  <p>[{oxeval var=$paymentmethod->oxpayments__oxlongdesc->value}]</p>
+               [{/if}]
             [{/block}]
 
-            </div>
-        </div>
-    </div>
+         </div>
+      </div>
+   </div>
 [{/block}]
