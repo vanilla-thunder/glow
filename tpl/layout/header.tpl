@@ -4,7 +4,7 @@
 [{strip}]
     [{block name="header_main"}]
         <div id="header" class="container[{if $blFullWidthHeader}]-fluid[{/if}] shadow">
-            <div class="row header-box hidden-xs"">
+            <div class="row header-box hidden-xs">
 
 
                 <div class="col-sm-4">
@@ -62,6 +62,4 @@
             [{oxid_include_dynamic file="widget/minibasket/minibasketmodal.tpl"}]
         </div>
     [{/block}]
-    <div id="debug"></div>
-    [{oxscript add="$('#debug').text(screen.width + ' x ' + screen.height);"}]
 [{/strip}]
