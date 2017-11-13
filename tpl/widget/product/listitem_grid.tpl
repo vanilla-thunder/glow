@@ -19,11 +19,8 @@
         <div class="panel-body listitem-grid">
 
             [{block name="widget_product_listitem_grid_gridpicture"}]
-                <a class="btn-block text-center productpic" href="[{$_productLink}]" title="[{$product->oxarticles__oxtitle->value}] [{$product->oxarticles__oxvarselect->value}]"
-                style="background: url('[{$product->getThumbnailUrl()}]') center no-repeat transparent; background-size: cover;">
-                    <img [{* src="[{$oViewConf->getImageUrl('spinner.gif')}]" data- *}]
-                            src="[{$product->getThumbnailUrl()}]" style="max-width: 100%; height: auto; visibility:hidden;"
-                            alt="[{$product->oxarticles__oxtitle->value}] [{$product->oxarticles__oxvarselect->value}]">
+                <a class="btn-block text-center productpic" href="[{$_productLink}]" title="[{$product->oxarticles__oxtitle->value}] [{$product->oxarticles__oxvarselect->value}]">
+                    <img class="" src="[{$product->getThumbnailUrl()}]" alt="[{$product->oxarticles__oxtitle->value}] [{$product->oxarticles__oxvarselect->value}]">
                 </a>
             [{/block}]
 

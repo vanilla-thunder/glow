@@ -24,12 +24,12 @@
                 </div>
                 <div class="collapse navbar-collapse" id="mainmenu-collapse">
 
-
+[{* warum habe ich das hier einegbaut? ist doch doppelt...
                     <ul class="nav navbar-nav navbar-right">
                         <li class="minibasket-menu">
                             [{ oxid_include_widget cl="oxwMiniBasket" prefix="dropdown" nocookie=$blAnon force_sid=$force_sid }]
                         </li>
-                    </ul>
+                    </ul> *}]
 
                     [{include file="widget/header/search.tpl"}]
 

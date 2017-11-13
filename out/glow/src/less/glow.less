@@ -112,6 +112,8 @@
   margin-bottom: 5px;
 }
 
+body.cl-thankyou ol.checkoutSteps li,
+body.is-checkout ol.checkoutSteps li { width: 25%; }
 // ------------------------- refactoring ------------------------------
 
 // product lists
@@ -125,7 +127,17 @@
 }
 
 .listitem-grid {
-  .productpic { height: 300px; }
+  .productpic {
+    img { max-width: 100%; }
+    @media ( min-width: @screen-sm-min ) {
+      height: 250px; line-height: 250px;
+      img { max-height: 250px; }
+    }
+    @media ( min-width: @screen-lg-min ) {
+      height: 350px; line-height: 350px;
+      img { max-height: 350px; }
+    }
+  }
 }
 
 .miniView {

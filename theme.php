@@ -159,18 +159,30 @@ $aTheme = [
          'value'    => 'START_NEWEST_SUBHEADER',
          'position' => 12
       ], [
-         'group'    => 'glow_start',
-         'name'     => 'sStartBargainArticlesHeader',
-         'type'     => 'str',
-         'value'    => 'START_BARGAIN_HEADER',
-         'position' => 13
-      ], [
-         'group'    => 'glow_start',
-         'name'     => 'sStartBargainArticlesSubheader',
-         'type'     => 'str',
-         'value'    => 'START_BARGAIN_SUBHEADER',
-         'position' => 14
-      ], [
+           'group'    => 'glow_start',
+           'name'     => 'sStartBargainArticlesHeader',
+           'type'     => 'str',
+           'value'    => 'START_BARGAIN_HEADER',
+           'position' => 13
+       ], [
+           'group'    => 'glow_start',
+           'name'     => 'sStartBargainArticlesSubheader',
+           'type'     => 'str',
+           'value'    => 'START_BARGAIN_SUBHEADER',
+           'position' => 14
+       ], [
+           'group'    => 'glow_start',
+           'name'     => 'sStartTopArticlesHeader',
+           'type'     => 'str',
+           'value'    => 'START_TOP_PRODUCTS_HEADER',
+           'position' => 15
+       ], [
+           'group'    => 'glow_start',
+           'name'     => 'sStartTopArticlesSubheader',
+           'type'     => 'str',
+           'value'    => 'START_TOP_PRODUCTS_SUBHEADER',
+           'position' => 16
+       ], [
          /*
          'group'       => 'glow_start',
          'name'        => 'sStartPagePromotionsLayout',

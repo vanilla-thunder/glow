@@ -48,6 +48,7 @@
             [{/foreach}]
         [{/capture}]
     [{/if}]
+
     [{if $sStartPageActionsLayout == '4+4' }]
         [{if $oNewestArticles && $oNewestArticles->count() }]
             <div class="row boxwrapper">
@@ -72,7 +73,7 @@
         [{/if}]
     [{elseif $oNewestArticles && $oNewestArticles->count() && $oBargainArticles && $oBargainArticles->count() }]
         <div class="row">
-            <div class="col-xs-12 col-sm-[{if $sStartPageActionsLayout == '3+1' }]9[{elseif $sStartPageActionsLayout == '1+3' }]3[{else}]6[{/if}]">
+            <div class="col-xs-12 col-lg-[{if $sStartPageActionsLayout == '3+1' }]9[{elseif $sStartPageActionsLayout == '1+3' }]3[{else}]6[{/if}]">
                 <div class="row boxwrapper">
                     <div class="col-xs-12 page-header">
                         <h3>[{oxmultilang ident=$oViewConf->getViewThemeParam('sStartNewestArticlesHeader')|default:"START_NEWEST_HEADER"}]</h3>
@@ -81,7 +82,7 @@
                     [{$htmlNewestArticles}]
                 </div>
             </div>
-            <div class="col-xs-12 col-sm-[{if $sStartPageActionsLayout == '3+1' }]3[{elseif $sStartPageActionsLayout == '1+3' }]9[{else}]6[{/if}]">
+            <div class="col-xs-12 col-lg-[{if $sStartPageActionsLayout == '3+1' }]3[{elseif $sStartPageActionsLayout == '1+3' }]9[{else}]6[{/if}]">
                 <div class="row boxwrapper">
                     <div class="col-xs-12 page-header">
                         <h3>[{oxmultilang ident=$oViewConf->getViewThemeParam('sStartBargainArticlesHeader')|default:"START_BARGAIN_HEADER"}]</h3>
@@ -104,8 +105,8 @@
         <div id="topseller" class="row">
             <div class="boxwrapper">
                 <div class="page-header">
-                    <h3>[{oxmultilang ident="START_TOP_PRODUCTS_HEADER"}]</h3>
-                    <span class="subhead">[{oxmultilang ident="START_TOP_PRODUCTS_SUBHEADER"}]</span>
+                    <h3>[{oxmultilang ident=$oViewConf->getViewThemeParam('sStartTopArticlesHeader')|default:"START_TOP_PRODUCTS_HEADER"}]</h3>
+                    [{if $oViewConf->getViewThemeParam('sStartTopArticlesSubheader')}]<small class="subhead">[{oxmultilang ident=$oViewConf->getViewThemeParam('sStartTopArticlesSubheader') args=$oTopArticles->count()}]</small>[{/if}]
                 </div>
 
                 <div class="slider">

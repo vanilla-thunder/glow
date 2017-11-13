@@ -22,7 +22,7 @@
 [{if $actCategory->oxcategories__oxthumb->value && $actCategory->getThumbUrl()}]
     [{capture append="oxidBlock_pageSubheader"}]
         <div class="container[{if $oViewConf->getViewThemeParam('blFullwidthLayout')}]-fluid[{/if}] shadow banner">
-            <img src="[{$oViewConf->getImageUrl('spinner.gif')}]" data-src="[{$actCategory->getThumbUrl()}]" alt="[{$actCategory->oxcategories__oxtitle->value}]" class="banner-img"/>
+            <img src="[{* $oViewConf->getImageUrl('spinner.gif') *}]" data-src="[{$actCategory->getThumbUrl()}]" alt="[{$actCategory->oxcategories__oxtitle->value}]" class="banner-img"/>
         </div>
         <div class="spacer"></div>
     [{/capture}]
@@ -32,13 +32,16 @@
 
     [{block name="page_list_listhead"}]
         <h1 class="page-header">
+
+            [{$oView->getTitle()}]
+            [{*
             [{assign var='rsslinks' value=$oView->getRssLinks()}]
-                [{$oView->getTitle()}]
-                [{if $rsslinks.activeCategory}]
-                    <a class="rss" id="rssActiveCategory" href="[{$rsslinks.activeCategory.link}]" title="[{$rsslinks.activeCategory.title}]" target="_blank">
-                        <i class="fa fa-rss"></i>
-                    </a>
-                [{/if}]
+            [{if $rsslinks.activeCategory}]
+                <a class="rss" id="rssActiveCategory" href="[{$rsslinks.activeCategory.link}]" title="[{$rsslinks.activeCategory.title}]" target="_blank">
+                    <i class="fa fa-rss"></i>
+                </a>
+            [{/if}]
+            *}]
         </h1>
         [{assign var="oPageNavigation" value=$oView->getPageNavigation()}]
         [{if $actCategory && $actCategory->getShortDescription() && $oPageNavigation->actPage == 1}]
