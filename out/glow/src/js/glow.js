@@ -92,6 +92,33 @@ $(function () {
         });
     }
 
+    // Attributefilter Kategorieseite
+    $b.on("submit change", "#filterList", function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+
+        var $form = $("#filterList");
+
+        //$("#loading").show();
+        //$("#content").html("");
+        //$("#content").collapse('hide');
+        fadeOut($("#content"));
+
+        $.ajax({
+            url: $form.attr('action')+'&ajax=1',
+            type: 'GET',
+            data: $form.serialize(),
+            success: function(result) {
+                //$("#loading").collapse('hide');
+                $("#content").html(result);
+                fadeIn($("#content"));
+            },
+            error: function(result) {
+                //$("#loading").collapse('hide');
+                fadeIn($("#content"));
+            }
+        });
+    });
 
     //          _               _               _
     //      ___| |__   ___  ___| | _____  _   _| |_
