@@ -35,8 +35,8 @@ $aLang = [
     'GLOW_CURRENT_PROMOTIONS' => 'Aktuelle Verkaufsaktionen',
 
     'START_TOP_PRODUCTS_SUBHEADER' => 'Nur %s Produkte, dafür aber die besten, die wir Euch bieten können.',
+    'WHO_BOUGHT_ALSO_BOUGHT' => 'Kunden kaufen auch',
 
-
-    'WHO_BOUGHT_ALSO_BOUGHT' => 'Kunden kaufen auch'
+    'GLOW_D3HEIDELPAY_PAYMENT_NOTSAMEADDRESS_NOTICE' => 'Keine abweichende Lieferadresse möglich. Für diese Zahlungsoption müssen Sie im 2. Schritt Ihre Rechnungsadresse als Lieferadresse verwenden.'
 
 ];

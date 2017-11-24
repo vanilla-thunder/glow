@@ -104,7 +104,7 @@
                         </div>
                     </div>
                     [{block name="user_checkout_change_next_step_bottom"}]
-                        [{include file="page/checkout/inc/cart-buttons.tpl" next="CONTINUE_TO_NEXT_STEP" }]
+                        [{include file="page/checkout/inc/cart-buttons.tpl" next="CONTINUE_TO_NEXT_STEP" prev=$oViewConf->getBasketLink() }]
                     [{/block}]
                 [{/block}]
             </form>

@@ -271,14 +271,9 @@
                                 <input type="hidden" name="oxserviceproductsagreement" value="0">
                             </div>
 
-                            <div class="cart-buttons">
-                                <p>
-                                    <button type="submit" class="btn btn-lg btn-success pull-right">
-                                        <i class="fa fa-check"></i> [{oxmultilang ident="SUBMIT_ORDER"}]
-                                    </button>
-                                <div class="clearfix"></div>
-                                </p>
-                            </div>
+                            [{block name="user_checkout_change_next_step_bottom"}]
+                                [{include file="page/checkout/inc/cart-buttons.tpl" next="SUBMIT_ORDER" prev=$oViewConf->getPaymentLink() }]
+                            [{/block}]
                         </form>
                     [{/block}]
                 [{/if}]

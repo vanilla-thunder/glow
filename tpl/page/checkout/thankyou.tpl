@@ -40,4 +40,4 @@
         [{include file="widget/product/list.tpl" type="mini" head="WHO_BOUGHT_ALSO_BOUGHT"|oxmultilangassign listId="alsoBoughtThankyou" products=$oView->getAlsoBoughtTheseProducts() blDisableToCart=true}]
     [{/capture}]
 [{/if}]
-[{include file="layout/page.tpl" sidebar="Right"}]
+[{include file="layout/page.tpl"}]
