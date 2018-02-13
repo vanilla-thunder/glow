@@ -211,12 +211,24 @@ $aTheme = [
          'value'    => false,
          'position' => 2
       ], [
-         'group'    => 'glow_product',
-         'name'     => 'aProductPageRadioVarselect',
-         'type'     => 'arr',
-         'value'    => [],
-         'position' => 3
-      ],
+           'group'    => 'glow_product',
+           'name'     => 'aProductPageRadioVarselect',
+           'type'     => 'arr',
+           'value'    => [],
+           'position' => 3
+       ], [
+           'group'    => 'glow_product',
+           'name'     => 'aProductPageListVarselect',
+           'type'     => 'arr',
+           'value'    => [],
+           'position' => 4
+       ], [
+           'group'    => 'glow_product',
+           'name'     => 'aProductPageButtonVarselect',
+           'type'     => 'arr',
+           'value'    => [],
+           'position' => 5
+       ],
 
 
       /*[

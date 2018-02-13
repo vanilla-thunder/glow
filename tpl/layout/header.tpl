@@ -14,7 +14,7 @@
                         [{assign var="sLogoHeight" value=$oViewConf->getViewThemeParam('sLogoHeight')}]
                         <a href="[{$oViewConf->getHomeLink()}]" title="[{$oxcmp_shop->oxshops__oxtitleprefix->value}]">
                             <img src="[{$oViewConf->getPictureDir()|cat:'wysiwigpro/'|cat:$slogoImg}]" alt="[{$oxcmp_shop->oxshops__oxtitleprefix->value}]"
-                                 style="[{if $sLogoWidth}]width:auto;max-width:[{$sLogoWidth}]px;[{/if}][{if $sLogoHeight}]height:auto;max-height:[{$sLogoHeight}]px;[{/if}]">
+                                 style="[{if $sLogoWidth}]width:auto;max-width:[{$sLogoWidth|default:'100%'}];[{/if}][{if $sLogoHeight}]height:auto;max-height:[{$sLogoHeight}]px;[{/if}]">
                         </a>
                     [{/block}]
                 </div>

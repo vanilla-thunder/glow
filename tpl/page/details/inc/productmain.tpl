@@ -1,8 +1,21 @@
 [{oxscript include="js/pages/details.min.js" priority=10}]
 
-[{assign var="oParentProduct" value=$oDetailsProduct->getParentArticle() }]
 [{assign var="oManufacturer" value=$oView->getManufacturer()}]
+
+[{assign var="oParentProduct" value=$oDetailsProduct->getParentArticle() }]
+
+[{assign var="oVaraintList" value=$oView->getVariantList() }]
 [{assign var="aVariantSelections" value=$oView->getVariantSelections()}]
+
+
+[{* logik, ob der Artikel gekauft werden kann *}]
+[{assign var="blCanBuy" value=true}]
+<div>oxArticle->isBuyable() :: [{$oDetailsProduct->isBuyable()|@var_dump}]</div>
+<div>$oDetailsProduct->isParentNotBuyable() :: [{$oDetailsProduct->isParentNotBuyable()|@var_dump}]</div>
+<div>$aVariantSelections.blPerfectFit :: [{$aVariantSelections.blPerfectFit|@var_dump}]</div>
+[{* <div><pre>[{ $aVariantSelections.selections|@var_export:true|@highlight_string:true}]</pre></div> *}]
+
+[{if $aVariantSelections && $aVariantSelections.selections}][{assign var="blCanBuy" value=$aVariantSelections.blPerfectFit}][{/if}]
 
 [{if $aVariantSelections && $aVariantSelections.rawselections}]
     [{assign var="_sSelectionHashCollection" value=""}]
@@ -92,109 +105,40 @@
 
             <hr/>
 
-            <form class="js-oxProductForm form-horizontal" action="[{$oViewConf->getSelfActionLink()}]" method="post">
-                <div class="hidden">
-                    [{$oViewConf->getHiddenSid()}]
-                    [{$oViewConf->getNavFormParams()}]
-                    <input type="hidden" name="cl" value="[{$oViewConf->getTopActiveClassName()}]">
-                    <input type="hidden" name="aid" value="[{$oDetailsProduct->oxarticles__oxid->value}]">
-                    <input type="hidden" name="anid" value="[{$oDetailsProduct->oxarticles__oxnid->value}]">
-                    <input type="hidden" name="parentid"
-                           value="[{if !$oDetailsProduct->oxarticles__oxparentid->value}][{$oDetailsProduct->oxarticles__oxid->value}][{else}][{$oDetailsProduct->oxarticles__oxparentid->value}][{/if}]">
-                    <input type="hidden" name="panid" value="">
-                    [{if !$oDetailsProduct->isNotBuyable()}]
-                        <input type="hidden" name="fnc" value="tobasket">
-                    [{/if}]
+            [{* product stock *}]
+            [{if $blCanBuy}]
+                <div>
+                    [{block name="details_productmain_stockstatus"}]
+                        [{include file="page/details/inc/stock.tpl"}]
+                    [{/block}]
                 </div>
+            [{/if}]
+            [{if $oDetailsProduct->isBuyable()}]
+                <div>
+                    [{block name="details_productmain_deliverytime"}]
+                        [{include file="page/details/inc/deliverytime.tpl"}]
+                    [{/block}]
+                </div>
+            [{/if}]
 
-                [{assign var="blCanBuy" value=true}]
-                [{assign var="aRadioVariatns" value=$oViewConf->getViewThemeParam('aProductPageRadioVarselect') }]
-
-                [{* variants | md variants *}]
-                [{block name="details_productmain_variantselections"}]
-                    [{if $aVariantSelections && $aVariantSelections.selections}]
-                        [{assign var="blCanBuy" value=$aVariantSelections.blPerfectFit}]
-                        [{if !$blHasActiveSelections}]
-                            [{if !$blCanBuy && !$oDetailsProduct->isParentNotBuyable()}]
-                                [{assign var="blCanBuy" value=true}]
-                            [{/if}]
+            [{* Preis *}]
+            [{assign var=price  value=$oDetailsProduct->getPrice()}]
+            [{assign var=tprice value=$oDetailsProduct->getTPrice()}]
+            [{if !$tprice && $oParentProduct && $oParentProduct->getTPrice()}]
+                [{assign var=tprice value=$oParentProduct->getTPrice()}]
+            [{/if}]
+            
+            <div class="text-center">
+                [{block name="details_productmain_tprice"}]
+                    [{if $tprice && $tprice->getBruttoPrice() > $price->getBruttoPrice()}]
+                        <div class="tprice">
+                            <span class="h4">[{oxmultilang ident="REDUCED_FROM"}] [{oxprice price=$tprice currency=$currency}]</span><br/>
+                            <em>[{oxmultilang ident="OUR_REGULAR_PRICE"}]</em>
+                        </div>
                         [{/if}]
-                        <div id="variants">
-                            [{assign var="blHasActiveSelections" value=false}]
-                            [{foreach from=$aVariantSelections.selections item=oList key=iKey}]
-                                [{if $oList->getActiveSelection()}]
-                                    [{assign var="blHasActiveSelections" value=true}]
-                                [{/if}]
-                                [{if $oList->getLabel()|in_array:$aRadioVariatns }]
-                                    [{include file="page/details/inc/varselect_radio.tpl" oSelectionList=$oList iKey=$iKey blInDetails=true}]
-                                [{else}]
-                                    [{include file="page/details/inc/varselect_dropdown.tpl" oSelectionList=$oList iKey=$iKey blInDetails=true}]
-                                [{/if}]
-                            [{/foreach}]
-                        </div>
-                    [{/if}]
-                [{/block}]
+                    [{/block}]
 
-                [{* selection lists *}]
-                [{block name="details_productmain_selectlists"}]
-                    [{if $oViewConf->showSelectLists()}]
-                        <div id="selectionlists">
-                            [{assign var="oSelections" value=$oDetailsProduct->getSelections()}]
-                            [{if $oSelections}]
-                                <div>
-                                    [{foreach from=$oSelections item=oList name=selections}]
-                                        [{if $oList->oxselectlist__oxtitle->rawValue|in_array:$aRadioVariatns }]
-                                            [{include file="page/details/inc/varselect_radio.tpl" oSelectionList=$oList sFieldName="sel" iKey=$smarty.foreach.selections.index blHideDefault=true sSelType="seldrop"}]
-                                        [{else}]
-                                            [{include file="page/details/inc/varselect_dropdown.tpl" oSelectionList=$oList sFieldName="sel" iKey=$smarty.foreach.selections.index blHideDefault=true sSelType="seldrop"}]
-                                        [{/if}]
-                                    [{/foreach}]
-                                </div>
-                            [{/if}]
-                        </div>
-                    [{/if}]
-                [{/block}]
-
-                [{* pers params *}]
-                [{block name="details_productmain_persparams"}]
-                    [{if $oView->isPersParam()}]
-                        <div id="persparam" class="form-group">
-                            <label for="persistentParam" class="col-xs-12 col-sm-3 control-label"><strong>[{oxmultilang ident="YOUR_MESSAGE" suffix="COLON"}]</strong></label>
-                            <div class="col-xs-12 col-sm-9">
-                                <input id="persistentParam" class="form-control" type="text" name="persparam[details]" value="[{$oDetailsProduct->aPersistParam.text}]" size="35">
-                            </div>
-                        </div>
-                    [{/if}]
-                [{/block}]
-
-                [{block name="details_productmain_vpe"}]
-                    [{if $oDetailsProduct->oxarticles__oxvpe->value > 1}]
-                        <span class="vpe small">[{oxmultilang ident="DETAILS_VPE_MESSAGE_1"}] [{$oDetailsProduct->oxarticles__oxvpe->value}] [{oxmultilang ident="DETAILS_VPE_MESSAGE_2"}]</span>
-                        <br>
-                    [{/if}]
-                [{/block}]
-
-                <div class="row">
-                    <div class="col-xs-12 [{if $sProductPageLayout !== '66+33' }]col-md-6[{/if}]">
-
-
-                        [{assign var=price  value=$oDetailsProduct->getPrice()}]
-                        [{assign var=tprice value=$oDetailsProduct->getTPrice()}]
-                        [{if !$tprice && $oParentProduct && $oParentProduct->getTPrice()}]
-                            [{assign var=tprice value=$oParentProduct->getTPrice()}]
-                        [{/if}]
-
-                        <div class="text-center">
-                            [{block name="details_productmain_tprice"}]
-                                [{if $tprice && $tprice->getBruttoPrice() > $price->getBruttoPrice()}]
-                                    <div class="tprice">
-                                        <span class="h4">[{oxmultilang ident="REDUCED_FROM"}] [{oxprice price=$tprice currency=$currency}]</span><br/>
-                                        <em>[{oxmultilang ident="OUR_REGULAR_PRICE"}]</em>
-                                    </div>
-                                [{/if}]
-                            [{/block}]
-
-                            [{block name="details_productmain_price"}]
+                    [{block name="details_productmain_price"}]
                                 [{block name="details_productmain_price_value"}]
                                 [{if $oDetailsProduct->getFPrice()}]
                                     [{assign var="sFrom" value=""}]
@@ -268,53 +212,175 @@
                             [{/block}]
 
                         </div>
-                    </div>
-                    <div class="col-xs-12 [{if $sProductPageLayout !== '66+33' }]col-md-6[{/if}]">
-                        [{block name="details_productmain_tobasket"}]
-                            [{if !$oDetailsProduct->isNotBuyable()}]
-                                [{if $blCanBuy}]
-                                    [{if $oViewConf->getViewThemeParam('blProductPageShow2BasketAmount')}]
-                                        <div class="input-group input-group-lg">
-                                            <input id="amountToBasket" class="form-control text-center large" type="number" name="am" value="1" min="1" autocomplete="off" style="padding: 5px;">
-                                            <span class="input-group-btn">
-                                                <button id="toBasket" type="submit" [{if !$blCanBuy}]disabled="disabled"[{/if}] class="btn btn-primary">
-                                                    <i class="fa fa-shopping-cart"></i> [{oxmultilang ident="TO_CART"}]
-                                                </button>
-                                            </span>
-                                        </div>
-                                    [{else}]
-                                        <input id="amountToBasket" type="hidden" name="am" value="1" min="1" autocomplete="off">
-                                        <button id="toBasket" type="submit" [{if !$blCanBuy}]disabled="disabled"[{/if}] class="btn btn-primary btn-block btn-lg">
-                                            <i class="fa fa-shopping-cart"></i> [{oxmultilang ident="TO_CART"}]
-                                        </button>
-                                    [{/if}]
+                        
 
+                [{assign var="aRadioVariatns" value=$oViewConf->getViewThemeParam('aProductPageRadioVarselect') }]
+                [{assign var="aListVariatns" value=$oViewConf->getViewThemeParam('aProductPageListVarselect') }]
+                [{assign var="aButtonVariatns" value=$oViewConf->getViewThemeParam('aProductPageButtonVarselect') }]
+<hr/>
+
+[{if $aVariantSelections.selections|@count == 1}] [{* nur eine Ebene = Liste *}]
+
+    <h3>[{$oDetailsProduct->oxarticles__oxvarname->value}]</h3>
+    <div class="list-group">
+        [{foreach from=$oView->getVariantList() item="_oVariant" key="_vOxid"}]
+          <a href="[{$_oVariant->getLink()}]" class="list-group-item [{if $oDetailsProduct->oxarticles__oxid->value === $_vOxid}]active[{/if}]">
+            <h4 class="list-group-item-heading">[{$_oVariant->oxarticles__oxvarselect->value}]</h4>
+            <p class="list-group-item-text">
+                [{oxprice price=$_oVariant->getPrice()}]
+            </p>
+          </a>
+        [{/foreach}]
+    </div>
+
+[{elseif $aVariantSelections.selections|@count == 2}] [{* zwei Ebenen = Tabelle *}]
+    
+    [{if $oDetailsProduct->isParentNotBuyable()}]<h3>[{oxmultilang ident="DETAILS_CHOOSEVARIANT" suffix="COLON"}]</h3>[{/if}]
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                [{foreach from=$aVariantSelections.selections item=oList key=iKey}]
+                    <td><b>[{$oList->getLabel()}]</b></td>
+                [{/foreach}]
+              	<td><b>[{oxmultilang ident="PRICE"}]</b></td>
+              	<td width="180"></td>
+            </tr>
+        </thead>
+        <tbody>
+            [{foreach from=$oDetailsProduct->getMdSubvariants() item=_mdVar key=iKey}]
+                [{foreach from=$_mdVar->getMdSubvariants() item=_mdSubVar key=iSubKey name="mdsubvariants"}]
+                    [{assign var="_oVariant" value=$oVaraintList->offsetGet($_mdSubVar->getArticleId()) }]
+                    <tr>
+                        [{if $smarty.foreach.mdsubvariants.first}]
+                            <td valign="middle" style="vertical-align:middle;" rowspan="[{$_mdVar->getMdSubvariants()|@count}]">[{$_mdVar->getName()}]</td>
+                        [{/if}]
+                        <td>[{$_mdSubVar->getName()}]</td>
+                        <td>[{oxprice price=$_mdSubVar->getDPrice()}]
+                            [{if $_oVariant->getUnitPrice()}]
+        					    [{math equation="x/y" x=$_oVariant->getBasePrice() y=$_oVariant->getUnitQuantity() format="%.3f" assign="_ppu"}]
+        					    <em>([{$_ppu|replace:'.':','}] [{$currency->sign}]/[{$_oVariant->getUnitName()}])</em>
+        				    [{elseif $oDetailsProduct->oxarticles__oxvarname->value === "Menge"}]
+        				        [{math equation="x/y" x=$_oVariant->getBasePrice() y=$_oVariant->oxarticles__oxvarselect->value format="%.3f" assign="_ppu"}]
+        					    <em>([{$_ppu|replace:'.':','}] [{$currency->sign}]/Stück)</em>
+        				    [{/if}]
+                        </td>
+                        <td>
+                            <a href="[{$_oVariant->getToBasketLink()|oxaddparams:'am=1' }]" class="btn btn-primary">
+                                <i class="fa fa-cart-plus fa-lg fa-fw" aria-hidden="true"></i> [{oxmultilang ident="TO_CART"}]
+                            </a>
+                        </td>
+                    </tr>
+                [{/foreach}]
+            [{/foreach}]
+        </tbody>
+    </table>
+[{else}]    
+    <form class="js-oxProductForm form-horizontal" action="[{$oViewConf->getSelfActionLink()}]" method="post">
+        <div class="hidden">
+            [{$oViewConf->getHiddenSid()}]
+            [{$oViewConf->getNavFormParams()}]
+            <input type="hidden" name="cl" value="[{$oViewConf->getTopActiveClassName()}]">
+            <input type="hidden" name="aid" value="[{$oDetailsProduct->oxarticles__oxid->value}]">
+            <input type="hidden" name="anid" value="[{$oDetailsProduct->oxarticles__oxnid->value}]">
+            <input type="hidden" name="parentid" value="[{$oDetailsProduct->oxarticles__oxparentid->value|default:$oDetailsProduct->oxarticles__oxid->value}]">
+            <input type="hidden" name="panid" value="">
+            [{if !$oDetailsProduct->isNotBuyable()}]
+                <input type="hidden" name="fnc" value="tobasket">
+            [{/if}]
+        </div>
+        
+        [{* variants | md variants *}]
+        <div id="variants">
+        [{block name="details_productmain_variantselections"}]
+        [{assign var="blHasActiveSelections" value=false}]
+        [{foreach from=$aVariantSelections.selections item=oList key=iKey}]
+            [{if $oList->getActiveSelection()}]
+                [{assign var="blHasActiveSelections" value=true}]
+            [{/if}]
+            [{if $oList->getLabel()|in_array:$aRadioVariatns }]
+                [{include file="page/details/inc/varselect_radio.tpl" oSelectionList=$oList iKey=$iKey blInDetails=true}]
+            [{elseif $oList->getLabel()|in_array:$aTableVariatns }]
+                [{include file="page/details/inc/varselect_table.tpl" oSelectionList=$oList iKey=$iKey blInDetails=true}]
+            [{elseif $oList->getLabel()|in_array:$aButtonVariatns }]
+                [{include file="page/details/inc/varselect_button.tpl" oSelectionList=$oList iKey=$iKey blInDetails=true}]
+            [{else}]
+                [{include file="page/details/inc/varselect_dropdown.tpl" oSelectionList=$oList iKey=$iKey blInDetails=true}]
+            [{/if}]
+        [{/foreach}]
+        [{/block}]
+        
+        [{* selection lists *}]
+        [{block name="details_productmain_selectlists"}]
+            [{if $oViewConf->showSelectLists()}]
+                <div id="selectionlists">
+                    [{assign var="oSelections" value=$oDetailsProduct->getSelections()}]
+                    [{if $oSelections}]
+                        <div>
+                            [{foreach from=$oSelections item=oList name=selections}]
+                                [{if $oList->oxselectlist__oxtitle->rawValue|in_array:$aRadioVariatns }]
+                                    [{include file="page/details/inc/varselect_radio.tpl" oSelectionList=$oList sFieldName="sel" iKey=$smarty.foreach.selections.index blHideDefault=true sSelType="seldrop"}]
                                 [{else}]
-                                    <div class="alert alert-warning text-center">[{oxmultilang ident="DETAILS_CHOOSEVARIANT"}]</div>
+                                    [{include file="page/details/inc/varselect_dropdown.tpl" oSelectionList=$oList sFieldName="sel" iKey=$smarty.foreach.selections.index blHideDefault=true sSelType="seldrop"}]
                                 [{/if}]
-                            [{/if}]
-                        [{/block}]
-
-                        [{* product stock *}]
-                        [{if $blCanBuy}]
-                            <div>
-                                [{block name="details_productmain_stockstatus"}]
-                                    [{include file="page/details/inc/stock.tpl"}]
-                                [{/block}]
-                            </div>
-                        [{/if}]
-                        [{if $oDetailsProduct->isBuyable()}]
-                            <div>
-                                [{block name="details_productmain_deliverytime"}]
-                                    [{include file="page/details/inc/deliverytime.tpl"}]
-                                [{/block}]
-                            </div>
-                        [{/if}]
-
+                            [{/foreach}]
+                        </div>
+                    [{/if}]
+                </div>
+            [{/if}]
+        [{/block}]
+        
+        [{* pers params *}]
+        [{block name="details_productmain_persparams"}]
+            [{if $oView->isPersParam()}]
+                <div id="persparam" class="form-group">
+                    <label for="persistentParam" class="col-xs-12 col-sm-3 control-label"><strong>[{oxmultilang ident="YOUR_MESSAGE" suffix="COLON"}]</strong></label>
+                    <div class="col-xs-12 col-sm-9">
+                        <input id="persistentParam" class="form-control" type="text" name="persparam[details]" value="[{$oDetailsProduct->aPersistParam.text}]" size="35">
                     </div>
                 </div>
+            [{/if}]
+        [{/block}]
+        
+        </div>
+                    [{block name="details_productmain_tobasket"}]
+                [{if !$oDetailsProduct->isNotBuyable()}]
 
-            </form>
+                    [{if $oViewConf->getViewThemeParam('blProductPageShow2BasketAmount')}]
+                        <div class="input-group input-group-lg">
+                            <input id="amountToBasket" class="form-control text-center large" type="number" name="am" value="1" min="1" autocomplete="off" style="padding: 5px;">
+                            <span class="input-group-btn">
+                                <button id="toBasket" type="submit" [{if !$blCanBuy}]disabled="disabled"[{/if}] class="btn btn-primary">
+                                    <i class="fa fa-shopping-cart"></i> [{oxmultilang ident="TO_CART"}]
+                                </button>
+                            </span>
+                        </div>
+                    [{else}]
+                        <input id="amountToBasket" type="hidden" name="am" value="1" min="1" autocomplete="off">
+                        <button id="toBasket" type="submit" [{if !$blCanBuy}]disabled="disabled"[{/if}] class="btn btn-primary btn-block btn-lg">
+                            <i class="fa fa-shopping-cart"></i> [{oxmultilang ident="TO_CART"}]
+                        </button>
+                    [{/if}]
+
+                
+                <!-- <div class="alert alert-warning text-center">[{oxmultilang ident="DETAILS_CHOOSEVARIANT"}]</div> -->
+                
+            [{/if}]
+        [{/block}]
+                        
+    </form>
+                        
+[{/if}]
+
+                
+
+
+                [{block name="details_productmain_vpe"}]
+                    [{if $oDetailsProduct->oxarticles__oxvpe->value > 1}]
+                        <span class="vpe small">[{oxmultilang ident="DETAILS_VPE_MESSAGE_1"}] [{$oDetailsProduct->oxarticles__oxvpe->value}] [{oxmultilang ident="DETAILS_VPE_MESSAGE_2"}]</span>
+                        <br>
+                    [{/if}]
+                [{/block}]
+
             <!--
             <hr/>
             blCanBuy: [{$blCanBuy|var_dump}]<br/>

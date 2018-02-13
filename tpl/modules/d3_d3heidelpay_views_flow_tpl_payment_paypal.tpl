@@ -19,7 +19,7 @@
 
       <div class="paymentdescription">
          [{if false == $blD3HeidelpayHasSameAdresses}]
-            <div class="alert alert-danger">[{oxmultilang ident="D3HEIDELPAY_PAYMENT_NOTSAMEADDRESS_NOTICE"}]</div>
+            <div class="alert alert-danger">[{oxmultilang ident="GLOW_D3HEIDELPAY_PAYMENT_NOTSAMEADDRESS_NOTICE"}]</div>
          [{/if}]
 
          <div id="payment_details_[{$sPaymentID}]" [{if $oView->getCheckedPaymentId() !== $sPaymentID}]class="collapse"[{/if}]>

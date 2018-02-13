@@ -115,7 +115,7 @@
                         <!-- save payment methods count to cookie for final step [{'paymentscount'|setcookie:$oView->getPaymentCnt()}] -->
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                <h3 id="paymentHeader" class="panel-title">[{oxmultilang ident="PAYMENT_METHOD"}] :: [{$oView->getCheckedPaymentId()}]</h3>
+                                <h3 id="paymentHeader" class="panel-title">[{oxmultilang ident="PAYMENT_METHOD"}]</h3>
                             </div>
                             <div class="panel-body">
                                 [{if $oView->getPaymentList()}]

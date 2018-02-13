@@ -54,7 +54,7 @@
                                     <li class="[{if $ocat->expanded}]active[{/if}][{if $ocat->getSubCats()}] dropdown[{/if}]">
                                         <a [{if $ocat->getSubCats()}]href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" [{else}]href="[{$ocat->getLink()}]"[{/if}]>
                                             [{if $ocat->getIconUrl()}]
-                                                <img src="[{$ocat->getIconUrl()}]" style="max-height:36px; margin: -8px 0;"/>
+                                                <img src="[{$ocat->getIconUrl()}]" style="max-height:50px; margin: -8px 0;"/>
                                             [{else}]
                                                 [{$ocat->oxcategories__oxtitle->value}][{if $ocat->getSubCats()}]&nbsp;<i class="fa fa-angle-down"></i>[{/if}]
                                             [{/if}]
