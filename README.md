@@ -2,10 +2,12 @@
 **demo: [http://glow.mb-dev.de](http://glow.mb-dev.de)**  
 basierend auf Flow Theme: https://github.com/OXID-eSales/flow_theme
 
-### Getestete / kompatible Zahlungsmodule:
-- D³ Heidelpay Integrator: Kreditkarte, Lastschrift, Paypal, SOfortüberweisung, Rechnung
-- oePaypal
-- 
+### Getestete / kompatible Module:
+- Payment:
+    * [D³ Heidelpay Integrator](https://www.oxidmodule.com/OXID-eShop/Module/Heidelpay-Integrator-fuer-Oxid-PE.html): Kreditkarte, Lastschrift, Paypal, SOfortüberweisung, Rechnung
+    * [ecomponents Paypal Gateway](https://www.ecomponents.de/module/paypal-gateway-inkl-express-und-paypal-plus/)
+- Andere:
+    * [D³ File Upload](https://www.oxidmodule.com/OXID-eShop/Module/File-Upload-fuer-Oxid-PE.html)
 
 ### Aktuelle To-Do Liste
 * Formular Validierung für E-Mail Adressen, PLZ, etc
