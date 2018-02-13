@@ -8,6 +8,11 @@ $aLang = [
 
     'GLOW_LOADING_CONTENT'             => 'Inhalt wird geladen...',
 
+    // Kategorienmenü
+    'GLOW_MENULVL_0' => '',
+    'GLOW_MENULVL_1' => '<i class="fa fa-angle-right fa-fw" aria-hidden="true"></i>',
+    'GLOW_MENULVL_2' => '&nbsp;&nbsp;<i class="fa fa-angle-double-right fa-fw" aria-hidden="true"></i>',
+
     // Produkte
     'NOT_AVAILABLE'                    => 'nicht verfügbar',
 

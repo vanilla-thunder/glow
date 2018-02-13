@@ -41,62 +41,64 @@
                         [{block name="dd_widget_header_categorylist_navbar_list"}]
                             [{* <li [{if $cl == 'start'}]class="active"[{/if}]><a href="[{$oViewConf->getHomeLink()}]">[{oxmultilang ident="HOME"}]</a></li> *}]
 
-                            [{foreach from=$oxcmp_categories item="ocat" key="catkey" name="root"}]
+                            [{foreach from=$oxcmp_categories item="oTopCat" key="catkey" name="root"}]
 
                                 [{* cms Seiten vor der Kategorie *}]
-                                [{foreach from=$ocat->getContentCats() item="oTopCont" name="MoreTopCms"}]
+                                [{foreach from=$oTopCat->getContentCats() item="oTopCont" name="MoreTopCms"}]
                                     <li [{if $cl == 'content' && $cms == $oTopCont->getId()}]class="active"[{/if}]>
                                         <a href="[{$oTopCont->getLink()}]">[{$oTopCont->oxcontents__oxtitle->value}]</a>
                                     </li>
                                 [{/foreach}]
 
-                                [{if $ocat->getIsVisible()}]
-                                    <li class="[{if $ocat->expanded}]active[{/if}][{if $ocat->getSubCats()}] dropdown[{/if}]">
-                                        <a [{if $ocat->getSubCats()}]href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" [{else}]href="[{$ocat->getLink()}]"[{/if}]>
-                                            [{if $ocat->getIconUrl()}]
-                                                <img src="[{$ocat->getIconUrl()}]" style="max-height:50px; margin: -8px 0;"/>
+                                [{if $oTopCat->getIsVisible()}]
+                                    <li class="[{if $oTopCat->expanded && $cat == $catkey}]active[{/if}][{if $oTopCat->getSubCats()}] dropdown[{/if}]">
+                                        <a [{if $oTopCat->getSubCats()}]href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"
+                                           [{else}]href="[{$oTopCat->getLink()}]"[{/if}]>
+                                            [{if $oTopCat->getIconUrl()}]
+                                                <img src="[{$oTopCat->getIconUrl()}]" style="max-height:50px; margin: -8px 0;"/>
                                             [{else}]
-                                                [{$ocat->oxcategories__oxtitle->value}][{if $ocat->getSubCats()}]&nbsp;<i class="fa fa-angle-down"></i>[{/if}]
+                                                [{$oTopCat->oxcategories__oxtitle->value}][{if $oTopCat->getSubCats()}]&nbsp;<i class="fa fa-angle-down"></i>[{/if}]
                                             [{/if}]
                                         </a>
-
+                                        
                                         [{* Unterkategorien Dropdown *}]
-                                        [{if $ocat->getSubCats()}]
+                                        [{if $oTopCat->getSubCats()}]
                                             <ul class="dropdown-menu">
-                                                [{foreach from=$ocat->getSubCats() item="osubcat" key="subcatkey" name="SubCat"}]
-                                                    [{foreach from=$osubcat->getContentCats() item=ocont name=MoreCms}]
+                                                [{foreach from=$oTopCat->getSubCats() item="oSubCat" key="subcatkey" name="SubCat"}]
+                                                    [{foreach from=$oSubCat->getContentCats() item=oSubCont name=MoreCms}]
                                                         <li>
-                                                            <a href="[{$ocont->getLink()}]">[{$ocont->oxcontents__oxtitle->value}]</a>
+                                                            <a href="[{$oSubCont->getLink()}]">[{$oSubCont->oxcontents__oxtitle->value}]</a>
                                                         </li>
                                                     [{/foreach}]
 
-                                                    [{if $osubcat->getIsVisible()}]
-                                                        <li [{if $osubcat->expanded}]class="active"[{/if}]>
-                                                            <a [{if $osubcat->expanded}]class="current"[{/if}] href="[{$osubcat->getLink()}]">[{$osubcat->oxcategories__oxtitle->value}]</a>
+                                                    [{if $oSubCat->getIsVisible()}]
+                                                        <li [{if $oSubCat->expanded && $cat == $subcatkey }]class="active"[{/if}]>
+                                                            <a [{if $oSubCat->expanded}]class="current"[{/if}] href="[{$oSubCat->getLink()}]">[{$oSubCat->oxcategories__oxtitle->value}]</a>
                                                         </li>
+
                                                         [{* Unter-Unterkategorien Auflistung*}]
-                                                        [{if $osubcat->getSubCats()}]
-                                                            [{foreach from=$osubcat->getSubCats() item="osubsubcat" key="subsubcatkey" name="SubSubCat"}]
-                                                                [{if $osubsubcat->getIsVisible()}]
-                                                                    <li [{if $osubsubcat->expanded}]class="active"[{/if}]>
-                                                                        <a [{if $osubsubcat->expanded}]class="current"[{/if}] href="[{$osubsubcat->getLink()}]">
-                                                                            - [{$osubsubcat->oxcategories__oxtitle->value}]</a>
-                                                                    </li>
-                                                                    [{foreach from=$osubcat->getSubCats() item="osubsubcat" key="subcatkey"}]
-                                                                        [{if $osubsubcat->getIsVisible()}]
-                                                                            <li [{if $homeSelected == 'false' && $osubsubcat->expanded}]class="active"[{/if}]>
-                                                                                <a [{if $homeSelected == 'false' && $osubsubcat->expanded}]class="current"[{/if}] href="[{$osubsubcat->getLink()}]"><i class="fa fa-angle-right fa-fw"></i> [{$osubsubcat->oxcategories__oxtitle->value}]
-                                                                                </a>
-                                                                            </li>
-                                                                        [{/if}]
-                                                                    [{/foreach}]
-                                                                [{/if}]
-                                                            [{/foreach}]
-                                                        [{/if}]
+                                                        [{assign var="deepcatlvl" value=0}]
+                                                        [{defun name="deepcats" _cat=$oSubCat}]
+                                                            [{assign var="deepcatlvl" value=$deepcatlvl+1}]
+                                                            [{if $_cat->getSubCats()}]
+                                                                [{foreach from=$_cat->getSubCats() item="_subCat" key="subsubcatkey" name="SubSubCat"}]
+                                                                    [{if $_subCat->getIsVisible()}]
+                                                                        <li [{if $_subCat->expanded && $cat == $subsubcatkey}]class="active"[{/if}]>
+                                                                            <!-- [{$_subCat|@var_dump}]-->
+                                                                            <a [{if $_subCat->expanded}]class="current"[{/if}] href="[{$_subCat->getLink()}]">
+                                                                                [{oxmultilang ident="GLOW_MENULVL_"|cat:$deepcatlvl}][{$_subCat->oxcategories__oxtitle->value}]
+                                                                            </a>
+                                                                        </li>
+                                                                        [{if $deepcatlvl < 3}][{fun name="deepcats" _cat=$_subCat}][{/if}]
+                                                                    [{/if}]
+                                                                [{/foreach}]
+                                                            [{/if}]
+                                                        [{/defun}]
                                                     [{/if}]
                                                 [{/foreach}]
                                             </ul>
                                         [{/if}]
+
                                     </li>
                                 [{/if}]
                             [{/foreach}]
