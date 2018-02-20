@@ -72,13 +72,24 @@ $aLang = [
     'SHOP_THEME_sStartPagePromotionsLayout_3' => 'aktuelle Promotions über dem Marken-Slider',
     'SHOP_THEME_sStartPagePromotionsLayout_4' => 'aktuelle und zukünftige Promotions über dem Marken-Slider',
 
-    'SHOP_THEME_GROUP_glow_product'       => 'Produktseite', // ----------------------------------------------------------------------------------------------------- PRODUKTSEITE
-    'SHOP_THEME_blProductShowVarselect'   => 'Varianten-Auswahl (oxvarname) im Produkttitel anszeigen?',
+    'SHOP_THEME_GROUP_glow_product'       => 'Produktseite',
+    // ----------------------------------------------------------------------------------------------------- PRODUKTSEITE
+    'SHOP_THEME_blProductShowVarselect'   => 'Varianten-Auswahl (oxvarselect) im Produkttitel anszeigen?',
     'SHOP_THEME_sProductPageLayout'       => 'Aufteilung der Breite für Produktbild und Infos',
     'SHOP_THEME_sProductPageLayout_33+66' => '1/3 Bild + 2/3 Text',
     'SHOP_THEME_sProductPageLayout_50+50' => 'Hälfte / Hälfte',
     'SHOP_THEME_sProductPageLayout_66+33' => '2/3 Bild + 1/3 Text',
 
     'SHOP_THEME_blProductPageShow2BasketAmount' => 'Feld für Menge beim "in den Warenkorb" Button anzeigen',
-    'SHOP_THEME_aProductPageRadioVarselect'     => 'Namen der Auswahlfelder, die als Radio-Buttons angezeigt werden sollen.<br/>(1 pro Zeile, z.B Farbe)'
+
+    'SHOP_THEME_aProductPageTableVarselect'  => 'Variantenauswahl als Tabelle anzeigen',
+    'SHOP_THEME_aProductPageRadioVarselect'  => 'Auswahllisten als Radio-Buttons anzeigen',
+    'SHOP_THEME_aProductPageButtonVarselect' => 'Auswahllisten als Buttons anzeigen',
+    'SHOP_THEME_aProductPageImageVarselect'  => 'Auswahllisten als Bilder angezeigen',
+
+    'SHOP_THEME_aProductPage2dTableVarselect'      => 'zwei Auswahllisten als eine Tabelle anzeigen',
+    'HELP_SHOP_THEME_aProductPage2dTableVarselect' => 'geeignet für Varianten, die keine abweichende Lieferzeit / Verfügbarkeit haben, sondern sowas wie eine Menge darstellen',
+    'SHOP_THEME_aProductPage2dPanelsVarselect'      => 'zwei Auswahllisten als Panels mit Tabellen anzeigen',
+    'HELP_SHOP_THEME_aProductPage2dPanelsVarselect' => 'geeignet für Varianten, die keine abweichende Lieferzeit / Verfügbarkeit haben, sondern sowas wie eine Menge darstellen'
+
 ];

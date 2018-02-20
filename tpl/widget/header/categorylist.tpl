@@ -89,7 +89,7 @@
                                                                                 [{oxmultilang ident="GLOW_MENULVL_"|cat:$deepcatlvl}][{$_subCat->oxcategories__oxtitle->value}]
                                                                             </a>
                                                                         </li>
-                                                                        [{if $deepcatlvl < 3}][{fun name="deepcats" _cat=$_subCat}][{/if}]
+                                                                        [{if $deepcatlvl < 4}][{fun name="deepcats" _cat=$_subCat}][{/if}]
                                                                     [{/if}]
                                                                 [{/foreach}]
                                                             [{/if}]

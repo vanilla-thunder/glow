@@ -9,12 +9,17 @@ $aLang = [
     'GLOW_LOADING_CONTENT'             => 'Inhalt wird geladen...',
 
     // Kategorienmenü
-    'GLOW_MENULVL_0' => '',
-    'GLOW_MENULVL_1' => '<i class="fa fa-angle-right fa-fw" aria-hidden="true"></i>',
-    'GLOW_MENULVL_2' => '&nbsp;&nbsp;<i class="fa fa-angle-double-right fa-fw" aria-hidden="true"></i>',
+    'GLOW_MENULVL_0'                   => '',
+    'GLOW_MENULVL_1'                   => '<i class="fa fa-angle-right" aria-hidden="true"></i>&nbsp;',
+    'GLOW_MENULVL_2'                   => '<i class="fa fa-angle-right" aria-hidden="true"></i><i class="fa fa-angle-right" aria-hidden="true"></i>&nbsp;',
+    'GLOW_MENULVL_3'                   => '<i class="fa fa-angle-right" aria-hidden="true"></i><i class="fa fa-angle-right" aria-hidden="true"></i><i class="fa fa-angle-right" aria-hidden="true"></i>&nbsp;',
+    'GLOW_MENULVL_4'                   => '<i class="fa fa-angle-right" aria-hidden="true"></i><i class="fa fa-angle-right" aria-hidden="true"></i><i class="fa fa-angle-right" aria-hidden="true"></i><i class="fa fa-angle-right" aria-hidden="true"></i>&nbsp;',
 
     // Produkte
     'NOT_AVAILABLE'                    => 'nicht verfügbar',
+    'AND'                              => 'und',
+    'NETTO'                            => 'Netto',
+    'BRUTTO'                           => 'Brutto',
 
     // für emails
     'BANK_ACCOUNT_NUMBER'              => 'Kontonummer',
@@ -40,7 +45,7 @@ $aLang = [
     'GLOW_CURRENT_PROMOTIONS' => 'Aktuelle Verkaufsaktionen',
 
     'START_TOP_PRODUCTS_SUBHEADER' => 'Nur %s Produkte, dafür aber die besten, die wir Euch bieten können.',
-    'WHO_BOUGHT_ALSO_BOUGHT' => 'Kunden kaufen auch',
+    'WHO_BOUGHT_ALSO_BOUGHT'       => 'Kunden kaufen auch',
 
     'GLOW_D3HEIDELPAY_PAYMENT_NOTSAMEADDRESS_NOTICE' => 'Keine abweichende Lieferadresse möglich. Für diese Zahlungsoption müssen Sie im 2. Schritt Ihre Rechnungsadresse als Lieferadresse verwenden.'
 

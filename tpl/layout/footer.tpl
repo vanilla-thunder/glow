@@ -28,8 +28,8 @@
                         [{block name="layout_page_vatinclude"}]
                             [{oxifcontent ident="oxdeliveryinfo" object="oCont"}]
                                 <div class="text-right">*
-                                    [{if $oView->isVatIncluded()}][{oxmultilang ident="PLUS_SHIPPING"}][{else}][{oxmultilang ident="PLUS"}][{/if}]
-                                    <a href="[{$oCont->getLink()}]">[{oxmultilang ident="PLUS_SHIPPING2"}]</a>
+                                    [{if $oView->isVatIncluded()}][{oxmultilang ident="PLUS_SHIPPING"}][{else}][{oxmultilang ident="PLUS_VAT"}] [{oxmultilang ident="AND"}][{/if}]
+                                    <a href="[{$oCont->getLink()}]"> [{oxmultilang ident="PLUS_SHIPPING2"}]</a>
                                 </div>
                             [{/oxifcontent}]
                         [{/block}]

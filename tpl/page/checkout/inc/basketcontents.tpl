@@ -14,6 +14,8 @@
                [{assign var="basketproduct" value=$basketitemlist.$basketindex}]
                [{assign var="oArticle" value=$basketitem->getArticle()}] [{* TODO braucht man das? *}]
                [{assign var="oAttributes" value=$oArticle->getAttributesDisplayableInBasket()}]
+               [{assign var="aVarselect" value='|'|explode:$oArticle->oxarticles__oxvarselect->value}]
+               [{assign var="aVarname" value='|'|explode:$oArticle->oxarticles__oxvarname->value}]
                [{* product image *}]
                <div class="col-xs-3 col-sm-2">
                   [{block name="checkout_basketcontents_basketitem_image"}]
@@ -26,14 +28,19 @@
                <div class="col-xs-9 col-sm-5 col-md-5">
                   [{block name="checkout_basketcontents_basketitem_titlenumber"}]
                      [{if $editable}]<a rel="nofllow" href="[{$basketitem->getLink()}]">[{/if}]
-                     <b>[{$basketitem->getTitle()}]</b>
+                     <b>[{$oArticle->oxarticles__oxtitle->value}]</b><br/>
+                     [{foreach from='|'|explode:$oArticle->oxarticles__oxvarname->value key="_i" item="_vname"}]
+                     <b>[{$_vname}]:</b> [{if $aVarselect[$_i]|is_numeric  && $aVarselect[$_i]|intval == $aVarselect[$_i]}][{$aVarselect[$_i]|number_format:0:',':'.'}][{else}][{$aVarselect[$_i]}][{/if}]<br/>
+                     [{/foreach}]
+                     <!--<b>[{$basketitem->getTitle()}]</b>
+                     [{$basketitem|@var_dump}]
+                     -->
                      [{if $editable}]</a>[{/if}]
                      [{if $basketitem->isSkipDiscount()}]
                         <sup>
                            <a href="#SkipDiscounts_link">**</a>
                         </sup>
                      [{/if}]
-                     <br/>
                      <div class="small">
                         [{oxmultilang ident="PRODUCT_NO"}] [{$basketproduct->oxarticles__oxartnum->value}]<br/>
                         [{foreach from=$oAttributes->getArray() key="oArtAttributes" item="oAttr" name="attributeContents"}]
@@ -109,31 +116,60 @@
                   [{/block}]
                </div>
                <div class="clearfix visible-xs-block"></div>
-               [{* ppu + total price + vat % *}]
+               [{* netto/brutto + ppu + total price + vat % *}]
                <div class="col-xs-7 col-sm-3 col-md-3 col-md-push-2">
-                  [{block name="checkout_basketcontents_basketitem_unitprice"}]
-                     [{if $basketitem->getRegularUnitPrice()}]
-                        <div class="regularUnitPrice text-right">
-                           <strong>[{oxmultilang ident="UNIT_PRICE" suffix="COLON"}]</strong>
-                           [{oxprice price=$basketitem->getRegularUnitPrice() currency=$currency}]
+
+                  [{if $oxcmp_basket->isPriceViewModeNetto()}]
+                  [{assign var="_price" value=$basketitem->getPrice()}]
+                     [{block name="checkout_basketcontents_basketitem_nettoprice"}]
+                        <div class="totalPrice text-right">
+                           <strong>[{oxmultilang ident="NETTO" suffix="COLON"}]</strong>
+                           [{oxprice price=$_price->getNettoPrice() cur=$currency}]
                         </div>
-                     [{/if}]
-                     [{if $basketitem->getUnitPrice() && $basketitem->getUnitPrice() != $basketitem->getRegularUnitPrice() }]
-                        <div class="regularUnitPrice text-right">
-                           <strong>[{oxmultilang ident="YOUR_PRICE" suffix="COLON"}]</strong>
-                           [{oxprice price=$basketitem->getUnitPrice() currency=$currency}]
+                     [{/block}]
+
+                     [{block name="checkout_basketcontents_basketitem_bruttoprice"}]
+                        <div class="totalPrice text-right">
+                           <strong>[{oxmultilang ident="BRUTTO" suffix="COLON"}]</strong>
+                           [{oxprice price=$_price->getBruttoPrice() cur=$currency}]
                         </div>
-                     [{/if}]
-                  [{/block}]
-                  [{block name="checkout_basketcontents_basketitem_totalprice"}]
-                     <div class="totalPrice text-right">
-                        <strong>[{oxmultilang ident="TOTAL" suffix="COLON"}]</strong>
-                        [{$basketitem->getFTotalPrice()}]&nbsp;[{$currency->sign}]
-                     </div>
-                  [{/block}]
-                  [{block name="checkout_basketcontents_basketitem_vat"}]
-                     <div class="vatPercent vatTotal small text-right">([{$basketitem->getVatPercent()}]% [{oxmultilang ident="VAT"}])</div>
-                  [{/block}]
+                     [{/block}]
+
+                     [{block name="checkout_basketcontents_basketitem_vatvalue"}]
+                        <div class="vatPercent vatTotal text-right">
+                           <strong>[{$basketitem->getVatPercent()}]% [{oxmultilang ident="VAT"}]:</strong>
+                           [{oxprice price=$_price->getVatValue() cur=$currency}]
+                        </div>
+                     [{/block}]
+                  [{else}]
+                     [{block name="checkout_basketcontents_basketitem_unitprice"}]
+                        [{if $basketitem->getRegularUnitPrice()}]
+                           <div class="regularUnitPrice text-right">
+                              <strong>[{oxmultilang ident="UNIT_PRICE" suffix="COLON"}]</strong>
+                              [{oxprice price=$basketitem->getRegularUnitPrice() currency=$currency}]
+                           </div>
+                        [{/if}]
+
+                        [{if $basketitem->getUnitPrice() && $basketitem->getUnitPrice() != $basketitem->getRegularUnitPrice() }]
+                           <div class="regularUnitPrice text-right">
+                              <strong>[{oxmultilang ident="YOUR_PRICE" suffix="COLON"}]</strong>
+                              [{oxprice price=$basketitem->getUnitPrice() currency=$currency}]
+                           </div>
+                        [{/if}]
+                     [{/block}]
+
+                     [{block name="checkout_basketcontents_basketitem_totalprice"}]
+                        <div class="totalPrice text-right">
+                           <strong>[{oxmultilang ident="TOTAL" suffix="COLON"}]</strong>
+                           [{$basketitem->getFTotalPrice()}]&nbsp;[{$currency->sign}]
+                        </div>
+                     [{/block}]
+
+                     [{block name="checkout_basketcontents_basketitem_vat"}]
+                        <div class="vatPercent vatTotal small text-right">([{$basketitem->getVatPercent()}]% [{oxmultilang ident="VAT"}])</div>
+                     [{/block}]
+
+                  [{/if}]
                </div>
                [{* product amount + remove btn *}]
                <div class="col-xs-5 col-sm-2 col-md-pull-3">
