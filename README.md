@@ -29,7 +29,7 @@ oder:
 
 ### Theme Einstellungen
 - Icons: 100*100
-- Thumbnails: 500*400
+- Thumbnails: 600*450
 - Kategoriebild: 1300*300
 - Zoom-Bilder: 1000*1000
 - oxpic: 600*500
