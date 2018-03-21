@@ -31,8 +31,8 @@ oder:
 - Icons: 100*100
 - Thumbnails: 600*450
 - Kategoriebild: 1300*300
-- Zoom-Bilder: 1000*1000
-- oxpic: 600*500
+- Zoom-Bilder: 1300*1000
+- oxpic: 600*450
 - Marken-Logos: 200*100
 - Kategoriebild einer Unterkategorie: 400*100
 - Promotion: 650*350
