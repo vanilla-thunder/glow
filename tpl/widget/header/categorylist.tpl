@@ -55,9 +55,9 @@
                                         <a [{if $oTopCat->getSubCats()}]href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"
                                            [{else}]href="[{$oTopCat->getLink()}]"[{/if}]>
                                             [{if $oTopCat->getIconUrl()}]
-                                                <img src="[{$oTopCat->getIconUrl()}]" style="max-height:50px; margin: -8px 0;"/>
+                                                <img src="[{$oTopCat->getIconUrl()}]" style="max-height:35px; margin: -8px 0;"/>
                                             [{else}]
-                                                [{$oTopCat->oxcategories__oxtitle->value}][{if $oTopCat->getSubCats()}]&nbsp;<i class="fa fa-angle-down"></i>[{/if}]
+                                                <b>[{$oTopCat->oxcategories__oxtitle->value}]</b>[{if $oTopCat->getSubCats()}]&nbsp;<i class="fa fa-angle-down"></i>[{/if}]
                                             [{/if}]
                                         </a>
                                         

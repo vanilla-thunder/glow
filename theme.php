@@ -13,20 +13,30 @@ $aTheme = [
     ],
     'author'         => 'Marat Bedoev',
     'settings'       => [
+        // header
         [
-            'group'    => 'glow_layout',
+            'group'    => 'glow_header',
             'name'     => 'blFullWidthHeader',
             'type'     => 'bool',
             'value'    => false,
             'position' => 0
         ],
+        // footer
         [
-            'group'    => 'glow_layout',
+            'group'    => 'glow_footer',
             'name'     => 'blFullWidthFooter',
             'type'     => 'bool',
             'value'    => false,
+            'position' => 0
+        ],
+        [
+            'group'    => 'glow_footer',
+            'name'     => 'aarrFooterSocialLinks',
+            'type'     => 'aarr',
+            'value'    => [],
             'position' => 1
         ],
+        // layout
         [
             'group'    => 'glow_layout',
             'name'     => 'blKeepDefaultSidebar',
@@ -290,6 +300,37 @@ $aTheme = [
             'value'    => [],
             'position' => 8
         ],
+        [
+            'group'    => 'glow_product',
+            'name'     => 'sHighStockIdent',
+            'type'     => 'str',
+            'value'    => 'READY_FOR_SHIPPING',
+            'position' => 9
+        ],
+        [
+            'group'    => 'glow_product',
+            'name'     => 'sLowStockIdent',
+            'type'     => 'str',
+            'value'    => 'LOW_STOCK',
+            'position' => 10
+        ],
+        [
+            'group'    => 'glow_product',
+            'name'     => 'sOutOfStockIdent',
+            'type'     => 'str',
+            'value'    => 'MESSAGE_NOT_ON_STOCK',
+            'position' => 11
+        ],
+        [
+            'group'    => 'glow_product',
+            'name'     => 'sAvailableOnIdent',
+            'type'     => 'str',
+            'value'    => 'AVAILABLE_ON',
+            'position' => 12
+        ],
+
+
+
 
 
         /*[

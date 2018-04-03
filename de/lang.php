@@ -10,12 +10,13 @@ $aLang = [
 
     // Kategorienmenü
     'GLOW_MENULVL_0'                   => '',
-    'GLOW_MENULVL_1'                   => '<i class="fa fa-angle-right" aria-hidden="true"></i>&nbsp;',
-    'GLOW_MENULVL_2'                   => '<i class="fa fa-angle-right" aria-hidden="true"></i><i class="fa fa-angle-right" aria-hidden="true"></i>&nbsp;',
-    'GLOW_MENULVL_3'                   => '<i class="fa fa-angle-right" aria-hidden="true"></i><i class="fa fa-angle-right" aria-hidden="true"></i><i class="fa fa-angle-right" aria-hidden="true"></i>&nbsp;',
-    'GLOW_MENULVL_4'                   => '<i class="fa fa-angle-right" aria-hidden="true"></i><i class="fa fa-angle-right" aria-hidden="true"></i><i class="fa fa-angle-right" aria-hidden="true"></i><i class="fa fa-angle-right" aria-hidden="true"></i>&nbsp;',
+    'GLOW_MENULVL_1'                   => '&nbsp;&nbsp;&nbsp;',
+    'GLOW_MENULVL_2'                   => '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;',
+    'GLOW_MENULVL_3'                   => '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;',
+    'GLOW_MENULVL_4'                   => '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;',
 
     // Produkte
+    'ON_STOCK'                         => 'auf Lager',
     'NOT_AVAILABLE'                    => 'nicht verfügbar',
     'AND'                              => 'und',
     'NETTO'                            => 'Netto',

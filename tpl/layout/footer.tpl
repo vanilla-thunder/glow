@@ -19,7 +19,7 @@
 
             <div class="row">
                 [{* vat / delivery info *}]
-                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 pull-right">
+                <div class="col-xs-12 col-sm-4 col-md-3 pull-right">
                     [{if $oView->isPriceCalculated()}]
 
                         [{block name="footer_deliveryinfo"}]
@@ -35,56 +35,42 @@
                         [{/block}]
                     [{/if}]
                 </div>
+
                 [{* Social Links *}]
-                <div class="col-xs-12 col-sm-6 col-md-8 col-lg-9">
+                <div class="col-xs-12 col-sm-8 col-md-9">
                     [{block name="dd_footer_social_links"}]
-                        [{if $oViewConf->getViewThemeParam('sFacebookUrl') || $oViewConf->getViewThemeParam('sGooglePlusUrl') || $oViewConf->getViewThemeParam('sTwitterUrl') || $oViewConf->getViewThemeParam('sYouTubeUrl') || $oViewConf->getViewThemeParam('sBlogUrl')}]
-                            <section class="text-left">
+                            [{assign var="aFooterSocialLinks" value=$oViewConf->getViewThemeParam("aarrFooterSocialLinks")}]
+                            [{if $aFooterSocialLinks}]
                                 [{block name="dd_footer_social_links_inner"}]
                                     <ul class="nav nav-pills">
                                         [{block name="dd_footer_social_links_list"}]
-                                            [{if $oViewConf->getViewThemeParam('sFacebookUrl')}]
+                                            [{foreach from=$aFooterSocialLinks key="_key" item="_url"}]
                                                 <li>
-                                                    <a target="_blank" href="[{$oViewConf->getViewThemeParam('sFacebookUrl')}]">
-                                                        <i class="fa fa-facebook"></i> <span>Facebook</span>
+                                                    <a target="_blank" href="[{$_url}]">
+                                                        [{if $_key|strpos:'|'}]
+                                                            [{assign var="_pos" value=$_key|strpos:'|'}]
+                                                            <i class="fa fa-fw fa-[{$_key|substr:0:$_pos }]"></i>
+                                                            &nbsp;
+                                                            [{$_key|substr:$_pos+1}]
+                                                        [{else}]
+                                                            [{$_key}]
+                                                        [{/if}]
                                                     </a>
                                                 </li>
-                                            [{/if}]
-                                            [{if $oViewConf->getViewThemeParam('sGooglePlusUrl')}]
-                                                <li>
-                                                    <a target="_blank" href="[{$oViewConf->getViewThemeParam('sGooglePlusUrl')}]">
-                                                        <i class="fa fa-google-plus-square"></i> <span>Google+</span>
-                                                    </a>
-                                                </li>
-                                            [{/if}]
-                                            [{if $oViewConf->getViewThemeParam('sTwitterUrl')}]
-                                                <li>
-                                                    <a target="_blank" href="[{$oViewConf->getViewThemeParam('sTwitterUrl')}]">
-                                                        <i class="fa fa-twitter"></i> <span>Twitter</span>
-                                                    </a>
-                                                </li>
-                                            [{/if}]
-                                            [{if $oViewConf->getViewThemeParam('sYouTubeUrl')}]
-                                                <li>
-                                                    <a target="_blank" href="[{$oViewConf->getViewThemeParam('sYouTubeUrl')}]">
-                                                        <i class="fa fa-youtube-square"></i> <span>YouTube</span>
-                                                    </a>
-                                                </li>
-                                            [{/if}]
-                                            [{if $oViewConf->getViewThemeParam('sBlogUrl')}]
-                                                <li>
-                                                    <a target="_blank" href="[{$oViewConf->getViewThemeParam('sBlogUrl')}]">
-                                                        <i class="fa fa-wordpress"></i> <span>Blog</span>
-                                                    </a>
-                                                </li>
-                                            [{/if}]
+                                            [{/foreach}]
                                         [{/block}]
                                     </ul>
                                 [{/block}]
-                            </section>
-                        [{/if}]
+                            [{/if}]
                     [{/block}]
                 </div>
+
+                [{* siegel etc *}]
+                [{oxifcontent ident="footer_infos" object="_oCont"}]
+                <div class="col-xs-12">
+                    [{oxeval var=$_oCont->oxcontents__oxcontent->value}]
+                </div>
+                [{/oxifcontent}]
                 <div class="col-xs-12">
                     <hr/>
                 </div>
@@ -167,11 +153,11 @@
 
             <div class="text-right">
                 <hr/>
-                    [{block name="dd_footer_copyright"}]
-                        [{oxifcontent ident="oxstdfooter" object="oCont"}]
-                        [{$oCont->oxcontents__oxcontent->value}]
-                        [{/oxifcontent}]
-                    [{/block}]
+                [{block name="dd_footer_copyright"}]
+                    [{oxifcontent ident="oxstdfooter" object="oCont"}]
+                    [{$oCont->oxcontents__oxcontent->value}]
+                    [{/oxifcontent}]
+                [{/block}]
             </div>
 
         </div>

@@ -199,15 +199,6 @@
         <![endif]-->
     </head>
     <body class="cl-[{$oView->getClassName()}][{if $smarty.get.plain == '1'}] popup[{/if}][{if $blIsCheckout}] is-checkout[{/if}][{if $oxcmp_user && $oxcmp_user->oxuser__oxpassword->value}] is-logged-in[{/if}]" [{if $sStyle}] style="[{$sStyle}]" [{/if}]>
-
-    <header>
-        [{block name="layout_header"}]
-            [{include file="layout/header.tpl"}]
-        [{/block}]
-        <div class="spacer"></div>
-    </header>
-
-    [{foreach from=$oxidBlock_pageSubheader item="_block"}][{$_block|strip}][{/foreach}]
     [{* [{if $oxidBlock_pageSubheader|@count > 0 }]<div class="spacer"></div>[{/if}] *}]
 
     [{foreach from=$oxidBlock_pageBody item="_block"}][{$_block|strip}][{/foreach}]
