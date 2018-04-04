@@ -201,6 +201,11 @@
     <body class="cl-[{$oView->getClassName()}][{if $smarty.get.plain == '1'}] popup[{/if}][{if $blIsCheckout}] is-checkout[{/if}][{if $oxcmp_user && $oxcmp_user->oxuser__oxpassword->value}] is-logged-in[{/if}]" [{if $sStyle}] style="[{$sStyle}]" [{/if}]>
     [{* [{if $oxidBlock_pageSubheader|@count > 0 }]<div class="spacer"></div>[{/if}] *}]
 
+
+    [{if $oViewConf->getTopActionClassName() != 'clearcookies' && $oViewConf->getTopActionClassName() != 'mallstart'}]
+        [{oxid_include_widget cl="oxwCookieNote" _parent=$oView->getClassName() nocookie=1}]
+    [{/if}]
+
     [{foreach from=$oxidBlock_pageBody item="_block"}][{$_block|strip}][{/foreach}]
     <div class="spacer"></div>
 
@@ -208,10 +213,6 @@
         [{block name="layout_footer"}]
             [{include file="layout/footer.tpl"}]
         [{/block}]
-
-            [{if $oViewConf->getTopActionClassName() != 'clearcookies' && $oViewConf->getTopActionClassName() != 'mallstart'}]
-                [{oxid_include_widget cl="oxwCookieNote" _parent=$oView->getClassName() nocookie=1}]
-            [{/if}]
     </footer>
 
     [{foreach from=$oxidBlock_pagePopup item="_block"}]
