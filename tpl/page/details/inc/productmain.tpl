@@ -10,9 +10,11 @@
 
 [{* logik, ob der Artikel gekauft werden kann *}]
 [{assign var="blCanBuy" value=true}]
+[{*
 <div>oxArticle->isBuyable() :: [{$oDetailsProduct->isBuyable()|@var_dump}]</div>
 <div>$oDetailsProduct->isParentNotBuyable() :: [{$oDetailsProduct->isParentNotBuyable()|@var_dump}]</div>
 <div>$aVariantSelections.blPerfectFit :: [{$aVariantSelections.blPerfectFit|@var_dump}]</div>
+*}]
 [{* <div><pre>[{ $aVariantSelections.selections|@var_export:true|@highlight_string:true}]</pre></div> *}]
 
 [{if $aVariantSelections && $aVariantSelections.selections}][{assign var="blCanBuy" value=$aVariantSelections.blPerfectFit}][{/if}]
@@ -172,13 +174,15 @@
                             <tbody>
                             [{foreach from=$oDetailsProduct->loadAmountPriceInfo() item=priceItem name=amountPrice}]
                                 <tr>
-                                    <td>[{oxmultilang ident="FROM"}] [{$priceItem->oxprice2article__oxamount->value}] [{oxmultilang ident="PCS"}]</td>
+                                    <td>[{oxmultilang ident="PRICE_FROM"}] <b>[{$priceItem->oxprice2article__oxamount->value}]</b> [{oxmultilang ident="PCS"}]</td>
                                     <td>
                                         [{if $priceItem->oxprice2article__oxaddperc->value}]
                                             [{$priceItem->oxprice2article__oxaddperc->value}]% [{oxmultilang ident="DISCOUNT"}]
                                         [{else}]
                                             [{$priceItem->fbrutprice}] [{$currency->sign}]
+                                            <small>( -[{math equation="(a-b)/a*100" a=$fPrice|replace:',':'.' b=$priceItem->oxprice2article__oxaddabs->value format="%.1f" }]%)</small>
                                         [{/if}]
+
                                     </td>
                                 </tr>
                             [{/foreach}]
