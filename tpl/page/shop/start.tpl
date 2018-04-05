@@ -55,7 +55,8 @@
                 <div class="col-xs-12">
                     <div class="page-header">
                         <h3>[{oxmultilang ident=$oViewConf->getViewThemeParam('sStartNewestArticlesHeader')|default:"START_NEWEST_HEADER"}]</h3>
-                        [{if $oViewConf->getViewThemeParam('sStartNewestArticlesSubheader')}]<small class="subhead">[{oxmultilang ident=$oViewConf->getViewThemeParam('sStartNewestArticlesSubheader')}]</small>[{/if}]
+                        [{if $oViewConf->getViewThemeParam('sStartNewestArticlesSubheader')}]
+                            <small class="subhead">[{oxmultilang ident=$oViewConf->getViewThemeParam('sStartNewestArticlesSubheader')}]</small>[{/if}]
                     </div>
                 </div>
                 [{$htmlNewestArticles}]
@@ -65,8 +66,9 @@
         [{if $oBargainArticles && $oBargainArticles->count() }]
             <div class="row boxwrapper">
                 <div class="col-xs-12">
-                        <h3>[{oxmultilang ident=$oViewConf->getViewThemeParam('sStartBargainArticlesHeader')|default:"START_BARGAIN_HEADER"}]</h3>
-                        [{if $oViewConf->getViewThemeParam('sStartBargainArticlesSubheader')}]<small class="subhead">[{oxmultilang ident=$oViewConf->getViewThemeParam('sStartBargainArticlesSubheader')}]</small>[{/if}]
+                    <h3>[{oxmultilang ident=$oViewConf->getViewThemeParam('sStartBargainArticlesHeader')|default:"START_BARGAIN_HEADER"}]</h3>
+                    [{if $oViewConf->getViewThemeParam('sStartBargainArticlesSubheader')}]
+                        <small class="subhead">[{oxmultilang ident=$oViewConf->getViewThemeParam('sStartBargainArticlesSubheader')}]</small>[{/if}]
                 </div>
                 [{$htmlBargainArticles}]
             </div>
@@ -77,7 +79,8 @@
                 <div class="row boxwrapper">
                     <div class="col-xs-12 page-header">
                         <h3>[{oxmultilang ident=$oViewConf->getViewThemeParam('sStartNewestArticlesHeader')|default:"START_NEWEST_HEADER"}]</h3>
-                        [{if $oViewConf->getViewThemeParam('sStartNewestArticlesSubheader')}]<small class="subhead">[{oxmultilang ident=$oViewConf->getViewThemeParam('sStartNewestArticlesSubheader')}]</small>[{/if}]
+                        [{if $oViewConf->getViewThemeParam('sStartNewestArticlesSubheader')}]
+                            <small class="subhead">[{oxmultilang ident=$oViewConf->getViewThemeParam('sStartNewestArticlesSubheader')}]</small>[{/if}]
                     </div>
                     [{$htmlNewestArticles}]
                 </div>
@@ -86,7 +89,8 @@
                 <div class="row boxwrapper">
                     <div class="col-xs-12 page-header">
                         <h3>[{oxmultilang ident=$oViewConf->getViewThemeParam('sStartBargainArticlesHeader')|default:"START_BARGAIN_HEADER"}]</h3>
-                        [{if $oViewConf->getViewThemeParam('sStartBargainArticlesSubheader')}]<small class="subhead">[{oxmultilang ident=$oViewConf->getViewThemeParam('sStartBargainArticlesSubheader')}]</small>[{/if}]
+                        [{if $oViewConf->getViewThemeParam('sStartBargainArticlesSubheader')}]
+                            <small class="subhead">[{oxmultilang ident=$oViewConf->getViewThemeParam('sStartBargainArticlesSubheader')}]</small>[{/if}]
                     </div>
                     [{$htmlBargainArticles}]
                 </div>
@@ -106,7 +110,8 @@
             <div class="boxwrapper">
                 <div class="page-header">
                     <h3>[{oxmultilang ident=$oViewConf->getViewThemeParam('sStartTopArticlesHeader')|default:"START_TOP_PRODUCTS_HEADER"}]</h3>
-                    [{if $oViewConf->getViewThemeParam('sStartTopArticlesSubheader')}]<small class="subhead">[{oxmultilang ident=$oViewConf->getViewThemeParam('sStartTopArticlesSubheader') args=$oTopArticles->count()}]</small>[{/if}]
+                    [{if $oViewConf->getViewThemeParam('sStartTopArticlesSubheader')}]
+                        <small class="subhead">[{oxmultilang ident=$oViewConf->getViewThemeParam('sStartTopArticlesSubheader') args=$oTopArticles->count()}]</small>[{/if}]
                 </div>
 
                 <div class="slider">
@@ -114,35 +119,38 @@
                         <div>
                             <a href="[{$_product->getMainLink()}]" class="thumbnail shadow" style="background-image: url('[{$_product->getThumbnailUrl()}]');">
                                 <img src="[{$_product->getThumbnailUrl()}]" class="img-responsive hidden"/>
-                                <div class="slider-caption">[{$_product->oxarticles__oxtitle->value}]<br/></div>
+                                <div class="slider-caption">
+                                    [{$_product->oxarticles__oxtitle->value}]<br/>
+                                    [{oxprice price=$_product->getPrice() currency=$currency}] *
+                                </div>
                             </a>
                         </div>
                     [{/foreach}]
                 </div>
             </div>
         </div>
-        [{* <script> *}]
+        <script>
             [{capture name="topsellerJS"}]
             $('#topseller .slider').slick({
                 arrows: true,
-                dots:true,
-                slidesToShow: 5,
+                dots: true,
+                slidesToShow: 4,
                 infinite: true,
                 responsive: [
                     {
                         breakpoint: 1200,
-                        settings: { slidesToShow: 4 }
-                    },{
+                        settings: {slidesToShow: 3}
+                    }, {
                         breakpoint: 800,
-                        settings: { slidesToShow: 3 }
-                    },{
+                        settings: {slidesToShow: 2}
+                    }, {
                         breakpoint: 560,
-                        settings: { slidesToShow: 2 }
+                        settings: {slidesToShow: 1}
                     }
                 ]
             });
             [{/capture}]
-        [{* </script> *}]
+        </script>
         [{oxscript add=$smarty.capture.topsellerJS }]
         [{*
             <div class="row boxwrapper">

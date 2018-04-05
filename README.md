@@ -1,5 +1,5 @@
 # Glow responsive Theme für OXID eShop
-**demo: [http://glow.mb-dev.de](http://glow.mb-dev.de)**  
+**demo: [http://glow.mb-dev.pro](http://glow.mb-dev.pro)**  
 basierend auf Flow Theme: https://github.com/OXID-eSales/flow_theme
 
 ### Getestete / kompatible Module:
@@ -29,10 +29,10 @@ oder:
 
 ### Theme Einstellungen
 - Icons: 100*100
-- Thumbnails: 500*400
+- Thumbnails: 600*450
 - Kategoriebild: 1300*300
-- Zoom-Bilder: 1000*1000
-- oxpic: 600*500
+- Zoom-Bilder: 1300*1000
+- oxpic: 600*450
 - Marken-Logos: 200*100
 - Kategoriebild einer Unterkategorie: 400*100
 - Promotion: 650*350
@@ -52,7 +52,7 @@ Diese wird zu:  out/glow/src/css/glow.min.css
 #### JS
 
 ### New Features 
-* live price update for amount prices https://glow.mb-dev.de/Kiteboarding/Trapeze/Trapez-ION-MADTRIXX.html
+* live price update for amount prices https://glow.mb-dev.pro/Kiteboarding/Trapeze/Trapez-ION-MADTRIXX.html
 * tprice will be inherited from parent article
 * show/hide sidebar by changing theme settings
 * smaller header navigation on mobile devices

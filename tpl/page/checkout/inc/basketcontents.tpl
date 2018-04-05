@@ -128,17 +128,17 @@
                         </div>
                      [{/block}]
 
+                      [{block name="checkout_basketcontents_basketitem_vatvalue"}]
+                          <div class="vatPercent vatTotal text-right">
+                              <strong>[{$basketitem->getVatPercent()}]% [{oxmultilang ident="VAT"}]:</strong>
+                              [{oxprice price=$_price->getVatValue() cur=$currency}]
+                          </div>
+                      [{/block}]
+
                      [{block name="checkout_basketcontents_basketitem_bruttoprice"}]
                         <div class="totalPrice text-right">
                            <strong>[{oxmultilang ident="BRUTTO" suffix="COLON"}]</strong>
                            [{oxprice price=$_price->getBruttoPrice() cur=$currency}]
-                        </div>
-                     [{/block}]
-
-                     [{block name="checkout_basketcontents_basketitem_vatvalue"}]
-                        <div class="vatPercent vatTotal text-right">
-                           <strong>[{$basketitem->getVatPercent()}]% [{oxmultilang ident="VAT"}]:</strong>
-                           [{oxprice price=$_price->getVatValue() cur=$currency}]
                         </div>
                      [{/block}]
                   [{else}]

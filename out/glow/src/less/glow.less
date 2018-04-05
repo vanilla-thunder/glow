@@ -72,7 +72,10 @@
   box-shadow: 0 5px 20px rgba(0, 0, 0, .3);
 }
 
-@import "_promotions";
+header {
+  background: #fff;
+  .minibasket-menu .dropdown-menu { min-width:400px; padding: 10px;}
+}
 
 #breadcrumb {
   padding: 5px 15px;
@@ -102,6 +105,8 @@
     color: @brand-secondary;
   }
 }
+
+@import "_promotions";
 
 .tprice {
   .label;

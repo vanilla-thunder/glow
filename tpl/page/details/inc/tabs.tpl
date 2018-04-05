@@ -97,14 +97,18 @@
    *}]
 
    [{* TODO Preisalarm. fliegt doch bald raus, oder? *}]
-   [{*
+
 [{block name="details_tabs_pricealarm"}]
    [{if $oView->isPriceAlarm() && !$oDetailsProduct->isParentNotBuyable()}]
-      <a href="#pricealarm" data-toggle="tab">[{oxmultilang ident="PRICE_ALERT"}]</a>[{/capture}]
-      <div id="pricealarm" class="tab-pane[{if $blFirstTab}] active[{/if}]">[{include file="form/pricealarm.tpl"}]</div>
+   <div class="panel panel-default">
+      <div class="panel-body">
+         <b>[{oxmultilang ident="PRICE_ALERT"}]</b>
+         [{include file="form/pricealarm.tpl"}]
+      </div>
+   </div>
    [{/if}]
 [{/block}]
-*}]
+
 </div>
 [{/block}]
 

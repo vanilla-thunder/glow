@@ -8,9 +8,14 @@ $aLang = [
     'HELP_SHOP_THEME_sEmailLogo'      => 'Relativ zu dem Pfad <code>/out/pictures/wysiwigpro/</code>.',
     'HELP_SHOP_THEME_sBackgroundPath' => 'Relativ zu dem Pfad <code>/out/pictures/wysiwigpro/</code>.',
 
-    'SHOP_THEME_GROUP_glow_layout'         => 'Layout, Sidebar, etc',
-    'SHOP_THEME_blFullWidthHeader'         => 'Header in voller Breite anzeigen',
-    'SHOP_THEME_blFullWidthFooter'         => 'Footer in voller Breite anzeigen',
+    'SHOP_THEME_GROUP_glow_header' => 'Header',
+    'SHOP_THEME_blFullWidthHeader' => 'Header in voller Breite anzeigen',
+
+    'SHOP_THEME_GROUP_glow_footer'     => 'Footer',
+    'SHOP_THEME_blFullWidthFooter'     => 'Footer in voller Breite anzeigen',
+    'SHOP_THEME_aarrFooterSocialLinks' => '<b>Social Links</b><br/>icon|Titel => url',
+    'SHOP_THEME_GROUP_glow_layout'     => 'Layout, Sidebar, etc',
+
     'SHOP_THEME_blKeepDefaultSidebar'      => '<b>ursprüngliche Sidebars behalten?</b>',
     'HELP_SHOP_THEME_blKeepDefaultSidebar' => 'Ist diese Option aktiv, wird Sidebar an den selben Stellen wie in Flow angezeigt. Mit der Sidebar Knfiguration können die standard Werte für einzelne Shop-Seiten überschrieben werden und die Sidebar z.B. auf die andere Seite verschoben oder ganz ausgeblendet werden',
     'SHOP_THEME_aSidebarConfig'            => '<b>Sidebar Konfiguration:</b><br/> view class => left / right',
@@ -72,8 +77,9 @@ $aLang = [
     'SHOP_THEME_sStartPagePromotionsLayout_3' => 'aktuelle Promotions über dem Marken-Slider',
     'SHOP_THEME_sStartPagePromotionsLayout_4' => 'aktuelle und zukünftige Promotions über dem Marken-Slider',
 
-    'SHOP_THEME_GROUP_glow_product'       => 'Produktseite',
     // ----------------------------------------------------------------------------------------------------- PRODUKTSEITE
+    'SHOP_THEME_GROUP_glow_product'       => 'Produktseite',
+
     'SHOP_THEME_blProductShowVarselect'   => 'Varianten-Auswahl (oxvarselect) im Produkttitel anszeigen?',
     'SHOP_THEME_sProductPageLayout'       => 'Aufteilung der Breite für Produktbild und Infos',
     'SHOP_THEME_sProductPageLayout_33+66' => '1/3 Bild + 2/3 Text',
@@ -87,9 +93,13 @@ $aLang = [
     'SHOP_THEME_aProductPageButtonVarselect' => 'Auswahllisten als Buttons anzeigen',
     'SHOP_THEME_aProductPageImageVarselect'  => 'Auswahllisten als Bilder angezeigen',
 
-    'SHOP_THEME_aProductPage2dTableVarselect'      => 'zwei Auswahllisten als eine Tabelle anzeigen',
-    'HELP_SHOP_THEME_aProductPage2dTableVarselect' => 'geeignet für Varianten, die keine abweichende Lieferzeit / Verfügbarkeit haben, sondern sowas wie eine Menge darstellen',
+    'SHOP_THEME_aProductPage2dTableVarselect'       => 'zwei Auswahllisten als eine Tabelle anzeigen',
+    'HELP_SHOP_THEME_aProductPage2dTableVarselect'  => 'geeignet für Varianten, die keine abweichende Lieferzeit / Verfügbarkeit haben, sondern sowas wie eine Menge darstellen',
     'SHOP_THEME_aProductPage2dPanelsVarselect'      => 'zwei Auswahllisten als Panels mit Tabellen anzeigen',
-    'HELP_SHOP_THEME_aProductPage2dPanelsVarselect' => 'geeignet für Varianten, die keine abweichende Lieferzeit / Verfügbarkeit haben, sondern sowas wie eine Menge darstellen'
+    'HELP_SHOP_THEME_aProductPage2dPanelsVarselect' => 'geeignet für Varianten, die keine abweichende Lieferzeit / Verfügbarkeit haben, sondern sowas wie eine Menge darstellen',
 
+    'SHOP_THEME_sHighStockIdent' => 'Standard Text-ident für hohen Lagerbestand',
+    'SHOP_THEME_sLowStockIdent' => 'Standard Text-ident für niedrigen Lagerbestand',
+    'SHOP_THEME_sOutOfStockIdent' => 'Standard Text-ident für keinen Lagerbestand',
+    'SHOP_THEME_sAvailableOnIdent' => 'Standard Text-ident für den Nachliefertermin',
 ];
