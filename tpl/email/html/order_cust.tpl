@@ -121,6 +121,7 @@
 
    <div class="block" style="width:600px;display:inline-block;vertical-align:top;">
       <table width="100%">
+         [{if ($oViewConf->getShowGiftWrapping() && $basket->getCard()) || ($oViewConf->getShowVouchers() && $basket->getVoucherDiscValue() ) }]
          <tr>
             <td class="padding" align="right" style="padding-top:16px;padding-bottom:16px;padding-right:16px;padding-left:16px;font-size:16px;line-height:1.25;">
 
@@ -167,6 +168,7 @@
                 <br><br>
             </td>
          </tr>
+         [{/if}]
          <tr>
             <td class="padding" align="right" style="padding-top:16px;padding-bottom:16px;padding-right:16px;padding-left:16px;font-size:16px;line-height:1.25;">
                 <table border="0" cellspacing="0" cellpadding="0" width="300">
@@ -481,9 +483,9 @@
             </td>
         </tr>
     </table>
-</div><!--[if (gte mso 9)|(IE)]></td></tr>
-<tr>
-    <td colspan="2"><![endif]-->
+</div>
+<!--[if (gte mso 9)|(IE)]></td></tr><tr><td colspan="2"><![endif]-->
+
 <div class="block" style="width:600px;display:inline-block;vertical-align:top;">
     <table width="100%">
         <tr>
@@ -492,7 +494,7 @@
 
    [{block name="email_html_order_cust_userremark"}]
       [{if $order->oxorder__oxremark->value }]
-         <font class="h4" style="color:#71A12A;margin-top:5px;margin-bottom:5px;margin-right:0;margin-left:0;font-weight:bold;font-size:18px;">[{oxmultilang ident="WHAT_I_WANTED_TO_SAY" suffix="COLON" }]</span>
+         <font class="h4" style="color:#71A12A;margin-top:5px;margin-bottom:5px;margin-right:0;margin-left:0;font-weight:bold;font-size:18px;">[{oxmultilang ident="WHAT_I_WANTED_TO_SAY" suffix="COLON" }]</font>
          <br>
          <p>[{ $order->oxorder__oxremark->value|oxescape }]</p>
       [{/if}]
@@ -500,11 +502,11 @@
 
    [{block name="email_html_order_cust_download_link"}]
       [{if $oOrderFileList and $oOrderFileList|count }]
-         <font class="h4" style="color:#71A12A;margin-top:5px;margin-bottom:5px;margin-right:0;margin-left:0;font-weight:bold;font-size:18px;">[{oxmultilang ident="MY_DOWNLOADS_DESC" }]</span>
+         <font class="h4" style="color:#71A12A;margin-top:5px;margin-bottom:5px;margin-right:0;margin-left:0;font-weight:bold;font-size:18px;">[{oxmultilang ident="MY_DOWNLOADS_DESC" }]</font>
          <br>
          [{foreach from=$oOrderFileList item="oOrderFile"}]
          [{if $order->oxorder__oxpaid->value || !$oOrderFile->oxorderfiles__oxpurchasedonly->value}]
-            <a href="[{ oxgetseourl ident=$oViewConf->getSelfLink()|cat:"cl=download" params="sorderfileid="|cat:$oOrderFile->getId()}]" rel="nofollow">[{$oOrderFile->oxorderfiles__oxfilename->value}]</a>
+            <a href="[{ oxgetseourl ident=$oViewConf->getSelfLink()|cat:'cl=download' params='sorderfileid='|cat:$oOrderFile->getId()}]" rel="nofollow">[{$oOrderFile->oxorderfiles__oxfilename->value}]</a>
             [{$oOrderFile->getFileSize()|oxfilesize}]
          [{else}]
           [{$oOrderFile->oxorderfiles__oxfilename->value}]
@@ -516,132 +518,94 @@
             </td>
         </tr>
     </table>
-</div><!--[if (gte mso 9)|(IE)]></td></tr></table>
-<table width="100%" align="center" cellpadding="0" cellspacing="0" border="0">
-    <tr>
-        <td width="50%"><![endif]-->
-<div class="block" style="width:300px;display:inline-block;vertical-align:top;">
-    <table width="100%">
-        <tr>
-            <td class="padding" align="left" style="padding-top:16px;padding-bottom:16px;padding-right:16px;padding-left:16px;font-size:16px;line-height:1.25;">
+</div>
 
-
-                [{block name="email_html_order_cust_username"}]
-   <span class="h4" style="color:#71A12A;margin-top:5px;margin-bottom:5px;margin-right:0;margin-left:0;font-weight:bold;font-size:18px;">[{oxmultilang ident="EMAIL_ADDRESS" suffix="COLON" }]</span>
-   <br>
-   [{ $user->oxuser__oxusername->value }]
-   <br>
-[{/block}]
-
-   [{block name="email_html_order_cust_paymentinfo_top"}]
-      [{if $payment->oxuserpayments__oxpaymentsid->value != "oxempty"}]
-         <span class="h4" style="color:#71A12A;margin-top:5px;margin-bottom:5px;margin-right:0;margin-left:0;font-weight:bold;font-size:18px;">[{oxmultilang ident="PAYMENT_METHOD" suffix="COLON" }]</span>
-         <br>
-         [{ $payment->oxpayments__oxdesc->value }]
-         [{assign var="oPaymentCostPrice" value=$basket->getPaymentCost()}]
-         [{if $oPaymentCostPrice }]([{oxprice price=$oPaymentCostPrice->getBruttoPrice() currency=$currency}])[{/if}]
-         <br>
-      [{/if}]
-   [{/block}]
-
-   [{block name="email_html_order_cust_deliveryinfo"}]
-      [{if $payment->oxuserpayments__oxpaymentsid->value != "oxempty"}]
-         <span class="h4" style="color:#71A12A;margin-top:5px;margin-bottom:5px;margin-right:0;margin-left:0;font-weight:bold;font-size:18px;">[{oxmultilang ident="SELECTED_SHIPPING_CARRIER" suffix="COLON" }]</span>
-         <br>
-         [{ $order->oDelSet->oxdeliveryset__oxtitle->value }]
-         <br>
-      [{/if}]
-   [{/block}]
-
-            </td>
-        </tr>
-    </table>
-</div><!--[if (gte mso 9)|(IE)]></td>
-<td width="50%"><![endif]-->
-<div class="block" style="width:300px;display:inline-block;vertical-align:top;">
-    <table width="100%">
-        <tr>
-            <td class="padding" align="left" style="padding-top:16px;padding-bottom:16px;padding-right:16px;padding-left:16px;font-size:16px;line-height:1.25;">
-
-                [{block name="email_html_order_cust_paymentinfo"}]
-   [{if $payment->oxuserpayments__oxpaymentsid->value == "oxidpayadvance"}]
-      <span class="h4" style="color:#71A12A;margin-top:5px;margin-bottom:5px;margin-right:0;margin-left:0;font-weight:bold;font-size:18px;">[{oxmultilang ident="BANK_DETAILS" }]</span>
-      <br>
-      [{if $shop->oxshops__oxbankname->value}][{oxmultilang ident="BANK" suffix="COLON" }] [{$shop->oxshops__oxbankname->value}]<br>[{/if}]
-      [{if $shop->oxshops__oxbankcode->value}][{oxmultilang ident="BANK_CODE" suffix="COLON" }] [{$shop->oxshops__oxbankcode->value}]<br>[{/if}]
-      [{if $shop->oxshops__oxbanknumber->value}][{oxmultilang ident="BANK_ACCOUNT_NUMBER" suffix="COLON" }] [{$shop->oxshops__oxbanknumber->value}]<br>[{/if}]
-      [{if $shop->oxshops__oxbiccode->value}][{oxmultilang ident="BIC" suffix="COLON"}] [{$shop->oxshops__oxbiccode->value}]<br>[{/if}]
-      [{if $shop->oxshops__oxibannumber->value}][{oxmultilang ident="IBAN" suffix="COLON"}] [{$shop->oxshops__oxibannumber->value}][{/if}]
-   [{/if}]
-[{/block}]
-            </td>
-        </tr>
-    </table>
-</div><!--[if (gte mso 9)|(IE)]></td></tr>
-<tr>
-    <td><![endif]-->
-<div class="block" style="width:300px;display:inline-block;vertical-align:top;">
-    <table width="100%">
-        <tr>
-            <td class="padding" align="left" style="padding-top:16px;padding-bottom:16px;padding-right:16px;padding-left:16px;font-size:16px;line-height:1.25;">
-                [{* RECHUNGSADRESSE *}]
-                <span class="h4" style="color:#71A12A;margin-top:5px;margin-bottom:5px;margin-right:0;margin-left:0;font-weight:bold;font-size:18px;">[{oxmultilang ident="BILLING_ADDRESS" suffix="COLON" }]</span><br>
-               [{ $order->oxorder__oxbillcompany->value }]<br>
-               [{ $order->oxorder__oxbillsal->value|oxmultilangsal}] [{ $order->oxorder__oxbillfname->value }] [{ $order->oxorder__oxbilllname->value }]<br>
-               [{if $order->oxorder__oxbilladdinfo->value }][{ $order->oxorder__oxbilladdinfo->value }]<br>[{/if}]
-                [{ $order->oxorder__oxbillstreet->value }] [{ $order->oxorder__oxbillstreetnr->value }]<br>
-                [{if $order->oxorder__oxbillstateid->value }][{ $order->oxorder__oxbillstateid->value }]<br/>[{/if}]
-                [{ $order->oxorder__oxbillzip->value }]&nbsp;[{ $order->oxorder__oxbillcity->value }]<br>
-              [{ $order->oxorder__oxbillcountry->value }]<br>
-                  [{if $order->oxorder__oxbillustid->value}][{oxmultilang ident="VAT_ID_NUMBER" suffix="COLON" }] [{ $order->oxorder__oxbillustid->value }]<br>[{/if}]
-               [{if $order->oxorder__oxbillfon->value }][{oxmultilang ident="PHONE" suffix="COLON" }] [{ $order->oxorder__oxbillfon->value }]<br>[{/if}]
-            </td>
-        </tr>
-    </table>
-</div><!--[if (gte mso 9)|(IE)]></td>
-<td><![endif]-->
-<div class="block" style="width:300px;display:inline-block;vertical-align:top;">
-    <table width="100%">
-        <tr>
-            <td class="padding" align="left" style="padding-top:16px;padding-bottom:16px;padding-right:16px;padding-left:16px;font-size:16px;line-height:1.25;">
-
-                [{* abweichende Lieferanschrift *}]
-   [{if $order->oxorder__oxdellname->value }]
-      <span class="h4" style="color:#71A12A;margin-top:5px;margin-bottom:5px;margin-right:0;margin-left:0;font-weight:bold;font-size:18px;">[{oxmultilang ident="SHIPPING_ADDRESS" suffix="COLON" }]</span><br>
-      [{ $order->oxorder__oxdelcompany->value }]<br>
-      [{ $order->oxorder__oxdelsal->value|oxmultilangsal }] [{ $order->oxorder__oxdelfname->value }] [{ $order->oxorder__oxdellname->value }]<br>
-      [{if $order->oxorder__oxdeladdinfo->value }][{ $order->oxorder__oxdeladdinfo->value }]<br>[{/if}]
-      [{ $order->oxorder__oxdelstreet->value }] [{ $order->oxorder__oxdelstreetnr->value }]<br>
-      [{ $order->oxorder__oxdelstateid->value }] [{ $order->oxorder__oxdelzip->value }] [{ $order->oxorder__oxdelcity->value }]<br>
-      [{ $order->oxorder__oxdelcountry->value }]
-   [{/if}]
-
-            </td>
-        </tr>
-    </table>
-</div><!--[if (gte mso 9)|(IE)]></td></tr>
-<tr>
-    <td colspan="2"><![endif]-->
+<!--[if (gte mso 9)|(IE)]></td></tr></table>
+<table width="100%" align="center" cellpadding="0" cellspacing="0" border="0"><tr><td width="100%"><![endif]-->
 <div class="block" style="width:600px;display:inline-block;vertical-align:top;">
     <table width="100%">
         <tr>
             <td class="padding" align="left" style="padding-top:16px;padding-bottom:16px;padding-right:16px;padding-left:16px;font-size:16px;line-height:1.25;">
 
-
-                [{block name="email_html_order_cust_tsinfo"}]
-   [{if $oViewConf->showTs("ORDEREMAIL") && $oViewConf->getTsId() }]
-      [{assign var="sTSRatingImg" value="https://www.trustedshops.com/bewertung/widget/img/bewerten_"|cat:$oViewConf->getActLanguageAbbr()|cat:".gif"}]
-      <span class="h4" style="color:#71A12A;margin-top:5px;margin-bottom:5px;margin-right:0;margin-left:0;font-weight:bold;font-size:18px;">[{oxmultilang ident="RATE_OUR_SHOP" }]</span>
-      <br>
-      <a href="[{ $oViewConf->getTsRatingUrl() }]" target="_blank" title="[{oxmultilang ident="TRUSTED_SHOPS_RATINGS" }]">
-         <img src="[{$sTSRatingImg}]" border="0" alt="[{oxmultilang ident="WRITE_REVIEW_2" }]" align="middle">
-      </a>
-   [{/if}]
-[{/block}]
-
+<table width="100%">
+   [{block name="email_html_order_cust_paymentinfo_top"}]
+      [{if $payment->oxuserpayments__oxpaymentsid->value != "oxempty"}]
+      <tr>
+         <td valign="top"><span class="h4" style="font-weight:bold;font-size:18px;">[{oxmultilang ident="PAYMENT_METHOD" suffix="COLON" }]</span></td>
+         <td>[{ $payment->oxpayments__oxdesc->value }]
+         [{assign var="oPaymentCostPrice" value=$basket->getPaymentCost()}]
+         [{if $oPaymentCostPrice > 0 }]([{oxprice price=$oPaymentCostPrice->getBruttoPrice() currency=$currency}])[{/if}]</td>
+      </tr>
+      [{/if}]
+   [{/block}]
+   
+   [{block name="email_html_order_cust_paymentinfo"}]
+      [{if $payment->oxuserpayments__oxpaymentsid->value == "oxidpayadvance"}]
+         <tr>
+            <td valign="top"><span class="h4" style="font-weight:bold;font-size:18px;">[{oxmultilang ident="BANK_DETAILS" suffix="COLON" }]</span></td>
+            <td>  
+               [{if $shop->oxshops__oxbankname->value}][{oxmultilang ident="BANK" suffix="COLON" }] [{$shop->oxshops__oxbankname->value}]<br>[{/if}]
+            [{if $shop->oxshops__oxbankcode->value}][{oxmultilang ident="BANK_CODE" suffix="COLON" }] [{$shop->oxshops__oxbankcode->value}]<br>[{/if}]
+               [{if $shop->oxshops__oxbanknumber->value}][{oxmultilang ident="BANK_ACCOUNT_NUMBER" suffix="COLON" }] [{$shop->oxshops__oxbanknumber->value}]<br>[{/if}]
+               [{if $shop->oxshops__oxbiccode->value}][{oxmultilang ident="BIC" suffix="COLON"}] [{$shop->oxshops__oxbiccode->value}]<br>[{/if}]
+               [{if $shop->oxshops__oxibannumber->value}][{oxmultilang ident="IBAN" suffix="COLON"}] [{$shop->oxshops__oxibannumber->value}][{/if}]
             </td>
-        </tr>
-    </table>
+         </tr>
+      [{/if}]
+   [{/block}]
+   
+   [{block name="email_html_order_cust_deliveryinfo"}]
+      [{if $payment->oxuserpayments__oxpaymentsid->value != "oxempty"}]
+         <tr>
+            <td valign="top"><span class="h4" style="font-weight:bold;font-size:18px;">[{oxmultilang ident="SELECTED_SHIPPING_CARRIER" suffix="COLON" }]</span></td>
+            <td>[{ $order->oDelSet->oxdeliveryset__oxtitle->value }]</td>
+         </tr>
+      [{/if}]
+   [{/block}]
+   
+   <tr><td colspan="2"><hr/></td></tr>
+   
+   [{block name="email_html_order_cust_username"}]
+   <tr>
+      <td><span class="h4" style="font-weight:bold;font-size:18px;">[{oxmultilang ident="EMAIL_ADDRESS" suffix="COLON" }]</span></td>
+      <td>[{ $user->oxuser__oxusername->value }]</td>
+   </tr>
+   [{/block}]
+
+   [{* RECHUNGSADRESSE *}]
+   <tr>
+      <td valign="top"><span class="h4" style="font-weight:bold;font-size:18px;">[{oxmultilang ident="BILLING_ADDRESS" suffix="COLON" }]</span></td>
+      <td>
+         [{ $order->oxorder__oxbillcompany->value }]<br>
+         [{ $order->oxorder__oxbillsal->value|oxmultilangsal}] [{ $order->oxorder__oxbillfname->value }] [{ $order->oxorder__oxbilllname->value }]<br>
+         [{if $order->oxorder__oxbilladdinfo->value }][{ $order->oxorder__oxbilladdinfo->value }]<br>[{/if}]
+         [{ $order->oxorder__oxbillstreet->value }] [{ $order->oxorder__oxbillstreetnr->value }]<br>
+         [{if $order->oxorder__oxbillstateid->value }][{ $order->oxorder__oxbillstateid->value }]<br/>[{/if}]
+         [{ $order->oxorder__oxbillzip->value }]&nbsp;[{ $order->oxorder__oxbillcity->value }]<br>
+         [{ $order->oxorder__oxbillcountry->value }]<br>
+         [{if $order->oxorder__oxbillustid->value}][{oxmultilang ident="VAT_ID_NUMBER" suffix="COLON" }] [{ $order->oxorder__oxbillustid->value }]<br>[{/if}]
+         [{if $order->oxorder__oxbillfon->value }][{oxmultilang ident="PHONE" suffix="COLON" }] [{ $order->oxorder__oxbillfon->value }]<br>[{/if}]
+      </td>
+   </tr>
+<!-- hier gehts weiter -->
+   [{* ALA *}]
+   [{if $order->oxorder__oxdellname->value }]
+   <tr>
+      <td valign="top"><span class="h4" style="font-weight:bold;font-size:18px;">[{oxmultilang ident="SHIPPING_ADDRESS" suffix="COLON" }]</span></td>
+      <td>
+         [{ $order->oxorder__oxdelcompany->value }]<br>
+         [{ $order->oxorder__oxdelsal->value|oxmultilangsal }] [{ $order->oxorder__oxdelfname->value }] [{ $order->oxorder__oxdellname->value }]<br>
+         [{if $order->oxorder__oxdeladdinfo->value }][{ $order->oxorder__oxdeladdinfo->value }]<br>[{/if}]
+         [{ $order->oxorder__oxdelstreet->value }] [{ $order->oxorder__oxdelstreetnr->value }]<br>
+         [{ $order->oxorder__oxdelstateid->value }] [{ $order->oxorder__oxdelzip->value }] [{ $order->oxorder__oxdelcity->value }]<br>
+         [{ $order->oxorder__oxdelcountry->value }]
+      </td>
+   </tr>
+   [{/if}]
+</table>
+         </td>
+      </tr>
+   </table>
 </div><!--[if (gte mso 9)|(IE)]></td></tr></table><![endif]-->
 
 </td></tr>

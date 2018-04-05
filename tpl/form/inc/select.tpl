@@ -19,7 +19,7 @@
 <div class="form-group [{if $aErrors.$_field}]text-danger[{/if}]">
     [{if $_label}]<label class="control-label col-sm-4 [{$_req}]">[{oxmultilang ident=$_label}]</label>[{/if}]
     <div class="[{if $_label}]col-sm-8[{/if}]">
-        [{if $options|@count < 4 && $_type !== "select"}]
+        [{if $_options|@count < 4 && $_type !== "select"}]
             <div class="row">
                 [{foreach from=$_options item="option" name="options"}]
 
@@ -30,7 +30,7 @@
                         [{assign var="_value" value=$option}]
                         [{assign var="_title" value=$option|oxmultilangassign}]
                     [{/if}]
-                    <div class="radiobtn col-xs-6">
+                    <div class="radiobtn col-xs-[{math equation='12/x' x=$_options|@count}]">
                         <input type="radio" name="[{$prefix}][[{$_field}]]" id="[{$prefix}]_[{$_field}]_[{$_value}]" class="hidden"
                                [{if $_value == $_current || $smarty.foreach.options.first }]checked[{/if}] value="[{$_value}]">
                         <label for="[{$prefix}]_[{$_field}]_[{$_value}]" class="btn btn-label btn-block">[{$_title}]</label>
