@@ -5,7 +5,7 @@
 [{capture assign="title"}]
 [{$shop->oxshops__oxname->value}] [{oxmultilang ident="NEWSLETTER"}]
 [{/capture}]
-[{include file="email/plain/header.tpl" title=$shop->oxshops__oxordersubject->value }]
+[{include file="email/plain/header.tpl" title=$title }]
 
 [{ oxcontent ident="oxnewsletterplainemail" }]
 

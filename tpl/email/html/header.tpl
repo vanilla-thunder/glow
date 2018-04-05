@@ -26,17 +26,15 @@
     <![endif]-->
 </head>
 <body style="background-color:#ebebeb;background-image:none;background-repeat:repeat;background-position:top left;background-attachment:scroll;text-align:center;">
-<!--[if (gte mso 9)|(IE)]>
-<table width="600" align="center" cellpadding="0" cellspacing="0" border="0">
-    <tr>
-        <td><![endif]-->
+
+<!--[if (gte mso 9)|(IE)]><table width="600" align="center" cellpadding="0" cellspacing="0" border="0"><tr><td><![endif]-->
+
 <table class="container" width="100%" cellpadding="0" cellspacing="0" style="max-width:600px;background-color:white;background-image:none;background-repeat:repeat;background-position:top left;background-attachment:scroll;border-width:1px;border-style:solid;border-color:gray;margin-top:0;margin-bottom:0;margin-right:auto;margin-left:auto;">
     <tr>
         <td style="text-align:center;vertical-align:top;font-size:0;">
-            [{* conditional table + erste Zeile *}]<!--[if (gte mso 9)|(IE)]>
-            <table width="100%" align="center" cellpadding="0" cellspacing="0" border="0">
-                <tr>
-                    <td><![endif]-->
+
+            [{* conditional table + erste Zeile *}]
+            <!--[if (gte mso 9)|(IE)]><table width="100%" align="center" cellpadding="0" cellspacing="0" border="0"><tr><td><![endif]-->
 
             <div class="block" style="width:300px;display:inline-block;vertical-align:top;">
                 <table width="100%">
@@ -47,15 +45,15 @@
                     </tr>
                 </table>
             </div>
-            <!--[if (gte mso 9)|(IE)]></td>
-            <td><![endif]-->
+            
+            <!--[if (gte mso 9)|(IE)]></td><td><![endif]-->
 
             <div  class="block" style="width:300px;display:inline-block;vertical-align:top;" >
                 <table width="100%">
                     <tr>
                         <td align="right" style="font-size:16px;line-height:1.25;" >
                             <a href="[{$oViewConf->getBaseDir()}]">
-                                <img src="[{$oViewConf->getPictureDir()|cat:'wysiwigpro/mail_logo.jpg'}]" width="200" alt="[{ $shop->oxshops__oxname->value }]" style="max-width:250px;">
+                                <img src="[{$oViewConf->getPictureDir()|cat:'wysiwigpro/mail_logo.jpg'}]" alt="[{ $shop->oxshops__oxname->value }]" style="width: 100%; max-width:290px;">
                             </a>
                         </td>
                     </tr>
@@ -63,14 +61,9 @@
             </div>
 
             [{* /container erste Zeile *}]
-            <!--[if (gte mso 9)|(IE)]></td></tr>
-            <tr>
-                <td colspan="2"><![endif]-->
-            [{* container zweite Zeile *}]
-            <div style="width: 600px;" class="">
-                <a href="[{$oViewConf->getBaseDir()}]">
-                    <img src="[{$oViewConf->getPictureDir()|cat:'wysiwigpro/mail_subheader.jpg'}]" width="600" alt="[{ $shop->oxshops__oxname->value }]">
-                </a>
-            </div>
             <!--[if (gte mso 9)|(IE)]></td></tr></table><![endif]-->
-<!-- /container zweite Zeile -->
+            <hr/>
+        </td>
+    </tr>
+    <tr>
+        <td style="text-align:center;vertical-align:top;font-size:0;">

@@ -7,14 +7,6 @@
 [{assign var="oVaraintList" value=$oView->getVariantList() }]
 [{assign var="aVariantSelections" value=$oView->getVariantSelections()}]
 
-
-[{* logik, ob der Artikel gekauft werden kann *}]
-[{assign var="blCanBuy" value=true}]
-<div>oxArticle->isBuyable() :: [{$oDetailsProduct->isBuyable()|@var_dump}]</div>
-<div>$oDetailsProduct->isParentNotBuyable() :: [{$oDetailsProduct->isParentNotBuyable()|@var_dump}]</div>
-<div>$aVariantSelections.blPerfectFit :: [{$aVariantSelections.blPerfectFit|@var_dump}]</div>
-[{* <div><pre>[{ $aVariantSelections.selections|@var_export:true|@highlight_string:true}]</pre></div> *}]
-
 [{if $aVariantSelections && $aVariantSelections.selections}][{assign var="blCanBuy" value=$aVariantSelections.blPerfectFit}][{/if}]
 
 [{if $aVariantSelections && $aVariantSelections.rawselections}]
@@ -70,10 +62,42 @@
             [{block name="details_productmain_morepics"}]
                 [{include file="page/details/inc/morepics.tpl"}]
             [{/block}]
+            
+            [{block name="details_productmain_attributes"}]
+                [{if $oView->getAttributes()}]
+                    [{block name="details_productmain_attributes_heading"}]
+                        <h4>[{oxmultilang ident="SPECIFICATION" suffix="COLON"}]</h4>
+                    [{/block}]
+                    <div>
+                        [{block name="details_productmain_attributes_content"}][{include file="page/details/inc/attributes.tpl"}][{/block}]
+                   </div>
+                [{/if}]
+            [{/block}]
+   
+            [{block name="details_productmain_media"}]
+                [{assign var="aMediasUrls" value=$oDetailsProduct->getMediaUrls()}]
+                [{if !$aMediasUrls|@count && $oParentProduct && $oParentProduct->getMediaUrls()}][{assign var="aMediasUrls" value=$oParentProduct->getMediaUrls()}][{/if}]
+                [{if $aMediasUrls|@count > 0 }]
+                    <div>
+                    [{foreach from=$aMediasUrls item="oMediaUrl" name="mediaURLs"}]
+                            <a target="_blank" href="[{$oMediaUrl->getLink()}]" class="btn btn-default">
+                                    [{assign var="_icon" value="file"}]
+                                    [{if $oMediaUrl->oxmediaurls__oxurl->value|substr:'-3' == 'pdf'}][{assign var="_icon" value="file-pdf-o"}]
+                                    [{elseif $oMediaUrl->oxmediaurls__oxurl->value|substr:'-4' == 'docx'}][{assign var="_icon" value="fa-file-word-o"}]
+                                    [{elseif $oMediaUrl->oxmediaurls__oxurl->value|substr:'-4' == 'xlsx'}][{assign var="_icon" value="fa-file-excel-o"}]
+                                    [{/if}]
+                                    <i class="text-danger fa fa-[{$_icon}] fa-lg fa-fw" aria-hidden="true"></i>
+                                    [{$oMediaUrl->oxmediaurls__oxdesc->rawValue}]
+                            </a>
+                    [{/foreach}]
+                    </div>
+                [{/if}]
+            [{/block}]
         </div>
 
         [{* product info *}]
         <div class="col-xs-12 col-sm-[{if $sProductPageLayout == '33+66' }]8[{elseif $sProductPageLayout == '50+50' }]6[{else}]4[{/if}]">
+                            
             [{* article number *}]
             [{block name="details_productmain_artnumber"}]
                 <span class="small text-muted">[{oxmultilang ident="ARTNUM" suffix="COLON"}] [{$oDetailsProduct->oxarticles__oxartnum->value}]</span>
@@ -252,7 +276,7 @@
                     [{/if}]
                 [{/block}]
 
-                <div id="variants">
+                <div id="variantselection">
 
                     [{if $aVariantSelections.selections|@count == 1}] [{* nur eine Ebene *}]
                         <input type="hidden" name="fnc" value="tobasket">
@@ -339,7 +363,7 @@
                             [{block name="details_productmain_stockstatus"}]
                                 [{include file="page/details/inc/stock.tpl"}]
                             [{/block}]
-                            &nbsp;|&nbsp;
+                            &nbsp;
                             [{block name="details_productmain_deliverytime"}]
                                 [{include file="page/details/inc/deliverytime.tpl"}]
                             [{/block}]
@@ -393,11 +417,11 @@
                                     <div class="panel-heading" role="tab" id="heading[{$iKey}]">
                                         <h4 class="panel-title">
                                             <a role="button" class="center-block" data-toggle="collapse" data-parent="#variantz" href="#variants[{$iKey}]" aria-expanded="true" aria-controls="variants[{$iKey}]">
-                                                [{$aVariantSelections.selections[0]->getLabel()}] [{$_mdVar->getName()}]
+                                                [{$aVariantSelections.selections[0]->getLabel()}] [{$_mdVar->getName()}] 
                                             </a>
                                         </h4>
                                     </div>
-                                    <div id="variants[{$iKey}]" class="panel-collapse collapse [{if $smarty.foreach.mdvariants.first}]in[{/if}]" role="tabpanel" aria-labelledby="heading[{$iKey}]">
+                                    <div id="variants[{$iKey}]" class="panel-collapse collapse [{* if $smarty.foreach.mdvariants.first}]in[{/if*}]" role="tabpanel" aria-labelledby="heading[{$iKey}]">
                                         <div class="panel-body">
 
                                             <table class="table table-striped">
