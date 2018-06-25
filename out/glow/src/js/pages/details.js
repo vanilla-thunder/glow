@@ -1,6 +1,7 @@
 $(function () {
     
     function selectVariant() {
+        console.log("varselect detected");
         var $select = $(this),
             $option = $("option:selected", $select);
 

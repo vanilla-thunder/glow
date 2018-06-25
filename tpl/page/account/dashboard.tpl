@@ -29,19 +29,19 @@
             </div>
          </div>
 
-          [{if $oViewConf->getViewThemeParam('blShowNewsletter')}]
-         <div class="col-xs-12 col-md-6">
-            <div class="panel panel-default">
-               <div class="panel-heading">
-                  <a id="linkAccountNewsletter" href="[{oxgetseourl ident=$oViewConf->getSslSelfLink()|cat:"cl=account_newsletter"}]">[{oxmultilang ident="NEWSLETTER_SETTINGS"}]</a>
-                  <a href="[{oxgetseourl ident=$oViewConf->getSslSelfLink()|cat:"cl=account_newsletter"}]" class="btn btn-default btn-xs pull-right">
-                     <i class="fa fa-arrow-right"></i>
-                  </a>
+         [{if $oViewConf->getViewThemeParam('blShowNewsletter')}]
+            <div class="col-xs-12 col-md-6">
+               <div class="panel panel-default">
+                  <div class="panel-heading">
+                     <a id="linkAccountNewsletter" href="[{oxgetseourl ident=$oViewConf->getSslSelfLink()|cat:"cl=account_newsletter"}]">[{oxmultilang ident="NEWSLETTER_SETTINGS"}]</a>
+                     <a href="[{oxgetseourl ident=$oViewConf->getSslSelfLink()|cat:"cl=account_newsletter"}]" class="btn btn-default btn-xs pull-right">
+                        <i class="fa fa-arrow-right"></i>
+                     </a>
+                  </div>
+                  <div class="panel-body">[{oxmultilang ident="NEWSLETTER_SUBSCRIBE_CANCEL"}]</div>
                </div>
-               <div class="panel-body">[{oxmultilang ident="NEWSLETTER_SUBSCRIBE_CANCEL"}]</div>
             </div>
-         </div>
-          [{/if}]
+         [{/if}]
 
 
          <div class="col-xs-12 col-md-6">
@@ -109,6 +109,7 @@
                </div>
             </div>
          [{/if}]
+
          [{if $oViewConf->getShowListmania()}]
             <div class="col-xs-12 col-md-6">
                <div class="panel panel-default">
@@ -122,15 +123,44 @@
                </div>
             </div>
          [{/if}]
+
+         [{if $oView|method_exists:"oeGdprBaseIsUserAllowedToManageOwnReviews" && $oView->oeGdprBaseIsUserAllowedToManageOwnReviews()}]
+            <div class="col-xs-12 col-md-6">
+               <div class="panel panel-default">
+                  <div class="panel-heading">
+                     <a href="[{oxgetseourl ident=$oViewConf->getSelfLink()|cat:"cl=oegdprbaseaccountreviewcontroller"}]">[{oxmultilang ident="OEGDPRBASE_MY_REVIEWS"}]</a>
+                     <a href="[{oxgetseourl ident=$oViewConf->getSslSelfLink()|cat:"cl=oegdprbaseaccountreviewcontroller"}]" class="btn btn-default btn-xs pull-right">
+                        <i class="fa fa-arrow-right"></i>
+                     </a>
+                  </div>
+                  <div class="panel-body">[{oxmultilang ident="OEGDPRBASE_MY_REVIEWS"}] [{if $oView->oeGdprBaseGetReviewAndRatingItemsCount()}][{$oView->oeGdprBaseGetReviewAndRatingItemsCount()}][{else}]0[{/if}]</div>
+               </div>
+            </div>
+         [{/if}]
       </div>
    </div>
    <div class="row">
       <div class="col-xs-12 text-right">
+
+         [{if $oView|method_exists:"oeGdprBaseIsUserAllowedToDeleteOwnAccount" && $oView->oeGdprBaseIsUserAllowedToDeleteOwnAccount()}]
+            [{block name="oegdprbase_account_delete_my_account"}]
+               <button id="oegdprbase_delete_my_account_button"
+                       class="btn btn-danger pull-left"
+                       data-toggle="modal"
+                       data-target="#oegdprbase_delete_my_account_confirmation">
+                  <i class="fa fa-trash"></i>
+                  [{oxmultilang ident="OEGDPRBASE_DELETE_MY_ACCOUNT"}]
+               </button>
+               [{include file="oegdprbasedeletemyaccountconfirmation_flow_modal.tpl"}]
+            [{/block}]
+         [{/if}]
+
          <a href="[{$oViewConf->getLogoutLink()}]" class="btn btn-danger" role="getLogoutLink">
             <i class="fa fa-off"></i> [{oxmultilang ident="LOGOUT"}]
          </a>
+
       </div>
-      <p>&nbsp;</p>
+      <p></p>
    </div>
    [{insert name="oxid_tracker" title=$template_title}]
 [{/capture}]

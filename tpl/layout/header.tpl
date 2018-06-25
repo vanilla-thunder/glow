@@ -21,15 +21,15 @@
                 [{block name="layout_header_menu"}]
                     <div class="row">
 
-                            [{* Language Dropdown*}]
-                            [{block name="dd_layout_page_header_icon_menu_languages"}]
-                                [{oxid_include_widget cl="oxwLanguageList" lang=$oViewConf->getActLanguageId() _parent=$oView->getClassName() nocookie=1 _navurlparams=$oViewConf->getNavUrlParams() anid=$oViewConf->getActArticleId()}]
-                            [{/block}]
+                        [{* Language Dropdown*}]
+                        [{block name="dd_layout_page_header_icon_menu_languages"}]
+                            [{oxid_include_widget cl="oxwLanguageList" lang=$oViewConf->getActLanguageId() _parent=$oView->getClassName() nocookie=1 _navurlparams=$oViewConf->getNavUrlParams() anid=$oViewConf->getActArticleId()}]
+                        [{/block}]
 
-                            [{* Currency Dropdown*}]
-                            [{block name="dd_layout_page_header_icon_menu_currencies"}]
-                                [{oxid_include_widget cl="oxwCurrencyList" cur=$oViewConf->getActCurrency() _parent=$oView->getClassName() nocookie=1 _navurlparams=$oViewConf->getNavUrlParams() anid=$oViewConf->getActArticleId()}]
-                            [{/block}]
+                        [{* Currency Dropdown*}]
+                        [{block name="dd_layout_page_header_icon_menu_currencies"}]
+                            [{oxid_include_widget cl="oxwCurrencyList" cur=$oViewConf->getActCurrency() _parent=$oView->getClassName() nocookie=1 _navurlparams=$oViewConf->getNavUrlParams() anid=$oViewConf->getActArticleId()}]
+                        [{/block}]
 
                         <div class="col-xs-12">
                             <p></p>

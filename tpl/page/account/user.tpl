@@ -4,8 +4,8 @@
          <div class="hidden">
             [{$oViewConf->getHiddenSid()}]
             [{$oViewConf->getNavFormParams()}]
-            <input type="hidden" name="fnc" value="changeuser_testvalues">
             <input type="hidden" name="cl" value="account_user">
+            <input type="hidden" name="fnc" value="changeuser_testvalues">
             <input type="hidden" name="CustomError" value='user'>
             <input type="hidden" name="blshowshipaddress" value="1">
          </div>
@@ -63,7 +63,7 @@
                            [{/block}]
 
                            [{block name="user_shipping_address_form"}]
-                              <div id="shippingAddress" [{if !$oView->showShipAddress()}] style="display: none;" [{/if}]>
+                              <div id="shippingAddress">
                                  [{include file="form/fieldset/user_shipping.tpl" noFormSubmit=true}]
                               </div>
                            [{/block}]

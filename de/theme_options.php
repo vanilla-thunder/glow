@@ -88,15 +88,13 @@ $aLang = [
 
     'SHOP_THEME_blProductPageShow2BasketAmount' => 'Feld für Menge beim "in den Warenkorb" Button anzeigen',
 
-    'SHOP_THEME_aProductPageTableVarselect'  => 'Variantenauswahl als Tabelle anzeigen',
-    'SHOP_THEME_aProductPageRadioVarselect'  => 'Auswahllisten als Radio-Buttons anzeigen',
-    'SHOP_THEME_aProductPageButtonVarselect' => 'Auswahllisten als Buttons anzeigen',
-    'SHOP_THEME_aProductPageImageVarselect'  => 'Auswahllisten als Bilder angezeigen',
+    'SHOP_THEME_aProductPageTableVarselect'  => 'Auswahllisten als Tabelle',
+    'SHOP_THEME_aProductPageRadioVarselect'  => 'Auswahllisten als Radio-Buttons',
+    'SHOP_THEME_aProductPageButtonVarselect' => 'Auswahllisten als Buttons',
+    'SHOP_THEME_aProductPageImageVarselect'  => 'Auswahllisten als Bilder',
 
-    'SHOP_THEME_aProductPage2dTableVarselect'       => 'zwei Auswahllisten als eine Tabelle anzeigen',
-    'HELP_SHOP_THEME_aProductPage2dTableVarselect'  => 'geeignet für Varianten, die keine abweichende Lieferzeit / Verfügbarkeit haben, sondern sowas wie eine Menge darstellen',
-    'SHOP_THEME_aProductPage2dPanelsVarselect'      => 'zwei Auswahllisten als Panels mit Tabellen anzeigen',
-    'HELP_SHOP_THEME_aProductPage2dPanelsVarselect' => 'geeignet für Varianten, die keine abweichende Lieferzeit / Verfügbarkeit haben, sondern sowas wie eine Menge darstellen',
+    'SHOP_THEME_blProductPageMdVarList'       => 'zwei Auswahllisten als kombinierte Tabelle anzeigen',
+    'HELP_SHOP_THEME_blProductPageMdVarList'  => 'geeignet für Varianten, die keine abweichende Lieferzeit / Verfügbarkeit haben, sondern sowas wie eine Menge darstellen',
 
     'SHOP_THEME_sHighStockIdent' => 'Standard Text-ident für hohen Lagerbestand',
     'SHOP_THEME_sLowStockIdent' => 'Standard Text-ident für niedrigen Lagerbestand',

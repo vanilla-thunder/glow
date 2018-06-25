@@ -20,7 +20,7 @@
     [{if $_label}]<label for="[{$prefix}]_[{$_field}]" class="control-label col-sm-4 [{$_req}]">[{oxmultilang ident=$_label}]</label>[{/if}]
     <div class="[{if $_label}]col-sm-8[{/if}]">
         <input type="[{$_type|default:'text'}]" name="[{$name|default:$inputname}]" id="[{$prefix}]_[{$_field}]" class="form-control" maxlength="64" [{$_req}]
-               [{if $_placeholder}]placeholder="[{$_placeholder|oxmultilangassign}][{if $_req}]*[{/if}]"[{/if}]
+                [{if $_placeholder}]placeholder="[{$_placeholder|oxmultilangassign}][{if $_req}]*[{/if}]"[{/if}]
                value="[{if $value !== NULL}][{$value}][{elseif $adr && isset($adr.$_field)}][{$adr.$_field}][{elseif $fallback && isset($fallback->$_field) }][{$fallback->$_field->value }][{/if}]">
         [{include file="message/inputvalidation.tpl" aErrors=$aErrors.$_field}]
         <div class="help-block"></div>

@@ -84,7 +84,6 @@
                                                                 [{foreach from=$_cat->getSubCats() item="_subCat" key="subsubcatkey" name="SubSubCat"}]
                                                                     [{if $_subCat->getIsVisible()}]
                                                                         <li [{if $_subCat->expanded && $cat == $subsubcatkey}]class="active"[{/if}]>
-                                                                            <!-- [{$_subCat|@var_dump}]-->
                                                                             <a [{if $_subCat->expanded}]class="current"[{/if}] href="[{$_subCat->getLink()}]">
                                                                                 [{oxmultilang ident="GLOW_MENULVL_"|cat:$deepcatlvl}][{$_subCat->oxcategories__oxtitle->value}]
                                                                             </a>

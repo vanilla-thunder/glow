@@ -226,7 +226,7 @@
             'default': 'Bitte gültige MEID Nummer eingeben'
         },
         notEmpty: {
-            'default': 'Bitte Wert eingeben'
+            'default': 'Bitte ausfüllen'
         },
         numeric: {
             'default': 'Bitte Nummer eingeben'

@@ -98,7 +98,7 @@
 
    [{* TODO Preisalarm. fliegt doch bald raus, oder? *}]
 
-[{block name="details_tabs_pricealarm"}]
+[{* block name="details_tabs_pricealarm"}]
    [{if $oView->isPriceAlarm() && !$oDetailsProduct->isParentNotBuyable()}]
    <div class="panel panel-default">
       <div class="panel-body">
@@ -107,7 +107,7 @@
       </div>
    </div>
    [{/if}]
-[{/block}]
+[{/block *}]
 
 </div>
 [{/block}]

@@ -1,4 +1,7 @@
 <?php
+include dirname(__FILE__)."/../flow/theme.php";
+$aParentTheme = $aTheme;
+
 $aTheme = [
     'id'             => 'glow',
     'title'          => 'Glow',
@@ -6,11 +9,7 @@ $aTheme = [
     'thumbnail'      => 'theme.jpg',
     'version'        => '0.1.1',
     'parentTheme'    => 'flow',
-    'parentVersions' => [
-        '1.0.1',
-        '1.0.0',
-        '1.0.0-beta.3'
-    ],
+    'parentVersions' => [$aParentTheme["version"]],
     'author'         => 'Marat Bedoev',
     'settings'       => [
         // header
@@ -259,11 +258,11 @@ $aTheme = [
             'position' => 2
         ],
         [
-            'group'    => 'glow_product',
-            'name'     => 'aProductPageTableVarselect',
-            'type'     => 'arr',
-            'value'    => [],
-            'position' => 3
+           'group'    => 'glow_product',
+           'name'     => 'aProductPageTableVarselect',
+           'type'     => 'arr',
+           'value'    => [],
+           'position' => 3
         ],
         [
             'group'    => 'glow_product',
@@ -286,6 +285,13 @@ $aTheme = [
             'value'    => [],
             'position' => 6
         ],
+		[
+			'group'    => 'glow_product',
+			'name'     => 'blProductPageMdVarList',
+			'type'     => 'bool',
+			'value'    => false,
+			'position' => 10
+		],/*
         [
             'group'    => 'glow_product',
             'name'     => 'aProductPage2dTableVarselect',
@@ -299,34 +305,34 @@ $aTheme = [
             'type'     => 'arr',
             'value'    => [],
             'position' => 8
-        ],
+        ],*/
         [
             'group'    => 'glow_product',
             'name'     => 'sHighStockIdent',
             'type'     => 'str',
             'value'    => 'READY_FOR_SHIPPING',
-            'position' => 9
+            'position' => 20
         ],
         [
             'group'    => 'glow_product',
             'name'     => 'sLowStockIdent',
             'type'     => 'str',
             'value'    => 'LOW_STOCK',
-            'position' => 10
+            'position' => 21
         ],
         [
             'group'    => 'glow_product',
             'name'     => 'sOutOfStockIdent',
             'type'     => 'str',
             'value'    => 'MESSAGE_NOT_ON_STOCK',
-            'position' => 11
+            'position' => 22
         ],
         [
             'group'    => 'glow_product',
             'name'     => 'sAvailableOnIdent',
             'type'     => 'str',
             'value'    => 'AVAILABLE_ON',
-            'position' => 12
+            'position' => 23
         ],
 
 

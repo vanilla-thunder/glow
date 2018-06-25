@@ -143,6 +143,8 @@
                                     </form>
                                 </div>
                             </section>
+                        [{else}]
+                            [{oxcontent ident="footer_newsletter"}]
                         [{/if}]
 
                     [{/block}]
