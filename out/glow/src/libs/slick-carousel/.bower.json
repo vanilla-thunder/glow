@@ -29,12 +29,12 @@
   "dependencies": {
     "jquery": ">=1.7"
   },
-  "version": "1.7.1",
-  "_release": "1.7.1",
+  "version": "1.8.1",
+  "_release": "1.8.1",
   "_resolution": {
     "type": "version",
-    "tag": "1.7.1",
-    "commit": "77101f1dc3e72cb44c253c81a74f9d4881b093a6"
+    "tag": "v1.8.1",
+    "commit": "1451fa2dda5f1ef056d7f027fea48894c93bca46"
   },
   "_source": "https://github.com/kenwheeler/slick.git",
   "_target": "*",
