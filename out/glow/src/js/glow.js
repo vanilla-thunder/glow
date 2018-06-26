@@ -129,6 +129,7 @@ $(function () {
     $b.on("change", "#blshowshipaddress", function () {
         if (this.checked) $("#shippingAddress").fadeOut('fast');
         else $("#shippingAddress").fadeIn('slow');
+        $("button.nextstep").prop("disabled",false).removeClass("disabled");
     });
 
     // Schritt 1 ----------------------------------------------------------------- Schritt 1
@@ -176,24 +177,28 @@ $(function () {
 
     // Schritt 3 ----------------------------------------------------------------- Schritt 3
     $b.on("change", "input[name='sShipSet']", function () {
-        var $form = $("#shipping");
+        var $form = $("#shipping"),
+            $content = $("#content"),
+            $loading = $("#loading");
 
-        $("#loading").collapse('show');
-        $("#content").collapse('hide');
+        //$content.slideToggle("slow");
+        $content.fadeTo("slow",0.25);
+        $loading.slideToggle();
         //fadeOut($("#content"));
-
+        //console.time("ajax");
         $.ajax({
-            url: $form.attr('action')+'&ajax=1',
-            type: 'POST',
-            data: $form.serialize(),
-            success: function(result) {
-                $("#content").html(result);
-                $("#loading").collapse('hide');
-                $("#content").collapse('show');
+                url: $form.attr('action') + '&ajax=1',
+                type: 'POST',
+                data: $form.serialize(),
+                dataType: "html"
+            })
+            .then(function(data) {
+                //console.timeEnd("ajax");
+                $content.html(data);
+                $content.fadeTo("slow",1);
+                $loading.slideToggle();
                 //fadeIn($("#content"));
-
-            }
-        });
+            });
     });
 
     // payment method selection

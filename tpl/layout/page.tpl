@@ -40,13 +40,13 @@
             [{/if}]
 
             <div id="" class="col-xs-12 [{if $sidebar|strtolower == "left" || $sidebar|strtolower == "right"}]col-md-9[{/if}]">
-                <div id="loading" class="content text-center collapse">
+                <div id="loading" class="text-center collapse">
                     <div class="progress">
                         <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
                             <span class="sr-only">[{oxmultilang ident="GLOW_LOADING_CONTENT"}]</span>
                         </div>
                     </div>
-                    <h3>[{oxmultilang ident="GLOW_LOADING_CONTENT"}]</h3>
+                    [{* <h3>[{oxmultilang ident="GLOW_LOADING_CONTENT"}]</h3> *}]
                 </div>
                 <div id="content" class="shadow collapse in">
                     [{$smarty.capture.loginErrors}]

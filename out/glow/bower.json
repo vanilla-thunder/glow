@@ -4,10 +4,10 @@
   "homepage": "https://github.com/vanilla-thunder/glow",
   "private": true,
   "dependencies": {
-    "bootstrap": "*",
+    "bootstrap": "3",
     "bootstrapvalidator": "nghuuphuoc/bootstrapvalidator#master",
     "fancyBox": "*",
-    "font-awesome": "*",
+    "font-awesome": "v4.7.0",
     "jquery-unveil": "luis-almeida/unveil#master",
     "matchheight": "*",
     "outdated-browser": "*",
