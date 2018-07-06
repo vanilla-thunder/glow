@@ -20,7 +20,7 @@ Damit diese geladen werden, wird dieses Modul benötigt.
 
 ### Installation
     cd application/views/
-    git clone git@github.com:vanilla-thunder/glow.git
+    git clone https://github.com/vanilla-thunder/glow.git
     ln -s ../application/views/glow/out/glow ../../out/glow
 oder:
  1. Archiv herunterladen
